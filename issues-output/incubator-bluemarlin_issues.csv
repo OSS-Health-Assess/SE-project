@@ -1,0 +1,858 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/20,https://api.github.com/repos/apache/incubator-bluemarlin/issues/20,incubator-bluemarlin,1080361836,20,Test issue 1,radibnia77,56361384,Reza,,CLOSED,2021-12-14T22:35:15Z,2021-12-14T22:36:53Z,"**Describe the bug**
+This is a test.
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/20/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/22,https://api.github.com/repos/apache/incubator-bluemarlin/issues/22,incubator-bluemarlin,1086379425,22,Remove 0 imp uckeys before p_n,radibnia77,56361384,Reza,,CLOSED,2021-12-22T02:10:15Z,2022-01-06T19:20:44Z,"In dlpredictor pipeline/main_cluster, the uckeys with 0 imp in ts (training window) are removed before the calculation of std and mean.
+This modification resulted to have fewer uckeys but the overall performance of the model stayed intact.
+The new overall error rate at slot-id is 11.1% compared to previous 10.7%","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/22/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/22,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s47kCSv,incubator-bluemarlin,999302319,22,NA,rangaswamymr,75462528,Rangaswamy M R,,NA,2021-12-22T05:41:25Z,2021-12-22T05:41:25Z,"@radibnia77 we have shared the tfrecords and statistics.pkl file. you may check with those files if you can still achieve the 10% accuracy.
+Multiple zip files are shared, you need to concat those files first and unzip them.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s47kCSv/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/22,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s479x7Q,incubator-bluemarlin,1006051024,22,NA,radibnia77,56361384,Reza,,NA,2022-01-05T20:24:15Z,2022-01-05T20:24:15Z,"I looked into your tfrecords. You have more dense-uckeys because your config file is different. The common uckeys have identical time series.
+
+I trained a new model based on your tfrecords and compared the prediction results at si level with the model that I trained before based on my tfrecords. The result shows that the two prediction systems are equivalent. 
+
+Your tfrecords and pipeline are running as expected.
+
+```
++--------------------------------+---------------+-------------+---------+-----------+-----------+
+|si                              |your_prediction|my_prediction|actual   |my_error   |your_error|
++--------------------------------+---------------+-------------+---------+-----------+-----------+
+|17dd6d8098bf11e5bdec00163e291137|59263          |55273        |168582   |0.67212987 |0.6484619  |
+|d4d7362e879511e5bdec00163e291137|48503          |33094        |188922   |0.8248272  |0.74326444 |
+|s4z85pd1h8                      |578944         |523670       |637263   |0.17825137 |0.0915148  |
+|j1430itab9wj3b                  |730882         |736467       |864567   |0.14816666 |0.15462653 |
+|a8syykhszz                      |809193         |817445       |886345   |0.07773497 |0.08704511 |
+|k4werqx13k                      |3545341        |3552900      |4464357  |0.2041631  |0.2058563  |
+|d9jucwkpr3                      |4802559        |4408436      |4475456  |0.01497501 |0.07308819 |
+|x2fpfbm8rt                      |4319816        |4250002      |6390364  |0.33493584 |0.32401097 |
+|5cd1c663263511e6af7500163e291137|5424461        |5406552      |7096585  |0.23814736 |0.23562375 |
+|71bcd2720e5011e79bc8fa163e05184e|9715060        |9462250      |12459624 |0.24056697 |0.22027662 |
+|z041bf6g4s                      |5527502        |4635519      |17440168 |0.7342045  |0.68305916 |
+|l2d4ec6csv                      |27348364       |26888025     |21556143 |0.2473486  |0.26870397 |
+|d971z9825e                      |21703044       |21266785     |26376462 |0.19372109 |0.17718138 |
+|w9fmyd5r0i                      |31184097       |30157737     |33533582 |0.100670576|0.07006364 |
+|w3wx3nv9ow5i97                  |32785749       |32259923     |35212394 |0.08384749 |0.06891451 |
+|f1iprgyl13                      |37152690       |36988968     |38603295 |0.041818373|0.037577234|
+|68bcd2720e5011e79bc8fa163e05184e|46153116       |45086621     |48699653 |0.074190095|0.05229066 |
+|a290af82884e11e5bdec00163e291137|64464560       |64358298     |72593126 |0.11343812 |0.11197432 |
+|e351de37263311e6af7500163e291137|71463936       |68680191     |77548938 |0.11436323 |0.07846661 |
+|b6le0s4qo8                      |113720412      |114861456    |101684589|0.12958568 |0.11836428 |
+|7b0d7b55ab0c11e68b7900163e3e481d|97228475       |94862385     |105754734|0.10299633 |0.080622956|
+|l03493p0r3                      |97247159       |100510164    |111445915|0.09812608 |0.1274049  |
+|x0ej5xhk60kjwq                  |159138977      |160395561    |140838705|0.13885996 |0.1299378  |
+|66bcd2720e5011e79bc8fa163e05184e|139973352      |140385657    |141771777|0.009777122|0.012685353|
+|a47eavw7ex                      |667011696      |666603307    |618874425|0.07712208 |0.07778197 |
++--------------------------------+---------------+-------------+---------+-----------+-----------+
+
+```","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s479x7Q/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/24,https://api.github.com/repos/apache/incubator-bluemarlin/issues/24,incubator-bluemarlin,1095619487,24,Add trained model files,radibnia77,56361384,Reza,,CLOSED,2022-01-06T19:19:13Z,2022-01-13T17:40:29Z,"Please add your trained model files for dl-predictor to
+Model/predictor-dl-model/experiments","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/24/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/24,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48BJfS,incubator-bluemarlin,1006933970,24,NA,radibnia77,56361384,Reza,,NA,2022-01-06T21:04:45Z,2022-01-06T21:04:45Z,"I have added the model files that I trained using your tfrecords. Please deploy the model and see how your post-process (prediction process) works. 
+
+Also provide your model files so that I can verify your model.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48BJfS/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/26,https://api.github.com/repos/apache/incubator-bluemarlin/issues/26,incubator-bluemarlin,1095700721,26,dlpredictor cannot process huge log files ,radibnia77,56361384,Reza,,CLOSED,2022-01-06T21:14:07Z,2022-01-13T17:40:41Z,"If you have a different process for dlpredictor to process huge log files, please add it to
+/Processes/dlpredictor/experiments/","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/26/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/26,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48DPd_,incubator-bluemarlin,1007482751,26,NA,rangaswamymr,75462528,Rangaswamy M R,,NA,2022-01-07T15:09:37Z,2022-01-07T15:09:37Z,@radibnia77 I was having issues in processing large data of logs. made few changes to post processing scripts and updated code files are committed and pull request is created.,"{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48DPd_/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/26,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48EqKY,incubator-bluemarlin,1007854232,26,NA,radibnia77,56361384,Reza,,NA,2022-01-08T01:15:30Z,2022-01-08T01:15:30Z,"I am reviewing/running your code.
+
+I noticed that line 56 and line 140 contradict each other in main_spark_data_process, you might need to look into that. ","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48EqKY/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/26,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48EvPf,incubator-bluemarlin,1007875039,26,NA,rangaswamymr,75462528,Rangaswamy M R,,NA,2022-01-08T03:09:35Z,2022-01-08T03:09:35Z,"Line 140 is not there in final code we are using. It was added for some testing and i forgot to remove before sharing with you.
+Also, i have removed few lines related to integrations. if the code doesn't work, you may have to change according to your integration mechanism with ES and model serving system.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48EvPf/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/26,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48KIoK,incubator-bluemarlin,1009289738,26,NA,radibnia77,56361384,Reza,,NA,2022-01-10T19:55:14Z,2022-01-10T19:55:14Z,"I ran your version of the post-process (prediction) code.
+
+This result is equivalent to the original code. I don't see any issue here.
+
+
+```
+9 days
+
++--------------------------------+---------+
+|si                              |sum(impr)|
++--------------------------------+---------+
+|d4d7362e879511e5bdec00163e291137|45321    |
+|17dd6d8098bf11e5bdec00163e291137|54459    |
+|s4z85pd1h8                      |589565   |
+|j1430itab9wj3b                  |726600   |
+|a8syykhszz                      |797981   |
+|k4werqx13k                      |3509653  |
+|x2fpfbm8rt                      |4300115  |
+|d9jucwkpr3                      |4801039  |
+|5cd1c663263511e6af7500163e291137|5392623  |
+|z041bf6g4s                      |5514397  |
+|71bcd2720e5011e79bc8fa163e05184e|9680103  |
+|d971z9825e                      |21667294 |
+|l2d4ec6csv                      |27452169 |
+|w9fmyd5r0i                      |31180311 |
+|w3wx3nv9ow5i97                  |32777583 |
+|f1iprgyl13                      |37138436 |
+|68bcd2720e5011e79bc8fa163e05184e|46111387 |
+|a290af82884e11e5bdec00163e291137|64487036 |
+|e351de37263311e6af7500163e291137|71461386 |
+|l03493p0r3                      |97185399 |
+|7b0d7b55ab0c11e68b7900163e3e481d|97269075 |
+|b6le0s4qo8                      |113705360|
+|66bcd2720e5011e79bc8fa163e05184e|139935126|
+|x0ej5xhk60kjwq                  |159131471|
+|a47eavw7ex                      |666862239|
++--------------------------------+---------+
+
+10 days
+
++--------------------------------+---------+
+|si                              |sum(impr)|
++--------------------------------+---------+
+|d4d7362e879511e5bdec00163e291137|50456    |
+|17dd6d8098bf11e5bdec00163e291137|60510    |
+|s4z85pd1h8                      |652759   |
+|j1430itab9wj3b                  |810858   |
+|a8syykhszz                      |884783   |
+|k4werqx13k                      |3875218  |
+|x2fpfbm8rt                      |4761138  |
+|d9jucwkpr3                      |5361277  |
+|5cd1c663263511e6af7500163e291137|6029947  |
+|z041bf6g4s                      |6069176  |
+|71bcd2720e5011e79bc8fa163e05184e|10839372 |
+|d971z9825e                      |24394780 |
+|l2d4ec6csv                      |31009705 |
+|w9fmyd5r0i                      |34697410 |
+|w3wx3nv9ow5i97                  |36511714 |
+|f1iprgyl13                      |42004396 |
+|68bcd2720e5011e79bc8fa163e05184e|51639283 |
+|a290af82884e11e5bdec00163e291137|72495755 |
+|e351de37263311e6af7500163e291137|80392701 |
+|l03493p0r3                      |107668983|
+|7b0d7b55ab0c11e68b7900163e3e481d|108882986|
+|b6le0s4qo8                      |125738313|
+|66bcd2720e5011e79bc8fa163e05184e|155659693|
+|x0ej5xhk60kjwq                  |177651970|
+|a47eavw7ex                      |742013720|
++--------------------------------+---------+
+
+```
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48KIoK/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/28,https://api.github.com/repos/apache/incubator-bluemarlin/issues/28,incubator-bluemarlin,1099993425,28,DIN Lookalike: Data Sampling understanding,SatyamSwarup,51720850,,,CLOSED,2022-01-12T07:53:27Z,2022-01-20T18:35:52Z,"Hello Jimmy, 
+
+We would like to understand how you did sampling in the lookalike_build_dataset.py script.
+
+![image](https://user-images.githubusercontent.com/51720850/149085830-1a5398ab-b943-41a1-9450-11eb1e3f9561.png)
+
+It would be great if you can share an informal description of this sampling method, so that we can reproduce it at our end.
+
+Thanks.
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/28/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/28,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48RZOv,incubator-bluemarlin,1011192751,28,NA,jimmylao,60371672,,,NA,2022-01-12T15:57:57Z,2022-01-12T15:57:57Z,"Please find the attach pdf file for an illustration of sample extraction process used.
+[sample-extraction-example.pdf](https://github.com/apache/incubator-bluemarlin/files/7855939/sample-extraction-example.pdf)
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48RZOv/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/28,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48Ua6k,incubator-bluemarlin,1011986084,28,NA,sanjaynirmal,40193781,,,NA,2022-01-13T10:10:18Z,2022-01-13T10:10:18Z,"@jimmylao 
+Thanks for the document, Can we have a session on the understanding of this pdf that you have shared above. 
+It would be better if we can have a separate session for this today, some hours before the scheduled weekly meeting as per your convenience.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48Ua6k/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/30,https://api.github.com/repos/apache/incubator-bluemarlin/issues/30,incubator-bluemarlin,1103654293,30,DL Model accuracy differences,rangaswamymr,75462528,Rangaswamy M R,,CLOSED,2022-01-14T13:39:42Z,2022-01-20T18:36:04Z,"As per the weekly meeting discussions, the hyper parameter ""train_skip_first"" value 12 was the reason for difference in predictions using the model you shared and the model we trained. Below is the predicted data and accuracy before and after updating the train_skip_first. 
+If this value need to be used for train_skip_first, please update the hparams.py file
+<html xmlns:v=""urn:schemas-microsoft-com:vml""
+xmlns:o=""urn:schemas-microsoft-com:office:office""
+xmlns:x=""urn:schemas-microsoft-com:office:excel""
+xmlns=""http://www.w3.org/TR/REC-html40"">
+
+<head>
+
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content=""Microsoft Excel 15"">
+<link id=Main-File rel=Main-File
+href=""file:///C:\Users\R00244~1\AppData\Local\Temp\msohtmlclip1\01\clip.htm"">
+<link rel=File-List
+href=""file:///C:\Users\R00244~1\AppData\Local\Temp\msohtmlclip1\01\clip_filelist.xml"">
+<style>
+<!--table
+	{mso-displayed-decimal-separator:""\."";
+	mso-displayed-thousand-separator:""\,"";}
+@page
+	{margin:.75in .7in .75in .7in;
+	mso-header-margin:.3in;
+	mso-footer-margin:.3in;}
+tr
+	{mso-height-source:auto;}
+col
+	{mso-width-source:auto;}
+br
+	{mso-data-placement:same-cell;}
+td
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	mso-protection:locked visible;
+	white-space:nowrap;
+	mso-rotate:0;}
+.xl65
+	{mso-number-format:""_\(* \#\,\#\#0_\)\;_\(* \\\(\#\,\#\#0\\\)\;_\(* \0022-\0022??_\)\;_\(\@_\)"";}
+.xl66
+	{mso-number-format:""_\(* \#\,\#\#0_\)\;_\(* \\\(\#\,\#\#0\\\)\;_\(* \0022-\0022??_\)\;_\(\@_\)"";
+	background:#DDEBF7;
+	mso-pattern:black none;}
+.xl67
+	{background:#DDEBF7;
+	mso-pattern:black none;}
+.xl68
+	{border:.5pt solid windowtext;}
+.xl69
+	{mso-number-format:""_\(* \#\,\#\#0_\)\;_\(* \\\(\#\,\#\#0\\\)\;_\(* \0022-\0022??_\)\;_\(\@_\)"";
+	border:.5pt solid windowtext;
+	white-space:normal;}
+.xl70
+	{mso-number-format:""_\(* \#\,\#\#0_\)\;_\(* \\\(\#\,\#\#0\\\)\;_\(* \0022-\0022??_\)\;_\(\@_\)"";
+	border:.5pt solid windowtext;
+	background:#DDEBF7;
+	mso-pattern:black none;
+	white-space:normal;}
+.xl71
+	{border:.5pt solid windowtext;
+	white-space:normal;}
+.xl72
+	{mso-number-format:""_\(* \#\,\#\#0_\)\;_\(* \\\(\#\,\#\#0\\\)\;_\(* \0022-\0022??_\)\;_\(\@_\)"";
+	border:.5pt solid windowtext;}
+.xl73
+	{border:.5pt solid windowtext;
+	background:#DDEBF7;
+	mso-pattern:black none;}
+-->
+</style>
+</head>
+
+<body link=""#0563C1"" vlink=""#954F72"">
+
+
+
+Slot id | Actual values | Model trained Using feeder files shared by   BM with train_skip_first = 0 | Predictions   using model trained after changing train_skip_first = 12
+-- | -- | -- | --
+a47eavw7ex | 618,874,425 | 710379690 | 679778335
+66bcd2720e5011e79bc8fa163e05184e | 141,771,777 | 150189391 | 134106959
+x0ej5xhk60kjwq | 140,838,705 | 166090973 | 150899108
+l03493p0r3 | 111,445,915 | 95256513 | 97194166
+7b0d7b55ab0c11e68b7900163e3e481d | 105,754,734 | 110975030 | 89637188
+b6le0s4qo8 | 101,684,589 | 116538098 | 108032992
+e351de37263311e6af7500163e291137 | 77,548,938 | 85192615 | 69053892
+a290af82884e11e5bdec00163e291137 | 72,593,126 | 78752741 | 62835164
+68bcd2720e5011e79bc8fa163e05184e | 48,699,653 | 52896931 | 43842830
+f1iprgyl13 | 38,603,295 | 40964141 | 33260309
+w3wx3nv9ow5i97 | 35,212,394 | 32632932 | 29544796
+w9fmyd5r0i | 33,533,582 | 35375640 | 31485616
+d971z9825e | 26,376,462 | 29203099 | 20635427
+l2d4ec6csv | 21,556,143 | 27453184 | 27377759
+z041bf6g4s | 17,440,168 | 25409583 | 6177790
+71bcd2720e5011e79bc8fa163e05184e | 12,459,624 | 10217224 | 8926710
+5cd1c663263511e6af7500163e291137 | 7,096,585 | 6485828 | 5206453
+x2fpfbm8rt | 6,390,364 | 6004435 | 4104797
+d9jucwkpr3 | 4,475,456 | 6371902 | 4366933
+k4werqx13k | 4,464,357 | 4717659 | 3375137
+a8syykhszz | 886,345 | 880801 | 790722
+j1430itab9wj3b | 864,567 | 698216 | 797136
+s4z85pd1h8 | 637,263 | 714682 | 562948
+d4d7362e879511e5bdec00163e291137 | 188,922 | 42751 | 35520
+17dd6d8098bf11e5bdec00163e291137 | 168,582 | 60899 | 92402
+
+
+
+</body>
+
+</html>
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/30/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/31,https://api.github.com/repos/apache/incubator-bluemarlin/issues/31,incubator-bluemarlin,1109547606,31,[BLUEMARLIN-21] Validation of the distribution of similarity scores for Lookalike,jimmylao,60371672,,,OPEN,2022-01-20T17:00:25Z,2022-01-20T20:13:27Z,"process:
+
+1. build DIN model
+2. generate user profile based on his/her keyword score (interest), then compute similarity score among all pairs of users
+3. analyze the distribution of resultant similarity scores to see if they are focused in some narrow range or spread on between 0 and 1 (cosine similarity)
+
+
+results:
+1.	Here’s an example of first 20 user’s keyword score profile.
+
+| user_id | kw1   | kw2   | kw3   | kw4   | kw5   | kw6   | kw7   | kw8   | kw9   | kw10  | kw11  | kw12  | kw13  | kw14  | kw15  |
+|---------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| 1       | 0.000 | 0.000 | 0.000 | 0.130 | 0.000 | 0.399 | 0.000 | 0.000 | 0.000 | 0.612 | 0.000 | 0.000 | 0.301 | 0.458 | 0.000 |
+| 5       | 0.000 | 0.000 | 0.078 | 0.000 | 0.000 | 0.416 | 0.000 | 0.000 | 0.366 | 0.436 | 0.384 | 0.000 | 0.189 | 0.000 | 0.541 |
+| 8       | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.563 | 0.000 | 0.000 | 0.649 | 0.678 | 0.000 | 0.000 | 0.000 | 0.600 | 0.000 |
+| 10      | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.279 | 0.000 | 0.125 | 0.000 | 0.223 | 0.000 |
+| 11      | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.354 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.162 | 0.275 | 0.000 | 0.000 |
+| 15      | 0.000 | 0.000 | 0.099 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.509 | 0.000 | 0.000 | 0.249 | 0.000 | 0.000 |
+| 22      | 0.000 | 0.000 | 0.152 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.515 | 0.000 | 0.000 | 0.000 | 0.423 | 0.000 |
+| 30      | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.474 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| 34      | 0.000 | 0.000 | 0.000 | 0.000 | 0.299 | 0.000 | 0.000 | 0.000 | 0.000 | 0.410 | 0.000 | 0.149 | 0.000 | 0.383 | 0.000 |
+| 35      | 0.000 | 0.000 | 0.145 | 0.000 | 0.000 | 0.646 | 0.000 | 0.000 | 0.311 | 0.000 | 0.000 | 0.000 | 0.000 | 0.440 | 0.000 |
+| 37      | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.423 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| 39      | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.496 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| 41      | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.327 | 0.250 | 0.000 | 0.000 | 0.000 | 0.307 | 0.000 | 0.000 | 0.382 | 0.000 |
+| 43      | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.349 | 0.000 | 0.000 | 0.000 | 0.430 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| 47      | 0.000 | 0.000 | 0.094 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.424 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| 49      | 0.305 | 0.509 | 0.000 | 0.000 | 0.000 | 0.721 | 0.000 | 0.000 | 0.000 | 0.758 | 0.000 | 0.000 | 0.000 | 0.740 | 0.000 |
+| 51      | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.415 | 0.000 | 0.000 | 0.128 | 0.000 | 0.000 | 0.000 |
+| 52      | 0.000 | 0.000 | 0.134 | 0.000 | 0.000 | 0.336 | 0.000 | 0.000 | 0.000 | 0.446 | 0.000 | 0.090 | 0.000 | 0.415 | 0.000 |
+| 53      | 0.106 | 0.000 | 0.000 | 0.000 | 0.406 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| 55      | 0.000 | 0.000 | 0.000 | 0.122 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.371 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+
+2.	Pairwise user similarity score was computed based on each user’s keyword score profile. Here’s a example of pairwise similarity scores based on keyword profile score of 1st 20 users above. It’s shown that the similarity score is well distributed between 0 and 1 instead of all focusing on lower end (0) or high end (1).
+
+|       | user1  | user2 | user3 | user4 | user5 | user6 | user7 | user8 | user9 | user10 | user11 | user12 | user13 | user14 | user15 | user16 | user17 | user18 | user19 | user20 |
+|--------|-------|-------|-------|-------|-------|-------|-------|-------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|-------|
+| user1  | 1.000 | 0.536 | 0.794 | 0.782 | 0.510 | 0.729 | 0.807 | 0.663 | 0.708  | 0.583  | 0.000  | 0.000  | 0.517  | 0.788  | 0.648  | 0.837  | 0.000  | 0.906  | 0.000  | 0.674 |
+| user2  | 0.536 | 1.000 | 0.621 | 0.325 | 0.422 | 0.486 | 0.349 | 0.441 | 0.277  | 0.466  | 0.370  | 0.370  | 0.401  | 0.607  | 0.447  | 0.451  | 0.354  | 0.488  | 0.000  | 0.419 |
+| user3  | 0.794 | 0.621 | 1.000 | 0.684 | 0.335 | 0.481 | 0.707 | 0.543 | 0.623  | 0.779  | 0.520  | 0.520  | 0.517  | 0.706  | 0.530  | 0.774  | 0.497  | 0.831  | 0.000  | 0.516 |
+| user4  | 0.782 | 0.325 | 0.684 | 1.000 | 0.112 | 0.653 | 0.920 | 0.737 | 0.884  | 0.304  | 0.000  | 0.000  | 0.352  | 0.572  | 0.720  | 0.704  | 0.097  | 0.844  | 0.000  | 0.701 |
+| user5  | 0.510 | 0.422 | 0.335 | 0.112 | 1.000 | 0.250 | 0.000 | 0.000 | 0.078  | 0.562  | 0.000  | 0.000  | 0.379  | 0.468  | 0.000  | 0.379  | 0.100  | 0.393  | 0.000  | 0.000 |
+| user6  | 0.729 | 0.486 | 0.481 | 0.653 | 0.250 | 1.000 | 0.705 | 0.885 | 0.556  | 0.029  | 0.000  | 0.000  | 0.000  | 0.687  | 0.901  | 0.475  | 0.000  | 0.585  | 0.000  | 0.841 |
+| user7  | 0.807 | 0.349 | 0.707 | 0.920 | 0.000 | 0.705 | 1.000 | 0.753 | 0.836  | 0.357  | 0.000  | 0.000  | 0.369  | 0.585  | 0.784  | 0.729  | 0.000  | 0.872  | 0.000  | 0.716 |
+| user8  | 0.663 | 0.441 | 0.543 | 0.737 | 0.000 | 0.885 | 0.753 | 1.000 | 0.628  | 0.000  | 0.000  | 0.000  | 0.000  | 0.776  | 0.976  | 0.537  | 0.000  | 0.624  | 0.000  | 0.950 |
+| user9  | 0.708 | 0.277 | 0.623 | 0.884 | 0.078 | 0.556 | 0.836 | 0.628 | 1.000  | 0.302  | 0.000  | 0.000  | 0.350  | 0.488  | 0.613  | 0.644  | 0.067  | 0.761  | 0.443  | 0.597 |
+| user10 | 0.583 | 0.466 | 0.779 | 0.304 | 0.562 | 0.029 | 0.357 | 0.000 | 0.302  | 1.000  | 0.365  | 0.365  | 0.694  | 0.477  | 0.037  | 0.656  | 0.349  | 0.688  | 0.000  | 0.000 |
+| user11 | 0.000 | 0.370 | 0.520 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000  | 0.365  | 1.000  | 1.000  | 0.000  | 0.000  | 0.000  | 0.000  | 0.956  | 0.000  | 0.000  | 0.000 |
+| user12 | 0.000 | 0.370 | 0.520 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000  | 0.365  | 1.000  | 1.000  | 0.000  | 0.000  | 0.000  | 0.000  | 0.956  | 0.000  | 0.000  | 0.000 |
+| user13 | 0.517 | 0.401 | 0.517 | 0.352 | 0.379 | 0.000 | 0.369 | 0.000 | 0.350  | 0.694  | 0.000  | 0.000  | 1.000  | 0.322  | 0.000  | 0.573  | 0.000  | 0.587  | 0.000  | 0.000 |
+| user14 | 0.788 | 0.607 | 0.706 | 0.572 | 0.468 | 0.687 | 0.585 | 0.776 | 0.488  | 0.477  | 0.000  | 0.000  | 0.322  | 1.000  | 0.758  | 0.739  | 0.000  | 0.782  | 0.000  | 0.738 |
+| user15 | 0.648 | 0.447 | 0.530 | 0.720 | 0.000 | 0.901 | 0.784 | 0.976 | 0.613  | 0.037  | 0.000  | 0.000  | 0.000  | 0.758  | 1.000  | 0.524  | 0.000  | 0.650  | 0.000  | 0.928 |
+| user16 | 0.837 | 0.451 | 0.774 | 0.704 | 0.379 | 0.475 | 0.729 | 0.537 | 0.644  | 0.656  | 0.000  | 0.000  | 0.573  | 0.739  | 0.524  | 1.000  | 0.000  | 0.880  | 0.055  | 0.510 |
+| user17 | 0.000 | 0.354 | 0.497 | 0.097 | 0.100 | 0.000 | 0.000 | 0.000 | 0.067  | 0.349  | 0.956  | 0.956  | 0.000  | 0.000  | 0.000  | 0.000  | 1.000  | 0.037  | 0.000  | 0.000 |
+| user18 | 0.906 | 0.488 | 0.831 | 0.844 | 0.393 | 0.585 | 0.872 | 0.624 | 0.761  | 0.688  | 0.000  | 0.000  | 0.587  | 0.782  | 0.650  | 0.880  | 0.037  | 1.000  | 0.000  | 0.593 |
+| user19 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.443  | 0.000  | 0.000  | 0.000  | 0.000  | 0.000  | 0.000  | 0.055  | 0.000  | 0.000  | 1.000  | 0.000 |
+| user20 | 0.674 | 0.419 | 0.516 | 0.701 | 0.000 | 0.841 | 0.716 | 0.950 | 0.597  | 0.000  | 0.000  | 0.000  | 0.000  | 0.738  | 0.928  | 0.510  | 0.000  | 0.593  | 0.000  | 1.000 |
+
+3.	Computed pairwise similarity score distribution among first 20k user, resulting in 20,000 x 20,000 similarity score matrix (cosine similarity score was used), the distribution of the values in the matrix is shown below -> it’s almost a perfect normal distribution.
+![image](https://user-images.githubusercontent.com/60371672/150385884-17b5b80a-6a12-4987-8072-8416fc799d34.png)
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/31/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/32,https://api.github.com/repos/apache/incubator-bluemarlin/issues/32,incubator-bluemarlin,1109690842,32,[BLUEMARLIN-19] test link,radibnia77,56361384,Reza,,CLOSED,2022-01-20T19:34:28Z,2022-01-20T19:37:05Z,"**Describe the bug**
+A clear and concise description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
+
+**Smartphone (please complete the following information):**
+ - Device: [e.g. iPhone6]
+ - OS: [e.g. iOS8.1]
+ - Browser [e.g. stock browser, safari]
+ - Version [e.g. 22]
+
+**Additional context**
+Add any other context about the problem here.
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/32/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/32,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48qzzz,incubator-bluemarlin,1017855219,32,NA,radibnia77,56361384,Reza,,NA,2022-01-20T19:37:05Z,2022-01-20T19:37:05Z,This issue is closed.,"{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48qzzz/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/33,https://api.github.com/repos/apache/incubator-bluemarlin/issues/33,incubator-bluemarlin,1109696518,33,[BLUEMARLIN-20] test-link-2,radibnia77,56361384,Reza,,CLOSED,2022-01-20T19:41:34Z,2022-01-20T19:45:05Z,This is a test.,"{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/33/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/33,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48q07D,incubator-bluemarlin,1017859779,33,NA,radibnia77,56361384,Reza,,NA,2022-01-20T19:43:41Z,2022-01-20T19:43:41Z,Test.,"{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s48q07D/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/34,https://api.github.com/repos/apache/incubator-bluemarlin/issues/34,incubator-bluemarlin,1109732848,34,[BLUEMARLIN-23] Test-3,radibnia77,56361384,Reza,,CLOSED,2022-01-20T20:23:43Z,2022-01-20T20:24:05Z,Testing,"{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/34/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/35,https://api.github.com/repos/apache/incubator-bluemarlin/issues/35,incubator-bluemarlin,1109734319,35,[BLUEMARLIN-22] Lookalike model trainer is slow,radibnia77,56361384,Reza,,CLOSED,2022-01-20T20:25:26Z,2022-03-03T16:05:34Z,"For 1.2m user records which produce 4.3m training and 1m test datasets, it takes more than 3 days (250 epochs) to train a lookalike model; 20 minutes for each epoch. ","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/35/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/38,https://api.github.com/repos/apache/incubator-bluemarlin/issues/38,incubator-bluemarlin,1119081023,38,Number of Distinct Users in Trainready Table,SatyamSwarup,51720850,,,CLOSED,2022-01-31T07:53:25Z,2022-02-03T16:27:53Z,"Hello,
+
+As discussed in previous meetings, the total number of records in Trainready table is same as the total number of distinct users(aids). We have confirmed it on our side. 
+It would be helpful if you once check your data and verify if you have same number of records as the number of distinct users or not in the final Trainready table.
+
+Thanks and Regards
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/38/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/38,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s49LdIm,incubator-bluemarlin,1026413094,38,NA,jimmylao,60371672,,,NA,2022-02-01T02:12:56Z,2022-02-01T02:12:56Z,"In Trainready table, each record corresponds to a distinct user (aid), so the total number of records in Trainready table equals to the total number of distinct users (aid) that survive to the stage.
+Due to some filtering operation in preprocessing steps which remove quite a lot of users (aids), the total number of distinct user (aid) in Trainready table most likely not equals to the total number of users (aid) in raw data.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s49LdIm/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/39,https://api.github.com/repos/apache/incubator-bluemarlin/issues/39,incubator-bluemarlin,1119613376,39,Lookalike: spark data pipeline issue,sanjaynirmal,40193781,,,CLOSED,2022-01-31T15:56:58Z,2022-02-02T18:35:49Z,"For the latest code that you have released for lookalike, we are facing a problem in the last step of data pipeline i.e. tf record generation.
+script: https://github.com/apache/incubator-bluemarlin/blob/main/Model/lookalike-model/lookalike_model/pipeline/main_tfrecord_generator.py
+<img width=""687"" alt=""image"" src=""https://user-images.githubusercontent.com/40193781/151826834-42ee6106-4725-4628-a037-b01f8bd69c31.png"">
+
+We are currently running the pipeline for 120 Million AIDs and we get the following error on the highlighted line.
+
+<img width=""944"" alt=""image"" src=""https://user-images.githubusercontent.com/40193781/151827090-ac1f7c53-1e18-4dcf-afe1-53aa5a800867.png"">
+
+Kindly help us in running the pipeline for big data.
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/39/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/39,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s49SawE,incubator-bluemarlin,1028238340,39,NA,radibnia77,56361384,Reza,,NA,2022-02-02T18:35:49Z,2022-02-02T18:35:49Z,"#40 
+Panda is replaced with Spark.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s49SawE/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/42,https://api.github.com/repos/apache/incubator-bluemarlin/issues/42,incubator-bluemarlin,1123328055,42,[BLUEMARLIN-23] Contribute to Factdata schema to use Request instead of Impression,radibnia77,56361384,Reza,,CLOSED,2022-02-03T16:54:46Z,2022-02-12T00:23:35Z,"The current Factdata is based on the Impression table, not the Request table. To have more accurate results, we need to use the Request table which contains fewer human interrupted data. ","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/42/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/44,https://api.github.com/repos/apache/incubator-bluemarlin/issues/44,incubator-bluemarlin,1126819568,44,[BLUEMARLIN-24] DL predictor for both ad requests and impressions,rangaswamymr,75462528,Rangaswamy M R,,CLOSED,2022-02-08T05:42:37Z,2022-03-03T16:10:19Z,"Dears, 
+we have a requirement to use DL predictor to predict both ad requests and impressions in parallel and save the predictions of impressions and ad-requests into different output tables and elastic search indexes.  Can we discuss this feasibility today ?
+is it possible to organize a meeting before Thursday's weekly meeting?","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/44/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/44,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s49lTGn,incubator-bluemarlin,1033187751,44,NA,radibnia77,56361384,Reza,,NA,2022-02-09T00:09:22Z,2022-02-09T00:09:22Z,"You need 2 pipelines to build 2 different models to predict each item.
+1. DLPredictor Impression Pipeline
+2. DLPredictor Request Pipeline
+
+These pipelines are almost identical; the differences can me on
+1. Different active modules, For example, the Request Pipeline has a transform module that modifies the schema of the Request Table so that it can be processed by existing modules; adding price-category and bucket-ids
+2. Configuration; different input tables, pipeline tags and etc.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s49lTGn/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/45,https://api.github.com/repos/apache/incubator-bluemarlin/issues/45,incubator-bluemarlin,1127324927,45,open discussion of potential of request based prediction for dlpredictor ,jimmylao,60371672,,,CLOSED,2022-02-08T14:24:16Z,2022-02-08T23:59:08Z,"we'll have an open discussion for the potential of request based prediction for dlpreditor
+
+time: 9:30am EST 2/8/2022
+location: zoom meeting
+zoom id: 693 070 5942","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/45/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/46,https://api.github.com/repos/apache/incubator-bluemarlin/issues/46,incubator-bluemarlin,1132522377,46,[BLUEMARLIN-25] : Multiple GPU support for DIN lookalike model training ,Bimlesh759-AI,99476211,,,OPEN,2022-02-11T12:25:23Z,2022-02-11T14:36:09Z,"1. Current DIN Lookalike model training is not supporting multiple gpu. We have two gpu available but it is using only one gpu always. It is desired that during training, It should use all available gpu.
+2. Or Can the script be modified to Tensorflow 2.0, In this version there are api for using all available gpu.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/46/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/46,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s49xEzk,incubator-bluemarlin,1036274916,46,NA,jimmylao,60371672,,,NA,2022-02-11T14:36:09Z,2022-02-11T14:36:09Z,"@Bimlesh759-AI 
+In the long run, for the topic of parallel training deep learning model, you may want to make use of all possible resource, including parallel (multiple GPUs) as well as distributed (multiple servers with GPUs) computing. So far, there may be 2 options that support both parallel and distributed training
+1. Tensorflow 2
+2. Uber's open source project - Horovod
+
+Since the code for DIN model uses tensorflow 1.x, there are some effort need to be done using either TF 2 or Horovod.
+For TF2, current TF 1.x code need to be upgraded to TF 2
+For Horovod, it supports TF 1.x, however, you need to take some effort to make it work. - it's the option for Amazon SageMaker
+
+Most important, you may compare how much gain (speed-up) can be achieved by each of this approach. Conceptually, both of them should work for parallel training, in practice, quantitative evaluation of speed-up performance need to be compared.
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s49xEzk/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/48,https://api.github.com/repos/apache/incubator-bluemarlin/issues/48,incubator-bluemarlin,1139233639,48,[BLUEMARLIN-26] Contribute to Interest related queries,radibnia77,56361384,Reza,,CLOSED,2022-02-15T21:30:40Z,2022-03-03T16:09:37Z,DLPredictor predicts traffic based on profile and geolocation attributes. We like to expand the system to accept interests and behavioral attributes as well (TBR project). We like to know how real-world queries might be.  ,"{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/48/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/49,https://api.github.com/repos/apache/incubator-bluemarlin/issues/49,incubator-bluemarlin,1141522977,49,dlpredictor model description,jimmylao,60371672,,,OPEN,2022-02-17T15:53:54Z,2022-02-22T20:04:26Z,"This is a illustration of the seq2seq model with attention for DLpredictor.
+![seq2seq_plus_attention](https://user-images.githubusercontent.com/60371672/154518241-1d05ebe3-592e-416f-a03a-5ef272739f98.png)
+
+This is the relationship of functions defined in model.py
+
+![Functions_in_model](https://user-images.githubusercontent.com/60371672/154518992-576e2449-a3fa-474a-9617-8b0251fab582.JPG)
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/49/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/49,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-W2mC,incubator-bluemarlin,1046178178,49,NA,klonikar,1344274,Kiran Lonikar,klonikar@yahoo.com,NA,2022-02-20T07:19:33Z,2022-02-20T07:19:33Z,"1. What is _context_  in the red cells in decoder? Is it used as input to next timestep?
+2. Can you explain split of train_window data into train_skip_first, data used for training and final eval? How is the data in the final 10 days of 82 (12+60+10) days used in training? Is it used to update regularization params or weights in backprop?
+3. What are the features used at time step of 82 days? How is ts_n in trainready table used as input? I thought thats the output.
+4. Attention: Explain attention heads = 10, and attention depth = 60
+5. Can you give mathematical description of the model? Something like:
+```
+hEncoder(t) = GRU(t-1) + x(t) 
+x(t) = [ts_n, age, gender...] 
+```
+etc.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-W2mC/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/49,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-eb38,incubator-bluemarlin,1048165884,49,NA,jimmylao,60371672,,,NA,2022-02-22T20:04:26Z,2022-02-22T20:04:26Z,"@klonikar 
+
+1. What is context in the red cells in decoder? Is it used as input to next timestep?
+As shown in the 1st figure, the context of the red cells are from the attention layer which will be concatenated with the state output of current cell, then used as input to next cell.
+
+2. Can you explain split of train_window data into train_skip_first, data used for training and final eval? How is the data in the final 10 days of 82 (12+60+10) days used in training? Is it used to update regularization params or weights in backprop?
+![image](https://user-images.githubusercontent.com/60371672/155204831-02ce537a-e723-4dec-a806-052c7e78a4d8.png)
+As shown in the figure above, the data is typical split into configurable 4 parts, i.e. train_skip_first, train_window, validate and back_offset. In your case,
+
+- train_skip_first = 12
+- train_window = 60
+- predict (validate) = 10
+- back_offiset = 0
+
+""Is it used to update regularization params or weights in backprop?""  - I don't understand the meaning of this question. The data is used for training a model or leverage trained model for prediction, in training stage, they are used to compute gradient in each batch/epoch which can further be used in backprop.
+
+3. What are the features used at time step of 82 days? How is ts_n in trainready table used as input? I thought that's the output.
+![image](https://user-images.githubusercontent.com/60371672/155207931-bec7a5fa-e3a1-495c-8211-af1b9696558b.png)
+As shown in the figure above, time_x is the major input data needed to train the model, it has multiple components. trainready table is the output of preprocessing and input for model training. There's a program called tfrecord_reader.py to convert trainready data format to model training data format.
+
+4. Attention: Explain attention heads = 10, and attention depth = 60
+These parameters are used when the ""attention"" option is turned on. The purpose of attention is to find the correlation among different time step. The attention method used by this model used the attention concept not the implementation, i.e. it uses convolution to model the correlation among different time steps which is faster than typical attention implementation, however, such approximation does not generate better performance. Domain knowledge based attention features, such as: monthly or quarterly correlation, are added in the model to fill the gap and was claimed to work better than using the attention implementation in the model.
+
+5. Can you give mathematical description of the model?
+I'll add some math equation later. I suggest you read through the code and run a couple of sample data first.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-eb38/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/51,https://api.github.com/repos/apache/incubator-bluemarlin/issues/51,incubator-bluemarlin,1145821661,51,"[BLUEMARLIN-28] :  For DIN-Lookalike model, train.py runs only if line 40 in model.py is commented.",Bimlesh759-AI,99476211,,,OPEN,2022-02-21T13:45:33Z,2022-02-21T14:48:51Z,"1. Training fails at the beginning itself if line 40 in model.py is not commented. If we comment line 40 in model.py then train.py runs successfully. 
+In below code taken from model.py, if we comment ->  user_emb_w which is taken from line 40 of model.py, then training is successful.
+hidden_units = 128
+
+    user_emb_w = tf.get_variable(""user_emb_w"", [user_count, hidden_units])
+    item_emb_w = tf.get_variable(""item_emb_w"", [item_count, hidden_units // 2])
+    item_b = tf.get_variable(""item_b"", [item_count],
+                             initializer=tf.constant_initializer(0.0))
+    cate_emb_w = tf.get_variable(""cate_emb_w"", [cate_count, hidden_units // 2])
+    cate_list = tf.convert_to_tensor(cate_list, dtype=tf.int64)
+`
+  Below is the error displayed.
+------------------------------------------------------------------------------------------------------------------------------------------------
+2022-02-21 17:42:43.558189: W tensorflow/core/framework/op_kernel.cc:1651] OP_REQUIRES failed at random_op.cc:76 : Resource exhausted: OOM when allocating tensor with shape[94315979,128] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+Traceback (most recent call last):
+  File ""/usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/client/session.py"", line 1365, in _do_call
+    return fn(*args)
+  File ""/usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/client/session.py"", line 1350, in _run_fn
+    target_list, run_metadata)
+  File ""/usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/client/session.py"", line 1443, in _call_tf_sessionrun
+    run_metadata)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[94315979,128] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node user_emb_w/Initializer/random_uniform/RandomUniform}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""lookalike_model/trainer/train.py"", line 179, in <module>
+    sess.run(tf.global_variables_initializer())
+  File ""/usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/client/session.py"", line 956, in run
+    run_metadata_ptr)
+  File ""/usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/client/session.py"", line 1180, in _run
+    feed_dict_tensor, options, run_metadata)
+  File ""/usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/client/session.py"", line 1359, in _do_run
+    run_metadata)
+  File ""/usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/client/session.py"", line 1384, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[94315979,128] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[node user_emb_w/Initializer/random_uniform/RandomUniform (defined at usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/framework/ops.py:1748) ]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+
+Original stack trace for 'user_emb_w/Initializer/random_uniform/RandomUniform':
+  File ""/algorithm/lookalike_model/trainer/train.py"", line 178, in <module>
+    model = Model(user_count, item_count, cate_count, cate_list, predict_batch_size, predict_ads_num)
+  File ""/algorithm/lookalike_model/trainer/model.py"", line 40, in __init__
+    user_emb_w = tf.get_variable(""user_emb_w"", [user_count, hidden_units]) 
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variable_scope.py"", line 1500, in get_variable
+    aggregation=aggregation)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variable_scope.py"", line 1243, in get_variable
+    aggregation=aggregation)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variable_scope.py"", line 567, in get_variable
+    aggregation=aggregation)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variable_scope.py"", line 519, in _true_getter
+    aggregation=aggregation)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variable_scope.py"", line 933, in _get_single_variable
+    aggregation=aggregation)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variables.py"", line 258, in __call__
+    return cls._variable_v1_call(*args, **kwargs)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variables.py"", line 219, in _variable_v1_call
+    shape=shape)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variables.py"", line 197, in <lambda>
+    previous_getter = lambda **kwargs: default_variable_creator(None, **kwargs)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variable_scope.py"", line 2519, in default_variable_creator
+    shape=shape)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variables.py"", line 262, in __call__
+    return super(VariableMetaclass, cls).__call__(*args, **kwargs)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variables.py"", line 1688, in __init__
+    shape=shape)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variables.py"", line 1818, in _init_from_args
+    initial_value(), name=""initial_value"", dtype=dtype)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/variable_scope.py"", line 905, in <lambda>
+    partition_info=partition_info)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/init_ops.py"", line 533, in __call__
+    shape, -limit, limit, dtype, seed=self.seed)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/random_ops.py"", line 245, in random_uniform
+    rnd = gen_random_ops.random_uniform(shape, dtype, seed=seed1, seed2=seed2)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/ops/gen_random_ops.py"", line 822, in random_uniform
+    name=name)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/framework/op_def_library.py"", line 794, in _apply_op_helper
+    op_def=op_def)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/util/deprecation.py"", line 507, in new_func
+    return func(*args, **kwargs)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/framework/ops.py"", line 3357, in create_op
+    attrs, op_def, compute_device)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/framework/ops.py"", line 3426, in _create_op_internal
+    op_def=op_def)
+  File ""usr/local/python3/lib/python3.6/site-packages/tensorflow_core/python/framework/ops.py"", line 1748, in __init__
+    self._traceback = tf_stack.extract_stack()
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/51/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/51,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-Z0mr,incubator-bluemarlin,1046956459,51,NA,jimmylao,60371672,,,NA,2022-02-21T14:48:50Z,2022-02-21T14:48:50Z,"@Bimlesh759-AI 
+It's ok to comment out line 40 since it's not currently used in the model.
+The variable ""user_emb_w"" is reserved in the model in case to use more user specific features. It is claimed to have the shape of user_count x hidden_units (128). In your case, I guess ""user_count"" (number of users) is huge and triggers a memory overflow error.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-Z0mr/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/52,https://api.github.com/repos/apache/incubator-bluemarlin/issues/52,incubator-bluemarlin,1149137225,52,"[BLUEMARLIN-29] : For DIN-Lookalike model, training is very slow.",Bimlesh759-AI,99476211,,,CLOSED,2022-02-24T10:51:16Z,2022-03-07T16:16:32Z,"Training scenario:
+
+	   Following datasets details include users with minimum one click count with step = 10.
+	   test_dataset_count = 110755727,
+	   train_dataset_count = 517801469,
+	   user_count = 94315979,
+	   item_count = 19
+	   
+	   EPOCH = 250
+	   train_batch_size = 20480
+           test_batch_size = 2048
+	   
+	   Current model takes around 12 hours to train 1 epoch if we use all datasets. If we use around 50% datasets by randomly selecting
+	   then also model takes around 7-8 hours to train for 1 epoch.
+	   
+	   By this analogy, If we want to train the model for complete 250 epochs on full datasets, then it will take around 125 days.
+	   
+	   Currently we are using Tensorflow 1.15, Two GPU are there in training but only one GPU is used.
+	   
+Target about model.
+	
+	   1. It is required that model should not take more than 24 hours to train.
+	   2. Model should be able to use all the available GPU.
+	   3. Is it possible to further reduce the datasets with regard to size without losing insights.
+	   4. Is it possible to get DIN-Lookalike model and trainer code in Tensorflow 2.0 version.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/52/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/52,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-lNAc,incubator-bluemarlin,1049939996,52,NA,jimmylao,60371672,,,NA,2022-02-24T14:53:35Z,2022-02-24T14:53:35Z,"@Bimlesh759-AI 
+More data does not always generate better model. High quality data usually generates better model. 
+Most of the time, real world data is noisy and there exists a lot of redundancy. You may need to have more insight of the data. 
+1. Break-down information regarding your training/testing data? i.e.
+  - the number of positive and negative training/testing samples of all 19 items
+  - the number of positive and negative training/testing samples of each of the 19 items
+you may want to balance the number of training/testing samples of these 19 items.
+
+2. Since your dataset is huge, it's quite essential to do parallel training. I think you may try to use TF 2 for multiple GPU training already, how's your progress on this topic? There's another option: TF 1 + horovod, to my understanding, you tried this approach too, can you sync up what is the current status of parallel training with multiple GPUs or machines?
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-lNAc/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/52,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-159i,incubator-bluemarlin,1054318434,52,NA,Bimlesh759-AI,99476211,,,NA,2022-02-28T14:33:33Z,2022-02-28T14:33:33Z,"1.
+**Details about training datasets:**
+Positive labels - 217949105
+Negative labels- 233029477
+
+total number of rows in datasets- 450978582
+total number of rows in datasets with unique aid_index (or aid)- 91152601
+
+Below table shows no. of rows (count) with particular keyword id.
++-------+---------+
+|keyword|    count|
++-------+---------+
+|     16| 13850541|
+|     17|  6065903|
+|      7| 10124720|
+|     14| 14468395|
+|     12|102332499|
+|      8| 14433430|
+|     10| 22725438|
+|     11|  7802683|
+|      2|  3771215|
+|      3|  9103754|
+|      5|  6555940|
+|     15| 18514390|
+|      9|  8764869|
+|      0| 12021109|
+|      1|127750503|
+|     13|  2956558|
+|      6| 52615187|
+|      4| 17121448|
++-------+---------+
+
+**Details about test datasets:**
+Positive labels - 18131220
+Negative labels- 48307204
+
+total number of rows in datasets-66438424
+total number of rows in datasets with unique aid_index (or aid)- 30294628
+
+Below table shows no. of rows (count) with particular keyword id.
++-------+--------+
+|keyword|   count|
++-------+--------+
+|     16| 2127218|
+|     17| 1646675|
+|      7| 2001651|
+|     14| 2309676|
+|     12|11349194|
+|      8| 2383793|
+|     10| 3709643|
+|     11| 1878372|
+|      2|  949824|
+|      3| 1919426|
+|      5| 1417523|
+|     15| 2794550|
+|      9| 2006817|
+|      0| 2135362|
+|      1|16328372|
+|     13|  950384|
+|      6| 7033431|
+|      4| 3496513|
++-------+--------+
+
+Above is the details regarding the training and test datasets. Please suggest if it is possible to reduce it without compromising on model accuracy in future.
+
+2. Currently we have not tried TF2.0 for multiple gpu  but implementation for multiple gpu is underway using TF1 +  horovod
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-159i/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/52,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4_EV02,incubator-bluemarlin,1058102582,52,NA,jimmylao,60371672,,,NA,2022-03-03T14:33:34Z,2022-03-03T14:33:34Z,"@Bimlesh759-AI Thanks for sharing.
+As shown in the table below, the ratios between positive and negative samples are 1.07 in training data and 2.66 in testing data. These are balanced (good) ratios.
+
+<html xmlns:v=""urn:schemas-microsoft-com:vml""
+xmlns:o=""urn:schemas-microsoft-com:office:office""
+xmlns:x=""urn:schemas-microsoft-com:office:excel""
+xmlns=""http://www.w3.org/TR/REC-html40"">
+
+<head>
+
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content=""Microsoft Excel 15"">
+<link id=Main-File rel=Main-File
+href=""file:///C:/Users/zlao/AppData/Local/Temp/msohtmlclip1/01/clip.htm"">
+<link rel=File-List
+href=""file:///C:/Users/zlao/AppData/Local/Temp/msohtmlclip1/01/clip_filelist.xml"">
+<!--table
+	{mso-displayed-decimal-separator:""\."";
+	mso-displayed-thousand-separator:""\,"";}
+@page
+	{margin:.75in .7in .75in .7in;
+	mso-header-margin:.3in;
+	mso-footer-margin:.3in;}
+tr
+	{mso-height-source:auto;}
+col
+	{mso-width-source:auto;}
+br
+	{mso-data-placement:same-cell;}
+td
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	mso-protection:locked visible;
+	white-space:nowrap;
+	mso-rotate:0;}
+.xl65
+	{text-align:center;}
+.xl66
+	{mso-number-format:Percent;}
+.xl67
+	{color:#24292F;
+	font-family:""Segoe UI"", sans-serif;
+	mso-font-charset:0;
+	mso-number-format:""\#\,\#\#0"";
+	text-align:center;}
+-->
+</head>
+
+<body link=""#0563C1"" vlink=""#954F72"">
+
+  | positive # | negative # | pos vs neg ratio | %
+-- | -- | -- | -- | --
+train | 217,949,105 | 233,029,477 | 1.069192172 | 87.16%
+test | 18,131,220 | 48,307,204 | 2.66431073 | 12.84%
+
+
+
+</body>
+
+</html>
+
+
+One approach you may want to try is: keep all testing samples and randomly drop 50% of training samples, then train a model to see if there's significant drop in AUC for testing samples. (Since the ratio of testing samples is 13%-, it has much less contribution to training time).
+
+Based on your keyword break-down sample information, it looks good too. The following are curves of accumulated percentage of training and testing samples with all keywords. It shows that keyword samples agrees well in training and testing.
+![image](https://user-images.githubusercontent.com/60371672/156586663-ec2b7fcd-7a20-4e33-afb0-1c2eb7d343b8.png)
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4_EV02/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/52,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4_EYw2,incubator-bluemarlin,1058114614,52,NA,jimmylao,60371672,,,NA,2022-03-03T14:46:09Z,2022-03-03T14:46:09Z,"Some quick investigation shows significant speed-up with multiple GPU using TF2, however, as shown in the curve below, the speedup is not linear to the number of GPUs used, there is a balance between GPU # vs speed-up efficiency. The efficiency drops quickly after using 4 GPUs.
+<html xmlns:v=""urn:schemas-microsoft-com:vml""
+xmlns:o=""urn:schemas-microsoft-com:office:office""
+xmlns:x=""urn:schemas-microsoft-com:office:excel""
+xmlns=""http://www.w3.org/TR/REC-html40"">
+
+<head>
+
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content=""Microsoft Excel 15"">
+<link id=Main-File rel=Main-File
+href=""file:///C:/Users/zlao/AppData/Local/Temp/msohtmlclip1/01/clip.htm"">
+<link rel=File-List
+href=""file:///C:/Users/zlao/AppData/Local/Temp/msohtmlclip1/01/clip_filelist.xml"">
+<!--table
+	{mso-displayed-decimal-separator:""\."";
+	mso-displayed-thousand-separator:""\,"";}
+@page
+	{margin:.75in .7in .75in .7in;
+	mso-header-margin:.3in;
+	mso-footer-margin:.3in;}
+tr
+	{mso-height-source:auto;}
+col
+	{mso-width-source:auto;}
+br
+	{mso-data-placement:same-cell;}
+td
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	mso-protection:locked visible;
+	white-space:nowrap;
+	mso-rotate:0;}
+.xl65
+	{text-align:center;}
+.xl66
+	{mso-number-format:""\#\,\#\#0"";
+	text-align:center;}
+-->
+</head>
+
+<body link=""#0563C1"" vlink=""#954F72"">
+
+
+
+GPU # | batch size | time (seconds) | Speed-up
+-- | -- | -- | --
+1 | 4,096 | 572 | 1
+2 | 8,192 | 300 | 1.90667
+3 | 12,288 | 224 | 2.55357
+4 | 16,384 | 195 | 2.93333
+5 | 20,480 | 176 | 3.25
+6 | 24,576 | 168 | 3.40476
+7 | 28,672 | 164 | 3.4878
+8 | 32,768 | 162 | 3.53086
+
+
+
+</body>
+
+</html>
+
+![image](https://user-images.githubusercontent.com/60371672/156587634-9d0db387-bd0f-4439-a990-857addb37f91.png)
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4_EYw2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/52,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4_Otpw,incubator-bluemarlin,1060821616,52,NA,Bimlesh759-AI,99476211,,,NA,2022-03-07T15:37:54Z,2022-03-07T15:37:54Z,"**Update on Horovod Implementation**
+Below is the few lines of log. Currently 2 GPUs are used, using horovod implementation.
+Around 8-9 hours will be taken in one complete epoch for half of total training datasets.
+
+2022-03-07T14:37:31.14694774Z Current epoch is :0 out of total epoch size : 250
+2022-03-07T14:37:31.151764703Z Current epoch is :0 out of total epoch size : 250
+2022-03-07T14:37:34.149059123Z 2022-03-07 22:37:34.147682:  Successfully opened dynamic library libcublas.so.10.0
+2022-03-07T14:37:34.195508001Z 2022-03-07 22:37:34.194611:  Successfully opened dynamic library libcublas.so.10.0
+2022-03-07T14:49:41.36024786Z Current batch is :500 out of total batch size : 25284
+2022-03-07T14:49:41.360453056Z Current GPU is 0
+2022-03-07T14:49:53.371842581Z Current batch is :500 out of total batch size : 25284
+2022-03-07T14:49:53.371892941Z Current GPU is 1
+2022-03-07T15:00:15.9504008Z Current batch is :1000 out of total batch size : 25284
+2022-03-07T15:00:15.950470233Z Current GPU is 1
+2022-03-07T15:00:16.496543414Z Current batch is :1000 out of total batch size : 25284
+2022-03-07T15:00:16.496598614Z Current GPU is 0
+2022-03-07T15:12:15.966611817Z Current batch is :1500 out of total batch size : 25284
+2022-03-07T15:12:15.966671727Z Current GPU is 0
+2022-03-07T15:13:11.603205931Z Current batch is :1500 out of total batch size : 25284
+2022-03-07T15:13:11.603255662Z Current GPU is 1
+2022-03-07T15:26:53.688137055Z Current batch is :2000 out of total batch size : 25284
+2022-03-07T15:26:53.688267245Z Current GPU is 0
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4_Otpw/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/52,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4_O4uZ,incubator-bluemarlin,1060866969,52,NA,jimmylao,60371672,,,NA,2022-03-07T16:16:32Z,2022-03-07T16:16:32Z,"@Bimlesh759-AI Thanks for the update. Do you have information regarding
+
+- How long does one epoch take using single GPU with all training samples?
+- How much speed-up of 2 GPUs with Horovod vs 1 GPU without Horovod? Since one epoch will take very long time, you may have an estimation, say: the time used by 1 GPU and 2 GPUs for the first 1000 batches.
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4_O4uZ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-bluemarlin/issues/53,https://api.github.com/repos/apache/incubator-bluemarlin/issues/53,incubator-bluemarlin,1154402101,53,[BLUEMARLIN-30]: DIN Lookalike potential issue,sanjaynirmal,40193781,,,OPEN,2022-02-28T18:14:29Z,2022-03-03T16:09:04Z,"Hello @jimmylao,
+I was wondering that whether doing operations on negative and positive sampling would exclude some of the device IDs out from training data ?
+If it does then we might get an error at the time of ctr generation for those DIDs which were not present during the training.
+Wanted to know your opinion on this.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/53/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-bluemarlin/issues/53,https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-3Kht,incubator-bluemarlin,1054648429,53,NA,jimmylao,60371672,,,NA,2022-02-28T20:47:42Z,2022-02-28T20:47:42Z,"@sanjaynirmal There is a placeholder in model.py for userID (or device ID) at the beginning of model.py (line 30 for placeholder, line 40 for userID embedding), however, it was not used afterwards, i.e. userID is not used in the model.
+While CTR generation, the input data does need to provide DID information to follow the format of input data, however, it may not require the DID exists in training data.
+In summary, the potential issue may not happen in reality.","{""url"": ""https://api.github.com/repos/apache/incubator-bluemarlin/issues/comments/IC_kwDOEMIO6s4-3Kht/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

@@ -1,0 +1,431 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/713,https://api.github.com/repos/apache/incubator-datalab/issues/713,incubator-datalab,611848362,713,Flexible disk size for instances,viravit,30263664,,,OPEN,2020-05-04T12:46:21Z,2020-05-28T15:45:09Z,"As a user I want to choose volume type, size, lops during instance creation or change the parameters of already existed Notebook so that I can add more space by necessary on AWS/GCP/Azure.
+-----
+
+**Acceptance criteria:**
+1. 'Custom configuration' should be on notebook creation popup.
+2. 'Custom configuration' consists of:
+- Additional disk/storage?
+- Spark configurations
+3. On top of that user can change disk on already exciting instance. 'Custom configuration should be on notebook name popup'
+
+Additional disk should be only for notebook or for computational resource as well?","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/713/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/714,https://api.github.com/repos/apache/incubator-datalab/issues/714,incubator-datalab,611928140,714,[GCP][Notebooks]: Add custom images,viravit,30263664,,,OPEN,2020-05-04T14:40:35Z,2021-04-08T10:57:22Z,"As a user I want to create Notebook using custom image, so that I can reduce time of libraries installation on a new Notebook.
+------
+
+**Acceptance criteria:**
+1. User is able to create image from running notebook
+2. User is able to create notebook from custom image","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/714/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/715,https://api.github.com/repos/apache/incubator-datalab/issues/715,incubator-datalab,611935544,715,"Possibility to filter by cloud/endpoint in ""Billing report"" page",viravit,30263664,,,OPEN,2020-05-04T14:50:38Z,2020-05-29T09:37:25Z,"As a user I want  to filter resources by endpoint and cloud on billing report page so that I can distinguish charges by clouds and endpoints.
+-----","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/715/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/716,https://api.github.com/repos/apache/incubator-datalab/issues/716,incubator-datalab,611937233,716,Add option turn on/off billing to administration page,viravit,30263664,,,OPEN,2020-05-04T14:52:52Z,2020-05-29T09:36:31Z,"As a customer I want to have possibility to turn on/off billing, so that I can manage this option by demand.
+----------
+
+Add possibility to turn on/off billing even for own resources.
+
+For administration page for role add: 'View full billing report for currently logged in use'.
+So billing consists of:
+- View full billing report for all users
+- View full billing report for currently logged in user
+
+If user does not select any option - billing is disabled -> 'Billing report' page is not available
+
+If user selects 'View billing report for all users' automatically 'View full billing report for currently logged in user' is selected as well.
+
+If user selects 'View full billing report for currently logged in user' only this item is checked off and billing is available only for own resource.
+
+ ","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/716/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/717,https://api.github.com/repos/apache/incubator-datalab/issues/717,incubator-datalab,611939569,717,Support library installation of particular version from DLab UI,viravit,30263664,,,OPEN,2020-05-04T14:56:03Z,2021-04-08T10:56:55Z,"As a user I want to install particular version of library, so that I can easily upgrade or downgrade the library by demand via DLab UI.
+-----
+
+How it works now:
+1. If library is already installed on instance (this library was previous installed during notebook creation) and user installs the same library via DLab UI. And as result DLab shows installing -> installed, but in fact this library is not installed by DLab, Dlab finds that such library is previously installed and changes status installing -> installed. This case is actual when user want to install upper version of library. So make possible to install library like <library_name==version> via DLab UI. For example, this bug was found with library 'request'.
+2. Also if update Python 3 via terminal it shows that it is upgraded but in some minutes it is downgraded again. (It was on Jupyter)
+
+**How should it work:**
+- If user types wrong library version the output appears where there is a list of versions for this library
+- If user types right library version this library version should be installed
+- On top of that what dependencies are added during installation should be conveyed to user.  In what way it should be conveyed?
+- The latest installed library should be in the top of the libraries grid.  ","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/717/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/718,https://api.github.com/repos/apache/incubator-datalab/issues/718,incubator-datalab,611954312,718,Versions of all python libraries should be in conf file,viravit,30263664,,,OPEN,2020-05-04T15:15:42Z,2020-05-29T09:34:08Z,"Discuss the place where version should be stored, what list and so on...","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/718/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/719,https://api.github.com/repos/apache/incubator-datalab/issues/719,incubator-datalab,611957148,719,Bucket browser,viravit,30263664,,,OPEN,2020-05-04T15:19:22Z,2021-04-08T10:56:30Z,"As a user I want to  use bucket browser, so that I can manage the objects  in my bucket via DLab UI.
+-----
+
+**Acceptance criteria:**
+
+1. User has access to endpoint_shared bucket and project bucket (only if he is assigned to this project) or to custom bucket
+
+2. Another user does not have access to project bucket (if he is not assigned to this project)
+
+4. User can upload and download files to and from bucket
+
+5. User can create/delete folder
+
+6. User can delete file
+
+7. User can copy path folder/file
+
+7. User can see bucket structure (tree)
+
+8. To go to bucket manager user can from Notebook name popup and 'Bucket browser' button in 'List of resource page'.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/719/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/726,https://api.github.com/repos/apache/incubator-datalab/issues/726,incubator-datalab,616767696,726, Support access to browser bucket via administration page,viravit,30263664,,,OPEN,2020-05-12T15:52:02Z,2021-04-08T10:56:08Z,"As an admin I want to set permissions to bucket browser per particular users/groups, so that I can distinguish who is able to read/upload/download objects via bucket browser.
+-----
+
+Add 'Bucket Browser Actions' to roles in administrative page, so that administrator can distinguish access to bucket and other permissions via bucket browser among the users.
+
+'Bucket Browser Actions' should have the following points:
+
+- Allow to download object via bucket browser
+- Allow to upload object via bucket browser
+- Allow to view object via bucket browser
+- Allow to delete object via bucket browser","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/726/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/727,https://api.github.com/repos/apache/incubator-datalab/issues/727,incubator-datalab,616771441,727,Support audit ,viravit,30263664,,,OPEN,2020-05-12T15:57:11Z,2021-04-08T10:55:54Z,"As a user I want to see history changes, so that I can easily find out what/when/who has made changes.
+-----
+
+**Audit by DLab level**
+
+Possibility to find out:
+
+- Who has deleted or added user?
+- Who has created notebook/compute? 
+- Who has stopped/started/terminated notebook/compute/project?
+- Who has edited group/project/notebook/compute?
+- When changes have been made
+- What changes have been made?
+In general everything that has been done via DLab UI should be in history of changes.
+
+History by changes should be in the following consistency:
+user → time→ action
+","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/727/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/728,https://api.github.com/repos/apache/incubator-datalab/issues/728,incubator-datalab,616776844,728,Add HDInsight on Azure,viravit,30263664,,,OPEN,2020-05-12T16:04:26Z,2020-05-22T07:55:48Z,"As a user I want to use HDInsight on Azure via DLab, so that I can simplify running big data frameworks.
+-----","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/728/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/729,https://api.github.com/repos/apache/incubator-datalab/issues/729,incubator-datalab,616783374,729,Convey Notebook links of other users to administrator,viravit,30263664,,,OPEN,2020-05-12T16:13:39Z,2021-04-08T10:55:29Z,"As an admin I want to see user Notebook links, so that I can easily go to users Notebook by demand.
+-----
+
+Notebook links are portrayed only for own resources. Administrator does not know the Notebook link of other user.
+
+So convey notebook links to administrator in 'Environment management' page:
+1. Administrator can view  links of another user
+2. User is not able to view links of the other user.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/729/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/730,https://api.github.com/repos/apache/incubator-datalab/issues/730,incubator-datalab,616786521,730,Adjust permission to Notebook links from DevOps side,viravit,30263664,,,OPEN,2020-05-12T16:18:16Z,2020-05-22T07:54:03Z,"As a user I want that another user is not supposed to go to my Notebook event if he has the link to my Notebook, so that I will be confident that my Notebook data is in security.
+-----
+
+If user (Project_admin of another project or not admin) has a notebook link of the other user he can go to this Notebook via his own credentials and view files of the other user on this Notebook.
+
+So  we should limit the access to this link from DevOps side (by the level of Keycloak).","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/730/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/731,https://api.github.com/repos/apache/incubator-datalab/issues/731,incubator-datalab,616788244,731,Add possibility to recreate edge node  in case of edge failing or termination,viravit,30263664,,,OPEN,2020-05-12T16:20:58Z,2021-01-05T10:13:54Z,"As a user I want to use my instances in case if edge fails or again to create previously terminated edge in the same project using the same endpoint, so that it allows me do not create a project with new name and use the previous project name.
+------
+
+If we terminate edge (or edge has been failed) we could not create the new edge in the same project and the same endpoint.
+Edge not could be failed during stopping/starting/creating/terminating.
+
+**Statuses for recreate:**
+
+- edge node is terminated from Cloud Web Console - recreate should be
+
+- edge node is terminated from Web DataLab UI - recreate should be
+
+- edge node failed during stopping/starting - return cloud status - recreate should NOT be
+
+- edge node failed during creating - recreate should be 
+
+- edge node failed during terminating - recreate should be 
+
+ If at least one instance exists - SMART recreate.
+
+ If instances do not exist - create all resources.
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/731/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/732,https://api.github.com/repos/apache/incubator-datalab/issues/732,incubator-datalab,616789348,732,Support localization ,viravit,30263664,,,OPEN,2020-05-12T16:22:45Z,2021-04-08T10:51:13Z,"As a user I want to have formats for dates, currency which are used in my time zone.
+-------
+
+Using proper local formats for dates for all DLab, currency.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/732/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/733,https://api.github.com/repos/apache/incubator-datalab/issues/733,incubator-datalab,616792555,733,Implement queue for load process,viravit,30263664,,,OPEN,2020-05-12T16:27:38Z,2020-05-22T07:51:13Z,"As a user I want to have stable working SSN  in case if several users upload simultaneously a lot of objects via bucket browser.
+------
+
+If a few users simultaneously upload a lot of objects via bucket browser the SSN will be loaded.
+So implement queue for upload process.
+","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/733/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/735,https://api.github.com/repos/apache/incubator-datalab/issues/735,incubator-datalab,616876323,735,Show more informative error message for user in case of failing notebook/cluster/library,viravit,30263664,,,OPEN,2020-05-12T18:43:18Z,2021-04-08T10:51:54Z,"As a user I want to see more informative error message about failing instances on DLab UI, so that I do not need to go to SSN and look through logs.
+---
+**Acceptance criteria:**
+1. After notebook creation has failed user can see error message by clicking name notebook on 'resources list' page
+2. After computational resource creation has failed user can see error message by clicking on name computational resource on 'resources list' page
+ 
+For example, if user used all shapes limit of Amazon user can see the next error message: 'Shapes limit is exceeded'.
+Content of error message should depend on error type.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/735/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/736,https://api.github.com/repos/apache/incubator-datalab/issues/736,incubator-datalab,616879308,736,Automate FQDN during instance creation,viravit,30263664,,,OPEN,2020-05-12T18:48:27Z,2022-05-05T14:11:46Z,"As a customer I want to use FQDN instead of IP.
+---
+
+FQDN should be assigned during instance creation.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/736/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/737,https://api.github.com/repos/apache/incubator-datalab/issues/737,incubator-datalab,616884055,737,Add support of Nexus repository,viravit,30263664,,,OPEN,2020-05-12T18:56:49Z,2021-10-28T10:01:04Z,"As a user I want to create instance from local repository, so that I can prevent some random issues during creation.
+---
+
+1. It should be the single source from which changes will be performed.
+
+2. Go and distribute all traffic through this sandbox","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/737/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/737,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas442EUi,incubator-datalab,953697570,737,NA,DurveshKumarPal,76864632,Rs_Durvesh,,NA,2021-10-28T10:01:04Z,2021-10-28T10:01:04Z,@viravit I'm a beginner how do I contribute?,"{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas442EUi/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/738,https://api.github.com/repos/apache/incubator-datalab/issues/738,incubator-datalab,616886196,738,[Azure]: Instance in billing combine as one point,viravit,30263664,,,OPEN,2020-05-12T19:00:21Z,2020-05-22T08:58:24Z,"
+As a user I want to have clear vision what instances and what statuses do they have in 'Billing report' page.
+-----
+
+For example, In 'billing report' cost edge consists of three points:
+- Bandwidth
+- Virtual Network
+- Virtual Machine.
+And also all three points have statuses. It confuses a user. Because if only one edge (instance) is running, but in billing report it shows as three instances are running.
+![Azure](https://user-images.githubusercontent.com/30263664/82650543-7b05fd80-9c23-11ea-9435-293639189239.jpg)","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/738/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/739,https://api.github.com/repos/apache/incubator-datalab/issues/739,incubator-datalab,616921920,739,Implement demo mode for marketplace,viravit,30263664,,,OPEN,2020-05-12T20:00:16Z,2020-05-22T07:34:20Z,"As a potential user I want try DLab usage in order to study it better and to know if it is acceptable for me, so that I do not waste money and time for deployment for cognitive purpose.
+------
+","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/739/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/742,https://api.github.com/repos/apache/incubator-datalab/issues/742,incubator-datalab,618068885,742,[Data Engine]: Add Spot instances support for Standalone Spark cluster,viravit,30263664,,,OPEN,2020-05-14T09:19:25Z,2020-05-15T07:59:02Z,"As a user I want to use spot functionality during Standalone Spark cluster creation so that I can reduce financial charges on AWS/GCP/MS Azure.
+-----
+**Acceptance criteria:**
+1. It should be check box for spot instance on Standalone Spark cluster creation popup
+2. Check box for Low spot instance should be checked off by default
+3. If user unchecks check box for spot instance and hits 'Create' button a Standalone Spark cluster will be created without spot price
+4. If user checks off check box for spot instance and hits 'Create' button a Standalone Spark cluster will be created with spot price","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/742/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/743,https://api.github.com/repos/apache/incubator-datalab/issues/743,incubator-datalab,618075367,743,Add possibility to delete any/all libraries in failing status,viravit,30263664,,,OPEN,2020-05-14T09:28:30Z,2020-05-15T07:53:41Z,"As a user I want to have possibility to delete failing libraries, so that i decreases the grid space which is occupied by failing libraries.
+----
+**Acceptance criteria:**
+1. There is 'Delete' button nearby failed library
+2. If user chooses 'Delete' button the failing library is deleted from instance","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/743/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/744,https://api.github.com/repos/apache/incubator-datalab/issues/744,incubator-datalab,618081796,744,Add support of Spark 3.x.x,viravit,30263664,,,OPEN,2020-05-14T09:38:11Z,2020-05-15T07:49:48Z,"As of 14/05/2020 we support 2.4.4, we need to add support of Spark 3.0.0-preview2","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/744/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/745,https://api.github.com/repos/apache/incubator-datalab/issues/745,incubator-datalab,618086404,745,Add ability to share AMI(s) created by user across DataLab project,viravit,30263664,,,OPEN,2020-05-14T09:45:17Z,2021-04-08T11:05:11Z,"As a user I want to choose to make custom AMi of notebook public or not public, so that I can shared my own custom AMI with other users by my desire.
+-----
+**Acceptance criteria:**
+1. Add possibility to choose during creation AMI:
+- share within one project
+- share across the projects
+2. User's personal data on notebook should not be shared","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/745/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/746,https://api.github.com/repos/apache/incubator-datalab/issues/746,incubator-datalab,618089412,746,Upgrade DataLab,viravit,30263664,,,OPEN,2020-05-14T09:49:50Z,2021-03-26T17:11:15Z,"As a user I want to have possibility to upgrade current DataLab version, so that I do not need fully redeploy.
+----
+**Acceptance criteria:**
+1.  Administrator can upgrade DataLab
+2. All previous data (billing/instances) are not removed/changed after upgrading","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/746/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/747,https://api.github.com/repos/apache/incubator-datalab/issues/747,incubator-datalab,618092953,747,[Azure][GCP]: Add TensorFlow-RStudio template,viravit,30263664,,,OPEN,2020-05-14T09:55:16Z,2020-05-15T07:40:07Z,"As a user I want to have a TensorFlow-RStudio template on Azure/GCP.
+----
+**Acceptance criteria:**
+1. It should be TensorFlow-Rstudio template in drop down list in Notebook creation popup 
+2. Playbook  for RStudio should be run successfully on TensorFlow-RStudio template  (via local and remote kernels) 
+3. Playbook  which use GPU should be run successfully on TensorFlow-RStudio template (via local and remote kernels)","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/747/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/748,https://api.github.com/repos/apache/incubator-datalab/issues/748,incubator-datalab,618104986,748,Integration with Grafana for monitoring and troubleshooting the cluster performance,viravit,30263664,,,OPEN,2020-05-14T10:14:07Z,2020-05-15T07:38:15Z,"As a user I want to use Grafana, so that I can monitor and troubleshoot the cluster performance.
+----
+**Acceptance criteria:**
+1. ""Grafana"" link should be on cluster name popup
+2. If user clicks on ""Grafana"" link the window of Grafana metrics dashboard will be opened in new tab
+ 
+Link for open-source project https://grafana.com
+Link for GitHub: https://github.com/grafana/grafana ","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/748/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/749,https://api.github.com/repos/apache/incubator-datalab/issues/749,incubator-datalab,618118613,749,Implement job status tracker on DataLab Web UI,viravit,30263664,,,OPEN,2020-05-14T10:35:28Z,2021-03-26T17:10:46Z,"As a user I want to know job  status (completed/failed) in case of instance stops/terminates by scheduler.
+----
+**Acceptance criteria:**
+1. Failed status is conveyed on DataLab ui if job status is failed
+2. Completed status is conveyed on DataLab ui if job status is successful","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/749/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/750,https://api.github.com/repos/apache/incubator-datalab/issues/750,incubator-datalab,618123167,750,Add sparkmagic to Jupyter,viravit,30263664,,,OPEN,2020-05-14T10:42:36Z,2020-05-28T14:05:22Z,"As a user I want to use sparkmagic for Jupyter.
+---
+View the following link about sparkmagic:
+https://github.com/jupyter-incubator/sparkmagic/blob/release/examples/Spark%20Kernel.ipynb","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/750/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/751,https://api.github.com/repos/apache/incubator-datalab/issues/751,incubator-datalab,618128189,751,Display instance price for shape per hour on DataLab Web UI,viravit,30263664,,,OPEN,2020-05-14T10:50:23Z,2021-03-26T17:09:41Z,"As a user I want to know price for shape per hour, so that I will be confident in my shape choice.
+---
+**Acceptance criteria:**
+1. The price is in drop down list, where are shapes
+2. The currency is USD","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/751/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/752,https://api.github.com/repos/apache/incubator-datalab/issues/752,incubator-datalab,618243481,752,[GCP][Azure]: Optimize performance of stop/start for Data Engine (Standalone Spark cluster),viravit,30263664,,,OPEN,2020-05-14T13:43:48Z,2020-05-29T08:11:13Z,"As a user I want to use optimizing performance of stop/start for Data Engine on GCP/Azure, so that i can reduce waiting time of stop/start for Data Engine.
+---
+**Acceptance criteria:**
+1. If user stops Data Engine all nodes of related Data Engine stop simultaneously
+2. if user starts Data Engine all nodes of related Data Engine start simultaneously","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/752/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/845,https://api.github.com/repos/apache/incubator-datalab/issues/845,incubator-datalab,673800573,845,Fix the broken link for issues under CONTRIBUTING.md file ,karthisuku,21969430,Karthikeyan Sukumaran,,OPEN,2020-08-05T19:42:10Z,2021-04-08T10:54:28Z,"Fix the broken link [1] for opening new issue in the CONTRIBUTING.md [2]
+
+
+[1] https://github.com/epam/DLab/issues
+[2] ""https://github.com/apache/incubator-dlab/blob/master/CONTRIBUTING.md"" ","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/845/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/845,https://api.github.com/repos/apache/incubator-datalab/issues/comments/MDEyOklzc3VlQ29tbWVudDY2OTQ4MTk4NQ==,incubator-datalab,669481985,845,NA,karthisuku,21969430,Karthikeyan Sukumaran,,NA,2020-08-05T20:20:35Z,2020-08-05T20:20:35Z,"Opened a PR [1]
+
+[1] https://github.com/apache/incubator-dlab/pull/846","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/MDEyOklzc3VlQ29tbWVudDY2OTQ4MTk4NQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/927,https://api.github.com/repos/apache/incubator-datalab/issues/927,incubator-datalab,711860903,927,Any Docs on Installing Datalab in GKE?,Rep1AI,60442898,ReplAI,,OPEN,2020-09-30T11:20:52Z,2023-05-18T08:20:37Z,Is there a guide on Installing Datalab in existing Google Kubernetes cluster?,"{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/927/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/927,https://api.github.com/repos/apache/incubator-datalab/issues/comments/MDEyOklzc3VlQ29tbWVudDcwMTk4NTU4Mg==,incubator-datalab,701985582,927,NA,viravit,30263664,,,NA,2020-10-01T08:42:23Z,2020-10-01T08:42:23Z,"> Is there a guide on Installing Datalab in existing Google Kubernetes cluster?
+
+Dear @RohitR1 ,
+The user guide is in progress. Roughly speaking it will be ready in two weeks.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/MDEyOklzc3VlQ29tbWVudDcwMTk4NTU4Mg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/927,https://api.github.com/repos/apache/incubator-datalab/issues/comments/MDEyOklzc3VlQ29tbWVudDc1NzY4NTI3OQ==,incubator-datalab,757685279,927,NA,viravit,30263664,,,NA,2021-01-11T07:56:24Z,2021-01-11T07:56:24Z,"Dear @RohitR1,
+The documentation about DataLab deployment on GKE is here: https://github.com/apache/incubator-datalab/tree/develop/infrastructure-provisioning/terraform/gcp/ssn-gke.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/MDEyOklzc3VlQ29tbWVudDc1NzY4NTI3OQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/927,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5ci0gW,incubator-datalab,1552631830,927,NA,spattanaik75,8577403,Soumya Ranjan Pattanaik,spattanaik75@gmail.com,NA,2023-05-18T07:25:06Z,2023-05-18T07:25:06Z,"Hi @viravit should we follow similar approach to deploy for EKS? 
+in this scenario SSN and Provisioning service will be created inside EKS. But is there some provision for the exploratory environment to be created inside EKS itself ?","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5ci0gW/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/981,https://api.github.com/repos/apache/incubator-datalab/issues/981,incubator-datalab,744738064,981,"mvn package -DskipTests fails on AArch64, Fedora 33 (Java 11) ",LutzWeischerFujitsu,73179197,,,OPEN,2020-11-17T13:30:20Z,2021-01-27T12:02:16Z,"...
+[INFO] Reactor Summary for dlab 1.0:
+[INFO]
+[INFO] dlab ............................................... FAILURE [  9.322 s]
+[INFO] common ............................................. SKIPPED
+[INFO] dlab-utils ......................................... SKIPPED
+[INFO] dlab-model ......................................... SKIPPED
+[INFO] dlab-webapp-common ................................. SKIPPED
+[INFO] provisioning-service ............................... SKIPPED
+[INFO] dlab-mongo-migration ............................... SKIPPED
+[INFO] self-service ....................................... SKIPPED
+[INFO] billing-azure ...................................... SKIPPED
+[INFO] billing-gcp ........................................ SKIPPED
+[INFO] billing-aws ........................................ SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.231 s
+[INFO] Finished at: 2020-11-17T13:24:59+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.rat:apache-rat-plugin:0.7:check (default) on project dlab: Too many unapproved licenses: 1 -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/981/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/981,https://api.github.com/repos/apache/incubator-datalab/issues/comments/MDEyOklzc3VlQ29tbWVudDc2ODIzOTQzNg==,incubator-datalab,768239436,981,NA,KinashYurii,30243766,Kinash Yurii,ura.kinash@gmail.com,NA,2021-01-27T12:02:16Z,2021-01-27T12:02:16Z,"@LutzWeischerFujitsu, thank you for your report. This issue will be fixed in the next release.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/MDEyOklzc3VlQ29tbWVudDc2ODIzOTQzNg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/1037,https://api.github.com/repos/apache/incubator-datalab/issues/1037,incubator-datalab,788666073,1037,"There is a vulnerability in dropwizard 1.3.2,upgrade recommended",QiAnXinCodeSafe,39950310,奇安信CodeSafe,,OPEN,2021-01-19T03:00:21Z,2022-04-07T09:28:39Z,"https://github.com/apache/incubator-datalab/blob/423fa3a4404326aaac6aebc68b80a0f86dd775b4/pom.xml#L72
+
+CVE-2020-5245  CVE-2020-11002
+
+Recommended upgrade version：1.3.21","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/1037/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/1037,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5BDcha,incubator-datalab,1091422298,1037,NA,pjfanning,11783444,PJ Fanning,,NA,2022-04-07T09:28:39Z,2022-04-07T09:28:39Z,this is updated in master - https://github.com/apache/incubator-datalab/blob/master/services/billing-aws/pom.xml,"{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5BDcha/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/1038,https://api.github.com/repos/apache/incubator-datalab/issues/1038,incubator-datalab,788668979,1038,"There is a vulnerability in guava 24.1-jre,upgrade recommended",QiAnXinCodeSafe,39950310,奇安信CodeSafe,,OPEN,2021-01-19T03:08:32Z,2022-04-07T09:27:04Z,"https://github.com/apache/incubator-datalab/blob/423fa3a4404326aaac6aebc68b80a0f86dd775b4/services/billing-aws/pom.xml#L132-L134
+
+CVE-2018-10237  CVE-2020-8908
+
+Recommended upgrade version：30.0-jre","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/1038/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/1038,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5BDcHV,incubator-datalab,1091420629,1038,NA,pjfanning,11783444,PJ Fanning,,NA,2022-04-07T09:27:04Z,2022-04-07T09:27:04Z,updated in master - https://github.com/apache/incubator-datalab/blob/master/services/billing-aws/pom.xml,"{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5BDcHV/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/1039,https://api.github.com/repos/apache/incubator-datalab/issues/1039,incubator-datalab,788670193,1039,"There is a vulnerability in hibernate 5.1.1.Final,upgrade recommended",QiAnXinCodeSafe,39950310,奇安信CodeSafe,,OPEN,2021-01-19T03:12:23Z,2022-04-07T09:26:05Z,"https://github.com/apache/incubator-datalab/blob/423fa3a4404326aaac6aebc68b80a0f86dd775b4/services/billing-aws/pom.xml#L90-L94
+
+CVE-2014-3558  CVE-2019-10219
+
+Recommended upgrade version：5.1.3.FINAL","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/1039/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/1039,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5BDbsN,incubator-datalab,1091418893,1039,NA,pjfanning,11783444,PJ Fanning,,NA,2022-04-07T09:26:05Z,2022-04-07T09:26:05Z,this is updated in master - https://github.com/apache/incubator-datalab/blob/master/services/billing-aws/pom.xml,"{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5BDbsN/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/1461,https://api.github.com/repos/apache/incubator-datalab/issues/1461,incubator-datalab,1171181590,1461,could you add a Security.md?,pjfanning,11783444,PJ Fanning,,CLOSED,2022-03-16T15:25:49Z,2022-03-16T15:47:26Z,"an example is https://github.com/apache/poi/blob/trunk/SECURITY.md
+
+It's important that users know how to securely disclose vulnerabilities","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/1461/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/1461,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas4_u-3P,incubator-datalab,1069280719,1461,NA,pjfanning,11783444,PJ Fanning,,NA,2022-03-16T15:47:25Z,2022-03-16T15:47:25Z,apologies - this is visible - https://github.com/apache/incubator-datalab/security/policy,"{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas4_u-3P/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/1813,https://api.github.com/repos/apache/incubator-datalab/issues/1813,incubator-datalab,1595969961,1813,Connection via SSH fails when running deploy_datalab.py,dylangovender,15728103,Dylan Govender,,CLOSED,2023-02-22T23:05:00Z,2023-04-01T19:33:12Z,"I am running the deploy_datalab.py script with the below command:
+
+`/usr/bin/python3 /home/vboxuser/incubator-datalab/infrastructure-provisioning/scripts/deploy_datalab.py \
+--conf_service_base_name datalab_poc \
+--conf_os_family debian \
+--key_path /home/vboxuser/key \
+--conf_key_name datalabs_key \
+--conf_tag_resource_id datalab \
+--keycloak_auth_server_url XXXXXXXXXXXXXXX \
+--keycloak_realm_name master \
+--keycloak_user XXXXX \
+--keycloak_user_password XXXXX \
+--action create \
+'aws' \
+--aws_access_key XXXXXXXXXXXXXXX \
+--aws_secret_access_key ""XXXXXXXXXXXXXXX "" \
+--aws_account_id XXXXXXXXXXXXXXX \
+--aws_region XX-XXXX-X \
+--aws_zone XXXX-XXX
+`
+
+When the script gets to the part where it attempts an SSH connection to the EC2 instance that was created, it does the 15 attempts and seems to succeed each time, but overall it fails. Excerpt from the logs are attached. 
+
+[datalabs_log.txt](https://github.com/apache/incubator-datalab/files/10809014/datalabs_log.txt)
+
+Thank you.
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/1813/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/1813,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5V8DJ7,incubator-datalab,1441804923,1813,NA,leonidfrolov,51460118,Leonid Frolov,,NA,2023-02-23T13:32:52Z,2023-02-23T13:32:52Z,"Hello Dylan,
+you tried to deploy from master branch, right?
+Please try to add Termination protection to SSN instance when it is created, and try to establish SSH connection from your VM to said instance with provided key and ubuntu user. 
+You can also try to run deploy_datalab.py from another EC2 instance, as some networking misconfiguration of your VM on Host machine can block connection.
+
+Is there any chance that some policy removes security group rule with allowed inbound traffic from 0.0.0.0/0?
+
+If you already have some existing VPC, subnet, security group that you use to successfully connect to EC2 instances, you can try to use them with additional options
+--aws_vpc_id vpc-xxxxxxxx \
+--aws_subnet_id subnet-xxxxxxxx \
+--aws_security_groups_ids 'sg-xxxxxxxx,sg-xxxxxxxx' ","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5V8DJ7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/1813,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5YXq5d,incubator-datalab,1482600029,1813,NA,dylangovender,15728103,Dylan Govender,,NA,2023-03-24T10:46:13Z,2023-03-24T10:46:13Z,"Hi,
+
+I was actually deploying from develop branch as that is what is specified in the documentation/README.md.
+
+I managed to get around this error by using another EC2 instance and putting the ssh key into ~/ubuntu/.ssh and specifying this location as a parameter to the deploy_datalab.py script.
+
+Thank you.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5YXq5d/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/1817,https://api.github.com/repos/apache/incubator-datalab/issues/1817,incubator-datalab,1670987209,1817,On-prem deploy,dylangovender,15728103,Dylan Govender,,CLOSED,2023-04-17T11:42:55Z,2023-07-03T19:08:30Z,"Hi,
+
+Is there a way to deploy Datalab on-prem (preferably using Kubernetes), rather than on AWS/GCP/Azure?
+
+Thanks,","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/1817/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/1817,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5akaHL,incubator-datalab,1519493579,1817,NA,OleksandrRepnikov,60883667,Oleksandr Repnikov,,NA,2023-04-24T06:59:39Z,2023-04-24T06:59:39Z,"Hi, 
+
+There is no possibility to deploy Datalab on-prem. This application was developed for the AWS/GCP/Azure clouds.
+
+Thanks.","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5akaHL/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-datalab/issues/1817,https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5cAVVD,incubator-datalab,1543591235,1817,NA,dylangovender,15728103,Dylan Govender,,NA,2023-05-11T08:45:59Z,2023-05-11T08:45:59Z,"Thanks for getting back to me, @OleksandrRepnikov.
+
+I noticed a Terraform file under infrastructure-provisioning/terraform/aws/ssn-helm-charts/main/main.tf which lists the provider as Kubernetes.
+
+Any idea what part this file plays for Datalabs?
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/comments/IC_kwDOCdooas5cAVVD/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-datalab/issues/1821,https://api.github.com/repos/apache/incubator-datalab/issues/1821,incubator-datalab,1786681569,1821,Billing details not populating on UI,dylangovender,15728103,Dylan Govender,,OPEN,2023-07-03T19:05:57Z,2023-07-03T19:05:57Z,"Hi,
+
+I have been running a Datalab instance but am not seeing any data under the billing section in the front end. AWS is definitely incurring costs as a result of Datalab ($40 for the month of June). 
+
+Is there some specific condition that needs to be fulfilled before billing is populated?
+
+This is the command I used to create the Datalab:
+
+/usr/bin/python3 ~/incubator-datalab/infrastructure-provisioning/scripts/deploy_datalab.py \
+--conf_service_base_name datalab-base-name \
+--conf_tag_resource_id datalab-resource-id \
+--conf_os_family debian \
+--key_path /home/ubuntu/.ssh/ \
+--conf_key_name datalab \
+--action create \
+--keycloak_realm_name master \
+--keycloak_user XXXXXXXX \
+--keycloak_user_password XXXXXXXX \
+--keycloak_auth_server_url http:\/\/XX.XX.XXX.XX:8080 \
+'aws' \
+--aws_region eu-west-1 \
+--aws_zone eu-west-1a \
+--aws_ssn_instance_size t2.medium \
+--aws_billing_bucket datalabbilling \
+--aws_account_id XXXXXXXXXXX \
+--aws_access_key XXXXXXXXXXXXXXX \
+--aws_secret_access_key XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+An excerpt from the logs in /var/opt/datalab/log/ssn/billing.log:
+
+2023-07-03 11:25:30.107  INFO 94517 --- [cluster-ClusterId{value='64a2b029b4d0cc7135f64a6e', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2023-07-03 11:25:30.919  INFO 94517 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (https) with context path '/api/billing'
+2023-07-03 11:25:30.922  INFO 94517 --- [main] com.epam.datalab.BillingAwsApplication   : Started BillingAwsApplication in 21.602 seconds (JVM running for 23.418)
+2023-07-03 11:25:30.926 DEBUG 94517 --- [main] com.epam.datalab.BillingServiceImpl      : Billing report configuration file: /opt/datalab/conf/billing.yml
+INFO  [2023-07-03 11:30:00,751] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/api/billing]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  [2023-07-03 11:30:00,751] org.springframework.web.servlet.DispatcherServlet: Initializing Servlet 'dispatcherServlet'
+INFO  [2023-07-03 11:30:00,760] org.springframework.web.servlet.DispatcherServlet: Completed initialization in 9 ms
+DEBUG [2023-07-03 11:30:01,109] com.epam.datalab.module.aws.AdapterS3File: Adapter S3 will be opened for READ
+DEBUG [2023-07-03 11:30:02,317] com.epam.datalab.module.aws.AdapterS3File: New report files in bucket folder datalabbilling not found
+DEBUG [2023-07-03 11:30:02,318] com.epam.datalab.module.aws.AdapterS3File: Adapter S3 has been opened
+DEBUG [2023-07-03 11:30:02,318] com.epam.datalab.core.parser.ParserByLine: Source data has multy entry true
+DEBUG [2023-07-03 11:45:00,243] com.epam.datalab.module.aws.AdapterS3File: Adapter S3 will be opened for READ
+DEBUG [2023-07-03 11:45:00,332] com.epam.datalab.module.aws.AdapterS3File: New report files in bucket folder datalabbilling not found
+DEBUG [2023-07-03 11:45:00,332] com.epam.datalab.module.aws.AdapterS3File: Adapter S3 has been opened
+DEBUG [2023-07-03 11:45:00,332] com.epam.datalab.core.parser.ParserByLine: Source data has multy entry true
+
+Excerpt from the logs in /var/opt/datalab/log/ssn/selfservice.log:
+
+INFO  [2023-07-03 11:25:30,534] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@5a654e05{/,null,AVAILABLE}
+INFO  [2023-07-03 11:25:30,559] org.eclipse.jetty.server.AbstractConnector: Started application@359e27d2{SSL,[ssl, http/1.1]}{0.0.0.0:8443}
+INFO  [2023-07-03 11:25:30,565] org.eclipse.jetty.server.AbstractConnector: Started admin@277bc3a5{SSL,[ssl, http/1.1]}{0.0.0.0:8444}
+INFO  [2023-07-03 11:25:30,565] org.eclipse.jetty.server.Server: Started @23057ms
+INFO  [2023-07-03 11:25:30,616] com.epam.datalab.backendapi.dropwizard.listeners.MongoStartupListener: Populating DataLab default roles into database
+INFO  [2023-07-03 11:25:30,648] com.epam.datalab.backendapi.dropwizard.listeners.MongoStartupListener: Check for connected endpoints:
+ connected endpoints: 1
+ connected clouds: [AWS]
+INFO  [2023-07-03 11:30:00,075] com.epam.datalab.backendapi.schedulers.CheckInfrastructureStatusScheduler: Trying to update infrastructure statuses
+INFO  [2023-07-03 11:30:00,194] com.epam.datalab.backendapi.service.impl.InfrastructureInfoServiceImpl: EnvResources is empty: EnvResourceList{host=[], cluster=[]} , didn't send request to provisioning service
+INFO  [2023-07-03 11:30:00,208] com.epam.datalab.backendapi.schedulers.billing.BillingScheduler: Trying to update billing
+INFO  [2023-07-03 11:30:02,580] com.epam.datalab.backendapi.service.impl.BillingServiceImpl: Updating billing information for endpoint local. Billing data []
+INFO  [2023-07-03 11:45:00,064] com.epam.datalab.backendapi.schedulers.CheckInfrastructureStatusScheduler: Trying to update infrastructure statuses
+INFO  [2023-07-03 11:45:00,094] com.epam.datalab.backendapi.service.impl.InfrastructureInfoServiceImpl: EnvResources is empty: EnvResourceList{host=[], cluster=[]} , didn't send request to provisioning service","{""url"": ""https://api.github.com/repos/apache/incubator-datalab/issues/1821/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

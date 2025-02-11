@@ -1,0 +1,816 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/1,https://api.github.com/repos/apache/incubator-resilientdb/issues/1,incubator-resilientdb,528395823,1,ResilientDB Fails to run when clients > 1,RohanSogani,4417861,Rohan Sogani,,CLOSED,2019-11-25T23:23:49Z,2023-10-29T09:19:11Z,"@gupta-suyash @sajjadrahnama
+./resilientDB-docker --clients=2 --replicas=4
+The ./resilientDB-docker fails because the ifconfig file is not created properly. The reason being, multiple clients are added in the same line separated by \n. There is a small bug in the docker-ifconfig.sh file.
+
+I've fixed this small bug in my local copy.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/1,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU1ODM4OTQ2NA==,incubator-resilientdb,558389464,1,NA,gupta-suyash,14882651,Suyash Gupta,suyash.gupta@outlook.com,NA,2019-11-25T23:33:49Z,2019-11-25T23:33:49Z,Please send a pull request for the updated file.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU1ODM4OTQ2NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/1,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU1ODM5MTgxMQ==,incubator-resilientdb,558391811,1,NA,RohanSogani,4417861,Rohan Sogani,,NA,2019-11-25T23:42:54Z,2019-11-25T23:42:54Z,"Hi Suyash,
+I've sent a pull request for review.
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU1ODM5MTgxMQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/3,https://api.github.com/repos/apache/incubator-resilientdb/issues/3,incubator-resilientdb,528444477,3,"*TRIVIAL* ""./resilientdb -d"" runs successfully even though there is a problem while running ./rundb",p-shubham,16755241,Shubham Pandey,,CLOSED,2019-11-26T02:15:46Z,2023-10-29T09:22:34Z,"Hi, @sajjadrahnama @gupta-suyash @RohanSogani 
+Following is the output of execution script in the results folder:
+![bug](https://user-images.githubusercontent.com/16755241/69593719-e6418080-0fae-11ea-9564-9d9930f40056.PNG)
+(Note: One of the errors that happen if make fails)
+
+Following is the output in the terminal:
+![bugpic2](https://user-images.githubusercontent.com/16755241/69593721-e6418080-0fae-11ea-97af-904336915cb9.PNG)
+
+PS: I have docker running on VMWare Player 15 and connected to VS Code installed on my Windows via SSH.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/3,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU1ODQzMTg0NA==,incubator-resilientdb,558431844,3,NA,gupta-suyash,14882651,Suyash Gupta,suyash.gupta@outlook.com,NA,2019-11-26T02:35:28Z,2019-11-26T02:35:28Z,@p-shubham if you have a patch for this send it along. @sajjadrahnama please have a look at this case.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU1ODQzMTg0NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/3,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU1ODQzMjUwNQ==,incubator-resilientdb,558432505,3,NA,p-shubham,16755241,Shubham Pandey,,NA,2019-11-26T02:38:19Z,2019-11-26T02:38:19Z,"@gupta-suyash Working on it. Will post.
+By the way, It is an intermittent bug.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU1ODQzMjUwNQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/5,https://api.github.com/repos/apache/incubator-resilientdb/issues/5,incubator-resilientdb,547135145,5,Initialize Chain Bug,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,CLOSED,2020-01-08T22:17:55Z,2023-10-29T09:22:24Z,The Blockchain object in chain.cpp is not being initialized.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/5,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU3MjI4NjAwNA==,incubator-resilientdb,572286004,5,NA,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,NA,2020-01-08T22:21:39Z,2020-01-08T22:21:39Z,Fixed by [55ea1ae](https://github.com/resilientdb/resilientdb/commit/55ea1aee222bbb6cd3b874c22fd5f1b21fde2f87),"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU3MjI4NjAwNA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/6,https://api.github.com/repos/apache/incubator-resilientdb/issues/6,incubator-resilientdb,548299682,6,Sqlite Support,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,CLOSED,2020-01-10T21:29:19Z,2023-10-29T09:22:17Z,Missing persistent chain support.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/6,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU3MzIzNzEyNg==,incubator-resilientdb,573237126,6,NA,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,NA,2020-01-10T22:52:47Z,2020-01-10T22:52:47Z,Fixed by [217ae93](https://github.com/resilientdb/resilientdb/commit/217ae9356d53030104a82ddfa6dbd12f86610dcf),"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDU3MzIzNzEyNg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/7,https://api.github.com/repos/apache/incubator-resilientdb/issues/7,incubator-resilientdb,548328951,7,Smart Contract Support,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,CLOSED,2020-01-10T22:53:20Z,2023-10-29T09:22:12Z,C++ smart contract for transactions missing.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/8,https://api.github.com/repos/apache/incubator-resilientdb/issues/8,incubator-resilientdb,565999840,8,Monitor result through influxdb,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,CLOSED,2020-02-17T00:38:26Z,2023-10-29T09:22:00Z,Save results in influxdb.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/8/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/9,https://api.github.com/repos/apache/incubator-resilientdb/issues/9,incubator-resilientdb,573229325,9,Web Dashboard  - UI,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,CLOSED,2020-02-29T07:17:56Z,2023-10-29T09:21:52Z,Add a web interface for interacting with resilientdb on google cloud machines. ,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/9/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/10,https://api.github.com/repos/apache/incubator-resilientdb/issues/10,incubator-resilientdb,686928846,10,'NN:: Exception' when trying to run ResilientDB-Docker with large number of clients/replicas,JuharAhmed,12408705,Juhar Ahmed Abdella,juhareed1999@yahoo.com,CLOSED,2020-08-27T04:27:15Z,2023-10-29T09:21:47Z,"Dear,
+I tried to run resilientDB Blockchain using Docker. It works fine with a small number of clients/servers. However it gives me the error shown on the snapshot below when the number of clients/replicas is >= 10. 
+For your information, the following three commands give me the same error:
+./resilientDB-docker --clients=10 --replicas=4
+./resilientDB-docker --clients=1 --replicas=10
+./resilientDB-docker --clients=10 --replicas=10
+
+However, it works fine  if i run it as follows,:
+  ./resilientDB-docker --clients=9 --replicas=4 
+  ./resilientDB-docker --clients=9 --replicas=9   
+    ./resilientDB-docker --clients=1 --replicas=4   
+![Capture](https://user-images.githubusercontent.com/12408705/91384153-3d8fbc80-e871-11ea-8214-21309518e7cb.JPG)
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/10/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/10,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDY4MzYwMjAxNw==,incubator-resilientdb,683602017,10,NA,gupta-suyash,14882651,Suyash Gupta,suyash.gupta@outlook.com,NA,2020-08-31T07:02:21Z,2020-08-31T07:02:21Z,"@sajjadrahnama, please have a look.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDY4MzYwMjAxNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/10,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDY4NjgxMzAxNw==,incubator-resilientdb,686813017,10,NA,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,NA,2020-09-03T23:23:02Z,2020-09-03T23:23:02Z,"@JuharAhmed Thanks, it is fixed ","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDY4NjgxMzAxNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/11,https://api.github.com/repos/apache/incubator-resilientdb/issues/11,incubator-resilientdb,694250805,11,Client Memory,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,CLOSED,2020-09-06T04:53:04Z,2023-10-29T09:21:25Z,Clients don't release received responses from the nodes and memory is getting leaked.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/11/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/11,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDc5MTg0NjQ1NA==,incubator-resilientdb,791846454,11,NA,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,NA,2021-03-06T02:41:54Z,2021-03-06T02:41:54Z,any updates here?,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDc5MTg0NjQ1NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/11,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDc5MTg1MTE2OQ==,incubator-resilientdb,791851169,11,NA,msadoghi,1444450,Mohammad Sadoghi,,NA,2021-03-06T03:13:45Z,2021-03-06T03:13:45Z,"?
+
+On Fri, Mar 5, 2021 at 6:42 PM Sajjad <notifications@github.com> wrote:
+
+> any updates here?
+>
+> —
+> You are receiving this because you are subscribed to this thread.
+> Reply to this email directly, view it on GitHub
+> <https://github.com/resilientdb/resilientdb/issues/11#issuecomment-791846454>,
+> or unsubscribe
+> <https://github.com/notifications/unsubscribe-auth/AALAUYR3XTVZYLIYEGNDJALTCGI75ANCNFSM4Q33V5EQ>
+> .
+>
+-- 
+Best Regards,
+Mohammad Sadoghi, PhD
+Assistant Professor
+Exploratory Systems Lab (ExpoLab)
+Department of Computer Science
+University of California, Davis
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDc5MTg1MTE2OQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/12,https://api.github.com/repos/apache/incubator-resilientdb/issues/12,incubator-resilientdb,710987192,12,Run in a geo-distributed way,mister-dx7,7392210,Mister D,,CLOSED,2020-09-29T10:41:46Z,2023-10-29T09:21:10Z,"Hi authors,
+
+How to run your code on more than 1 cluster? For now, if I use ``./resilientDB-docker --clients=1 --replicas=4`` then I have 1 cluster wit 4 replicas. But I want 2 clusters with 4 replicas in each. I think there must be some configuration to be done because ``./resilientDB-docker --clients=1 --replicas=8`` wont split the replicas in 2 clusters.
+
+Appreciate your help!","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/12/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/12,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDc5MTg0NjQzNQ==,incubator-resilientdb,791846435,12,NA,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,NA,2021-03-06T02:41:40Z,2021-03-06T02:41:40Z,Running in multiple regions or clusters should be done through startResilientDB script located in the scripts folder.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDc5MTg0NjQzNQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/13,https://api.github.com/repos/apache/incubator-resilientdb/issues/13,incubator-resilientdb,823541228,13,Nanomsg version,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,CLOSED,2021-03-06T02:37:22Z,2023-10-29T09:21:00Z,"Using an old version of [nanomsg ](https://nanomsg.org/) library.
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/13/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/13,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDc5MTg0NjMyNQ==,incubator-resilientdb,791846325,13,NA,sajjadrahnama,8639474,Sajjad,sajjad.rahnama7@gmail.com,NA,2021-03-06T02:40:31Z,2021-03-06T02:40:31Z,"fixed in 0b4d44f
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDc5MTg0NjMyNQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/15,https://api.github.com/repos/apache/incubator-resilientdb/issues/15,incubator-resilientdb,849398583,15,Cannot start service X: Ports are not available: unable to list exposed ports,alejandroarmas,43937630,Alejandro Armas,,CLOSED,2021-04-02T18:47:36Z,2023-10-29T09:20:41Z,"Hi @sajjadrahnama I was having issues with Docker. I am using Docker on WSL2 on Windows Build 21343.  
+
+I get errors when I invoke:
+`
+./resilientDB-docker -d
+`
+
+Output:
+```console
+Number of Replicas:     4
+Number of Clients:      1
+Stopping previous containers...
+Removing c4 ... done
+Removing c2 ... done
+Removing c1 ... done
+Removing s3 ... done
+Removing s2 ... done
+Removing c3 ... done
+Removing s5 ... done
+Removing s1 ... done
+Removing s4 ... done
+Removing s6 ... done
+Removing network resilientdb_default
+Successfully stopped
+Creating docker compose file ...
+Docker compose file created --> docker-compose.yml
+Starting the containers...
+Creating network ""resilientdb_default"" with the default driver
+Creating s1 ...
+Creating s4 ... error
+Creating s3 ...
+Creating c1 ...
+Creating s2 ...
+
+ERROR: for s4  Cannot start service s4: Ports are not available: unable to list exposed ports: Get ""http://unix/forwCreating s2 ... error
+
+Creating s1 ... error
+ards/list"": dial unix /mnt/wsl/docker-desktop/shared-sockets/host-services/backend.sock: connect: connection refused
+
+ERROR: for c1  Cannot start service c1: Ports are not available: unable to list exposed ports: Get ""http://unix/forwards/list"": dial unix /mnt/wsl/docker-desktop/shared-sockets/host-services/backend.sock: connect: connection refused
+Creating s3 ... error                                                                                               ERROR: for s1  Cannot start service s1: Ports are not available: unable to list exposed ports: Get ""http://unix/forwards/list"": dial unix /mnt/wsl/docker-desktop/shared-sockets/host-services/backend.sock: connect: connection refused
+
+ERROR: for s3  Cannot start service s3: Ports are not available: unable to list exposed ports: Get ""http://unix/forwards/list"": dial unix /mnt/wsl/docker-desktop/shared-sockets/host-services/backend.sock: connect: connection refused
+
+ERROR: for s4  Cannot start service s4: Ports are not available: unable to list exposed ports: Get ""http://unix/forwards/list"": dial unix /mnt/wsl/docker-desktop/shared-sockets/host-services/backend.sock: connect: connection refused
+
+ERROR: for s2  Cannot start service s2: Ports are not available: unable to list exposed ports: Get ""http://unix/forwards/list"": dial unix /mnt/wsl/docker-desktop/shared-sockets/host-services/backend.sock: connect: connection refused
+
+ERROR: for c1  Cannot start service c1: Ports are not available: unable to list exposed ports: Get ""http://unix/forwards/list"": dial unix /mnt/wsl/docker-desktop/shared-sockets/host-services/backend.sock: connect: connection refused
+
+ERROR: for s1  Cannot start service s1: Ports are not available: unable to list exposed ports: Get ""http://unix/forwards/list"": dial unix /mnt/wsl/docker-desktop/shared-sockets/host-services/backend.sock: connect: connection refused
+
+ERROR: for s3  Cannot start service s3: Ports are not available: unable to list exposed ports: Get ""http://unix/forwards/list"": dial unix /mnt/wsl/docker-desktop/shared-sockets/host-services/backend.sock: connect: connection refused
+ERROR: Encountered errors while bringing up the project.
+ifconfig file exists... Deleting File
+Deleted
+Server sequence --> IP
+Put Client IP at the bottom
+ifconfig.txt Created!
+
+Checking Dependencies...
+/mnt/d/programs/ExpoLab/ResilientDB
+Dependencies has been installed
+
+Creating config file...
+Config file has been created
+
+Compiling ResilientDB...
+Error response from daemon: Container f82fc2862216fcf5a8f53692034785b11e5f3cb709ce37c0aec0b94e5b91c870 is not running
+Error response from daemon: Container f82fc2862216fcf5a8f53692034785b11e5f3cb709ce37c0aec0b94e5b91c870 is not running
+Error response from daemon: Container f82fc2862216fcf5a8f53692034785b11e5f3cb709ce37c0aec0b94e5b91c870 is not running
+ResilientDB is compiled successfully
+
+Running ResilientDB replicas...
+rep 1
+Error response from daemon: Container f82fc2862216fcf5a8f53692034785b11e5f3cb709ce37c0aec0b94e5b91c870 is not running
+rep 2
+Error response from daemon: Container b3f1a934d0d9c17373d099a2653513a5689a3cfa7dbe98bb17e33a436c186665 is not running
+rep 3
+Error response from daemon: Container f82fc2862216fcf5a8f53692034785b11e5f3cb709ce37c0aec0b94e5b91c870 is not running
+Error response from daemon: Container 2cc0570c22d740cfb3a0576ee3c2e9b2b12efe6f36c22abe2ed4f0bb39f5598a is not running
+rep 4
+Error response from daemon: Container b3f1a934d0d9c17373d099a2653513a5689a3cfa7dbe98bb17e33a436c186665 is not running
+Error response from daemon: Container 2cc0570c22d740cfb3a0576ee3c2e9b2b12efe6f36c22abe2ed4f0bb39f5598a is not running
+Error response from daemon: Container ec780557852d406bab008d1df771d6b3a0ea2a4a896995bf3e6f8f6bf8f9e8ee is not running
+Replicas started successfully
+
+Running ResilientDB clients...
+cl 1
+Error response from daemon: Container ec780557852d406bab008d1df771d6b3a0ea2a4a896995bf3e6f8f6bf8f9e8ee is not running
+Error response from daemon: Container 857462a1b32fb27589536499c7ed6838d6e11b231ba82d04ff8e5217be8b8861 is not running
+Clients started successfully
+Error response from daemon: Container 857462a1b32fb27589536499c7ed6838d6e11b231ba82d04ff8e5217be8b8861 is not running
+scripts/result.sh: line 48: 0 + : syntax error: operand expected (error token is ""+ "")
+(standard_in) 2: syntax error
+expr: division by zero
+(standard_in) 1: syntax error
+Throughputs:
+0:
+1:
+2:
+3:
+scripts/result_colorized.sh: line 51: 0 + : syntax error: operand expected (error token is ""+ "")
+Latencies:
+(standard_in) 2: syntax error
+latency 4:
+
+idle times:
+Idleness of node: 0
+Idleness of node: 1
+Idleness of node: 2
+Idleness of node: 3
+Memory:
+0: 0 MB
+1: 0 MB
+2: 0 MB
+3: 0 MB
+4: 0 MB
+
+expr: division by zero
+avg thp: 0:
+(standard_in) 1: syntax error
+avg lt : 1:
+Code Ran successfully ---> res.out
+
+```
+
+I'm not sure if this is an issue specifically with Docker or WSL2 itself? I'm new to using Docker so if you could point me to a good resource that would be great! Let me know if I'm missing any information to add to my issue.
+
+Thanks.
+
+Best, 
+Alejandro
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/15/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/17,https://api.github.com/repos/apache/incubator-resilientdb/issues/17,incubator-resilientdb,858470552,17,memcpy error when trying to run script without docker ,gravityshouldbenaut,7109370,Samarth Sandeep,,CLOSED,2021-04-15T04:29:08Z,2023-10-29T09:20:35Z,"Tried copy-initalization instead of memcpy, but does not work because one variable is a char and the other is a RemReqType. Should this memcpy error just be ignored? 
+`transport/message.cpp: In member function ‘virtual void YCSBClientQueryMessage::copy_from_buf(char*)’:
+./system/helper.h:206:29: error: ‘void* memcpy(void*, const void*, size_t)’ writing to an object of non-trivially copyable type ‘class ycsb_request’; use copy-assignment or copy-initialization instead [-Werror=class-memaccess]
+  memcpy(&v, &d[p], sizeof(v)); \`","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/17/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/17,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDgyMDQ5NzUwMw==,incubator-resilientdb,820497503,17,NA,alejandroarmas,43937630,Alejandro Armas,,NA,2021-04-15T14:58:33Z,2021-04-15T14:58:33Z,"I'm having the same issue. 
+
+It starts with my MakeFile not building the `./rundb` and `./runcl` executables using `gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)` to target `x86_64-linux-gnu`.
+
+
+```bash
+g++ -c -Wall -g -gdwarf-3 -std=c++0x -rdynamic  -I. -I./benchmarks -I./client/ -I./transport -I./system -I./statistics -I./blockchain -I./smart_contracts  -I./data_structures -Ideps/jemalloc-5.1.0/include -Ideps/nng-1.3.2/include -Ideps/boost_1_67_0 -Ideps/crypto -I./db -Ideps/sqlite-autoconf-3290000/build/include -D NOGRAPHITE=1 -Werror -Wno-sizeof-pointer-memaccess  -o obj/config.o config.cpp
+g++ -c -Wall -g -gdwarf-3 -std=c++0x -rdynamic  -I. -I./benchmarks -I./client/ -I./transport -I./system -I./statistics -I./blockchain -I./smart_contracts  -I./data_structures -Ideps/jemalloc-5.1.0/include -Ideps/nng-1.3.2/include -Ideps/boost_1_67_0 -Ideps/crypto -I./db -Ideps/sqlite-autoconf-3290000/build/include -D NOGRAPHITE=1 -Werror -Wno-sizeof-pointer-memaccess  -o obj/ycsb_query.o benchmarks/ycsb_query.cpp
+In file included from deps/boost_1_67_0/boost/mpl/aux_/na_assert.hpp:23,
+                 from deps/boost_1_67_0/boost/mpl/arg.hpp:25,
+                 from deps/boost_1_67_0/boost/mpl/placeholders.hpp:24,
+                 from deps/boost_1_67_0/boost/mpl/bind.hpp:24,
+                 from deps/boost_1_67_0/boost/mpl/lambda.hpp:18,
+                 from deps/boost_1_67_0/boost/parameter/parameters.hpp:13,
+                 from deps/boost_1_67_0/boost/lockfree/detail/parameter.hpp:13,
+                 from deps/boost_1_67_0/boost/lockfree/detail/freelist.hpp:25,
+                 from deps/boost_1_67_0/boost/lockfree/queue.hpp:22,
+                 from ./system/pool.h:6,
+                 from ./system/global.h:29,
+                 from ./system/query.h:4,
+                 from benchmarks/ycsb_query.cpp:1:
+deps/boost_1_67_0/boost/mpl/assert.hpp:188:21: error: unnecessary parentheses in declaration of ‘assert_arg’ [-Werror=parentheses]
+  188 | failed ************ (Pred::************
+      |                     ^
+deps/boost_1_67_0/boost/mpl/assert.hpp:193:21: error: unnecessary parentheses in declaration of ‘assert_not_arg’ [-Werror=parentheses]
+  193 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^
+cc1plus: all warnings being treated as errors
+make: *** [Makefile:71: obj/ycsb_query.o] Error 1
+```
+
+I then [ignore warnings arising from boost](https://github.com/boostorg/mpl/pull/34/commits/f48fd09d021db9a28bd7b8452c175897e1af4485) in my `deps/boost_1_67_0/boost/mpl` directory. 
+
+and it brings me to #17 above. 
+
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDgyMDQ5NzUwMw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/17,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDgyMTg5MzAxOQ==,incubator-resilientdb,821893019,17,NA,gravityshouldbenaut,7109370,Samarth Sandeep,,NA,2021-04-17T21:55:38Z,2021-04-17T21:55:38Z,"Yeah I made those changes that it asked for regarding the parentheses and yup, got at the same error. I guess I should just use the docker setup? But, ugh, hard to set that up across multiple systems though...","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDgyMTg5MzAxOQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/17,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5qVlaa,incubator-resilientdb,1784043162,17,NA,resilientdb,57961394,ResilientDB,,NA,2023-10-29T09:15:10Z,2023-10-29T09:15:10Z,resolved,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5qVlaa/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/18,https://api.github.com/repos/apache/incubator-resilientdb/issues/18,incubator-resilientdb,867009351,18,Docker setup script very limiting,Raycoms,6438347,Raycoms,,CLOSED,2021-04-25T13:17:06Z,2023-10-29T09:20:17Z,"First of all, it seems the app is only compiled on one of the servers:
+
+```
+docker exec s1 mkdir -p obj
+docker exec s1 make clean
+docker exec s1 make
+```
+Instead on all, which I do not understand.
+
+Second, a lot of the code connects to the containers and executes commands instead of putting a startscript in the Dockerfile which is then executed after startup. This makes a multi-machine setup with swarm very difficult.
+
+In that sense, the repo is also missing the actual Dockerfile to allow people to setup this kind of thing easily for themselvs.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/18/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/18,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDgyNjMyNTE3MQ==,incubator-resilientdb,826325171,18,NA,Raycoms,6438347,Raycoms,,NA,2021-04-25T13:31:42Z,2021-04-25T13:31:42Z,Would it be possible to get the Dockerfile that is used to build it?,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/MDEyOklzc3VlQ29tbWVudDgyNjMyNTE3MQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/18,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5qVlZZ,incubator-resilientdb,1784043097,18,NA,resilientdb,57961394,ResilientDB,,NA,2023-10-29T09:14:54Z,2023-10-29T09:14:54Z,"deprecated/outdated
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5qVlZZ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/25,https://api.github.com/repos/apache/incubator-resilientdb/issues/25,incubator-resilientdb,1285606397,25,What's the DB type (in-memory or SQLite) used in the experiments of VLDB publication,rum-a,108271017,,,CLOSED,2022-06-27T10:39:49Z,2023-10-29T09:19:54Z,"Dear authors of ResilientDB,
+
+Your VLDB publication _ResilientDB: Global Scale Resilient Blockchain Fabric_ was an excellent one, and I really appreciate that your team kindly open source this great work.
+
+Sorry about spamming the issues of this repo, but may I know which DB (in_memory_db or Sqlite) was used in the experiments of the paper?
+
+Thanks!","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/25/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/25,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5HHg7b,incubator-resilientdb,1193152219,25,NA,gupta-suyash,14882651,Suyash Gupta,suyash.gupta@outlook.com,NA,2022-07-23T16:35:18Z,2022-07-23T16:35:18Z,We used in_memory db for the paper.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5HHg7b/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/37,https://api.github.com/repos/apache/incubator-resilientdb/issues/37,incubator-resilientdb,1596712233,37,./config/resdb_config_utils.h:43:5: error: 'std::optional' has not been declared,vibiu,15816854,,,CLOSED,2023-02-23T11:47:02Z,2023-10-29T09:19:34Z,"when run `example/start_kv_server.sh` after `./INSTALL.sh`, the complier complains this:
+```
+In file included from config/resdb_config_utils.cpp:26:
+./config/resdb_config_utils.h:43:5: error: 'std::optional' has not been declared
+   43 |     std::optional<ReplicaInfo> self_info = std::nullopt,
+      |     ^~~
+./config/resdb_config_utils.h:43:18: error: expected ',' or '...' before '<' token
+   43 |     std::optional<ReplicaInfo> self_info = std::nullopt,
+      |                  ^
+config/resdb_config_utils.cpp:133:35: error: 'std::optional' has not been declared
+  133 |     const std::string& cert_file, std::optional<ReplicaInfo> self_info,
+      |                                   ^~~
+config/resdb_config_utils.cpp:133:48: error: expected ',' or '...' before '<' token
+  133 |     const std::string& cert_file, std::optional<ReplicaInfo> self_info,
+      |                                                ^
+config/resdb_config_utils.cpp: In function 'std::unique_ptr<resdb::ResDBConfig> resdb::GenerateResDBConfig(const string&, const string&, const string&, int)':
+config/resdb_config_utils.cpp:141:8: error: 'self_info' was not declared in this scope; did you mean 'cert_info'?
+  141 |   if (!self_info.has_value()) {
+      |        ^~~~~~~~~
+      |        cert_info
+config/resdb_config_utils.cpp:145:5: error: 'self_info' was not declared in this scope; did you mean 'cert_info'?
+  145 |   (*self_info).set_id(cert_info.public_key().public_key_info().node_id());
+      |     ^~~~~~~~~
+      |     cert_info
+config/resdb_config_utils.cpp:151:7: error: 'gen_func' was not declared in this scope
+  151 |   if (gen_func.has_value()) {
+      |       ^~~~~~~~
+Target //kv_server:kv_server failed to build
+```","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/37/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/37,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5V-Ok3,incubator-resilientdb,1442375991,37,NA,cjcchen,3771438,,,NA,2023-02-23T20:17:04Z,2023-02-23T20:17:04Z,"are you using Ubuntu 22?
+Please use Ubuntu 20 instead. We will fix this issue soon.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5V-Ok3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/37,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5WUaJp,incubator-resilientdb,1448190569,37,NA,vibiu,15816854,,,NA,2023-02-28T13:35:13Z,2023-02-28T13:35:13Z,"> are you using Ubuntu 22? Please use Ubuntu 20 instead. We will fix this issue soon.
+
+OK, after turning to ubuntu 20, it works. Thx.
+By the way, your team's work about **cluster sending** and **orchestrate-execute model** interests me a lot.
+I find these methods powerful.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5WUaJp/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/37,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5WWb6N,incubator-resilientdb,1448722061,37,NA,cjcchen,3771438,,,NA,2023-02-28T19:13:07Z,2023-02-28T19:13:07Z,"Thanks for your interest.  We will release more and more of our work.
+
+Look forward to your feedback:)
+
+
+On Tue, Feb 28, 2023 at 5:35 AM vibiu ***@***.***> wrote:
+
+> are you using Ubuntu 22? Please use Ubuntu 20 instead. We will fix this
+> issue soon.
+>
+> OK, after turn to Ubuntu 20, it works, thx.
+> By the way, your team's work about *cluster sending* and *orchestrate-execute
+> model* interests me a lot.
+> I found these methods powerful.
+>
+> —
+> Reply to this email directly, view it on GitHub
+> <https://github.com/resilientdb/resilientdb/issues/37#issuecomment-1448190569>,
+> or unsubscribe
+> <https://github.com/notifications/unsubscribe-auth/AA4YYLRLGF7VQLWS2FKZJCDWZX5JZANCNFSM6AAAAAAVFQYGJA>
+> .
+> You are receiving this because you commented.Message ID:
+> ***@***.***>
+>
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5WWb6N/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/87,https://api.github.com/repos/apache/incubator-resilientdb/issues/87,incubator-resilientdb,1940652491,87,New feature: Support Dynamic Network Re-configuration,cjcchen,3771438,,,OPEN,2023-10-12T19:24:51Z,2023-12-05T08:17:20Z,"The current release version or the version from the master branch does not support reconfiguration. The number of replicas to be deployed is determined by the configuration when deploying to the cluster. 
+
+We need to support adding and removing replicas when resilientDB is running in the cluster after deployment.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/87/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/88,https://api.github.com/repos/apache/incubator-resilientdb/issues/88,incubator-resilientdb,1942414964,88,New feature: Support change default config when deploying,cjcchen,3771438,,,CLOSED,2023-10-13T18:14:36Z,2023-10-29T09:19:28Z,Add a way to change the config when using the deploy script.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/88/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/88,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5qTc5K,incubator-resilientdb,1783483978,88,NA,cjcchen,3771438,,,NA,2023-10-27T20:36:12Z,2023-10-27T20:36:12Z,#102 ,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5qTc5K/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/91,https://api.github.com/repos/apache/incubator-resilientdb/issues/91,incubator-resilientdb,1944084696,91,New feature: Extend the Deployment Configuration,cjcchen,3771438,,,OPEN,2023-10-15T22:35:19Z,2023-12-05T08:17:58Z,"Currently, the deploy configuration only supports ""ubuntu@ip"" as the destination. 
+We need to extend it to any username.
+
+Also, if the ssh key is empty, remove the ssh key requirement. ","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/91/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/94,https://api.github.com/repos/apache/incubator-resilientdb/issues/94,incubator-resilientdb,1964794067,94,Bug: Core dump when long connect is killed,cjcchen,3771438,,,CLOSED,2023-10-27T05:28:31Z,2023-10-29T09:19:17Z,"When the long connect is killed, boost library does not return an error but return success with an random number. 
+Close the connection if reading an invalid package.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/94/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/94,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5qPAbU,incubator-resilientdb,1782318804,94,NA,cjcchen,3771438,,,NA,2023-10-27T05:29:40Z,2023-10-27T05:29:40Z,Fix from commit #93 ,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5qPAbU/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/95,https://api.github.com/repos/apache/incubator-resilientdb/issues/95,incubator-resilientdb,1964798093,95,New feature: support setting prometheus port when deploy nodes,cjcchen,3771438,,,CLOSED,2023-10-27T05:33:11Z,2023-10-29T09:18:17Z,"Setting the Prometheus when deploying resilientdb to remote nodes.
+
+#92 ","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/95/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/96,https://api.github.com/repos/apache/incubator-resilientdb/issues/96,incubator-resilientdb,1964800138,96,New feature: Support Hotstuff Consensus Protocol [PODC 2019],cjcchen,3771438,,,OPEN,2023-10-27T05:35:29Z,2023-12-05T08:16:19Z,,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/96/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/97,https://api.github.com/repos/apache/incubator-resilientdb/issues/97,incubator-resilientdb,1964806016,97,New feature: Support Proof-of-Execution Consensus Protocol [EDBT 2011],cjcchen,3771438,,,CLOSED,2023-10-27T05:42:10Z,2024-08-10T15:04:44Z,,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/97/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/97,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6IB09U,incubator-resilientdb,2282180436,97,NA,cjcchen,3771438,,,NA,2024-08-10T15:04:43Z,2024-08-10T15:04:43Z,supported at #154 ,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6IB09U/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/98,https://api.github.com/repos/apache/incubator-resilientdb/issues/98,incubator-resilientdb,1965805324,98,"New Feature: Support QueCC: A Queue-oriented, Control-free Concurrency Architecture [Middleware 2018]",Saipranav-Kotamreddy,44506064,,,OPEN,2023-10-27T16:01:40Z,2023-12-05T08:15:34Z,,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/98/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/101,https://api.github.com/repos/apache/incubator-resilientdb/issues/101,incubator-resilientdb,1966012672,101,New feature: Support Raft - Crash-tolerant Consensus Protocol [ATC 2014],msadoghi,1444450,Mohammad Sadoghi,,OPEN,2023-10-27T18:34:04Z,2023-11-29T00:07:46Z,,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/101/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/103,https://api.github.com/repos/apache/incubator-resilientdb/issues/103,incubator-resilientdb,1966909337,103,New feature: Support Smart Contract Concurrency Control Protocols,resilientdb,57961394,ResilientDB,,OPEN,2023-10-29T09:17:28Z,2023-12-05T08:16:43Z,,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/103/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/105,https://api.github.com/repos/apache/incubator-resilientdb/issues/105,incubator-resilientdb,1969327551,105,New Feature: multi-version key-value storage,cjcchen,3771438,,,CLOSED,2023-10-30T22:32:28Z,2023-11-30T06:16:01Z,Support to obtain the history of a key.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/105/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/105,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5tQ_Tv,incubator-resilientdb,1833170159,105,NA,cjcchen,3771438,,,NA,2023-11-30T06:15:50Z,2023-11-30T06:15:50Z,#117 ,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc5tQ_Tv/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/107,https://api.github.com/repos/apache/incubator-resilientdb/issues/107,incubator-resilientdb,1974859002,107,Bug: Recovery will suffer from disk error when testing locally.,cjcchen,3771438,,,CLOSED,2023-11-02T18:50:24Z,2023-11-02T23:01:32Z,"Now ResilientDB does not support recovery when running locally using the scripts. 
+Disable the feature from the script config.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/107/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/109,https://api.github.com/repos/apache/incubator-resilientdb/issues/109,incubator-resilientdb,1976992070,109,BUG: UTXO script does not work,cjcchen,3771438,,,CLOSED,2023-11-03T22:12:54Z,2023-11-04T18:40:55Z,UTXO script to start the service locally does not work.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/109/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/113,https://api.github.com/repos/apache/incubator-resilientdb/issues/113,incubator-resilientdb,1986494243,113,Improve UTXO api to support transfer to multi addresses,cjcchen,3771438,,,CLOSED,2023-11-09T22:19:26Z,2023-11-09T23:19:26Z,,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/113/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/125,https://api.github.com/repos/apache/incubator-resilientdb/issues/125,incubator-resilientdb,2024692424,125,New Feature: Support Light-weight Read-only Transaction Design,cjcchen,3771438,,,OPEN,2023-12-04T20:41:50Z,2023-12-05T08:14:40Z,"In the current version of ResilientDB, ""get"" transactions (i.e., read-only transactions) retrieve the values of some keys. To guarantee data consistency, these transactions are forced through the consensus layer to obtain the correct results. Due to the nature of consensus design, each transaction will be written to the chain and written to the disk to support durability and recovery.
+
+To improve read-only transactions, we can explore alternative designs without the need to participate in consensus yet retrieve consistent results.  
+
+Here are a set of important considerations:
+
+1. How to identify read-only transactions?
+2. Should a fee be paid to process read-only transactions, if so, then read-only transactions will require payment, which must pass through consensus.
+3. How to ensure data consistency without engaging in consensus. Without consensus, each replica will return different data. How to verify the data is consistent? Could we introduce read-only caching services (e.g., Coordination-Free Byzantine Replication with Minimal Communication Costs, ICDT'20)? Can we relax the need to provide the latest data, instead maybe we can support snapshot reads, where each query from the same client returns the same version of the data, i.e., repeatable. 
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/125/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/128,https://api.github.com/repos/apache/incubator-resilientdb/issues/128,incubator-resilientdb,2058647199,128,Bug: View Change Stopping Liveness,Saipranav-Kotamreddy,44506064,,,OPEN,2023-12-28T17:01:00Z,2023-12-28T18:28:56Z,"When forcefully inducing view change on the Resilient DB system, there are 2 issues which can happen currently:
+
+1. After the view change occurs, a replica does not continue the transaction it was performing when the view change occurred
+2. After the view change occurs, a replica is unable to receive/recognize transaction messages being sent towards it
+
+From testing, type 1 is most likely an issue with when the view change messages are received and occurs it interrupts some process which was midway and the program is unsure where to continue. This problem is fixed if start_kv_service.sh is reran, so is likely a runtime issue with timing
+
+For type 2, this is most likely an issue with the ports or memory, as what I have noticed is when the view change runs into type 2, whenever I try a view change on that computer session following that, it always results in a type 2 error. Meanwhile, if the view change works fine the first time, all subsequent star_kv_service.sh runs for that computer session(when the code remains unchanged) avoid the type 2 issue.
+
+Theres also an issue where sometimes after a view change is done, 30+ prepare and commit messages are collected for the next transaction and transactions which were never sent are logged, resulting in a higher number executed count and prepare messages collected count than what should be happening","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/128/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/134,https://api.github.com/repos/apache/incubator-resilientdb/issues/134,incubator-resilientdb,2106546485,134,GetRequestFromReplica interface,cjcchen,3771438,,,CLOSED,2024-01-29T22:25:38Z,2024-01-29T22:45:39Z,"Support getting blocks from an interval sequence.
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/134/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/144,https://api.github.com/repos/apache/incubator-resilientdb/issues/144,incubator-resilientdb,2319321822,144,How to test the performance of PoE and PBFT,StoneLing,44898590,Stone Ling,271007582@qq.com,CLOSED,2024-05-27T14:43:28Z,2024-10-05T11:55:57Z,"I have tried to run  ./performance/poe_performance.sh config/kv_performance_server.conf but cannot get the results,  the results shown below: getting results
+scp -i /home/ubuntu/.ssh/guigu_bft.pem ubuntu@172.26.0.3:/home/ubuntu/.log ./172.26.0.3_log
+scp: /home/ubuntu/.log: No such file or directory
+scp -i /home/ubuntu/.ssh/guigu_bft.pem ubuntu@172.26.0.3:/home/ubuntu/.log ./172.26.0.3_log
+scp: /home/ubuntu/.log: No such file or directory
+scp -i /home/ubuntu/.ssh/guigu_bft.pem ubuntu@172.26.0.3:/home/ubuntu/.log ./172.26.0.3_log
+scp: /home/ubuntu/.log: No such file or directory
+scp -i /home/ubuntu/.ssh/guigu_bft.pem ubuntu@172.26.0.3:/home/ubuntu/.log ./172.26.0.3_log
+scp: /home/ubuntu/.log: No such file or directory
+scp -i /home/ubuntu/.ssh/guigu_bft.pem ubuntu@172.26.0.3:/home/ubuntu/.log ./172.26.0.3_log
+scp: /home/ubuntu/.log: No such file or directory
+ls: cannot access 'result_*_log': No such file or directory
+Traceback (most recent call last):
+  File ""performance/calculate_result.py"", line 70, in <module>
+    cal_tps(tps)
+  File ""performance/calculate_result.py"", line 44, in cal_tps
+    print(""average throughput:"",sum(tps_sum)/len(tps_sum))
+ZeroDivisionError: division by zero
+save result to results.log
+calculate results, number of nodes: 0
+max throughput: 0","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/144/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/144,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OwUkP,incubator-resilientdb,2395031823,144,NA,ghjklasdfgh,84389906,ghjkl,,NA,2024-10-05T11:55:56Z,2024-10-05T11:55:56Z,May I ask how you solved this problem?,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OwUkP/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/146,https://api.github.com/repos/apache/incubator-resilientdb/issues/146,incubator-resilientdb,2368899109,146,DISCLAIMER-WIP has incorrect link,pjfanning,11783444,PJ Fanning,,CLOSED,2024-06-23T21:35:43Z,2024-10-06T19:44:16Z,"See https://github.com/apache/incubator-resilientdb/pull/145/files#r1650189615
+
+This would lead to your release candidates not being releasable.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/146/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/146,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyViF,incubator-resilientdb,2395560069,146,NA,cjcchen,3771438,,,NA,2024-10-06T19:44:16Z,2024-10-06T19:44:16Z,"https://github.com/apache/incubator-resilientdb/blob/master/DISCLAIMER-WIP
+fixed","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyViF/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/147,https://api.github.com/repos/apache/incubator-resilientdb/issues/147,incubator-resilientdb,2368902924,147,LICENSE has incorrect third party information,pjfanning,11783444,PJ Fanning,,CLOSED,2024-06-23T21:48:04Z,2024-10-06T19:43:39Z,"The LICENSE should be the standard Apache License but if you have 3rd party source code included in your code base, you must also list the affected files. You must provide the licensing information about that 3rd party source too.
+
+Examples:
+https://github.com/apache/fury/blob/main/LICENSE
+https://github.com/apache/spark/blob/master/LICENSE
+
+Your LICENSE file lists 3rd party libraries. Those should not be in your LICENSE file. Projects sometimes have binary artifacts that they release with the source releases. These binary artifacts should have LICENSE files and they will typically have the standard Apache License plus a list of the 3rd party libs that are in the binary artifact with their license details. Many projects put this sort of info in a file called LICENSE-binary. ResilientDB does not appear to be releasing binary artifacts at the moment so this is not strictly needed. But the info is useful for people you download your source release because it tells them what to expect when they run the install script. So creating a LICENSE-binary may still be a useful thing to do. Your currently incorrect LICENSE file may be a good starting point for creating a LICENSE-binary file.
+
+Example:
+https://github.com/apache/spark/blob/master/LICENSE-binary
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/147/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/147,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6G-B-q,incubator-resilientdb,2264407978,147,NA,CalvinKirs,16631152,Calvin Kirs,kirs@apache.org,NA,2024-08-02T02:46:47Z,2024-08-02T02:46:47Z,"@cjcchen https://github.com/apache/incubator-resilientdb/blob/master/LICENSE#L239-L293 Could you help confirm whether our source code references these components? If not, we should remove these licenses.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6G-B-q/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/147,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6G-Hsf,incubator-resilientdb,2264431391,147,NA,cjcchen,3771438,,,NA,2024-08-02T03:13:50Z,2024-08-02T03:13:50Z,"Hi all,
+
+I have removed those components from LICENSE file.
+We also don't have any 3rd-binary.
+
+
+Thanks,
+Junchao
+
+On Fri, Aug 2, 2024 at 10:47 AM Calvin Kirs ***@***.***>
+wrote:
+
+> @cjcchen <https://github.com/cjcchen>
+> https://github.com/apache/incubator-resilientdb/blob/master/LICENSE#L239-L293
+> Could you help confirm whether our source code references these components?
+> If not, we should remove these licenses.
+>
+> —
+> Reply to this email directly, view it on GitHub
+> <https://github.com/apache/incubator-resilientdb/issues/147#issuecomment-2264407978>,
+> or unsubscribe
+> <https://github.com/notifications/unsubscribe-auth/AA4YYLVOTKZCKBATNBGSOFDZPLXK5AVCNFSM6AAAAABJYWYECOVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDENRUGQYDOOJXHA>
+> .
+> You are receiving this because you were mentioned.Message ID:
+> ***@***.***>
+>
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6G-Hsf/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/147,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyVdQ,incubator-resilientdb,2395559760,147,NA,cjcchen,3771438,,,NA,2024-10-06T19:43:39Z,2024-10-06T19:43:39Z,fixed,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyVdQ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/148,https://api.github.com/repos/apache/incubator-resilientdb/issues/148,incubator-resilientdb,2368906374,148,large number of files with no Apache source header,pjfanning,11783444,PJ Fanning,,CLOSED,2024-06-23T21:58:23Z,2024-10-06T19:42:43Z,"This can easily lead to -1s on release votes
+
+Found with Apache Rat. https://creadur.apache.org/rat/
+
+  ./.bazelrc
+  ./.bazelversion
+  ./.clang-format
+  ./.gitignore
+  ./.licenserc.yaml
+  ./CHANGELOG.md
+  ./CNAME
+  ./CODE_OF_CONDUCT.md
+  ./DISCLAIMER-WIP
+  ./README.md
+  ./WORKSPACE
+  ./bazel.gpg
+  ./repositories.bzl
+  ./Docker/Dockerfile
+  ./Docker/Dockerfile_mac
+  ./api/README.md
+  ./api/ip_address.config
+  ./documents/doxygen/.gitignore
+  ./documents/doxygen/Doxyfile
+  ./documents/doxygen/DoxygenLayout.xml
+  ./documents/doxygen/doxygen_html_style.css
+  ./documents/doxygen/header
+  ./documents/file/prometheus.yml
+  ./monitoring/README.md
+  ./monitoring/prometheus/prometheus.yml
+  ./platform/consensus/ordering/geo_pbft/README.md
+  ./platform/consensus/ordering/pbft/README.md
+  ./platform/networkstrate/README.md
+  ./platform/statistic/README.md
+  ./platform/test/test_data/kv_config.config
+  ./platform/test/test_data/server.config
+  ./scripts/deploy/README.md
+  ./scripts/deploy/config/key_example.conf
+  ./scripts/deploy/config/kv_performance_server.conf
+  ./scripts/deploy/config/kv_server.conf
+  ./scripts/deploy/config/poe.config
+  ./scripts/deploy/config/template.config
+  ./scripts/deploy/data/cert/node6.key.key.pri
+  ./scripts/deploy/data/cert/node6.key.key.pub
+  ./scripts/deploy/data/cert/node6.key.pri
+  ./scripts/deploy/data/cert/node6.key.pub
+  ./scripts/deploy/data/cert/node7.key.key.pri
+  ./scripts/deploy/data/cert/node7.key.key.pub
+  ./scripts/deploy/data/cert/node7.key.pri
+  ./scripts/deploy/data/cert/node7.key.pub
+  ./scripts/deploy/data/cert/node8.key.key.pri
+  ./scripts/deploy/data/cert/node8.key.key.pub
+  ./scripts/deploy/data/cert/node8.key.pri
+  ./scripts/deploy/data/cert/node8.key.pub
+  ./scripts/deploy/data/cert/node9.key.key.pri
+  ./scripts/deploy/data/cert/node9.key.key.pub
+  ./scripts/deploy/data/cert/node9.key.pri
+  ./scripts/deploy/data/cert/node9.key.pub
+  ./service/tools/config/interface/service.config
+  ./service/tools/config/interface/service0.config
+  ./service/tools/config/server/server.config
+  ./service/tools/config/server/utxo_config.config
+  ./service/tools/contract/README.md
+  ./service/tools/contract/api_tools/client_config.config
+  ./service/tools/contract/api_tools/config/server_config.config
+  ./service/tools/contract/api_tools/example_contract/token.sol
+  ./service/tools/data/cert/node6.key.key.pri
+  ./service/tools/data/cert/node6.key.key.pub
+  ./service/tools/data/cert/node6.key.pri
+  ./service/tools/data/cert/node6.key.pub
+  ./service/tools/data/cert/node7.key.key.pri
+  ./service/tools/data/cert/node7.key.key.pub
+  ./service/tools/data/cert/node7.key.pri
+  ./service/tools/data/cert/node7.key.pub
+  ./service/tools/data/cert/node8.key.key.pri
+  ./service/tools/data/cert/node8.key.key.pub
+  ./service/tools/data/cert/node8.key.pri
+  ./service/tools/data/cert/node8.key.pub
+  ./service/tools/data/cert/node9.key.key.pri
+  ./service/tools/data/cert/node9.key.key.pub
+  ./service/tools/data/cert/node9.key.pri
+  ./service/tools/data/cert/node9.key.pub
+  ./service/tools/utxo/README.md
+  ./service/tools/utxo/wallet_tool/cpp/client_config.config
+  ./service/tools/utxo/wallet_tool/cpp/server_config0.config
+  ./service/utxo/config/server_config.config
+  ./service/utxo/config/utxo_config.config
+  ./third_party/asio.BUILD
+  ./third_party/civetweb.BUILD
+  ./third_party/crow.BUILD
+  ./third_party/date.BUILD
+  ./third_party/eEVM.BUILD
+  ./third_party/json.BUILD
+  ./third_party/leveldb.BUILD
+  ./third_party/prometheus.BUILD
+  ./third_party/rapidjson.BUILD
+  ./third_party/snappy.BUILD
+  ./third_party/z.BUILD
+  ./third_party/zlib.BUILD
+  ./third_party/loc_script/action.yml
+  ./third_party/loc_script/src/index.js
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/148/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/148,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyVVI,incubator-resilientdb,2395559240,148,NA,cjcchen,3771438,,,NA,2024-10-06T19:42:43Z,2024-10-06T19:42:43Z,fixed.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyVVI/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/149,https://api.github.com/repos/apache/incubator-resilientdb/issues/149,incubator-resilientdb,2368907886,149,what are the public/private keys used for?,pjfanning,11783444,PJ Fanning,,OPEN,2024-06-23T22:03:19Z,2024-10-06T19:54:21Z,"Shouldn't these files be generated uniquely by the build as opposed to having hardcoded files checked in.
+Couldn't it be a security issue if someone deploys your app and uses these keys or certs?
+
+It is not ideal to include any binary files in a release of an Apache project. Reviewers will find them and start asking why they are there. You cannot include compiled artifacts in a source release so ASF contributors are looking for binary files to see if there is anything untoward.
+
+```
+./scripts/deploy/data/cert/node6.key.key.pri
+./scripts/deploy/data/cert/node6.key.key.pub
+./scripts/deploy/data/cert/node6.key.pri
+./scripts/deploy/data/cert/node6.key.pub
+./scripts/deploy/data/cert/node7.key.key.pri
+./scripts/deploy/data/cert/node7.key.key.pub
+./scripts/deploy/data/cert/node7.key.pri
+./scripts/deploy/data/cert/node7.key.pub
+./scripts/deploy/data/cert/node8.key.key.pri
+./scripts/deploy/data/cert/node8.key.key.pub
+./scripts/deploy/data/cert/node8.key.pri
+./scripts/deploy/data/cert/node8.key.pub
+./scripts/deploy/data/cert/node9.key.key.pri
+./scripts/deploy/data/cert/node9.key.key.pub
+./scripts/deploy/data/cert/node9.key.pri
+./scripts/deploy/data/cert/node9.key.pub
+./service/tools/data/cert/node6.key.key.pri
+./service/tools/data/cert/node6.key.key.pub
+./service/tools/data/cert/node6.key.pri
+./service/tools/data/cert/node6.key.pub
+./service/tools/data/cert/node7.key.key.pri
+./service/tools/data/cert/node7.key.key.pub
+./service/tools/data/cert/node7.key.pri
+./service/tools/data/cert/node7.key.pub
+./service/tools/data/cert/node8.key.key.pri
+./service/tools/data/cert/node8.key.key.pub
+./service/tools/data/cert/node8.key.pri
+./service/tools/data/cert/node8.key.pub
+./service/tools/data/cert/node9.key.key.pri
+./service/tools/data/cert/node9.key.key.pub
+./service/tools/data/cert/node9.key.pri
+./service/tools/data/cert/node9.key.pub
+```","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/149/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/149,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyVIh,incubator-resilientdb,2395558433,149,NA,cjcchen,3771438,,,NA,2024-10-06T19:40:48Z,2024-10-06T19:40:48Z,"Hi pjfanning
+
+
+This is not hardcoded files. The binary is generated by the BUILD files.
+The keys will be generated when you deploy the application using the deploy tools. Each time you deploy the application, it will use different pub/pri keys.
+
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyVIh/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/149,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyWVm,incubator-resilientdb,2395563366,149,NA,pjfanning,11783444,PJ Fanning,,NA,2024-10-06T19:54:20Z,2024-10-06T19:54:20Z,"@cjcchen those files are in the apache-resilientdb-1.10.0-incubating-src.tar.gz
+
+They should not appear in this file. We should not be shipping keys in ASF source releases.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyWVm/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/158,https://api.github.com/repos/apache/incubator-resilientdb/issues/158,incubator-resilientdb,2567887735,158,Test PBFT Performance failure,ghjklasdfgh,84389906,ghjkl,,OPEN,2024-10-05T11:22:45Z,2024-10-08T12:53:45Z,"Hi developer, I'm having some problems deploying a standalone system and disturbing your valuable time, I hope you can help me with these problems!
+
+Here are my questions.
+Why is the test performance result 0 after I deployed it as requested ?
+The command I'm running is ./performance/pbft_performance.sh config/kv_performance_server.conf
+(I have changed the IP address and key as requested)
+And I would like to know how to deploy GeoBFT, is there a detailed deployment tutorial?
+
+This is the result of executing ./performance/run_performance.sh config/kv_performance_server.conf
+<img width=""532"" alt=""8a1650c615e577486f96ace8100cf69"" src=""https://github.com/user-attachments/assets/a8454037-d257-4e9f-92b0-6c2898fa0e11"">
+
+This is the result.log
+<img width=""1178"" alt=""e92490a397791890682192a569197e4"" src=""https://github.com/user-attachments/assets/c09ca54a-9803-4734-a8d2-167975c8220e"">
+
+
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/158/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/158,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OwuKF,incubator-resilientdb,2395136645,158,NA,cjcchen,3771438,,,NA,2024-10-05T18:07:39Z,2024-10-05T18:07:39Z,"From the log you provided, I saw the services crashed.
+Did you modify something?
+You can take a look why they crashed.
+
+On Sat, Oct 5, 2024 at 7:23 PM HZB ***@***.***> wrote:
+
+> Why is the test performance result 0 after I deployed it as requested ?
+> The command I'm running is ./performance/pbft_performance.sh
+> config/kv_performance_server.conf
+> (I have changed the IP address and key as requested)
+> And I would like to know how to deploy GeoBFT, is there a detailed
+> deployment tutorial?
+>
+> This is the result of executing ./performance/run_performance.sh
+> config/kv_performance_server.conf
+> 8a1650c615e577486f96ace8100cf69.png (view on web)
+> <https://github.com/user-attachments/assets/a8454037-d257-4e9f-92b0-6c2898fa0e11>
+>
+> This is the result.log
+> e92490a397791890682192a569197e4.png (view on web)
+> <https://github.com/user-attachments/assets/c09ca54a-9803-4734-a8d2-167975c8220e>
+>
+> —
+> Reply to this email directly, view it on GitHub
+> <https://github.com/apache/incubator-resilientdb/issues/158>, or
+> unsubscribe
+> <https://github.com/notifications/unsubscribe-auth/AA4YYLXQ3G5GXLVAZ3ILMYDZZ7DZXAVCNFSM6AAAAABPNIJZDGVHI2DSMVQWIX3LMV43ASLTON2WKOZSGU3DOOBYG43TGNI>
+> .
+> You are receiving this because you are subscribed to this thread.Message
+> ID: ***@***.***>
+>
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OwuKF/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/158,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6Oxyue,incubator-resilientdb,2395417502,158,NA,ghjklasdfgh,84389906,ghjkl,,NA,2024-10-06T12:13:55Z,2024-10-06T12:13:55Z,"Dear cjcchen, I apologize for the late reply and I don't understand why the service crashed.
+According to . /scripts/deploy/READ.ME instructions, 
+1. I changed all 5 ip addresses to 127.0.0.1 in kv_performance_server.conf (for a standalone performance test)
+2. I modified key.example.conf: ``key=~/.ssh/id_rsa``
+3. I changed all of /home/ubuntu/ to root (my own working directory)
+4. Then I run the . /script/deploy.sh script. The /config/kv_server_performance.conf script outputs ``Servers are running``.
+5. Finally I run . /performance/run_performance.sh config/kv_performance_server.config and ./performance/pbft_performance.sh config/kv_performance_server.conf and I get the above problem!
+I only changed the /home/ubuntu directory in the deploy.sh file. And I modified the run_performace.sh file (shown here)
+![image](https://github.com/user-attachments/assets/0ea987b4-90b2-459c-bd9c-9777809adf0e)
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6Oxyue/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/158,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyUPf,incubator-resilientdb,2395554783,158,NA,cjcchen,3771438,,,NA,2024-10-06T19:29:35Z,2024-10-06T19:29:35Z,"Currently, the performance tool does not support 127.0.0.1.
+Please try to run on remote devices.
+
+On Sun, Oct 6, 2024 at 8:14 PM HZB ***@***.***> wrote:
+
+> Dear cjcchen, I apologize for the late reply and I don't understand why
+> the service crashed.
+> According to . /scripts/deploy/READ.ME instructions,
+>
+>    1. I changed all 5 ip addresses to 127.0.0.1 in
+>    kv_performance_server.conf (for a standalone performance test)
+>    2. I modified key.example.conf: “key=~/.ssh/id_rsa”
+>    3. I changed all of /home/ubuntu/ to root (my own working directory)
+>    4.Then I run the . /script/deploy.sh script. The
+>    /config/kv_server_performance.conf script outputs Servers are running.
+>    4. Finally I run . /performance/run_performance.sh
+>    config/kv_performance_server.config and . /performance/pbft_performance.sh
+>    config/kv_performance_server.conf and I get the above problem!
+>    I only changed the /home/ubuntu directory in the deploy.sh file. And I
+>    modified the run_performace.sh file (shown here)
+>    image.png (view on web)
+>    <https://github.com/user-attachments/assets/0ea987b4-90b2-459c-bd9c-9777809adf0e>
+>
+> —
+> Reply to this email directly, view it on GitHub
+> <https://github.com/apache/incubator-resilientdb/issues/158#issuecomment-2395417502>,
+> or unsubscribe
+> <https://github.com/notifications/unsubscribe-auth/AA4YYLSM735YW2UJ2PF5O3LZ2ESRTAVCNFSM6AAAAABPNIJZDGVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDGOJVGQYTONJQGI>
+> .
+> You are receiving this because you commented.Message ID:
+> ***@***.***>
+>
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyUPf/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/158,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O814e,incubator-resilientdb,2398314014,158,NA,ghjklasdfgh,84389906,ghjkl,,NA,2024-10-08T00:42:04Z,2024-10-08T00:42:04Z,"Thank you for your response, I will do a distributed performance.
+And I I would like to ask if I change the ip address of kv_performance_server.conf to the same private ip address e.g. 172.19.86.41 is it ok?
+Or does it have to be a different ip address ?","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O814e/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/159,https://api.github.com/repos/apache/incubator-resilientdb/issues/159,incubator-resilientdb,2568858751,159,The download section in UI omits the asc signature.,pjfanning,11783444,PJ Fanning,,CLOSED,2024-10-06T19:47:09Z,2024-10-08T02:01:16Z,"<img width=""683"" alt=""Screenshot 2024-10-06 at 20 45 24"" src=""https://github.com/user-attachments/assets/9eebf89e-32f5-4ef7-8199-384fe3bfcfd6"">
+
+The asc signature is an absolute requirement for any ASF project.
+
+@cjcchen could you look at this?","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/159/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/159,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyWB7,incubator-resilientdb,2395562107,159,NA,pjfanning,11783444,PJ Fanning,,NA,2024-10-06T19:50:04Z,2024-10-06T19:50:04Z,"<img width=""588"" alt=""image"" src=""https://github.com/user-attachments/assets/c11c8699-c85b-4ed9-8ae3-79b43fd46ce8"">
+
+Worse news still @cjcchen - the 'zip' download omits both the asc and sha512 links.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6OyWB7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/159,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O9gk-,incubator-resilientdb,2398488894,159,NA,apratimshukla6,16684262,Apratim Shukla,apratimshukla6@gmail.com,NA,2024-10-08T02:01:01Z,2024-10-08T02:01:01Z,"The website is now updated with the ASC signature and the .zip is now removed.
+
+![image](https://github.com/user-attachments/assets/2c937a72-a41d-47c8-a200-00a5433738b0)
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O9gk-/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/160,https://api.github.com/repos/apache/incubator-resilientdb/issues/160,incubator-resilientdb,2568865976,160,last source release is a directory with the wrong name,pjfanning,11783444,PJ Fanning,,CLOSED,2024-10-06T19:58:30Z,2024-10-07T16:09:34Z,"https://dist.apache.org/repos/dist/release/incubator/resilientdb/1.10.0-rc3/
+
+this should be
+
+https://dist.apache.org/repos/dist/release/incubator/resilientdb/1.10.0-rc3/
+
+* pre-release RCs should have directory names like 1.10.0-rc3
+* when the vote passes, the RC is copied to the release are (https://dist.apache.org/repos/dist/release) but the directory should be renamed to remove the `-rc3` suffix.
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/160/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/160,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O5Jkb,incubator-resilientdb,2397346075,160,NA,cjcchen,3771438,,,NA,2024-10-07T16:09:34Z,2024-10-07T16:09:34Z,"renamed it
+https://dist.apache.org/repos/dist/release/incubator/resilientdb/1.10.0
+
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O5Jkb/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/161,https://api.github.com/repos/apache/incubator-resilientdb/issues/161,incubator-resilientdb,2568868914,161,old RCs should be removed from dist.apache.org,pjfanning,11783444,PJ Fanning,,CLOSED,2024-10-06T20:04:27Z,2024-10-07T16:57:12Z,"https://dist.apache.org/repos/dist/dev/incubator/resilientdb/
+
+Still contains an RC2 that was not released.
+
+@cjcchen can you remove this?","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/161/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/161,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O5G6l,incubator-resilientdb,2397335205,161,NA,cjcchen,3771438,,,NA,2024-10-07T16:05:44Z,2024-10-07T16:05:44Z,"https://dist.apache.org/repos/dist/dev/incubator/resilientdb/
+removed","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O5G6l/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/161,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O5LPh,incubator-resilientdb,2397352929,161,NA,pjfanning,11783444,PJ Fanning,,NA,2024-10-07T16:12:31Z,2024-10-07T16:12:31Z,@cjcchen Can you remove the KEYS file from the dev folder too? You should only have the KEYS file in the releases folder.,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O5LPh/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/161,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O5hAF,incubator-resilientdb,2397442053,161,NA,cjcchen,3771438,,,NA,2024-10-07T16:57:11Z,2024-10-07T16:57:11Z,"@pjfanning 
+Removed.
+https://dist.apache.org/repos/dist/dev/incubator/resilientdb/
+
+I also added a 1.10.1-rc0 to remove the binary from 1.10.0.","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6O5hAF/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/163,https://api.github.com/repos/apache/incubator-resilientdb/issues/163,incubator-resilientdb,2645015641,163,Replace README images to absolute paths,gopuman,29737507,Gopal Nambiar,gopalnambiar2@gmail.com,OPEN,2024-11-08T19:47:29Z,2024-11-08T19:47:29Z,,"{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/163/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/apache/incubator-resilientdb/issues/169,https://api.github.com/repos/apache/incubator-resilientdb/issues/169,incubator-resilientdb,2795466067,169,Test Performance Failure,Shubo-Peng,34182515,Shubo Peng,,OPEN,2025-01-17T13:18:35Z,2025-01-17T18:28:19Z,"Hi developer, I'm having troubles in **testing PBFT performance**.
+
+I launched 5 AWS instances as nodes for resdb. While running the command:
+
+**./performance/pbft_performance.sh config/kv_performance_server.conf**
+
+to test performance, I encountered the following issue:
+
+![Image](https://github.com/user-attachments/assets/0e04601e-5d71-41e7-8d13-9ff0c91f6a1b)
+
+During the execution of the script, the client node suddenly disconnects, resulting in an incorrect number of nodes being counted when calculating the results.
+
+![Image](https://github.com/user-attachments/assets/b02b50de-1406-4012-8b54-0bd409a10045)
+
+I checked the AWS console for the affected node’s resource usage (the instance type is c5a.xlarge), and here are the observations:
+
+- CPU usage peaked at 37%.
+- Network traffic reached a maximum of 110M/220M (in/out).","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/169/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/169,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6a5lo7,incubator-resilientdb,2598787643,169,NA,JeffXiesk,75991596,Shaokang Xie,,NA,2025-01-17T16:56:48Z,2025-01-17T16:56:48Z,"Hi Shubo, can you provide the detailed logs for the replica and client (defaultly in replica's `/root/kv_server_performance.log`) ?","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6a5lo7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/apache/incubator-resilientdb/issues/169,https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6a6PBP,incubator-resilientdb,2598957135,169,NA,cjcchen,3771438,,,NA,2025-01-17T18:28:18Z,2025-01-17T18:28:18Z,"Hi Shubo,
+
+I saw you used c5a.xlarge which only contains 8GB mem.
+The memory is not enough as the performance tool suit will generate a large
+amount of requests.
+
+You can reduce the number of requests by changing the number here:
+https://github.com/apache/incubator-resilientdb/blob/master/platform/consensus/ordering/pbft/performance_manager.cpp#L111
+Like 60000000 to 2000000.
+
+Hope this can help you.
+
+
+Thanks,
+Junchao
+
+
+
+
+On Fri, Jan 17, 2025 at 9:18 PM Shubo Peng ***@***.***> wrote:
+
+> Hi developer, I'm having troubles in *testing PBFT performance*.
+>
+> I launched 5 AWS instances as nodes for resdb. While running the command:
+>
+> *./performance/pbft_performance.sh config/kv_performance_server.conf*
+>
+> to test performance, I encountered the following issue:
+>
+> 2025-01-17.21-13-27.png (view on web)
+> <https://github.com/user-attachments/assets/0e04601e-5d71-41e7-8d13-9ff0c91f6a1b>
+>
+> During the execution of the script, the client node suddenly disconnects,
+> resulting in an incorrect number of nodes being counted when calculating
+> the results.
+>
+> 2025-01-17.21-14-31.png (view on web)
+> <https://github.com/user-attachments/assets/b02b50de-1406-4012-8b54-0bd409a10045>
+>
+> I checked the AWS console for the affected node’s resource usage (the
+> instance type is c5a.xlarge), and here are the observations:
+>
+>    - CPU usage peaked at 37%.
+>    - Network traffic reached a maximum of 110M/220M (in/out).
+>
+> —
+> Reply to this email directly, view it on GitHub
+> <https://github.com/apache/incubator-resilientdb/issues/169>, or
+> unsubscribe
+> <https://github.com/notifications/unsubscribe-auth/AA4YYLTIRKOCAIXWEHRNB5L2LD7MFAVCNFSM6AAAAABVL5CM46VHI2DSMVQWIX3LMV43ASLTON2WKOZSG44TKNBWGYYDMNY>
+> .
+> You are receiving this because you are subscribed to this thread.Message
+> ID: ***@***.***>
+>
+","{""url"": ""https://api.github.com/repos/apache/incubator-resilientdb/issues/comments/IC_kwDODVHDSc6a6PBP/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
