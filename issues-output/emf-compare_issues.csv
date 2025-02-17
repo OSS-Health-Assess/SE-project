@@ -1,0 +1,152 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/11,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/11,emf-compare,1600848993,11,Depolyment to a maven repository,juergen-albert,8199490,Jürgen Albert,,OPEN,2023-02-27T09:57:36Z,2023-12-30T12:12:21Z,"It seems that the projects artifacts are only available via p2. Are they available anywhere else in a maven shaped repository, so they can be used in a pure maven project? I wasn't able to find anything.
+
+If not, can this be done either by a deployment to maven central or to the eclipse nexus? I haven't looked there, as I can't find it anymore but I do remember seeing an eclipse maven repository quite some time ago.
+
+If I can offer any help, I would be willing to pitch in a PR, but right now I would not really know where to start as this is mostly a matter of the right credentials and distribution configuration.","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/11/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/11,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5WMbSm,emf-compare,1446098086,11,NA,Kellindil,661592,Laurent Goubet,laurent.goubet@obeo.fr,NA,2023-02-27T10:45:41Z,2023-02-27T10:45:41Z,"Hello, EMF Compare is not deployed to any maven repository. I know there is an older release on repo.eclipse.org (eclipse nexus), but builds are not automatically promoted there.
+
+There are currently no plans to modify the builds to do this. I would look at PR about this feature but I honestly do not know how to publish builds to the eclipse nexus, you would have to look at how others Eclipse projects do (I assume you wouldn't have an issue with credentials since EMF Compare is built on eclipse CIs and those will have the credentials set).
+
+""release"" builds are promoted through a manually triggered build, so I think what should be published to the nexus should be from there as well (see https://github.com/eclipse-emf-compare/emf-compare/blob/master/releng/org.eclipse.emf.compare.releng/publish-release.sh for the steps we're following right now. I don't know how the deployment to nexus would be, but I guess it would be some kind of mvn deploy call?","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5WMbSm/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/11,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5WMemM,emf-compare,1446111628,11,NA,juergen-albert,8199490,Jürgen Albert,,NA,2023-02-27T10:56:44Z,2023-02-27T10:56:44Z,"As you already have a tycho build, it should be fairly simple. In theory we need to add the right distributionManagement and call maven deploy at the appropriate time. The jenkins should provide the necessary credentials. I can find out the necessary steps. I will try to provide a PR together with instructions on what needs to be done. 
+
+Side question: Are you part of the Eclipse Release Train or can you release independently?
+
+","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5WMemM/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/11,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5vnFWE,emf-compare,1872516484,11,NA,merks,208716,Ed Merks,,NA,2023-12-30T12:12:20Z,2023-12-30T12:12:20Z,"I think publishing to Maven central is never as simple as appears to be the case.  The quality of the pom, and especially the quality of the dependencies in that pom, are generally very important and these can easily just be misleading garbage making the artifacts mostly useless...","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5vnFWE/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/13,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/13,emf-compare,1921581803,13,Does EMF compare have an API?,pjljvandelaar,18348654,,,CLOSED,2023-10-02T09:43:51Z,2023-11-03T16:37:57Z,"Dear EMF Compare developers,
+
+In my test cases I need to ensure that the expected and actual model represent the same model.
+Hence, the models must contain the same nodes and edges, yet the actual values of xmi:id can be ignored.
+Hence, I cannot use the textual representation of the expected and actual model, 
+since they will differ at the location where xmi:id is defined or used as a reference.
+Since I don't want to reinvent the wheel, I would like to reuse the compare functionality of EMF compare in my test cases.
+However, I cannot find any documentation related to the API of EMP compare.
+Could you point me to this documentation?
+And when it doesn't exist yet, can you develop it?
+
+Thanks in advance,
+
+Pierre
+
+P.S. Am I correct to assume that EMF Compare is insensitive to the actual chosen value for xmi:id?
+
+","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/13/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/13,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5n4qqT,emf-compare,1742908051,13,NA,Kellindil,661592,Laurent Goubet,laurent.goubet@obeo.fr,NA,2023-10-02T12:16:03Z,2023-10-02T12:16:03Z,"Hello Pierre,
+
+The actual textual representation doesn't matter much as EMF Compare will use the loaded, in memory models for the comparison.
+It does, however, depend on the value of the xmi:id by default.
+
+You can take a look at the [developer guide](https://eclipse.dev/emf/compare/documentation/latest/developer/developer-guide.html) on the EMF Compare website, or directly from the [repository here](https://github.com/eclipse-emf-compare/emf-compare/tree/master/plugins/org.eclipse.emf.compare.doc/src/developer). The section that will make sense for your need is ""Configuring the comparison"" where an example of how to tell EMF Compare to ignore identifiers is shown.
+
+Regards,
+Laurent","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5n4qqT/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/13,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5n5qOt,emf-compare,1743168429,13,NA,pjljvandelaar,18348654,,,NA,2023-10-02T14:52:04Z,2023-10-02T14:52:04Z,"@Kellindil Thanks for the quick answer. I will read through the documents!
+Note that I don't want to ignore the identifiers, I just want to ignore their actual values.
+
+Example,
+```
+<node xmi:id=""X"" name=""Pierre""/>
+<node xmi:id=""Y"" name=""Luuk""/>
+<edge xmi:id=""Z"" name=""parent"" source=""X"" target=""Y""/>
+```
+is equivalent with
+```
+<node xmi:id=""1"" name=""Pierre""/>
+<node xmi:id=""2"" name=""Luuk""/>
+<edge xmi:id=""3"" name=""parent"" source=""1"" target=""2""/>
+```
+yet not with 
+```
+<node xmi:id=""1"" name=""Pierre""/>
+<node xmi:id=""2"" name=""Luuk""/>
+<edge xmi:id=""3"" name=""parent"" source=""2"" target=""1""/>
+```
+
+","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5n5qOt/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/13,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5q253w,emf-compare,1792777712,13,NA,pjljvandelaar,18348654,,,NA,2023-11-03T16:37:57Z,2023-11-03T16:37:57Z,Solved it in another way using resources. And setting useUUIDs to false.,"{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5q253w/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/14,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/14,emf-compare,1996920584,14,Security Vulnerability in Guava,N1k145,15220836,Niklas Kellner,github@niklaskellner.de,CLOSED,2023-11-16T13:58:08Z,2023-11-20T08:11:58Z,"emf-compare currently imports com.google.common with a version range [27.0.0,30.2.0), these versions are affected by CVE-2023-2976
+An update to version 32 is recommended.
+
+Opening up the version range to include version 32 would allow integrators to use a newer version of Guava where the vulnerability is fixed, without breaking the integration for other cases where an older version is still required.","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/14/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/14,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5sSHly,emf-compare,1816689010,14,NA,Kellindil,661592,Laurent Goubet,laurent.goubet@obeo.fr,NA,2023-11-17T16:02:31Z,2023-11-17T16:02:31Z,"Updating to guava 32 and tp 2023-12 means updating our build to java 17, finding the tycho new version and tweaks that need to be done to build with this new tp and preparing a new version of compare. This will come on monday at the earliest.
+See #16 ","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5sSHly/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/14,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5sSSQ9,emf-compare,1816732733,14,NA,N1k145,15220836,Niklas Kellner,github@niklaskellner.de,NA,2023-11-17T16:32:15Z,2023-11-17T16:32:15Z,"@Kellindil thank you for your work. That sounds like way more effort than I anticipated when I opened this issue.
+","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5sSSQ9/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/14,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5sYvR5,emf-compare,1818424441,14,NA,Kellindil,661592,Laurent Goubet,laurent.goubet@obeo.fr,NA,2023-11-20T08:11:58Z,2023-11-20T08:11:58Z,#16 is now merged. 3.3.23 will include this hopefully for 2023-12 RC1.,"{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls5sYvR5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/19,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/19,emf-compare,2261389101,19,Question about EMFComparePredicates deprecated,Phillipus,600504,Phil Beauvoir,,CLOSED,2024-04-24T14:04:18Z,2024-04-24T14:14:44Z,"(Sorry that this is reported as an issue as this repo does not have the Discussions feature enabled.)
+
+The JavaDoc for [EMFComparePredicates](https://github.com/eclipse-emf-compare/emf-compare/blob/master/plugins/org.eclipse.emf.compare/src/org/eclipse/emf/compare/utils/EMFComparePredicates.java) says:
+
+`@deprecated this class provides Guava predicates. Please consider using EMFCompareJavaPredicates instead.`
+
+I'm using a [BatchMerger](https://github.com/eclipse-emf-compare/emf-compare/blob/master/plugins/org.eclipse.emf.compare/src/org/eclipse/emf/compare/merge/BatchMerger.java) class that only accepts Guava predicates. Is there a way to use this using `EMFCompareJavaPredicates`?","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/19/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/19,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls57rsLu,emf-compare,2075050734,19,NA,Kellindil,661592,Laurent Goubet,laurent.goubet@obeo.fr,NA,2024-04-24T14:12:11Z,2024-04-24T14:12:11Z,"Hello Phillipus,
+
+This was part of an effort to rid EMF Compare of Guava, but as it was not completed as Guava is too deeply embedded, such as in the APIs as you see there. I can only suggest to suppress or ignore the deprecation warning for this case.
+
+Laurent","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls57rsLu/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/19,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls57rtlB,emf-compare,2075056449,19,NA,Phillipus,600504,Phil Beauvoir,,NA,2024-04-24T14:14:44Z,2024-04-24T14:14:44Z,@Kellindil Thank-you for your fast reply. I will take your advice.,"{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls57rtlB/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/20,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/20,emf-compare,2300641461,20,NullPointerException when comparing objects with different EClass,florianbarbin,7601213,Florian Barbin,,OPEN,2024-05-16T14:55:44Z,2024-05-16T14:55:44Z,"When comparing two models, if those two models share an object with the same id but a different EClass, an NPE occurs and the comparison is frozen:
+
+```
+java.lang.NullPointerException: Cannot invoke ""org.eclipse.emf.ecore.EStructuralFeature.getFeatureID()"" because ""feature"" is null
+	at org.eclipse.emf.ecore.impl.EClassImpl.getFeatureID(EClassImpl.java:1500)
+	at org.eclipse.emf.compare.utils.ReferenceUtil.getFeatureID(ReferenceUtil.java:206)
+	at org.eclipse.emf.compare.utils.ReferenceUtil.safeEGet(ReferenceUtil.java:129)
+	at org.eclipse.emf.compare.utils.ReferenceUtil.getAsList(ReferenceUtil.java:57)
+	at org.eclipse.emf.compare.diff.DefaultDiffEngine.computeMultiValuedFeatureDifferencesTwoWay(DefaultDiffEngine.java:1021)
+	at org.eclipse.emf.compare.diff.DefaultDiffEngine.computeMultiValuedFeatureDifferences(DefaultDiffEngine.java:354)
+	at org.eclipse.emf.compare.diff.DefaultDiffEngine.computeDifferences(DefaultDiffEngine.java:762)
+	at org.eclipse.emf.compare.diff.DefaultDiffEngine.internalCheckForDifferences(DefaultDiffEngine.java:168)
+	at org.eclipse.emf.compare.diff.DefaultDiffEngine.internalCheckForDifferences(DefaultDiffEngine.java:179)
+	at org.eclipse.emf.compare.diff.DefaultDiffEngine.checkForDifferences(DefaultDiffEngine.java:144)
+	at org.eclipse.emf.compare.diff.DefaultDiffEngine.diff(DefaultDiffEngine.java:121)
+	at org.eclipse.emf.compare.EMFCompare.compare(EMFCompare.java:212)
+	at org.eclipse.emf.compare.ide.ui.internal.structuremergeviewer.EMFCompareStructureMergeViewer.compareInputChanged(EMFCompareStructureMergeViewer.java:1602)
+	at org.eclipse.emf.compare.ide.ui.internal.structuremergeviewer.EMFCompareStructureMergeViewer$CompareInputChangedJob.run(EMFCompareStructureMergeViewer.java:224)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+```
+
+## Steps to reproduce
+
+- import [librarySample.zip](https://github.com/eclipse-emf-compare/emf-compare/files/15337039/librarySample.zip)
+- Add the extlibrary content type in EMF compare (in preferences)
+- Compare the two models between each others
+- The error occurs.
+
+We should log a diagnostic error if we try to compare two objects with the same id and a different eClass  ","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/20/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/22,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/22,emf-compare,2362062841,22,Compare two instances with a root element containing an attribute named 'version',ewoudwerkman,2264267,Ewoud Werkman,,OPEN,2024-06-19T11:02:06Z,2024-06-19T12:25:58Z,"Hi EMF compare team,
+
+My meta model has a `version` attribute for its root object. I use XMLResources to load them (so not XMIResources: it should not conflict with the xmi:version attribute). When comparing two instances and any of the sides has the version attribute set, the compare goes wrong (e.g. not an error, but wrong comparison), because the version attribute somehow triggers a ResourceAttachmentChangeSpec instead of an AttributeChangeSpec.
+
+If I remove all the inner contents of the root object, then the version attribute is accepted and an AttributeChangeSpec is generated for the compare.
+
+The objects load normally in the XML resource, e.g. I can read the value of the version attribute (and other attributes/references)
+
+Any idea why?
+
+Using latest EMFCompare in standalone mode.
+
+","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/22/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/22,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls6B2CJR,emf-compare,2178425425,22,NA,Kellindil,661592,Laurent Goubet,laurent.goubet@obeo.fr,NA,2024-06-19T11:17:34Z,2024-06-19T11:17:34Z,"Hello,
+
+I will assume you do not have identifiers on your objects (either an attribute with the ""ID"" flag set, or an xmi:id). In such a case, EMF Compare falls back to a proximity computation algorithm in order to ""match"" your objects together. Your ""version"" being an attribute, it will enter into this computation and in this case, it will apparently make your two roots sufficiently different for EMF Compare to think they are not the same object, hence you will see two ResourceAttachementChanges : a deletion of the ""old"" and an addition of the ""new"".
+
+The easiest way to solve this is to ensure you have an identifier on your elements, which will allow EMF Compare to match (or not!) ""for sure"" instead of computing a distance and matching ""elements which are close enough"". You can either add an ""ID"" attribute, ensure you have xmi:id on them, or customize EMF Compare to compute a custom identifier (see https://eclipse.dev/emf/compare/documentation/latest/developer/developer-guide.html#Defining_custom_identifiers).
+
+If this is not possible for you, you will have to either fully customize the IMatchEngine or fine-tune the weight of your elements' attributes (for example, maximizing the weight of the ""name"" and reducing the weight of the ""version"", or removing the ""version"" from the proximity matching altogether if it should have no effect on the matching). This can be done through a org.eclipse.emf.compare.match.eobject.WeightProvider.getParentWeight(EObject), which can be provided to EMF Compare through the org.eclipse.emf.compare.rcp.weightProviders extension point.
+
+Regards,
+Laurent Goubet
+Obeo","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls6B2CJR/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/22,https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls6B2nDe,emf-compare,2178576606,22,NA,ewoudwerkman,2264267,Ewoud Werkman,,NA,2024-06-19T12:25:57Z,2024-06-19T12:25:57Z,"Hi Laurent,
+
+Thanks for the quick reply. I did have an ID set on this root element, but it was not filled in, causing the proximity computation algorithm to kick in. This algorithm failed because of a list of strings that is part of the attributes. If I leave out this list of strings the computation worked fine, with or without the version attribute filled in. 
+
+A question out of curiosity: Why is there no attribute-comparison based identifier? That would be a logical one, right (albeit, how to handle containment, and cross references)? It that because it is slower than the proximity computation algorithm, or that that approach is not generic enough?
+
+Kind regards,
+Ewoud","{""url"": ""https://api.github.com/repos/eclipse-emf-compare/emf-compare/issues/comments/IC_kwDOH958ls6B2nDe/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

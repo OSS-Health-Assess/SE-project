@@ -1,0 +1,261 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/1,https://api.github.com/repos/eclipse-archived/neoscada/issues/1,neoscada,249300530,1,[IEC60870]: DataModel get's only started after the first established connection,ctron,202474,Jens Reimann,ctron@dentrassi.de,OPEN,2017-08-10T10:22:13Z,2017-08-10T10:22:13Z,"It looks to me like as if the DataModel only gets started after the first connection to the server has been established. This results in a NPE when data is notified but no one ever made a connection to the server.
+
+As a workaround the data model can be started before initializing the server.","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/2,https://api.github.com/repos/eclipse-archived/neoscada/issues/2,neoscada,249394855,2,Deadlock between SingleObjectPoolServiceTracker and DataItemTargetFactoryImpl,CptMauli,210087,,,OPEN,2017-08-10T15:55:18Z,2018-01-09T15:28:20Z,"```
+Name: org.eclipse.scada.utils.osgi.pool.ObjectPoolImpl@6b34ac49/1
+State: BLOCKED on org.eclipse.scada.da.datasource.item.DataItemTargetImpl@28f854b0 owned by: Configuration Administrator/1
+Total blocked: 50  Total waited: 5.512
+
+Stack trace: 
+org.eclipse.scada.da.datasource.item.DataItemTargetImpl.setDataSource(DataItemTargetImpl.java:116)
+org.eclipse.scada.da.datasource.item.DataItemTargetImpl$1.dataSourceChanged(DataItemTargetImpl.java:68)
+org.eclipse.scada.da.datasource.SingleDataSourceTracker.setDataSource(SingleDataSourceTracker.java:60)
+org.eclipse.scada.da.datasource.SingleDataSourceTracker$1.serviceChange(SingleDataSourceTracker.java:53)
+org.eclipse.scada.da.datasource.SingleDataSourceTracker$1.serviceChange(SingleDataSourceTracker.java:1)
+org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.fireServiceChange(SingleObjectPoolServiceTracker.java:117)
+org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.setService(SingleObjectPoolServiceTracker.java:109)
+   - locked org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker@564e9e3f
+org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.update(SingleObjectPoolServiceTracker.java:100)
+org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.handleServiceRemoved(SingleObjectPoolServiceTracker.java:81)
+   - locked org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker@564e9e3f
+org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker$PoolHandler.fireServiceRemoved(AbstractObjectPoolServiceTracker.java:116)
+org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker$PoolHandler.serviceRemoved(AbstractObjectPoolServiceTracker.java:110)
+org.eclipse.scada.utils.osgi.pool.ObjectPoolImpl$3.run(ObjectPoolImpl.java:197)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:748)
+
+
+Name: Configuration Administrator/1
+State: BLOCKED on org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker@564e9e3f owned by: org.eclipse.scada.utils.osgi.pool.ObjectPoolImpl@6b34ac49/1
+Total blocked: 396  Total waited: 72
+
+Stack trace: 
+org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker.handlePoolRemove(AbstractObjectPoolServiceTracker.java:168)
+org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker$1.poolRemoved(AbstractObjectPoolServiceTracker.java:130)
+org.eclipse.scada.utils.osgi.pool.ObjectPoolTracker.removeListener(ObjectPoolTracker.java:200)
+org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker.close(AbstractObjectPoolServiceTracker.java:187)
+org.eclipse.scada.da.datasource.SingleDataSourceTracker.close(SingleDataSourceTracker.java:70)
+org.eclipse.scada.da.datasource.item.DataItemTargetImpl.dispose(DataItemTargetImpl.java:205)
+   - locked org.eclipse.scada.da.datasource.item.DataItemTargetImpl@28f854b0
+org.eclipse.scada.da.datasource.item.DataItemTargetFactoryImpl.disposeService(DataItemTargetFactoryImpl.java:80)
+org.eclipse.scada.da.datasource.item.DataItemTargetFactoryImpl.disposeService(DataItemTargetFactoryImpl.java:1)
+org.eclipse.scada.ca.common.factory.AbstractServiceConfigurationFactory.delete(AbstractServiceConfigurationFactory.java:126)
+   - locked org.eclipse.scada.da.datasource.item.DataItemTargetFactoryImpl@1459107c
+org.eclipse.scada.ca.common.AbstractConfigurationAdministrator.applyConfiguration(AbstractConfigurationAdministrator.java:336)
+org.eclipse.scada.ca.common.AbstractConfigurationAdministrator$3.run(AbstractConfigurationAdministrator.java:299)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+java.lang.Thread.run(Thread.java:748)
+
+```","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/neoscada/issues/2,https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDM1NjMxNjQzNw==,neoscada,356316437,2,NA,CptMauli,210087,,,NA,2018-01-09T15:26:32Z,2018-01-09T15:26:32Z,"```
+""org.eclipse.scada.utils.osgi.pool.ObjectPoolImpl@36a21232/1"" - Thread t@79
+   java.lang.Thread.State: BLOCKED
+	at org.eclipse.scada.da.datasource.item.DataItemTargetImpl.setDataSource(DataItemTargetImpl.java:116)
+	- waiting to lock <8379bff> (a org.eclipse.scada.da.datasource.item.DataItemTargetImpl) owned by ""Configuration Administrator/1"" t@30
+	at org.eclipse.scada.da.datasource.item.DataItemTargetImpl$1.dataSourceChanged(DataItemTargetImpl.java:68)
+	at org.eclipse.scada.da.datasource.SingleDataSourceTracker.setDataSource(SingleDataSourceTracker.java:60)
+	at org.eclipse.scada.da.datasource.SingleDataSourceTracker$1.serviceChange(SingleDataSourceTracker.java:53)
+	at org.eclipse.scada.da.datasource.SingleDataSourceTracker$1.serviceChange(SingleDataSourceTracker.java:1)
+	at org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.fireServiceChange(SingleObjectPoolServiceTracker.java:117)
+	at org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.setService(SingleObjectPoolServiceTracker.java:109)
+	- locked <4a260f40> (a org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker)
+	at org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.update(SingleObjectPoolServiceTracker.java:100)
+	at org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.handleServiceRemoved(SingleObjectPoolServiceTracker.java:81)
+	- locked <4a260f40> (a org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker)
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker$PoolHandler.fireServiceRemoved(AbstractObjectPoolServiceTracker.java:116)
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker$PoolHandler.serviceRemoved(AbstractObjectPoolServiceTracker.java:110)
+	at org.eclipse.scada.utils.osgi.pool.ObjectPoolImpl$3.run(ObjectPoolImpl.java:197)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- locked <75dcc71e> (a java.util.concurrent.ThreadPoolExecutor$Worker)'
+
+""MasterItemFactory/1"" - Thread t@77
+   java.lang.Thread.State: BLOCKED
+	at org.eclipse.scada.da.datasource.item.DataItemTargetImpl.stateChanged(DataItemTargetImpl.java:212)
+	- waiting to lock <8379bff> (a org.eclipse.scada.da.datasource.item.DataItemTargetImpl) owned by ""Configuration Administrator/1"" t@30
+	at org.eclipse.scada.da.datasource.base.AbstractDataSource$2.run(AbstractDataSource.java:132)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- locked <3b3be375> (a java.util.concurrent.ThreadPoolExecutor$Worker)
+
+
+""Configuration Administrator/1"" - Thread t@30
+   java.lang.Thread.State: BLOCKED
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker.handlePoolRemove(AbstractObjectPoolServiceTracker.java:168)
+	- waiting to lock <4a260f40> (a org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker) owned by ""org.eclipse.scada.utils.osgi.pool.ObjectPoolImpl@36a21232/1"" t@79
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker$1.poolRemoved(AbstractObjectPoolServiceTracker.java:130)
+	at org.eclipse.scada.utils.osgi.pool.ObjectPoolTracker.removeListener(ObjectPoolTracker.java:200)
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker.close(AbstractObjectPoolServiceTracker.java:187)
+	at org.eclipse.scada.da.datasource.SingleDataSourceTracker.close(SingleDataSourceTracker.java:70)
+	at org.eclipse.scada.da.datasource.item.DataItemTargetImpl.dispose(DataItemTargetImpl.java:205)
+	- locked <8379bff> (a org.eclipse.scada.da.datasource.item.DataItemTargetImpl)
+	at org.eclipse.scada.da.datasource.item.DataItemTargetFactoryImpl.disposeService(DataItemTargetFactoryImpl.java:80)
+	at org.eclipse.scada.da.datasource.item.DataItemTargetFactoryImpl.disposeService(DataItemTargetFactoryImpl.java:1)
+	at org.eclipse.scada.ca.common.factory.AbstractServiceConfigurationFactory.delete(AbstractServiceConfigurationFactory.java:126)
+	- locked <33dcb6bc> (a org.eclipse.scada.da.datasource.item.DataItemTargetFactoryImpl)
+	at org.eclipse.scada.ca.common.AbstractConfigurationAdministrator.applyConfiguration(AbstractConfigurationAdministrator.java:336)
+	at org.eclipse.scada.ca.common.AbstractConfigurationAdministrator$3.run(AbstractConfigurationAdministrator.java:299)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- locked <477ec4f7> (a java.util.concurrent.ThreadPoolExecutor$Worker)
+
+```","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDM1NjMxNjQzNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/neoscada/issues/2,https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDM1NjMxNzA0Mw==,neoscada,356317043,2,NA,CptMauli,210087,,,NA,2018-01-09T15:28:20Z,2018-01-09T15:28:20Z,"```
+""HiveCommon/org.eclipse.scada.da.server.osgi/1"" - Thread t@79
+   java.lang.Thread.State: BLOCKED
+	at org.eclipse.scada.da.server.common.DataItemBase.setListener(DataItemBase.java:53)
+	- waiting to lock <6696a4e4> (a org.eclipse.scada.da.datasource.item.DataItemTargetImpl) owned by ""Configuration Administrator/1"" t@34
+	at org.eclipse.scada.da.server.common.impl.DataItemSubscriptionSource$2.run(DataItemSubscriptionSource.java:102)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- locked <43064325> (a java.util.concurrent.ThreadPoolExecutor$Worker)
+
+""org.eclipse.scada.utils.osgi.pool.ObjectPoolImpl@79d1eb3e/1"" - Thread t@75
+   java.lang.Thread.State: BLOCKED
+	at org.eclipse.scada.da.datasource.item.DataItemTargetImpl.setDataSource(DataItemTargetImpl.java:116)
+	- waiting to lock <6696a4e4> (a org.eclipse.scada.da.datasource.item.DataItemTargetImpl) owned by ""Configuration Administrator/1"" t@34
+	at org.eclipse.scada.da.datasource.item.DataItemTargetImpl$1.dataSourceChanged(DataItemTargetImpl.java:68)
+	at org.eclipse.scada.da.datasource.SingleDataSourceTracker.setDataSource(SingleDataSourceTracker.java:60)
+	at org.eclipse.scada.da.datasource.SingleDataSourceTracker$1.serviceChange(SingleDataSourceTracker.java:53)
+	at org.eclipse.scada.da.datasource.SingleDataSourceTracker$1.serviceChange(SingleDataSourceTracker.java:1)
+	at org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.fireServiceChange(SingleObjectPoolServiceTracker.java:117)
+	at org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.setService(SingleObjectPoolServiceTracker.java:109)
+	- locked <759b3059> (a org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker)
+	at org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.update(SingleObjectPoolServiceTracker.java:100)
+	at org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker.handleServiceRemoved(SingleObjectPoolServiceTracker.java:81)
+	- locked <759b3059> (a org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker)
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker$PoolHandler.fireServiceRemoved(AbstractObjectPoolServiceTracker.java:116)
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker$PoolHandler.serviceRemoved(AbstractObjectPoolServiceTracker.java:110)
+	at org.eclipse.scada.utils.osgi.pool.ObjectPoolImpl$3.run(ObjectPoolImpl.java:197)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- locked <4cf0510d> (a java.util.concurrent.ThreadPoolExecutor$Worker)
+
+""Configuration Administrator/1"" - Thread t@34
+   java.lang.Thread.State: BLOCKED
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker.handlePoolRemove(AbstractObjectPoolServiceTracker.java:168)
+	- waiting to lock <759b3059> (a org.eclipse.scada.utils.osgi.pool.SingleObjectPoolServiceTracker) owned by ""org.eclipse.scada.utils.osgi.pool.ObjectPoolImpl@79d1eb3e/1"" t@75
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker$1.poolRemoved(AbstractObjectPoolServiceTracker.java:130)
+	at org.eclipse.scada.utils.osgi.pool.ObjectPoolTracker.removeListener(ObjectPoolTracker.java:200)
+	at org.eclipse.scada.utils.osgi.pool.AbstractObjectPoolServiceTracker.close(AbstractObjectPoolServiceTracker.java:187)
+	at org.eclipse.scada.da.datasource.SingleDataSourceTracker.close(SingleDataSourceTracker.java:70)
+	at org.eclipse.scada.da.datasource.item.DataItemTargetImpl.dispose(DataItemTargetImpl.java:205)
+	- locked <6696a4e4> (a org.eclipse.scada.da.datasource.item.DataItemTargetImpl)
+	at org.eclipse.scada.da.datasource.item.DataItemTargetFactoryImpl.disposeService(DataItemTargetFactoryImpl.java:80)
+	at org.eclipse.scada.da.datasource.item.DataItemTargetFactoryImpl.disposeService(DataItemTargetFactoryImpl.java:1)
+	at org.eclipse.scada.ca.common.factory.AbstractServiceConfigurationFactory.delete(AbstractServiceConfigurationFactory.java:126)
+	- locked <43dbd3c6> (a org.eclipse.scada.da.datasource.item.DataItemTargetFactoryImpl)
+	at org.eclipse.scada.ca.common.AbstractConfigurationAdministrator.applyConfiguration(AbstractConfigurationAdministrator.java:336)
+	at org.eclipse.scada.ca.common.AbstractConfigurationAdministrator$3.run(AbstractConfigurationAdministrator.java:299)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+	- locked <774bdeaf> (a java.util.concurrent.ThreadPoolExecutor$Worker)
+
+```","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDM1NjMxNzA0Mw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/3,https://api.github.com/repos/eclipse-archived/neoscada/issues/3,neoscada,259803853,3,An Exception occurs in ESAC when adding some connections,CptMauli,210087,,,CLOSED,2017-09-22T12:47:49Z,2018-05-16T11:20:13Z,"An Exception occurs in ESAC (NeoSCADA Admin Client) when adding some connections.
+
+I could observe it for connections containing an ! within the password.","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/neoscada/issues/3,https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDMzMTgwMjg5OQ==,neoscada,331802899,3,NA,ctron,202474,Jens Reimann,ctron@dentrassi.de,NA,2017-09-25T07:47:31Z,2017-09-25T07:47:31Z,"Connections are again encoded as URIs. I guess that there can be an issue when things are not properly encoded.
+
+Maybe using some kind of URI library would be a better approach. 😉 ","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDMzMTgwMjg5OQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/neoscada/issues/3,https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDM4NDU1MDk0OQ==,neoscada,384550949,3,NA,CptMauli,210087,,,NA,2018-04-26T08:05:08Z,2018-04-26T08:05:08Z,It apparently happens when the port is omitted!,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDM4NDU1MDk0OQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/4,https://api.github.com/repos/eclipse-archived/neoscada/issues/4,neoscada,259804008,4,"Drag & Drop in ESAC fails for items which have a ""+"" (plus) in its id",CptMauli,210087,,,CLOSED,2017-09-22T12:48:28Z,2018-05-24T12:20:15Z,"Drag & Drop in ESAC (NeoSCADA Admin Client) fails for items which have a ""+"" (plus) in its id","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/4/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/neoscada/issues/4,https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDMzMTgwMjY1OA==,neoscada,331802658,4,NA,ctron,202474,Jens Reimann,ctron@dentrassi.de,NA,2017-09-25T07:46:20Z,2017-09-25T07:46:20Z,IIRC the items are encoded as URI when they are passed on to the DnD handler. This could be an issue.,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDMzMTgwMjY1OA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/neoscada/issues/4,https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDMzMzEwNDM1MA==,neoscada,333104350,4,NA,CptMauli,210087,,,NA,2017-09-29T11:41:22Z,2017-09-29T11:41:22Z,"I know, but then there seems to be one place where it is not en- or decoded. I guess it will be an easy fix.","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDMzMzEwNDM1MA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/5,https://api.github.com/repos/eclipse-archived/neoscada/issues/5,neoscada,267598763,5,Allow to specify which connections to create between global and local masters,CptMauli,210087,,,OPEN,2017-10-23T09:26:31Z,2017-10-23T09:27:18Z,"Right now the global master both establishes e.g. both DA and AE connections to a local master.
+
+If AE is not used, then the connection should not be established.","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/6,https://api.github.com/repos/eclipse-archived/neoscada/issues/6,neoscada,272461768,6,add new constructor to TransformResultFuture to allow CompletableFuture,CptMauli,210087,,,OPEN,2017-11-09T07:12:55Z,2017-11-09T07:13:06Z,"TransformResultFuture only takes a NotifyFuture.
+
+Either enhance NotifyFuture that it extends CompleteableFuture, or just take a CompletableFuture for now as well.
+
+Lookup if Guavas ListenableFuture will become a CompletableFuture as well.","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/7,https://api.github.com/repos/eclipse-archived/neoscada/issues/7,neoscada,290393898,7,"Add feature to modbus driver for ""one-shot"" queries",CptMauli,210087,,,OPEN,2018-01-22T09:09:51Z,2018-01-22T09:09:51Z,Apparently there are devices out there which close the connection after each request. To support these we need to add some additional behavior.,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/8,https://api.github.com/repos/eclipse-archived/neoscada/issues/8,neoscada,290460854,8,ensure Java 9 & Java 10 compatibility,CptMauli,210087,,,OPEN,2018-01-22T13:13:16Z,2018-05-24T14:18:37Z,Make sure that NeoSCADA works fine on Java 9,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/8/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/9,https://api.github.com/repos/eclipse-archived/neoscada/issues/9,neoscada,297005914,9,backport IEC 60870 changes done in openSCADA to NeoSCADA,CptMauli,210087,,,OPEN,2018-02-14T08:02:33Z,2018-05-24T14:18:25Z,"there are several changes in the latest openSCADA IEC 60870 implementation which have to be backported to NeoSCADA.
+After that the openSCADA implementation can be removed in the next version.","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/9/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/10,https://api.github.com/repos/eclipse-archived/neoscada/issues/10,neoscada,317918229,10,"In ESAC prepopulate type for item write, based on type of selected item",CptMauli,210087,,,CLOSED,2018-04-26T08:02:15Z,2018-05-24T13:14:51Z,"If a selected item has a defined type, then the type in the write dialog should be set to this one. This saves a lot of work for people who routinely write values via the ESAC","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/10/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/11,https://api.github.com/repos/eclipse-archived/neoscada/issues/11,neoscada,326142903,11,SWT redrawing problem in Chart widget,CptMauli,210087,,,OPEN,2018-05-24T14:16:49Z,2018-05-24T14:17:02Z,Chart is not rendered correctly with latest oxygen versions.,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/11/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/12,https://api.github.com/repos/eclipse-archived/neoscada/issues/12,neoscada,326514898,12,"when creating a configuration (e.g. master server) based an a specific profile, multiple entries with same key are generated",CptMauli,210087,,,OPEN,2018-05-25T13:01:19Z,2018-05-25T13:01:30Z,"when creating a configuration (e.g. master server) based an a specific profile, multiple entries with same key are generated
+
+![image](https://user-images.githubusercontent.com/210087/40545461-288b626e-602c-11e8-93e5-5f2bbdd5fb36.png)
+
+```
+  <property key=""org.eclipse.scada.ca.file.root"">${user.home}/.eclipse.scada/ca.iec104bridge</property>
+  <property key=""org.eclipse.scada.ds.storage.file.root"">${user.home}/.eclipse.scada/ds.iec104bridge</property>
+  <property key=""org.eclipse.scada.ca.server.exporter.ngp.exportUri"">ca:ngp://0.0.0.0:2402</property>
+  <property key=""org.eclipse.scada.ae.server.exporter.ngp.exportUri"">ae:ngp://0.0.0.0:2202</property>
+  <property key=""org.eclipse.scada.da.server.exporter.ngp.exportUri"">da:ngp://0.0.0.0:2102</property>
+  <property key=""org.eclipse.scada.ca.file.root"">${user.home}/.eclipse.scada/ca.master</property>
+  <property key=""org.eclipse.scada.ds.storage.file.root"">${user.home}/.eclipse.scada/ds.master</property>
+
+```
+
+expected outcome: on line (entry) for each `org.eclipse.scada.ca.file.root` and `org.eclipse.scada.ca.file.root`","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/12/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/13,https://api.github.com/repos/eclipse-archived/neoscada/issues/13,neoscada,326932341,13,provide a time trigger for VI,CptMauli,210087,,,OPEN,2018-05-28T07:53:31Z,2018-05-28T07:53:40Z,add an option to call a function on a time trigger.,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/13/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/14,https://api.github.com/repos/eclipse-archived/neoscada/issues/14,neoscada,330322690,14,"remove jsvc dependency, use systemd instead",CptMauli,210087,,,OPEN,2018-06-07T15:24:01Z,2018-06-07T15:26:23Z,jsvc is more trouble than it is worth. With systemd it is also entirely unneeded anymore,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/14/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/neoscada/issues/14,https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDM5NTQ2MjI3NQ==,neoscada,395462275,14,NA,CptMauli,210087,,,NA,2018-06-07T15:26:23Z,2018-06-07T15:26:23Z,see also #15 ,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/comments/MDEyOklzc3VlQ29tbWVudDM5NTQ2MjI3NQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/15,https://api.github.com/repos/eclipse-archived/neoscada/issues/15,neoscada,330323556,15,deprecate all init systems other than systemd,CptMauli,210087,,,OPEN,2018-06-07T15:26:04Z,2018-06-07T15:26:04Z,"since virtually all linux distributions have switched to systemd, and the supported platforms for NeoSCADA are limited to Ubuntu, Centos and SuSE anyway, there is no need to keep the old stuff around.","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/15/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/16,https://api.github.com/repos/eclipse-archived/neoscada/issues/16,neoscada,330790880,16,provide a way to easily determine installed neoscada version (on server),CptMauli,210087,,,OPEN,2018-06-08T20:20:41Z,2018-06-08T20:20:50Z,there should be a way to show installed neoscada components with their versions,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/16/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/17,https://api.github.com/repos/eclipse-archived/neoscada/issues/17,neoscada,335706096,17,Fix license reference in 3rd party dependencies,CptMauli,210087,,,CLOSED,2018-06-26T08:12:59Z,2018-07-03T09:25:10Z,"For some reason the 3rd party feature has a diferent license version then the other features
+
+![grafik](https://user-images.githubusercontent.com/210087/41898108-68675044-7929-11e8-9ed4-33307f193243.png)
+","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/17/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/18,https://api.github.com/repos/eclipse-archived/neoscada/issues/18,neoscada,336619689,18,add config to IDE for proxyDataSource,CptMauli,210087,,,OPEN,2018-06-28T13:23:18Z,2018-06-28T13:23:18Z,add config to IDE for proxyDataSource,"{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/18/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/19,https://api.github.com/repos/eclipse-archived/neoscada/issues/19,neoscada,337556718,19,fix template for generated HMI pom files to use 0.5.0 version,CptMauli,210087,,,OPEN,2018-07-02T15:05:22Z,2018-07-02T15:05:22Z,"```
+Caused by: org.eclipse.equinox.p2.core.ProvisionException: No repository found at http://download.eclipse.org/eclipsescada/updates/release/0.3.0.
+    at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail (AbstractRepositoryManager.java:395)
+    at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository (AbstractRepositoryManager.java:692)
+    at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository (MetadataRepositoryManager.java:96)
+    at org.eclipse.tycho.p2.remote.RemoteMetadataRepositoryManager.loadRepository (RemoteMetadataRepositoryManager.java:59)
+    at org.eclipse.tycho.p2.remote.RemoteMetadataRepositoryManager.loadRepository (RemoteMetadataRepositoryManager.java:52)
+    at org.eclipse.tycho.p2.target.TargetPlatformFactoryImpl.loadMetadataRepository (TargetPlatformFactoryImpl.java:292)
+    at org.eclipse.tycho.p2.target.TargetPlatformFactoryImpl.gatherExternalInstallableUnits (TargetPlatformFactoryImpl.java:266)
+    at org.eclipse.tycho.p2.target.TargetPlatformFactoryImpl.createTargetPlatform (TargetPlatformFactoryImpl.java:164)
+    at org.eclipse.tycho.p2.target.TargetPlatformFactoryImpl.createTargetPlatform (TargetPlatformFactoryImpl.java:117)
+    at org.eclipse.tycho.p2.target.TargetPlatformFactoryImpl.createTargetPlatform (TargetPlatformFactoryImpl.java:1)
+    at org.eclipse.tycho.p2.resolver.P2TargetPlatformResolver.computeTargetPlatform (P2TargetPlatformResolver.java:214)
+    at org.eclipse.tycho.core.resolver.DefaultTychoDependencyResolver.resolveProject (DefaultTychoDependencyResolver.java:100)
+    at org.eclipse.tycho.core.maven.TychoMavenLifecycleParticipant.afterProjectsRead (TychoMavenLifecycleParticipant.java:75)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:264)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:192)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:105)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:954)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:288)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:192)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0 (Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke (NativeMethodAccessorImpl.java:62)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke (DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke (Method.java:498)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:289)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:229)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:415)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:356)
+
+```","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/19/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/20,https://api.github.com/repos/eclipse-archived/neoscada/issues/20,neoscada,338872125,20,Fix About & Licenses,CptMauli,210087,,,OPEN,2018-07-06T09:36:40Z,2018-07-06T09:36:47Z,"![image](https://user-images.githubusercontent.com/210087/42371791-c3ec0dee-8110-11e8-9e5c-f4b1a2b5d812.png)
+
+![image](https://user-images.githubusercontent.com/210087/42371816-d526bb68-8110-11e8-8be9-59c6db3d6635.png)
+","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/20/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/neoscada/issues/21,https://api.github.com/repos/eclipse-archived/neoscada/issues/21,neoscada,424594766,21,"Move APT code to ""Eclipse Packager""",ctron,202474,Jens Reimann,ctron@dentrassi.de,OPEN,2019-03-24T09:55:41Z,2019-03-24T09:55:41Z,"The code generating APT packages for Linux, should be moved to the new ""Eclipse Packager"" project, which will be the home for creating software packages for Linux.","{""url"": ""https://api.github.com/repos/eclipse-archived/neoscada/issues/21/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

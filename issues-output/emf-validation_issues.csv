@@ -1,0 +1,297 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/1,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/1,emf-validation,1035508701,1,The version number on master (1.12.1) is behind the one on R1_12_maintenance (1.12.2),castortech,85858,,,CLOSED,2021-10-25T19:48:41Z,2021-12-24T08:53:00Z,"## Description
+
+Forked project to make a change and resulted build is at 1.12.1 instead of the official 1.12.2 that seems to originate from branch R1_12_maintenance that is not the master and seems to be behind.
+
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/1,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms46DUS5,emf-validation,973948089,1,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2021-11-19T10:30:43Z,2021-11-19T10:30:43Z,`master` needs to be bumped to 1.13.0,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms46DUS5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/1,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms47pfI2,emf-validation,1000731190,1,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2021-12-24T08:53:00Z,2021-12-24T08:53:00Z,Fixed by https://github.com/eclipse/emf-validation/commit/82645fe28eae58030cc9a7742282755b5077e3f3,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms47pfI2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/2,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/2,emf-validation,1116244965,2,Remove the dependency on the deprecated ICU4J/com.ibm.icu,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-01-27T13:56:25Z,2022-08-15T14:40:55Z,"ICU4J is being removed from the platform, see [Bugzilla #562582](https://bugs.eclipse.org/bugs/show_bug.cgi?id=562582).
+
+The Eclipse [Plug-In Migration Guide](https://help.eclipse.org/latest/topic/org.eclipse.platform.doc.isv/porting/4.16/recommended.html?cp=2_3_7_3) mentions:
+
+>  Description: Callers of classes in com.ibm.icu.* package are advised to migrate to respective classes in java.text or java.util packages.
+
+> Action required: If your bundle has a Require-Bundle: com.ibm.icu or Import-Package: com.ibm.icu.*, remove it. Fix the resulting compilation errors in java files by replacing the com.ibm.icu.* imports with imports of respective classes from java.text or java.util as documented in the ICU4J class being replaced. See Bug 562582. 
+
+EMF Validation has several uses of classes from `com.ibm.icu` in the core plug-in.
+
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/2,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5IbNNS,emf-validation,1215091538,2,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-15T14:40:55Z,2022-08-15T14:40:55Z,Fixed by 838181ba321ff8ec0b0440c81b97bebd5e4dd07b,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5IbNNS/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/3,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/3,emf-validation,1249955698,3,Re-integrate the documentation,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-05-26T19:23:45Z,2023-04-23T12:32:28Z,"See the following bugzillas for details:
+
+* [Bug 316928](https://bugs.eclipse.org/bugs/show_bug.cgi?id=316928) - Index errors with EMF Validation documentation
+* [Bug 437582](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437582) - java.io.FileNotFoundException making Help topics unavailable
+* [Bug 496850](https://bugs.eclipse.org/bugs/show_bug.cgi?id=496850) - org.eclipse.emf.validation.doc does not package documentation
+* [Bug 336759](https://bugs.eclipse.org/bugs/show_bug.cgi?id=336759) - Missing EMF Validation Framework API reference
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/5,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/5,emf-validation,1338285044,5,Drop support for Eclipse versions more than about 2 years old,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-08-14T15:56:31Z,2022-08-15T13:41:11Z,"This is to reduce the maintenance burden in a world where Eclipse, Tycho and Java move faster.
+Given that the project is in maintenance mode, users who are stuck on older versions of Eclipse/Java can stay on the corresponding versions of EMF Validation without functional loss.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/5,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5Ia9ls,emf-validation,1215027564,5,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-15T13:41:11Z,2022-08-15T13:41:11Z,"Fixed by 9c3dae2 (and the appropriate changes in [the Jenkins jobs](https://ci.eclipse.org/emfservices/view/emf-validation/)).
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5Ia9ls/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/6,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/6,emf-validation,1338285337,6,Move BREE to JavaSE-11,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-08-14T15:57:40Z,2022-08-15T14:41:15Z,"Once #5 is done, the oldest version of Eclipse supported will require Java 11, so we can move to that as BREE and simplify the builds by not having to cater for Java 8.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/6,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5IbNS4,emf-validation,1215091896,6,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-15T14:41:14Z,2022-08-15T14:41:14Z,Fixed by https://github.com/eclipse/emf-validation/commit/5f631dcafd68be2b2c802cc5bc46fc937a16c568.,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5IbNS4/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/7,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/7,emf-validation,1338653415,7,Publish zip archives for releases in addition to the p2 repos,QGMeta,42509085,QingGuo,,OPEN,2022-08-15T07:42:56Z,2022-08-15T13:39:10Z,thanks,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/7,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5IZ0Yz,emf-validation,1214727731,7,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-15T08:00:41Z,2022-08-15T08:00:41Z,"Hi,
+the p2 repo for 1.13.0 is at https://download.eclipse.org/modeling/emf/validation/updates/releases/R202208101528/ but the current publication process/script does not publish zips.","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5IZ0Yz/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/7,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5IZ6J0,emf-validation,1214751348,7,NA,QGMeta,42509085,QingGuo,,NA,2022-08-15T08:28:51Z,2022-08-15T08:28:51Z,"> 
+
+thanks for reply, do you have a plan to make a zip package for users?","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5IZ6J0/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/7,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5Ia9HD,emf-validation,1215025603,7,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-15T13:39:10Z,2022-08-15T13:39:10Z,"I can try, but not sure when I'll have the time to look at this.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5Ia9HD/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/8,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/8,emf-validation,1338759444,8,Clean/archive/migrate the EMF Validation-related content on the Eclipse Wiki,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-08-15T09:34:44Z,2024-08-16T13:01:48Z,"See:
+
+- https://wiki.eclipse.org/EMF/Validation
+- https://wiki.eclipse.org/EMF-Validation-FAQ
+
+and maybe others.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/8/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/9,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/9,emf-validation,1345442302,9,Improve update sites management,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-08-21T10:04:06Z,2024-08-16T13:01:38Z,"There are several issues regarding how the p2 repos are published, exposed and (not) cleaned up.
+See these bugzillas for details:
+
+* [Please provide ""latest"" composites for update sites or at least clean them up](https://bugs.eclipse.org/bugs/show_bug.cgi?id=532213).
+* [EMFt downloads needs a clean up](https://bugs.eclipse.org/bugs/show_bug.cgi?id=518894) (opened against EMF Transaction, but relevant for Validation too).
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/9/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/9,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5thTJB,emf-validation,1837445697,9,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-12-03T11:07:02Z,2023-12-03T11:07:02Z,"See https://eclipse.dev/justj/?page=tools for p2 repo publication and management in replacement of ad hoc and brittle shell scripts.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5thTJB/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/10,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/10,emf-validation,1345443186,10,emf.validation.tests is early startup,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-08-21T10:07:43Z,2022-08-21T10:07:43Z,"See:
+* [emf.validation.tests is early startup](https://bugs.eclipse.org/bugs/show_bug.cgi?id=410834)
+* [EMFv examples earlyStartup starts all client context plugins](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431779)","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/10/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/11,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/11,emf-validation,1350585314,11,Revert to Tycho 2.7.2 for 2022-09,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-08-25T09:10:41Z,2022-08-26T07:48:38Z,"Version 1.13.1 [moved to Tycho 2.7.4](https://github.com/eclipse/emf-validation/compare/R1_13_0...R1_13_1), which changed its behavior (see https://github.com/eclipse-tycho/tycho/issues/1281). The 1.13.1 repository has quite a lot of unexpected stuff which was not included before.
+Compare [1.13.1](https://download.eclipse.org/justj/?file=modeling/emf/validation/updates/releases/R202208151538/plugins) to [1.13.0](https://download.eclipse.org/justj/?file=modeling/emf/validation/updates/releases/R202208101528/plugins).
+
+I'll rebuild using a previous version of Tycho and release 1.13.2 before 2022-09 to reduce the impacts on the SimRel.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/11/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/11,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5JNGMG,emf-validation,1228169990,11,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-26T07:48:38Z,2022-08-26T07:48:38Z,Fixed by https://github.com/eclipse/emf-validation/commit/ffa8936b093de2ec971ac27e3b63226ba535dbdf.,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5JNGMG/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/12,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/12,emf-validation,1361136142,12,Seriously Out of date OCL Validation example,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:31:45Z,2022-09-04T12:31:46Z,"* 🆔 Bugzilla ID: [#327956](https://bugs.eclipse.org/bugs/show_bug.cgi?id=327956)
+* 📘 Project: Modeling / EMF Services / Validation
+* 🗓 Created: 2010-10-15T20:38:45Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/12/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/12,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5JsONM,emf-validation,1236329292,12,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:31:46Z,2022-09-04T12:31:46Z,"_[Comment #0 on Fri Oct 15 2010 22:38:45 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=327956#c0):_
+```
+The Developers's Guide continues to encourage the use of OCL embedded in XML CDATA sections. This was necessary with Eclipse 3.2.
+
+Eclipse 3.3, MDT/OCL 1.1 introduced EMF codegen for OCL from EAnnotations that could be maintained within the Sample Ecore Editor, and could be activated from the generated Java model.
+
+Eclipse 3.6, EMF 2.6 introduced validation delegates which MDT/OCL 3.0 exploited to again support OCL in EAnnotations, support activation from Java models, or dynmamic activation via eInvoke.
+
+It is not clear that the oruginal approaches still work. It is certainly unhelpful to describe them without accompanying warnings and pointers to new approaches.
+
+A redirection to http://127.0.0.1:49350/help/topic/org.eclipse.ocl.doc/tutorials/oclinecore/oclInEcoreTutorial.html would be helpful.
+```
+
+---
+_[Comment #1 on Fri May 25 2012 17:26:38 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=327956#c1):_
+```
+
+```
+
+---
+_[Comment #2 on Sat May 14 2022 15:53:21 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=327956#c2):_
+```
+Eclipse EMF Validation is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-validation.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-validation/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Validation will be archived and made read-only.
+```
+
+---
+_[Comment #3 on Sat May 14 2022 21:25:38 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=327956#c3):_
+```
+Surely ALL Bugzilla are to be MOVED since all must be searchable in the single ticket-space?
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5JsONM/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/13,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/13,emf-validation,1361136387,13,EMFv examples earlyStartup starts all client context plugins,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:32:30Z,2022-09-04T12:32:31Z,"* 🆔 Bugzilla ID: [#431779](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431779)
+* 📘 Project: Modeling / EMF Services / Validation
+* 🗓 Created: 2014-04-02T07:54:59Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/13/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/13,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5JsOQx,emf-validation,1236329521,13,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:32:31Z,2022-09-04T12:32:31Z,"_[Comment #0 on Wed Apr 02 2014 09:54:59 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431779#c0):_
+```
+The stack trace below shows that org.eclipse.ocl.examples.pivot is started as a consequence of org.eclipse.emf.validation.examples.adapter.Startup.earlyStartUp();
+
+Perhaps org.eclipse.emf.validation.examples.adapter is just a badly coded example.
+
+Perhaps EValidatorAdapter construction should not start the ModelValidationService.
+
+
+Thread [Worker-0] (Suspended (breakpoint at line 218 in UMLResourcesUtil))	
+	owns: Object  (id=323)	
+	UMLResourcesUtil.init(ResourceSet) line: 218	
+	PivotStandaloneSetup.init() line: 72	
+	PivotStandaloneSetup.createInjectorAndDoEMFRegistration() line: 104	
+	PivotStandaloneSetup.doSetup() line: 55	
+	PivotPlugin$Implementation.start(BundleContext) line: 200	
+	BundleContextImpl$3.run() line: 771	
+	BundleContextImpl$3.run() line: 1	
+	AccessController.doPrivileged(PrivilegedExceptionAction<T>) line: not available [native method]	
+	BundleContextImpl.startActivator(BundleActivator) line: 764	
+	BundleContextImpl.start() line: 721	
+	EquinoxBundle.startWorker0() line: 936	
+	EquinoxBundle$EquinoxModule.startWorker() line: 319	
+	EquinoxBundle$EquinoxModule(Module).doStart(Module$StartOptions...) line: 567	
+	EquinoxBundle$EquinoxModule(Module).start(Module$StartOptions...) line: 438	
+	SecureAction.start(Module, Module$StartOptions...) line: 454	
+	EclipseLazyStarter.postFindLocalClass(String, Class<?>, ClasspathManager) line: 107	
+	ClasspathManager.findLocalClass(String) line: 531	
+	EquinoxClassLoader(ModuleClassLoader).findLocalClass(String) line: 330	
+	BundleLoader.findLocalClass(String) line: 311	
+	SingleSourcePackage.loadClass(String) line: 36	
+	BundleLoader.findClassInternal(String, boolean) line: 376	
+	BundleLoader.findClass(String, boolean) line: 336	
+	BundleLoader.findClass(String) line: 328	
+	EquinoxClassLoader(ModuleClassLoader).loadClass(String, boolean) line: 160	
+	EquinoxClassLoader(ClassLoader).loadClass(String) line: 356	
+	EquinoxBundle.loadClass(String) line: 568	
+	EquinoxRegistryStrategy(RegistryStrategyOSGI).createExecutableExtension(RegistryContributor, String, String) line: 174	
+	ExtensionRegistry.createExecutableExtension(RegistryContributor, String, String) line: 905	
+	ConfigurationElement.createExecutableExtension(String) line: 243	
+	ConfigurationElementHandle.createExecutableExtension(String) line: 55	
+	ClientContext.initializeCustomSelector(IConfigurationElement) line: 233	
+	ClientContext.initializeSelector(IConfigurationElement) line: 169	
+	ClientContext.initialize(IConfigurationElement) line: 119	
+	ClientContext.<init>(IConfigurationElement) line: 76	
+	ClientContextManager.configureClientContexts(IConfigurationElement[]) line: 410	
+	ClientContextManager.access$1(ClientContextManager, IConfigurationElement[]) line: 390	
+	ClientContextManager$1.addExtension(IExtensionTracker, IExtension) line: 83	
+	ClientContextManager.configureConstraintBindings() line: 120	
+	ClientContextManager.<init>() line: 99	
+	ClientContextManager.<clinit>() line: 65	
+	ModeledConstraintsLoader.registerConstraintBindingsBundle(ConstraintBindingsBundle, ClassProvider) line: 206	
+	ModeledConstraintsLoader.loadConstraintBundles(ResourceSet, URI, ModelValidationService, ClassProvider) line: 140	
+	ModeledConstraintsLoader.loadConstraintBundles(ResourceSet, URI, ModelValidationService, Bundle) line: 106	
+	ModelValidationService$2.addExtension(IExtensionTracker, IExtension) line: 131	
+	ModelValidationService.configureConstraints() line: 206	
+	ModelValidationService.<init>() line: 166	
+	ModelValidationService.<clinit>() line: 87	
+	EValidatorAdapter.<init>() line: 57	
+	Startup.earlyStartup() line: 47	
+	EarlyStartupRunnable.runEarlyStartup(Object) line: 87	
+	EarlyStartupRunnable.run() line: 66	
+	SafeRunner.run(ISafeRunnable) line: 42	
+	Workbench$55.run(IProgressMonitor) line: 2640	
+	Worker.run() line: 53
+```
+
+---
+_[Comment #1 on Sat May 14 2022 15:53:29 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431779#c1):_
+```
+Eclipse EMF Validation is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-validation.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-validation/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Validation will be archived and made read-only.
+```
+
+---
+_[Comment #2 on Thu May 26 2022 21:43:42 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431779#c2):_
+```
+Is this a duplicate of https://bugs.eclipse.org/bugs/show_bug.cgi?id=410834? Or at least a concrete consequence of it?
+```
+
+---
+_[Comment #3 on Fri May 27 2022 21:04:13 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431779#c3):_
+```
+(In reply to Pierre-Charles David from comment #2)
+> Is this a duplicate of https://bugs.eclipse.org/bugs/show_bug.cgi?id=410834?
+> Or at least a concrete consequence of it?
+
+Almost certainly. Maybe 2014 predates the good suggestions of duplicates for new Bugzillas. This bug has a stronger motivation so perhaps DUP that one to this.
+```
+
+---
+_[Comment #4 on Sun Aug 21 2022 12:09:26 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431779#c4):_
+```
+
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5JsOQx/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/14,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/14,emf-validation,1524513617,14,Support Eclipse 2023-03,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-01-08T13:44:26Z,2023-04-09T11:49:57Z,"This is about making sure a version of EMF Validation compatible with Eclipse 2023-03 is contributed in the SimRel.
+It might be as simple as just checking the current version is OK, or require some adaptations (e.g. regarding APIs deprecated or removed from the platform).
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/14/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/14,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5ZeR9c,emf-validation,1501110108,14,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-04-09T11:49:57Z,2023-04-09T11:49:57Z,Build and tests are green on the 2023-03 target platform.,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms5ZeR9c/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/15,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/15,emf-validation,1651858131,15,Support Eclipse 2023-06,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-04-03T11:12:30Z,2023-11-05T14:05:25Z,"The Eclipse platform has moved to Java 17 and recently removed quite a lot of APIs which were deprecated.
+This is about making sure EMF Validation works properly with the upcoming Eclipse 4.28 (2023-06).
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/15/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/16,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/16,emf-validation,1651860726,16,Publish artifacts on Maven Central,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2023-04-03T11:14:14Z,2023-04-03T11:14:14Z,,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/16/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/17,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/17,emf-validation,1669326373,17,"Regenerate validation.ecore with more ""modern"" parameters",pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2023-04-15T11:49:26Z,2023-04-15T11:49:31Z,"At least try to use `MinimalEObjectImpl`, and maybe enable some other EMF features that did not exist in 2009 (e.g. child extenders, style providers, etc.).
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/17/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/20,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/20,emf-validation,2022469359,20,Drop support for Eclipse versions older than 2022-09 and switch to Java 17 ,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-12-03T11:03:18Z,2023-12-04T19:30:15Z,"Eclipse 2022-09 (version 4.25 of the platform) is the first version which _requires_ Java 17.
+In order to reduce the maintenance burden, EMF Validation will drop support for older versions of Eclipse, and require Java 17.
+
+For people who still need to use EMF Validation with older versions of Eclipse and/or Java, the older releases still work exactly as before, and given that there is only the occasional bugfix, they are functionally equivalent.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/20/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21,emf-validation,2022470224,21,Remove the explicit source features,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-12-03T11:05:42Z,2024-08-23T16:26:11Z,"With modern versions of Tycho & PDE it seems that there is no real need to define them explicitly.
+See https://www.eclipse.org/lists/cross-project-issues-dev/msg19553.html
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6JeUhS,emf-validation,2306426962,21,NA,sratz,14908423,Sebastian Ratz,,NA,2024-08-23T07:01:45Z,2024-08-23T07:01:45Z,"This change did a bit too much.
+
+It's not necessary to **define** the feature manually - letting Tycho's `feature-source` do that is fine, but the auto-generated feature still has to be put in the repository.
+
+The changes to [releng/org.eclipse.emf.validation.repository/category.xml](https://github.com/eclipse-emfservices/emf-validation/commit/b0a3e9e9e8a4fdcdb95c8c62b28096d9dac6f698#diff-deab37c4fc82c6e9c7e1f88a40240bc1aca2efaf775d5fb31e246bc47a3a2d90) should be reverted.","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6JeUhS/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6Jgct7,emf-validation,2306984827,21,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-08-23T12:24:41Z,2024-08-23T12:24:41Z,"My reading from [the message on cross-project](https://www.eclipse.org/lists/cross-project-issues-dev/msg19553.html) was that source *bundles* are enough, as in the end only bundles have actual meaningful sources, and whichever way they (the bundles) are made available in the build or development environment, their corresponding source bundle, if available, will be found/resolved.
+
+> the idea is to get rid of source features.
+> [...]
+> source features are not so important artifacts per se, what really matters is making source bundles available [...] nowadays, none of those do require source features
+> [...]
+> you may be able to get rid of source features 
+
+What am I missing? What did this break? (the simrel build is fine)
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6Jgct7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6Jgg-S,emf-validation,2307002258,21,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-08-23T12:35:30Z,2024-08-23T12:35:30Z,"I have no issue with re-introducing them (see the new PR), but I'd like to understand why they are needed.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6Jgg-S/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6Jglt6,emf-validation,2307021690,21,NA,sratz,14908423,Sebastian Ratz,,NA,2024-08-23T12:45:59Z,2024-08-23T12:45:59Z,"Well it depends on the way the features are modeled and what you want to provide.
+
+1. You could have the individual bundles only and not include them in any feature
+2. You could include the source bundles in your `.sdk` feature
+3. You could ship a dedicated `.source` feature collecting all the source bundles
+
+The issue is in 1.13.0 option 3 was chosen, so removing them was simply a breaking change for consumers of that `.source` feature. E.g, we were/are including them in our `.target` definition for our product and this suddenly broke with Eclipse SimRel 2024-09 M3 containing EMF services 1.14.0 RC1.
+
+Therefore, for compatibility, the feature should be kept published on the update site.","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6Jglt6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6Jgms_,emf-validation,2307025727,21,NA,sratz,14908423,Sebastian Ratz,,NA,2024-08-23T12:48:15Z,2024-08-23T12:48:15Z,Same applies to emf-transaction: https://github.com/eclipse-emfservices/emf-transaction/commit/0dc611547c12bc60babfc94935325b24b92d8ea8#diff-6952ff2471471abf34549768c483cb1debd81a8dabca03fd0fb03f2ef40b69e3,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6Jgms_/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6JiCwm,emf-validation,2307402790,21,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-08-23T16:17:39Z,2024-08-23T16:17:39Z,Should be fixed by ccb21dbb7cbfb0ee7ae29cc9b063040f9b948e1f.,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6JiCwm/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6JiGMy,emf-validation,2307416882,21,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-08-23T16:26:09Z,2024-08-23T16:26:09Z,"> Same applies to emf-transaction: [eclipse-emfservices/emf-transaction@0dc6115#diff-6952ff2471471abf34549768c483cb1debd81a8dabca03fd0fb03f2ef40b69e3](https://github.com/eclipse-emfservices/emf-transaction/commit/0dc611547c12bc60babfc94935325b24b92d8ea8#diff-6952ff2471471abf34549768c483cb1debd81a8dabca03fd0fb03f2ef40b69e3)
+
+Fixed by https://github.com/eclipse-emfservices/emf-transaction/commit/c857cbf97cac28a06f9716b0bf6f36ab2d4dc897","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6JiGMy/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/25,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/25,emf-validation,2052359671,25,Adopt JustJ's publisher application for promotion,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2023-12-21T12:44:38Z,2023-12-21T12:44:39Z,"See https://eclipse.dev/justj/?page=tools
+
+It was recently added (by Ed himself) to Graphiti, [this comment](https://gitlab.eclipse.org/eclipse/graphiti/graphiti/-/issues/3#note_1394460) looks like a good reference for what's involved.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/25/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/26,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/26,emf-validation,2052386913,26,Add any missing top-level files,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-12-21T13:02:10Z,2024-08-18T09:02:36Z,"Review and add (or update) the various recommended top-level files.
+See https://gitlab.eclipse.org/eclipsefdn/emo-team/emo/-/issues/591#legal-documentation for example for a list of what the EF expects.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/26/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/29,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/29,emf-validation,2462545073,29,Ensure compatibility with upcoming OCL,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2024-08-13T06:58:13Z,2024-08-16T10:10:24Z,"OCL has recently introduced [a change](https://git.eclipse.org/c/ocl/org.eclipse.ocl.git/diff/plugins/org.eclipse.ocl/src/org/eclipse/ocl/OCL.java?id=b13265da499a26dfdb8c1bfdd39de9ddcd2d89d0) which removes the `OCL.newInstance()` static methods (see https://www.eclipse.org/lists/cross-project-issues-dev/msg19930.html and https://bugs.eclipse.org/bugs/show_bug.cgi?id=416470#c16).
+
+EMF Validation is impacted in `AbstractOCLModelConstraint`.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/29/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/29,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6IOdYl,emf-validation,2285491749,29,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-08-13T07:02:31Z,2024-08-13T07:02:31Z,"The easy fix is to replace `OCL.newInstance()` with `OCL.newInstanceAbstract()`, but that new method only exists in the (yet to be released) OCL 6.22, so this would mean the corresponding EMF Validation version would stop being compatible with earlier versions of OCL.
+
+The only way I see to stay compatible with both versions is to use ugly reflective code to find out which method to invoke at runtime.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/comments/IC_kwDOFNMpms6IOdYl/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/38,https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/38,emf-validation,2774710754,38,Add support for SBOM generation,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2025-01-08T08:47:49Z,2025-01-25T09:11:50Z,"* Tycho documentation: https://github.com/eclipse-tycho/tycho/blob/main/RELEASE_NOTES.md#support-for-cyclonedx-maven-plugin
+* [Support backported to Tycho 4.0.6](https://github.com/eclipse-tycho/tycho/blob/tycho-4.0.10/RELEASE_NOTES.md#406)
+* Upstream CycloneDX Maven Plugin: https://github.com/CycloneDX/cyclonedx-maven-plugin
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-validation/issues/38/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

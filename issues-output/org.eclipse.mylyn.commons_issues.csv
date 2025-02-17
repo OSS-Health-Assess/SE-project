@@ -1,0 +1,276 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/2,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/2,org.eclipse.mylyn.commons,1461273796,2,Mylyn notification popups overlap instead of stacking verically on screen when multiple,traggerET,70331514,Tikhon Tikhonin,,OPEN,2022-11-23T08:31:29Z,2022-12-03T09:33:26Z,"using org.eclipse.mylyn.commons.notifications.core.INotificationService.notify(...) from different parts of code (and with quite a big time interval) generate several notification popups, but instead of drawing on top of the ones which are already on the screen, the new one is just gets drawn over existing popups which gives a mess.","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/2,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5O9WGS,org.eclipse.mylyn.commons,1324704146,2,NA,traggerET,70331514,Tikhon Tikhonin,,NA,2022-11-23T08:32:26Z,2022-11-23T08:32:26Z,"![image](https://user-images.githubusercontent.com/70331514/203501511-a8e6cd83-57e1-4bdf-8a18-a782f0ff7a03.png)
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5O9WGS/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/2,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5O9YW6,org.eclipse.mylyn.commons,1324713402,2,NA,akurtakov,574788,Александър Куртаков,akurtakov@gmail.com,NA,2022-11-23T08:42:56Z,2022-11-23T08:42:56Z,JFace now has notifications so it's worth considering using it instead of mylyn ones and even deprecating the mylyn one.,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5O9YW6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/2,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PAqQZ,org.eclipse.mylyn.commons,1325573145,2,NA,mjmeijer,2027490,Maarten Meijer,mjmeijer@eclipsophy.com,NA,2022-11-23T19:41:10Z,2022-11-23T19:41:10Z,"+1
+I support deprecating these popups and switching to JFace ones.
+Less code is less code to maintain, but see discussion here:
+
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=229823","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PAqQZ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/2,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po52d,org.eclipse.mylyn.commons,1336122781,2,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-12-03T09:33:25Z,2022-12-03T09:33:25Z,"> using org.eclipse.mylyn.commons.notifications.core.INotificationService.notify(...) from different parts of code (and with quite a big time interval) generate several notification popups, but instead of drawing on top of the ones which are already on the screen, the new one is just gets drawn over existing popups which gives a mess.
+
+Is it possible, that you can share a simple example demonstrating this behavior?","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po52d/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/4,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/4,org.eclipse.mylyn.commons,1464169233,4,Restore releng for org.eclipse.mylyn.commons,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,CLOSED,2022-11-25T08:01:55Z,2022-11-27T12:06:30Z,We should reanimate the releng for org.eclipse.mylyn.commons and integrate it with GitHub actions ,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/4/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/4,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PHSS7,org.eclipse.mylyn.commons,1327310011,4,NA,wimjongman,180969,Wim Jongman,wim.jongman@remainsoftware.com,NA,2022-11-25T10:39:13Z,2022-11-25T10:39:13Z,See Releng for e4.26 #8 #9 ,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PHSS7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/4,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKzir,org.eclipse.mylyn.commons,1328232619,4,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-11-27T12:06:30Z,2022-11-27T12:06:30Z,This one is done with #9 ,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKzir/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/5,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/5,org.eclipse.mylyn.commons,1464188862,5,Provide required files for org.eclipse.mylyn.commons repository,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,CLOSED,2022-11-25T08:21:54Z,2022-11-25T08:27:46Z,"Repository should contain:
+* LICENSE
+* NOTICE","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/5,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PGrtd,org.eclipse.mylyn.commons,1327151965,5,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-11-25T08:27:46Z,2022-11-25T08:27:46Z,Done with #6 ,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PGrtd/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/8,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/8,org.eclipse.mylyn.commons,1464337331,8,Releng for e4.26,wimjongman,180969,Wim Jongman,wim.jongman@remainsoftware.com,CLOSED,2022-11-25T10:27:17Z,2022-12-05T07:58:50Z,"- [x] Move all http to https
+- [x] Create new target file
+- [x] Fix mylyn parent
+- [x] Fix the build for e4.26
+- [x] ...","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/8/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/8,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Pr5j2,org.eclipse.mylyn.commons,1336908022,8,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-12-05T07:58:50Z,2022-12-05T07:58:50Z,The CI/CD for https://github.com/eclipse-mylyn/org.eclipse.mylyn.commons is up and running,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Pr5j2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,org.eclipse.mylyn.commons,1465118528,14,target platform strategy,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,OPEN,2022-11-26T10:59:38Z,2022-12-03T15:39:59Z,"We actual have the targets in two places.
+
+- org.eclipse.mylyn.commons/org.eclipse.mylyn.commons-target
+- org.eclipse.mylyn/org.eclipse.mylyn-target (updated 4 days ago)
+  I add the targets for 4.23 - 4.25
+
+So maybe we should look that we can
+- keep the target in both parts same (actual on use versions and the other 0.0.0)
+- reuse one target in the other
+
+What is the way we want to go?","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKBt3,org.eclipse.mylyn.commons,1328028535,14,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-11-26T11:24:13Z,2022-11-26T11:24:13Z,"@BeckerFrank what is the use case of supporting numerous targets? Perhaps, an ability to be installed for older Eclipse Platform without conflicts. Personally, I think this is nice to have. But, it may be much harder than switching a .target file or even hardly possible. Examples:
+1) Java 8 -> Java 11 switch for Eclipse Platform
+2) javax -> jakarta switch
+3) numerous changes in 3rd party (logging was the most painful)
+4) potential Java 11 -> Java 17 switch for Eclipse Platform
+
+Let's range our priorities
+* work with latest Eclipse Platform
+* re-join SimRel
+* work with latest Java
+* support older releases
+* more goals here
+WDYT @BeckerFrank @wimjongman ?","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKBt3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKFLj,org.eclipse.mylyn.commons,1328042723,14,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-11-26T13:03:05Z,2022-11-26T13:03:05Z,"
+
+
+> @BeckerFrank what is the use case of supporting numerous targets? Perhaps, an ability to be installed for older Eclipse Platform without conflicts. Personally, I think this is nice to have. But, it may be much harder than switching a .target file or even hardly possible. Examples:
+
+Yes this can be maybe impossible.
+But Mylyn is by example used in OOMPH Mylyn.ecore Model (hard coded with value https://download.eclipse.org/mylyn/releases/latest).
+So if you want for some reason install an old Eclipse version the setup can fail.
+
+This is why Mylyn tried to be compatible with very old versions.
+I think, that we maybe drop some older Eclipse Version and if possible require Java 11 and only support Eclipse 2020-09 and newer. 
+
+> 
+> 1. Java 8 -> Java 11 switch for Eclipse Platform
+> 2. javax -> jakarta switch
+> 3. numerous changes in 3rd party (logging was the most painful)
+> 4. potential Java 11 -> Java 17 switch for Eclipse Platform
+> 
+> Let's range our priorities
+> 
+> * work with latest Eclipse Platform
+> * re-join SimRel
+> * work with latest Java
+> * support older releases
+> * more goals here
+>   WDYT @BeckerFrank @wimjongman ?
+
+Yes!
+We can contact the OOMPH Project if we found some issues with installing not the latest Eclipse version.
+
+BTW: The Eclipse-Installer points to the new Mylyn.setup (GitHub URL) and can be used for an easy setup of an new Eclipse Instance.
+
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKFLj/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKOBh,org.eclipse.mylyn.commons,1328078945,14,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-11-26T16:52:26Z,2022-11-26T16:52:26Z,"> This is why Mylyn tried to be compatible with very old versions.
+
+Good to know. We also still support Java 8 in Eclipse Passage (engine only) and I understand the challenge. I think if we can enumerate these ""kernel"" bundles that we want to be extra-compartible - the task will become realisitc. Please help to collect this info. 
+And then we need to ensure that we test all changes for the set of older platforms.
+
+> BTW: The Eclipse-Installer points to the new Mylyn.setup (GitHub URL) and can be used for an easy setup of an new Eclipse Instance
+
+Thanks! I'm a fan  of Oomph too. No idea how I managed to overlook the Mylyn.setup  ","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKOBh/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKvm5,org.eclipse.mylyn.commons,1328216505,14,NA,wimjongman,180969,Wim Jongman,wim.jongman@remainsoftware.com,NA,2022-11-27T10:32:12Z,2022-11-27T10:32:12Z,"<copy/paste>
+
+I agree with Alexander that the repos should be self-sufficient. However, it is also the case that some repos have to be built before others.
+
+common itself is in use by other downstream repositories. This requires a cascading build setup: When commons is built, it must trigger its downstream builds.
+
+We can also look at commons (and other upstream repos) as just another third-party dependency. It means that downstream repositories are built with whatever common is currently in the snapshot/nightly repo. When a release is planned, we can make one build that cascades all builds into proper order and then release that result.
+
+Is there a graph that shows the mylyn internal dependency tree?","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKvm5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKzLd,org.eclipse.mylyn.commons,1328231133,14,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-11-27T12:00:36Z,2022-11-27T12:00:36Z,"(In reply to comment #4)
+> <copy/paste>
+> 
+> Is there a graph that shows the mylyn internal dependency tree?
+
+No there is no dependency tree.
+But I know that we have a dependency in org.eclipse.mylyn.commons to org.eclipse.mylyn.context (project org.eclipse.mylyn.monitor. ui) and this is the reason why we have extra *.target files in commons with repository https://download.eclipse.org/mylyn/snapshots
+
+The following classes need some parts from org.eclipse.mylyn.context
+- ActivityContextManager
+- AbstractUserInteractionMonitor
+
+Here the other dependiencies I know
+
+org.eclipse.myln.commons is used by
+- org.eclipse.myln.tasks
+- org.eclipse.myln.versions
+
+org.eclipse.myln.tasks is used by
+- org.eclipse.myln.context
+- org.eclipse.myln.reviews
+
+org.eclipse.myln.versions is used by
+- org.eclipse.myln.context
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKzLd/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PL7sc,org.eclipse.mylyn.commons,1328528156,14,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-11-28T04:36:07Z,2022-11-28T04:36:07Z,"> (In reply to comment #4)
+> 
+> > <copy/paste>
+> > Is there a graph that shows the mylyn internal dependency tree?
+> 
+> No there is no dependency tree. But I know that we have a dependency in org.eclipse.mylyn.commons to org.eclipse.mylyn.context (project org.eclipse.mylyn.monitor. ui) and this is the reason why we have extra *.target files in commons with repository https://download.eclipse.org/mylyn/snapshots
+> 
+> The following classes need some parts from org.eclipse.mylyn.context
+> 
+> * ActivityContextManager
+> * AbstractUserInteractionMonitor
+> 
+> Here the other dependiencies I know
+> 
+> org.eclipse.myln.commons is used by
+> 
+> * org.eclipse.myln.tasks
+> * org.eclipse.myln.versions
+> 
+> org.eclipse.myln.tasks is used by
+> 
+> * org.eclipse.myln.context
+> * org.eclipse.myln.reviews
+> 
+> org.eclipse.myln.versions is used by
+> 
+> * org.eclipse.myln.context
+
+One more detail.
+org.eclipse.mylyn must run twice.
+- build the target Platform
+- trigger the run of all unit tests","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PL7sc/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PMuA4,org.eclipse.mylyn.commons,1328734264,14,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-11-28T08:53:36Z,2022-11-28T08:53:36Z,"> trigger the run of all unit tests
+
+I'm not sure that I understand this approach @BeckerFrank . If we run unit tests per-repository, what is the value to run the same tests again?","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PMuA4/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PTbC_,org.eclipse.mylyn.commons,1330491583,14,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-11-29T11:35:57Z,2022-11-29T11:35:57Z,"I've created #19 to let aggregator resolve test bundles from ""common"".
+Also, I removed two excessive .target definitions introduced by @ruspl-afed and @wimjongman:
+
+* org.eclipse.mylyn.commons-target/mylyn-commons-e4.latest.target
+* org.eclipse.mylyn.commons-target/org.eclipse.mylyn.commons-target.target","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PTbC_/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PUpM6,org.eclipse.mylyn.commons,1330811706,14,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-11-29T15:17:39Z,2022-11-29T15:17:39Z,"> > trigger the run of all unit tests
+> 
+> I'm not sure that I understand this approach @BeckerFrank . If we run unit tests per-repository, what is the value to run the same tests again?
+
+For historical reasons we have one place org.eclipse.mylyn.tests where we have all the Entry Test defined.
+We can look if the eclipse project include some additional logic that we can move to another place.
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PUpM6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po1Dn,org.eclipse.mylyn.commons,1336103143,14,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-12-03T07:21:25Z,2022-12-03T07:21:25Z,"@wimjongman @BeckerFrank we still have no answer what is the lowest Eclipse version we would like to support. 
+We need this information to choose better way of resolving circular dependencies.","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po1Dn/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po4Cz,org.eclipse.mylyn.commons,1336115379,14,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-12-03T08:43:05Z,2022-12-03T08:43:05Z,"> @wimjongman @BeckerFrank we still have no answer what is the lowest Eclipse version we would like to support.
+> We need this information to choose better way of resolving circular dependencies.
+
+I think we have the following options
+1. Eclipse 2022-09 (first java 17 version)
+  This is maybe the easiest to implement.
+2. Eclipse 3.8 / 4.2 (actual supported)
+  This get more complicated over the past years.
+3. Eclipse 2022-06 (first version mylyn task list not in simrel)
+  This is also the last version with java 11
+4. one version between 2021-03 and 2022-03
+  With one version from this range we allow OOMPH to work in most of the cases assuming that older version are not really used that often.
+
+For all options we should keep in mind that the OOMPH Query Setup Task fetch the version from https://download.eclipse.org/mylyn/releases/latest and this can break all *.setups with ""Mylyn Build"" and ""Mylyn Query"" task for Eclipse Versions before the supported Version.
+
+I prefer that we try 4. because ""IBM Developer for z/OS"" latest version (16.0.0) is based on 2022-03 and my employer use this product and we also have Mylyn. 
+
+Thougths?","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po4Cz/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po8bJ,org.eclipse.mylyn.commons,1336133321,14,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-12-03T10:49:12Z,2022-12-03T10:49:12Z,"From my side it looks like the following:
+* Priority 1: support the latest SimRel (2022-12 at the moment) this is the very minimum to re-join SimRel
+* Priority 2: support earlier version for subset of bundles/features to let Oomph proceed, we need help from Ed @merks to identify the details.
+* Priority 3: support particular version(s) of Eclipse Platform that is needed for commercial offerings. Well, such an extra effort should be funded by interested party.
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po8bJ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po8l_,org.eclipse.mylyn.commons,1336134015,14,NA,merks,208716,Ed Merks,,NA,2022-12-03T10:54:06Z,2022-12-03T10:54:06Z,"I suspect there are very few features introduced in the last few years of Eclipse that are actually needed by Mylyn so the most likely the concern would be to remove dependencies on things that have been deprecated and subsequently removed.
+
+These are the things used by Oomph:
+
+![image](https://user-images.githubusercontent.com/208716/205437312-4078643a-c1df-4a81-bfbd-2cf7cba05619.png)","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po8l_/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po_FD,org.eclipse.mylyn.commons,1336144195,14,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-12-03T11:58:19Z,2022-12-03T11:58:19Z,"Thank you for the details @merks ! Do you have any incoming constraints for mentioned bundles from Oomph side? Like BREE, supported Eclipse Platform version, whatever else..?","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Po_FD/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpAp3,org.eclipse.mylyn.commons,1336150647,14,NA,wimjongman,180969,Wim Jongman,wim.jongman@remainsoftware.com,NA,2022-12-03T12:29:08Z,2022-12-03T12:29:08Z,"What is the reason for supporting older Eclipse versions? I can think of only one reason: to allow new Mylyn functions to be available in older versions. 
+
+> Eclipse 3.8 / 4.2 (actual supported)
+
+If people want to use an old Eclipse version, then there is always a Mylyn version that supports that version.
+
+In short, I see no reason to support older Eclipse releases. Meaning that if you want to use an old Eclipse version, then you also have to install an old compatible Mylyn version.
+
+
+
+
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpAp3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpFm1,org.eclipse.mylyn.commons,1336170933,14,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-12-03T14:26:21Z,2022-12-03T14:26:21Z,"> In short, I see no reason to support older Eclipse releases. Meaning that if you want to use an old Eclipse version, then you also have to install an old compatible Mylyn version.
+
+This depends on the p2 updatesite you use. For mylyn I think most people use https://download.eclipse.org/mylyn/releases/latest and do not use a version specific mylyn download like https://download.eclipse.org/mylyn/releases/3.25/.
+
+In the past the mylyn project has the same minimal Eclipse Version for every new version so there was no need to look what version is needed for a new installation. 
+
+In the future we maybe need to tell them that the use https://download.eclipse.org/mylyn/releases/3.25/ for installations before some specific Eclipse version because https://download.eclipse.org/mylyn/releases/latest requires a newer Eclipse version.
+
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpFm1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpGP1,org.eclipse.mylyn.commons,1336173557,14,NA,wimjongman,180969,Wim Jongman,wim.jongman@remainsoftware.com,NA,2022-12-03T14:41:19Z,2022-12-03T14:41:19Z,Yes. We need to make that clear. I agree. Is it not the case that Mylyn is included in most release train repositories?,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpGP1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpG8z,org.eclipse.mylyn.commons,1336176435,14,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-12-03T14:57:46Z,2022-12-03T14:57:46Z,"> In the future we maybe need to tell them that the use https://download.eclipse.org/mylyn/releases/3.25/ for installations before some specific Eclipse version because https://download.eclipse.org/mylyn/releases/latest requires a newer Eclipse version.
+
+Perhaps it will be better to have something like https://download.eclipse.org/mylyn/releases/20xx-yy/ that redirects to a specific Mylyn release.","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpG8z/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpJDZ,org.eclipse.mylyn.commons,1336185049,14,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-12-03T15:39:59Z,2022-12-03T15:39:59Z,"> Yes. We need to make that clear. I agree. Is it not the case that Mylyn is included in most release train repositories?
+
+Yes Mylyn was in the release train until 2022-03 after this only Mylyn WikiText is included.","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PpJDZ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/15,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/15,org.eclipse.mylyn.commons,1465140735,15,licensecheck.yml is not considered during PR check,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,OPEN,2022-11-26T12:23:08Z,2022-11-26T12:32:35Z,"This action https://github.com/eclipse-mylyn/org.eclipse.mylyn.commons/blob/master/.github/workflows/licensecheck.yml is not considered during PR check for some reason. Do you have any hint why could it be so @akurtakov ? I've copied it from Mylyn Docs, and changed some ""tycho"" strings to ""mylyn""   ","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/15/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/15,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKEIE,org.eclipse.mylyn.commons,1328038404,15,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-11-26T12:32:35Z,2022-11-26T12:32:35Z,Could it be the general restriction to use GitHub Actions for this repository @wimjongman ?,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKEIE/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/16,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/16,org.eclipse.mylyn.commons,1465416752,16,Resolve circular dependency between org.eclipse.mylyn.monitor.* and org.eclipse.mylyn.context.*,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,OPEN,2022-11-27T11:54:41Z,2022-12-23T12:46:39Z,Currently [org.eclipse.mylyn.commons](https://github.com/eclipse-mylyn/org.eclipse.mylyn.commons) repository requires org.eclipse.mylyn.ide_feature feature to be built. We need to introduce an interface to resolve this.,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/16/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/16,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKzlV,org.eclipse.mylyn.commons,1328232789,16,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-11-27T12:07:20Z,2022-11-27T12:07:20Z,"Please se my comment in https://github.com/eclipse-mylyn/org.eclipse.mylyn.commons/issues/14#issuecomment-1328231133
+
+The following classes in org.eclipse.commons need some parts from org.eclipse.mylyn.context
+
+- ActivityContextManager
+- AbstractUserInteractionMonitor
+
+Should I try to solve this issue?","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PKzlV/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/16,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PK0XM,org.eclipse.mylyn.commons,1328235980,16,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-11-27T12:25:17Z,2022-11-27T12:25:17Z,Of cause you are welcome to suggest your solution.,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PK0XM/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/16,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5P_7C5,org.eclipse.mylyn.commons,1342156985,16,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-12-08T06:48:54Z,2022-12-08T06:48:54Z,"I'm not sure that this is the only circular dependency, let's postpone the implementation a bit until we can see the whole picture.","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5P_7C5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/16,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5QEDOD,org.eclipse.mylyn.commons,1343239043,16,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-12-08T19:22:05Z,2022-12-08T19:22:05Z,Sure!,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5QEDOD/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/16,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5RS6nR,org.eclipse.mylyn.commons,1363913169,16,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-12-23T12:27:26Z,2022-12-23T12:27:26Z,"I think that we no longer need this because we want to have a new big Repository with all plugins (https://github.com/eclipse-mylyn/.github/issues/15)
+@ruspl-afed, @wimjongman: Should we close this Issue?
+Thoughts?
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5RS6nR/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/16,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5RS9jd,org.eclipse.mylyn.commons,1363925213,16,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-12-23T12:46:39Z,2022-12-23T12:46:39Z,"Yes, we can postpone this issue . With one repository it will be easier to fix. 
+Sorry for postponing the review of your changes @BeckerFrank - currently I'm focused to establish healthy releng. ","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5RS9jd/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/18,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/18,org.eclipse.mylyn.commons,1467553780,18,make sure that all sources are correct formatted,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,OPEN,2022-11-29T07:00:28Z,2022-11-29T07:00:28Z,"All Mylyn projects have their own source formatting settings, but not all source files are formatted correctly.","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/18/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/19,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/19,org.eclipse.mylyn.commons,1467831189,19,Publish org.eclipse.mylyn.commons.development feature,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,CLOSED,2022-11-29T10:36:03Z,2022-11-29T11:36:23Z,"The content of org.eclipse.mylyn.commons.development feature is required for mylyn aggregator tests.
+
+We need to publish it to commons repository.","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/19/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/19,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PTbKQ,org.eclipse.mylyn.commons,1330492048,19,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-11-29T11:36:22Z,2022-11-29T11:36:22Z,Done via #20 ,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5PTbKQ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/21,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/21,org.eclipse.mylyn.commons,1474149217,21,Releng: restore signing,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,OPEN,2022-12-03T16:37:11Z,2022-12-03T16:37:11Z,"It seems that our artifacts are not signed.
+We need to restore signing.","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/21/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/23,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/23,org.eclipse.mylyn.commons,1478521662,23,Releng: update the list of supported environments,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,OPEN,2022-12-06T08:17:49Z,2022-12-06T08:17:49Z,"A part of https://github.com/eclipse-mylyn/.github/issues/6
+
+Add
+* cocoa.macosx.aarch64
+* gtk.linux.aarch64
+
+Remove
+* gtk.linux.x86
+* win32.win32.x86
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/23/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/25,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/25,org.eclipse.mylyn.commons,1483892570,25,Update version numbers to 3.26.0 for features and bundles,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,CLOSED,2022-12-08T07:04:35Z,2022-12-08T09:44:16Z,"All the features should be aligned to version numbers to 3.26.0 
+* to simplify support
+* to identify circular dependencies","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/25/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/25,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5QAx3R,org.eclipse.mylyn.commons,1342381521,25,NA,ruspl-afed,15242312,Alexander Fedorov,alexander.fedorov@arsysop.ru,NA,2022-12-08T09:44:12Z,2022-12-08T09:44:12Z,Done via #26 ,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5QAx3R/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/27,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/27,org.eclipse.mylyn.commons,1488914334,27,TestConfiguration.discover did not work for https URLs,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,CLOSED,2022-12-10T20:18:15Z,2022-12-27T14:34:51Z,"The discover fail because of a ssl verification error.
+","{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/27/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/27,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5QMNVq,org.eclipse.mylyn.commons,1345377642,27,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-12-10T20:24:15Z,2022-12-10T20:24:15Z,After we fix this we can reactivate all tests excluded during https://github.com/eclipse-mylyn/.github/issues/3,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5QMNVq/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/27,https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Raq5N,org.eclipse.mylyn.commons,1365945933,27,NA,BeckerFrank,13169360,Frank Becker,eclipse@frank-becker.de,NA,2022-12-27T14:34:51Z,2022-12-27T14:34:51Z,This was fixed with https://github.com/eclipse-mylyn/org.eclipse.mylyn.commons/pull/28/files,"{""url"": ""https://api.github.com/repos/eclipse-mylyn/org.eclipse.mylyn.commons/issues/comments/IC_kwDOIdD_es5Raq5N/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

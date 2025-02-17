@@ -1,0 +1,1310 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/1,https://api.github.com/repos/eclipse-archived/concierge/issues/1,concierge,185903312,1,OSGi Coordinator service,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T11:45:37Z,2016-10-28T11:45:37Z,"Migrated from Eclipse Bugzilla #476071
+
+Jan S. Rellermeyer 2015-08-27 15:09:09 EDT
+
+> Implement the OSGi Coordinator service specification (see the specs and https://osgi.org/javadoc/r6/enterprise/org/osgi/service/coordinator/package-summary.html) in a lightweight way.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/2,https://api.github.com/repos/eclipse-archived/concierge/issues/2,concierge,185903660,2,More test cases wanted,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T11:47:55Z,2016-11-07T17:33:30Z,"Migrated from Eclipse Bugzilla #477411
+
+Jan S. Rellermeyer 2015-09-14 22:27:23 EDT
+
+> We would like to have more unit tests for the Concierge core framework and the associated services. Jochen wrote a wonderful utility class that can easily generate synthetic bundles so that writing test cases should now be a lot easier.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/3,https://api.github.com/repos/eclipse-archived/concierge/issues/3,concierge,185904039,3,Concierge as standalone resolver,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T11:50:15Z,2017-11-19T11:11:59Z,"Migrated from Eclipse Bugzilla #475419
+
+Jan S. Rellermeyer 2015-08-19 15:17:24 EDT
+
+> Concierge can be used as a standalone resolver (it registers itself as a resolver service) and as such should pass the entire R5 resolver TCK.
+
+Comment 1 Jan S. Rellermeyer 2015-09-19 02:47:44 EDT
+
+> Three test cases remaining. One of them seems to have a problem. 
+> Unfortunately, I wrote the TCK...
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/4,https://api.github.com/repos/eclipse-archived/concierge/issues/4,concierge,185907924,4,Starting bundles with start level >3 does not work,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2016-10-28T12:11:22Z,2017-11-19T11:07:30Z,"Migrated from Eclipse Bugzilla #481659
+
+Jochen Hiller 2015-11-08 04:56:42 EST
+
+> When fixing https://bugs.eclipse.org/bugs/show_bug.cgi?id=481650 I added test cases with more start level options.
+> 
+> One test case fails if bundles with start levels of 10, 20, 30 will be installed. But these bundles could not be started, they simple ignore bundle.start().
+> See test case at http://git.eclipse.org/c/concierge/org.eclipse.concierge.git/tree/org.eclipse.concierge/test/org/eclipse/concierge/compat/service/XargsFileLauncherXargsTest.java#n140
+> 
+> I saw that this will happen since using a start level of 4.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/4/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/4,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzOTk4MjM2OQ==,concierge,339982369,4,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2017-10-27T14:10:08Z,2017-10-27T14:10:08Z,I will take care of testing and fixing of that issue for Milestone 5.1 release,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzOTk4MjM2OQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/4,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTUwNDYyMA==,concierge,345504620,4,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2017-11-19T09:52:34Z,2017-11-19T09:52:34Z,"I checked that issue, and fixed the test cases: if bundles with start level >3 should be started automatically, we have to set the property `org.osgi.framework.startlevel.beginning` to a higher value","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTUwNDYyMA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/4,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTUwNjU0Nw==,concierge,345506547,4,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2017-11-19T10:28:57Z,2017-11-19T10:28:57Z,"Yes, this makes a lot of sense.
+You can also programmatically set the start level through the corresponding service.
+
+—Jan.
+
+On Nov 19, 2017, at 10:52 AM, Jochen Hiller <notifications@github.com<mailto:notifications@github.com>> wrote:
+
+
+I checked that issue, and fixed the test cases: if bundles with start level >3 should be started automatically, we have to set the property org.osgi.framework.startlevel.beginning to a higher value
+
+—
+You are receiving this because you are subscribed to this thread.
+Reply to this email directly, view it on GitHub<https://github.com/eclipse/concierge/issues/4#issuecomment-345504620>, or mute the thread<https://github.com/notifications/unsubscribe-auth/AGMmf18TK8D2AMrYCFxiefXdaWHe1mKtks5s3_pigaJpZM4KjX6S>.
+
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTUwNjU0Nw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/4,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTUwODQ1MA==,concierge,345508450,4,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2017-11-19T11:07:30Z,2017-11-19T11:07:30Z,"Start levels does work fine, test case was wrong.
+Close that issue now.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTUwODQ1MA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/5,https://api.github.com/repos/eclipse-archived/concierge/issues/5,concierge,185908239,5,Fix checking conflicts when attaching fragments,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:12:51Z,2016-10-28T12:12:51Z,"Migrated from Eclipse Bugzilla #485642
+
+Tim Verbelen 2016-01-12 07:02:10 EST
+
+> There is still some fixing to do in the checkConflicts method when attaching a fragment. Some rules are still commented out regarding TCK regressions. 
+> 
+> The issue can be found in BundleImpl r2357-2378. Possibly this also involves some of our Junit tests involving Fragments failing?
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/6,https://api.github.com/repos/eclipse-archived/concierge/issues/6,concierge,185909194,6,test cases race conditions,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:17:29Z,2016-10-28T12:17:29Z,"Migrated from Eclipse Bugzilla #485749
+
+Stef Boerrigter 2016-01-13 08:15:47 EST
+
+> We are building concierge here with 3 persons on different machines, and see that it compiles completely on 1 pc, the others have JUnit test failures on ""testBundleNativeCodeMacOSX_X86_64_WithSelectionFilter"" that cannot be reproduced on other machines.
+> another error seems to be the testBundleWithBadImports test.
+> it sometimes Failes and when we rebuild it is Succes or failure
+> (also dependant on what machine).
+> All 3 these machines have the same OS (Ubuntu 14.04 with same configuration) and we use Yocto to build our concierge (on OpenJDK-8)
+
+Comment 1 Stef Boerrigter 2016-01-13 08:16:50 EST
+
+> Created attachment 259156 [details]
+> compile log
+> attached is the compile log.
+> [log.do_compile.20625.txt](https://github.com/eclipse/concierge/files/558290/log.do_compile.20625.txt)
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/7,https://api.github.com/repos/eclipse-archived/concierge/issues/7,concierge,185909463,7,URLHandlers service,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:18:50Z,2016-10-28T12:18:50Z,"Migrated from Eclipse Bugzilla #475432
+
+Jan S. Rellermeyer 2015-08-20 00:20:01 EDT
+
+> Concierge should provide an implementation of the URLHandlers service.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/8,https://api.github.com/repos/eclipse-archived/concierge/issues/8,concierge,185910065,8,Framework extension will not be resolved on framework start from storage,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:22:18Z,2016-10-28T12:22:18Z,"Migrated from Eclipse Bugzilla #481680
+
+Jochen Hiller 2015-11-09 02:51:11 EST
+
+> How to reproduce:
+> - use latest SNAPSHOT release from http://download.eclipse.org/concierge/snapshots/concierge-incubation-SNAPSHOT-latest.zip
+> - start equinox-console sample
+>   java -jar framework/org.eclipse.concierge-5.1.0.SNAPSHOT-20151108155258.jar samples/equinox-console.xargs
+> - all does work, Equinox console can be used (e.g. use ""ss"" command)
+> - exit framework
+> - start again with 
+>   java -jar framework/org.eclipse.concierge-5.1.0.SNAPSHOT-20151108155258.jar samples/equinox-console.xargs
+> - previous storage named ""equinox-console"" will be reused
+> - equinox-console bundle can not be started (stays in INSTALLED state). see console output
+> 
+> java -jar framework/org.eclipse.concierge-5.1.0.SNAPSHOT-20151108155258.jar samples/equinox-console.xargs
+> RESTORED BUNDLE [org.apache.felix.configadmin-1.8.8] WITH SL 1 and autostart 2
+> RESTORED BUNDLE [org.eclipse.equinox.console-1.1.100.v20141023-1406] WITH SL 1 and autostart 2
+> RESTORED BUNDLE [org.eclipse.equinox.util-1.0.500.v20130404-1337] WITH SL 1 and autostart 2
+> RESTORED BUNDLE [org.eclipse.equinox.supplement-1.6.0.v20141009-1504] WITH SL 1 and autostart 2
+> RESTORED BUNDLE [org.eclipse.equinox.common-3.7.0.v20150402-1709] WITH SL 1 and autostart 2
+> RESTORED BUNDLE [org.apache.felix.gogo.runtime-0.10.0.v201209301036] WITH SL 1 and autostart 2
+> RESTORED BUNDLE [org.eclipse.concierge.service.packageadmin-5.1.0.SNAPSHOT-20151108155258] WITH SL 1 and autostart 2
+> RESTORED BUNDLE [org.apache.felix.gogo.command-0.10.0.v201209301215] WITH SL 1 and autostart 2
+> RESTORED BUNDLE [org.apache.felix.gogo.shell-0.10.0.v201212101605] WITH SL 1 and autostart 2
+> RESTORED BUNDLE [org.eclipse.concierge.extension.permission-5.1.0.SNAPSHOT-20151108155258] WITH SL 1 and autostart 0
+>   Concierge OSGi 5.1.0.SNAPSHOT-20151108155258 on Mac OS X 10.10.5 starting ... (equinox-console) startlevel=3
+> org.osgi.framework.BundleException: Resolution failed [BundleRequirement{Import-Package org.osgi.service.condpermadmin}, BundleRequirement{Import-Package org.osgi.service.permissionadmin}]
+>   at org.eclipse.concierge.Concierge.resolve(Concierge.java:2645)
+>   at org.eclipse.concierge.BundleImpl$Revision.resolve(BundleImpl.java:1881)
+>   at org.eclipse.concierge.BundleImpl.activate(BundleImpl.java:532)
+>   at org.eclipse.concierge.Concierge.setLevel(Concierge.java:1936)
+>   at org.eclipse.concierge.Concierge.start(Concierge.java:1359)
+>   at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:88)
+>   at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:72)
+>   at org.eclipse.concierge.Concierge.doMain(Concierge.java:606)
+>   at org.eclipse.concierge.Concierge.main(Concierge.java:525)
+>   Framework restarted in 0.24 seconds.
+> osgi>
+> - I checked the storage are, looks good
+> 
+> Any idea?
+
+Comment 1 Jochen Hiller 2015-11-09 11:27:44 EST
+
+> Added test case to reproduce that issue:
+> http://git.eclipse.org/c/concierge/org.eclipse.concierge.git/tree/org.eclipse.concierge/test/org/eclipse/concierge/BundlesWithFrameworkExtensionsTest.java#n82
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/8/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/9,https://api.github.com/repos/eclipse-archived/concierge/issues/9,concierge,185911581,9,removeBundleListener() does not work on framework bundle,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2016-10-28T12:30:27Z,2017-11-27T20:34:03Z,"Migrated from Eclipse Bugzilla #493251
+
+Simon Kaufmann 2016-05-09 10:58:54 EDT
+
+> When adding a BundleListener to the ""framework bundle"", this works nicely:
+> 
+> ```
+> concierge.getBundleContext().addBundleListener(this);
+> ```
+> 
+> However, removing it again does not work:
+> 
+> ```
+> concierge.getBundleContext().removeBundleListener(this);
+> ```
+> 
+> The reason clearly is the following in Concierge.BundleContextImpl.removeBundleListener():
+> 
+> ```
+> if (bundle == Concierge.this) {
+>     return;
+> }
+> ```
+> 
+> Maybe it's in there for a good reason, but I'm not sure if this asymmetry actually is intended.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/9/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/9,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTQ3NDkwOA==,concierge,345474908,9,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2017-11-18T22:05:37Z,2017-11-18T22:05:37Z,"Thanks @sjka for reporting that.
+I have a test case which can easily reproduce that.
+@rellermeyer Can you say something about this code in Concierge.removeBundleListener() ?
+
+```
+if (bundle == Concierge.this) {
+    return;
+}
+```
+
+Was that introduced by intention?","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTQ3NDkwOA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/9,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTQ3NTM0MQ==,concierge,345475341,9,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2017-11-18T22:13:05Z,2017-11-18T22:13:05Z,"@rellermeyer I added a test case for that in a branch in my repo.
+See https://github.com/JochenHiller/concierge/commit/9e4e74a1b6de02cf58225a8190b2be1764389545
+Simply copy the file to your workspace, and remove the ""Ignore"" annotation","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTQ3NTM0MQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/9,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTQ3NTY3Nw==,concierge,345475677,9,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2017-11-18T22:19:06Z,2017-11-18T22:19:06Z,"@rellermeyer For testing purposes I commented out that code. The test case and the complete test suite does work now without issues.
+Do you expect any big implications? I will try to run TCK before we will make that kind of change.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTQ3NTY3Nw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/9,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTQ3ODE1MQ==,concierge,345478151,9,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2017-11-18T23:07:25Z,2017-11-18T23:07:25Z,"Added a PR with the fix.
+When merging we should squash the commits into a single one.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NTQ3ODE1MQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/10,https://api.github.com/repos/eclipse-archived/concierge/issues/10,concierge,185913236,10,Repository contains no version tags,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2016-10-28T12:39:20Z,2017-10-28T17:33:01Z,"Migrated from Eclipse Bugzilla #499055
+
+Jochen Seeber 2016-08-02 11:35:07 EDT
+
+> Hi,
+> 
+> the Git repo does not contain any tagged versions, however, there are public releases. This really prevents us from using concierge, since we need reliable and repeatable builds.
+> 
+> Regards,
+> Jochen
+
+Comment 1 Jan S. Rellermeyer 2016-08-02 11:37:49 EDT
+
+> Thanks for reminding me of this issue, I totally forgot. I created a local tag when we released but I could not get it pushed (I believe Gerrit was the problem) and I simply forgot to research further how to get it done. 
+> I will do it now.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/10/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/10,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI1ODkwMjI3MQ==,concierge,258902271,10,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2016-11-07T17:26:59Z,2016-11-07T17:26:59Z,"With the move to GitHub (and abandoning Gerrit) I could finally push the tag. 
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI1ODkwMjI3MQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/11,https://api.github.com/repos/eclipse-archived/concierge/issues/11,concierge,185914160,11,REST support,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2016-10-28T12:44:18Z,2018-10-19T12:50:25Z,"Migrated from Eclipse Bugzilla #475520
+
+Jan S. Rellermeyer 2015-08-20 13:57:14 EDT
+
+> Add the REST service and Java REST client to Concierge as optional bundles.
+
+Comment 1 Jan S. Rellermeyer 2015-09-19 01:28:36 EDT
+
+> awaiting decision on https://dev.eclipse.org/ipzilla/show_bug.cgi?id=10150
+> Also requires https://dev.eclipse.org/ipzilla/show_bug.cgi?id=10152 and https://dev.eclipse.org/ipzilla/show_bug.cgi?id=10153
+> Moving to RC1.
+
+Comment 2 Jan S. Rellermeyer  2015-10-20 00:27:52 EDT
+
+> Not in 5.0.0 release timeframe anymore. 
+> 
+> We can do a 5.1 release that includes REST.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/11/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/11,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM1MjIxMA==,concierge,431352210,11,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-10-19T12:50:25Z,2018-10-19T12:50:25Z,REST support fully implemented and integrated. ,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM1MjIxMA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/12,https://api.github.com/repos/eclipse-archived/concierge/issues/12,concierge,185914646,12,Call for demos,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:46:45Z,2016-10-28T12:46:45Z,"Migrated from Eclipse Bugzilla #477412
+
+Jan S. Rellermeyer 2015-09-14 22:38:33 EDT
+
+> We would like to have one or more cool demos that illustrate the value of Concierge on embedded devices and through IoT applications.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/12/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/13,https://api.github.com/repos/eclipse-archived/concierge/issues/13,concierge,185914843,13,EventAdmin implementation,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:47:49Z,2016-11-07T18:22:16Z,"Migrated from Eclipse Bugzilla #480052
+
+Jan S. Rellermeyer 2015-10-17 16:11:12 EDT
+
+> The ""old Concierge"" had a nice, minimal EventAdmin service implementation. We should implement the most recent version of this specification for Concierge since it is a functionality that is useful for many applications, especially in combination with R-OSGi.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/13/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/14,https://api.github.com/repos/eclipse-archived/concierge/issues/14,concierge,185915097,14,Use pax-exam for Concierge integration tests?,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:49:10Z,2016-11-07T17:34:14Z,"Migrated from Eclipse Bugzilla #480566
+
+Jochen Hiller 2015-10-24 07:12:43 EDT
+
+> We have yet some integration tests in Concierge (see http://git.eclipse.org/c/concierge/org.eclipse.concierge.git/tree/org.eclipse.concierge.tests.integration).
+> These tests are built on a ""proprietary"" solution to download and install bundles from online URLs, like Apache Felix, Eclipse Orbit and others.
+> 
+> A similar solution will be provided by the pax-exam project (see https://ops4j1.jira.com/wiki/display/PAXEXAM4/Pax+Exam, latest version 4.x).
+> This framework will allow easy writing test cases installing bundles from different sources (maven, p2 repo, local URLs, ...). It also allows to run tests against different OSGi frameworks, so same tests could also be applied to Equinox, Felix, to check about same or different behavior.
+> The pax-exam OSGi container integration tests requires minimum OSGi R4.3 and does support the Launcher API, so it should work out-of-the-box even with Concierge.
+> 
+> The problem:
+> pax-exam is not yet in Orbit. It is hosted in Maven central at http://mvnrepository.com/artifact/org.ops4j.pax.exam
+> Pax-exam is heavily based on other op4j projects, like ops4j base, pax-url, pax-links, ...
+> 
+> As these jars are only used for regression testing, that is a test-only dependency.
+> 
+> What do you think? Does it makes sense to invest time on getting that running, or does the license problem is a show-stopper?
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/14/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/14,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI1NjkxNzUzNw==,concierge,256917537,14,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2016-10-28T13:17:17Z,2016-10-28T13:17:17Z,"@rellermeyer @tverbele Coming back to my proposal to introduce pax-exam
+
+I would like to do:
+- cleanup this OLD/deprecated project with these integration tests
+- align with pax-exam project to include Concierge as OSGi framework for testing
+- setup a simple project here with 1-3 pax-exam based tests using Concierge
+
+Agreed? I will prepare a PR to at least cleanup this old code. And I will check about the pax-exam version from Orbit which can be used for that, or create a CQ to add that to Orbit
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI1NjkxNzUzNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/14,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI1NzA3NzI1Nw==,concierge,257077257,14,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2016-10-29T07:43:30Z,2016-10-29T07:43:30Z,"Sounds good to me.
+
+—Jan.
+
+On Oct 28, 2016, at 3:17 PM, Jochen Hiller <notifications@github.com<mailto:notifications@github.com>> wrote:
+
+@rellermeyerhttps://github.com/rellermeyer @tverbelehttps://github.com/tverbele Coming back to my proposal to introduce pax-exam
+
+I would like to do:
+-   cleanup this OLD/deprecated project with these integration tests
+-   align with pax-exam project to include Concierge as OSGi framework for testing
+-   setup a simple project here with 1-3 pax-exam based tests using Concierge
+
+Agreed? I will prepare a PR to at least cleanup this old code. And I will check about the pax-exam version from Orbit which can be used for that, or create a CQ to add that to Orbit
+
+—
+You are receiving this because you were mentioned.
+Reply to this email directly, view it on GitHubhttps://github.com/eclipse/concierge/issues/14#issuecomment-256917537, or mute the threadhttps://github.com/notifications/unsubscribe-auth/AGMmfx1VGU9dgv2fCVTqcQp4FAv9inyTks5q4fXdgaJpZM4KjZ2O.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI1NzA3NzI1Nw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/15,https://api.github.com/repos/eclipse-archived/concierge/issues/15,concierge,185915819,15,framework bootdelegation insufficient,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:52:38Z,2016-10-28T12:52:38Z,"Migrated from Eclipse Bugzilla #480172
+
+Scott Lewis 2015-10-19 23:15:44 EDT
+
+> I have a bundle that uses javax.xml.parsers and org.xml.sax packages for xml parsing.  It refuses to resolve on Concierge RC1 with the following exception:
+> 
+> Concierge> Exception in thread ""main"" org.osgi.framework.BundleException: Resolution failed [BundleRequirement{Import-Package javax.xml.parsers}]
+>         at org.eclipse.concierge.Concierge.resolve(Concierge.java:2645)
+>         at org.eclipse.concierge.BundleImpl$Revision.resolve(BundleImpl.java:188
+> 1)
+>         at org.eclipse.concierge.BundleImpl.activate(BundleImpl.java:532)
+>         at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:506)
+>         at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:444)
+>         at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:167)
+>         at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:68)
+>         at org.eclipse.concierge.Concierge.doMain(Concierge.java:606)
+>         at org.eclipse.concierge.Concierge.main(Concierge.java:525)
+> 
+> BTW, it would be very nice if this resolution exception were to also report the bundle that was being resolved.
+> 
+> javax.xml.parsers is part of the underlying VM and I believe exposed by including ""javax.*"" for the Constants.FRAMEWORK_BOOTDELEGATION property.  
+> 
+> For example, Equinox seems to have this as the default:
+> 
+> org.osgi.framework.bootdelegation = \
+>  javax._,\
+>  org.ietf.jgss,\
+>  org.omg._,\
+>  org.w3c._,\
+>  org.xml._,\
+>  sun._,\
+>  com.sun._
+> 
+> Concierge seems to currently have this as it's boot delegation set:
+> 
+> ```
+>   defaultProperties.setProperty(Constants.FRAMEWORK_BOOTDELEGATION,
+>           ""java.*, sun.*, com.sun.*"");
+> ```
+> 
+> Would it be possible to add javax._, and org.xml._ to the Concierge default boot delegation?   Or perhaps allow org.osgi.framework.bootdelegation to be somehow be configured to include these packages?
+> 
+> Here's what I would believe would do it for my use case:
+> 
+> ```
+>   defaultProperties.setProperty(Constants.FRAMEWORK_BOOTDELEGATION,
+>           ""java.*, sun.*, com.sun.*, javax.*, org.xml.*"");
+> ```
+> 
+> It's quite possible that org.w3c.\* and org.omg.\* should also be added, but I don't need them for my use case.
+> 
+> Thanks.
+
+Comment 1 Jan S. Rellermeyer 2015-10-19 23:59:03 EDT
+
+> What you want is not boot delegation. However, this is a common misunderstanding. Boot delegation describes which packages are ""silently"" delegated to the parent classloader of the one that loaded the framework. This does not affect bundle resolution but only bundle classloaders trying to access specific classes without having an explicit import for the corresponding package. 
+> 
+> The functionality that you are looking for is org.osgi.framework.system.packages (or, since you want to extend the default and not overwrite it, org.osgi.framework.system.packages.extra). This way you can tell Concierge which other packages you would like to be exported by the system bundle so that other bundles get resolved against them. 
+> 
+> It is correct that Equinox has a different behavior since, if I remember correctly, it probes the JVM version and, with the help of internally stored profiles, exports a larger set of packages through the system bundle. We currently don't do that due to the overhead but I think the standard only asks for ""reasonable defaults"" so I would say what we do is sufficient and extra packages can always be configured.
+
+Comment 2 Scott Lewis 2015-10-20 10:45:22 EDT (In reply to Jan S. Rellermeyer from comment #1)
+
+> > It is correct that Equinox has a different behavior since, if I remember
+> > correctly, it probes the JVM version and, with the help of internally stored
+> > profiles, exports a larger set of packages through the system bundle. We
+> > currently don't do that due to the overhead but I think the standard only
+> > asks for ""reasonable defaults"" so I would say what we do is sufficient and
+> > extra packages can always be configured.
+> 
+> But you do set sun.\* and com.sun.*?  Isn't that overhead too?  Why would internal packages be preferred to something like xml processing (pretty common, no?)
+> 
+> In any event, I suppose you can choose whether boot delegation or system.packages...just some way is needed to add these packages.   Is org.osgi.framework.system.packages.extra supported now?
+
+Comment 3 Jan S. Rellermeyer 2015-10-20 11:15:21 EDT
+
+> > But you do set sun.\* and com.sun.*?  Isn't that overhead too?  Why would
+> > internal packages be preferred to something like xml processing (pretty
+> > common, no?)
+> 
+> You need these packages in the bootdelegation because some classes from java.\* internally rely on them. They basically break if you don't delegate. 
+> 
+> The overhead that I was talking about is not the delegation itself but keeping the ""positive lists"" of packages that can be exported on certain JVMs/versions. 
+> 
+> > In any event, I suppose you can choose whether boot delegation or
+> > system.packages...just some way is needed to add these packages.  
+> 
+> Well, as I said, the two options serve different purposes. If you application breaks at runtime because of ClassNotFound, you need bootdelegation. If it fails during resolve time because of a package that comes from the JVM, you need the system packages. 
+> 
+> > Is
+> > org.osgi.framework.system.packages.extra supported now?
+> 
+> Yes, fully supported. I think the "".extra"" version was introduced in one of the later R4s but this is the much more convenient way because you don't need to override the defaults.
+
+Comment 4 Scott Lewis 2015-10-20 12:37:03 EDT
+
+> For sake of the Concierge's adoption, I suggest that you document as loudly as possible, and provide instructions WRT use of system.packages.*.  Actually, it wouldn't hurt to provide examples and alternative startup configs.
+
+Comment 5 Scott Lewis 2015-10-24 14:52:48 EDT
+
+> FWIW, I've been able to add o.o.f.s.packages.extra=javax.xml.parser,org.xml.sax and start/satisfy all of ECF RSA on Concierge RC1.   I'll now attempt to run some simple Remote Services/RSA examples on various target platforms (e.g. raspberry pi) with one or more of the existing ECF providers (e.g. r-osgi, generic, jax-rs).
+> 
+> I would appreciate any documentation you might have on getting concierge to run properly on some recent version (hopefully) of Android.   Note that since Proxy.newProxyInstance seems to be implemented/functioning on recent Android versions, most of the distribution providers should be able to create proxies.  Since rosgi uses asm I expect there may be some additions or changes needed (although perhaps not).
+> 
+> Also FWIW, the RSA codebase (including one distribution provider) is < 1M of code (debug-enabled).  There is some shrinking/refactoring that could occur to reduce that, and I will look into doing that.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/15/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/16,https://api.github.com/repos/eclipse-archived/concierge/issues/16,concierge,185916103,16,Concierge Eclipse Launcher Plugin,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:54:10Z,2016-10-28T12:54:10Z,"Migrated from Eclipse Bugzilla #478371
+
+Jan S. Rellermeyer 2015-09-24 21:59:09 EDT
+
+> It would be great to have a launcher plugin for the Eclipse IDE so that people could run Concierge within the IDE. 
+> 
+> I briefly looked into that and it seems like that it mainly requires to implement a org.eclipse.pde.launching.AbstractPDELaunchConfigurationand to locate bundles and package them up for the framework (which is possibly the harder part).
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/16/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/17,https://api.github.com/repos/eclipse-archived/concierge/issues/17,concierge,185916362,17,Raspberry Pi support,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-28T12:55:28Z,2019-07-08T09:49:41Z,"Migrated from Eclipse Bugzilla #477413
+
+Jan S. Rellermeyer 2015-09-14 22:42:21 EDT
+
+> Many people use Pi4J in order to access low-level system capabilities of the Raspberry Pi platform. However, this library is neither very well designed, nor under a particularly pleasant license. 
+> It would be great to have a Concierge bundle that would expose Raspberry Pi capabilities as OSGi services and without relying on Pi4J.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/17/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/17,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUwOTE1ODc0NQ==,concierge,509158745,17,NA,tmarkwardt,3845676,,,NA,2019-07-08T09:49:41Z,2019-07-08T09:49:41Z,What structure of the API do you imagine here?,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUwOTE1ODc0NQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/18,concierge,186071407,18,"Publish Concierge R5 to Maven repos (repo.eclipse.org, Maven Central)",JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2016-10-29T10:28:55Z,2018-11-14T09:25:00Z,"We have to publish our releases (R5) to common used maven repositories, e.g. maven central.
+Requested by the community and needed for integration in other projects
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/18/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMwNDgxMTQwNw==,concierge,304811407,18,NA,enolgor,13329855,Eneko Olivares,enolgor@teleco.upv.es,NA,2017-05-30T08:35:00Z,2017-05-30T08:35:00Z,"Hi, I would really like this to happen. What is the status on this issue?","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMwNDgxMTQwNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMwNDk0MTU3Nw==,concierge,304941577,18,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2017-05-30T16:57:09Z,2017-05-30T16:57:09Z,I think this is still blocked on the problem of Jar-signing. Maybe Jochen can add more insights. ,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMwNDk0MTU3Nw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3MDI2MjgxNw==,concierge,370262817,18,NA,joerg-wille,12610094,,joerg.wille@gmail.com,NA,2018-03-04T20:50:28Z,2018-03-04T20:50:28Z,I want to use concierge in a maven based bnd project. could not find a recent Concierge artefact on any public maven site. what is the status? what needs to be done?,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3MDI2MjgxNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3MDMzMzI1NQ==,concierge,370333255,18,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2018-03-05T07:36:13Z,2018-03-05T07:36:13Z,"Hi Joerg,
+unfortunately we did not had yet the time to publish the Concierge
+artifacts neither to Eclipse Maven repo nor to Maven Central.
+As Jan said, it is about the build process and signing the artifacts.
+I am struggeling with the Eclipse infrastructure and did not have the time
+to fix that.
+I will see if I can start again this week.
+Bye, Jochen
+
+On Sun, Mar 4, 2018 at 9:50 PM joerg-wille <notifications@github.com> wrote:
+
+> I want to use concierge in a maven based bnd project. could not find a
+> recent Concierge artefact on any public maven site. what is the status?
+> what needs to be done?
+>
+> —
+> You are receiving this because you authored the thread.
+> Reply to this email directly, view it on GitHub
+> <https://github.com/eclipse/concierge/issues/18#issuecomment-370262817>,
+> or mute the thread
+> <https://github.com/notifications/unsubscribe-auth/AAKEyDJ3urZuyGZo2l8U5-UWqwPw8w_aks5tbFOVgaJpZM4KkFHU>
+> .
+>
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3MDMzMzI1NQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3MDM1NjExOA==,concierge,370356118,18,NA,enolgor,13329855,Eneko Olivares,enolgor@teleco.upv.es,NA,2018-03-05T09:17:13Z,2018-03-05T09:17:13Z,"I would really appreciate as well if it was uploaded to the central repository. I really like concierge but for my build process it's really convenient that all the artifacts are downloaded from a remote maven repository. Right now I had to upload it to a private remote repository, but in the long term it would be very helpful to be in the central repository.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3MDM1NjExOA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3MDM2MjkyNw==,concierge,370362927,18,NA,joerg-wille,12610094,,joerg.wille@gmail.com,NA,2018-03-05T09:41:47Z,2018-03-05T09:41:47Z,"Hi Jochen,
+great to get such a fast response. As I understood you, not the signing process with gradle is giving you problems, but the Eclipse infrastructure, right? I have no knowledge of the latter but if I can help with anything, let me know.
+Thanks, Jörg","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3MDM2MjkyNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMjUzNDY4MQ==,concierge,432534681,18,NA,svilenvul,7120104,Svilen,,NA,2018-10-24T06:52:30Z,2018-10-24T06:52:30Z,It would be great to see Concierge in a public Maven repository.,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMjUzNDY4MQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzODU5MDYwNQ==,concierge,438590605,18,NA,tverbele,4587925,Tim Verbelen,,NA,2018-11-14T09:11:55Z,2018-11-14T09:11:55Z,As of release 5.1 we now have our artifacts on Maven Central: https://search.maven.org/search?q=g:org.eclipse.concierge,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzODU5MDYwNQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/18,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzODU5NDYwOA==,concierge,438594608,18,NA,joerg-wille,12610094,,joerg.wille@gmail.com,NA,2018-11-14T09:24:59Z,2018-11-14T09:24:59Z,@JochenHiller Thanks! I will give Concierge a new chance now.,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzODU5NDYwOA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/19,https://api.github.com/repos/eclipse-archived/concierge/issues/19,concierge,186129360,19,Collaborate with ops4j to add Concierge as OSGi framework to pax-runner,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-30T10:49:08Z,2016-10-30T10:49:08Z,"We want to add Concierge as supported OSGi framework to pax-runner.
+It should be working out-of-the-box, but at least confirm that it is running, and extend ops4j documentation that and how it can be used and configured
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/19/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/20,https://api.github.com/repos/eclipse-archived/concierge/issues/20,concierge,186129381,20,Collaborate with ops4j to add Concierge as OSGi framework to pax-exam,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-30T10:49:38Z,2016-10-30T10:49:38Z,"We want to add Concierge as supported OSGi framework to pax-exam.
+It should be working out-of-the-box, but at least confirm that it is running, and extend ops4j documentation that and how it can be used and configured
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/20/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/21,https://api.github.com/repos/eclipse-archived/concierge/issues/21,concierge,186129459,21,Collaborate with Apache Karaf to add Concierge as OSGi framework to run,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2016-10-30T10:51:11Z,2016-10-30T10:51:11Z,"We want to add Concierge as supported OSGi framework to Apache Karaf.
+If this is working, openHAB2 can be considered as an option to use Karaf / Concierge as underlying OSGi framework
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/21/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/22,https://api.github.com/repos/eclipse-archived/concierge/issues/22,concierge,186479168,22,Add a README,nedtwigg,2924992,Ned Twigg,ned.twigg@diffplug.com,CLOSED,2016-11-01T08:06:08Z,2017-10-28T17:32:48Z,"- What does this library do
+- How can I find the docs and binaries
+- Quickstart
+- How do I contribute","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/22/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/22,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI1NzUwOTgzMw==,concierge,257509833,22,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2016-11-01T08:07:06Z,2016-11-01T08:07:06Z,"Good point, we will do soon. 
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI1NzUwOTgzMw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/28,https://api.github.com/repos/eclipse-archived/concierge/issues/28,concierge,198904349,28,installBundle with null InputStream fails,tverbele,4587925,Tim Verbelen,,CLOSED,2017-01-05T08:52:35Z,2017-10-28T17:32:29Z,"When calling `installBundle(String location, InputStream in)` with a null InputStream we fail with a NullPointerException.
+
+However, the spec says:
+```
+The InputStream object from which this bundle will be read or null to indicate the Framework must
+create the input stream from the specified location identifier. The input stream must always be
+closed when this method completes, even if an exception is thrown
+```","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/28/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/30,https://api.github.com/repos/eclipse-archived/concierge/issues/30,concierge,216729503,30,Unable to launch Californium on Concierge with Bndtools,fipro78,3041955,Dirk Fauth,,CLOSED,2017-03-24T10:09:09Z,2018-10-19T12:49:37Z,"I am trying to run Californium on Concierge in Bndtools. It does not work because io.netty.handler has several Import-Package requirements to Java system packages.
+
+! Failed to start bundle io.netty.handler-4.1.9.Final, exception Resolution failed [BundleRequirement{Import-Package javax.crypto}, BundleRequirement{Import-Package javax.crypto.spec}, BundleRequirement{Import-Package javax.net.ssl}, BundleRequirement{Import-Package javax.security.auth.x500}, BundleRequirement{Import-Package javax.security.cert}]
+
+I learned about the org.osgi.framework.system.packages.extra and that I need to specify the javax packages this way. But using Bndtools I am somehow not able to specify that property in a way that it gets used. I tried adding it to the OSGi Framework Properties, Launcher Arguments and JVM Arguments. But none seems to fit. 
+
+Is this an issue in Bndtools or am I making something wrong?
+
+I manually created a runtime with the necessary bundles and created an .xargs file with the following content
+
+```
+# specify additional system packages to load
+-Dorg.osgi.framework.system.packages.extra+=javax.crypto,
+-Dorg.osgi.framework.system.packages.extra+=javax.crypto.spec,
+-Dorg.osgi.framework.system.packages.extra+=javax.net.ssl,
+-Dorg.osgi.framework.system.packages.extra+=javax.security.auth.x500,
+-Dorg.osgi.framework.system.packages.extra+=javax.security.cert,
+
+# install and start all .jar files in bundles directory
+-all bundles
+
+```
+which actually works.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/30/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/30,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI4OTIyMzkyMg==,concierge,289223922,30,NA,tverbele,4587925,Tim Verbelen,,NA,2017-03-25T16:48:20Z,2017-03-25T16:48:20Z,"You should be able to add the required javax packages in your bndrun file using 
+
+ ```-runsystempackages: javax.crypto,javax.crypto.spec,javax.net.ssl,javax.security.auth.x500,javax.security.cert```
+
+If this does not work, could you share your bnd workspace?","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI4OTIyMzkyMg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/30,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI4OTI1NTU2NA==,concierge,289255564,30,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2017-03-26T03:24:37Z,2017-03-26T03:24:37Z,"Hi Dirk,
+
+you could also install the java 5 profile fragment which exports many of the additional system packages.
+I am working on a way to auto-generate these framework extensions for a multitude of different platforms.
+
+Best regards,
+
+Jan.
+
+On Mar 25, 2017, at 9:48 AM, Tim Verbelen <notifications@github.com<mailto:notifications@github.com>> wrote:
+
+
+You should be able to add the required javax packages in your bndrun file using
+
+-runsystempackages: javax.crypto,javax.crypto.spec,javax.net.ssl,javax.security.auth.x500,javax.security.cert
+
+If this does not work, could you share your bnd workspace?
+
+—
+You are receiving this because you are subscribed to this thread.
+Reply to this email directly, view it on GitHub<https://github.com/eclipse/concierge/issues/30#issuecomment-289223922>, or mute the thread<https://github.com/notifications/unsubscribe-auth/AGMmf2Q7bDfrUWjstD-E0-61vrOhIeVnks5rpUVUgaJpZM4MoBSs>.
+
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI4OTI1NTU2NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/30,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI4OTM3Mzg0Nw==,concierge,289373847,30,NA,fipro78,3041955,Dirk Fauth,,NA,2017-03-27T07:23:31Z,2017-03-27T07:23:31Z,"Setting 
+
+-runsystempackages: javax.crypto,javax.crypto.spec,javax.net.ssl,javax.security.auth.x500,javax.security.cert
+
+directly via the Source tab works. Thanks a lot. Sometimes the Run editor in Bndtools is not very intuitive for me.
+
+What is the Java 5 profile fragment? Haven't found that anywhere nor do I find something on searching for it.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDI4OTM3Mzg0Nw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/30,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM1MTk2MA==,concierge,431351960,30,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-10-19T12:49:32Z,2018-10-19T12:49:32Z,"The profile fragments add extra packages to the system bundle so that you have access to, e.g., javax.* or org.w3c.* packages without needing to set org.osgi.framework.system.packages.extra","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM1MTk2MA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/31,https://api.github.com/repos/eclipse-archived/concierge/issues/31,concierge,264580987,31,Deadlock on resolving bundles within a bundle tracker,sjsf,2592443,Simon Schultze-Florey,,CLOSED,2017-10-11T13:11:45Z,2017-10-12T09:36:53Z,"Resolving bundles within a bundle tracker apparently leads to a deadlock on the main thread:
+
+```
+""main"" #1 prio=5 os_prio=31 tid=0x00007fe20b006800 nid=0x1b03 waiting on condition [0x000070000fd7c000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x0000000779608320> (a java.util.concurrent.CountDownLatch$Sync)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.doAcquireSharedNanos(AbstractQueuedSynchronizer.java:1037)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.tryAcquireSharedNanos(AbstractQueuedSynchronizer.java:1328)
+	at java.util.concurrent.CountDownLatch.await(CountDownLatch.java:277)
+	at org.apache.felix.scr.impl.Activator$ScrExtension.destroy(Activator.java:193)
+	at org.apache.felix.utils.extender.AbstractExtender$2.run(AbstractExtender.java:290)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.felix.utils.extender.AbstractExtender.destroyExtension(AbstractExtender.java:312)
+	at org.apache.felix.utils.extender.AbstractExtender.bundleChanged(AbstractExtender.java:186)
+	at org.eclipse.concierge.Concierge.notifyBundleListeners(Concierge.java:3685)
+	at org.eclipse.concierge.Concierge.notifyBundleListeners(Concierge.java:3620)
+	at org.eclipse.concierge.BundleImpl$Revision.markResolved(BundleImpl.java:2133)
+	at org.eclipse.concierge.Concierge$ResolverImpl.resolveResource(Concierge.java:3291)
+	at org.eclipse.concierge.Concierge$ResolverImpl.resolve0(Concierge.java:2879)
+	at org.eclipse.concierge.Concierge.resolve(Concierge.java:2509)
+	- locked <0x00000006c032ed78> (a org.eclipse.concierge.Concierge)
+	at org.eclipse.concierge.Concierge.resolveBundles(Concierge.java:2272)
+	at org.eclipse.concierge.compat.packageadmin.PackageAdminImpl.resolveBundles(PackageAdminImpl.java:223)
+	at org.eclipse.smarthome.automation.internal.core.provider.HostFragmentMappingUtil.fillHostFragmentMapping(HostFragmentMappingUtil.java:70)
+	at org.eclipse.smarthome.automation.internal.core.provider.AutomationResourceBundlesTracker.addingBundle(AutomationResourceBundlesTracker.java:187)
+	at org.eclipse.smarthome.automation.internal.core.provider.AutomationResourceBundlesTracker.addingBundle(AutomationResourceBundlesTracker.java:1)
+	at org.osgi.util.tracker.BundleTracker$Tracked.customizerAdding(BundleTracker.java:467)
+	at org.osgi.util.tracker.BundleTracker$Tracked.customizerAdding(BundleTracker.java:414)
+	at org.osgi.util.tracker.AbstractTracked.trackAdding(AbstractTracked.java:256)
+	at org.osgi.util.tracker.AbstractTracked.trackInitial(AbstractTracked.java:183)
+	at org.osgi.util.tracker.BundleTracker.open(BundleTracker.java:156)
+	at org.eclipse.smarthome.automation.internal.core.provider.AutomationResourceBundlesTracker.activate(AutomationResourceBundlesTracker.java:78)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.felix.scr.impl.helper.BaseMethod.invokeMethod(BaseMethod.java:231)
+	at org.apache.felix.scr.impl.helper.BaseMethod.access$500(BaseMethod.java:39)
+	at org.apache.felix.scr.impl.helper.BaseMethod$Resolved.invoke(BaseMethod.java:624)
+	at org.apache.felix.scr.impl.helper.BaseMethod.invoke(BaseMethod.java:508)
+	at org.apache.felix.scr.impl.helper.ActivateMethod.invoke(ActivateMethod.java:149)
+	at org.apache.felix.scr.impl.manager.SingleComponentManager.createImplementationObject(SingleComponentManager.java:315)
+	at org.apache.felix.scr.impl.manager.SingleComponentManager.createComponent(SingleComponentManager.java:127)
+	at org.apache.felix.scr.impl.manager.SingleComponentManager.getService(SingleComponentManager.java:871)
+	at org.apache.felix.scr.impl.manager.SingleComponentManager.getServiceInternal(SingleComponentManager.java:838)
+	at org.apache.felix.scr.impl.manager.AbstractComponentManager.activateInternal(AbstractComponentManager.java:850)
+	at org.apache.felix.scr.impl.manager.AbstractComponentManager.enable(AbstractComponentManager.java:419)
+	at org.apache.felix.scr.impl.config.ConfigurableComponentHolder.enableComponents(ConfigurableComponentHolder.java:376)
+	at org.apache.felix.scr.impl.BundleComponentActivator.initialize(BundleComponentActivator.java:172)
+	at org.apache.felix.scr.impl.BundleComponentActivator.<init>(BundleComponentActivator.java:120)
+	at org.apache.felix.scr.impl.Activator.loadComponents(Activator.java:258)
+	at org.apache.felix.scr.impl.Activator.access$000(Activator.java:45)
+	at org.apache.felix.scr.impl.Activator$ScrExtension.start(Activator.java:185)
+	at org.apache.felix.utils.extender.AbstractExtender.createExtension(AbstractExtender.java:259)
+	at org.apache.felix.utils.extender.AbstractExtender.modifiedBundle(AbstractExtender.java:232)
+	at org.osgi.util.tracker.BundleTracker$Tracked.customizerModified(BundleTracker.java:479)
+	at org.osgi.util.tracker.BundleTracker$Tracked.customizerModified(BundleTracker.java:414)
+	at org.osgi.util.tracker.AbstractTracked.track(AbstractTracked.java:232)
+	at org.osgi.util.tracker.BundleTracker$Tracked.bundleChanged(BundleTracker.java:443)
+	at org.eclipse.concierge.Concierge.notifyBundleListeners(Concierge.java:3685)
+	at org.eclipse.concierge.Concierge.notifyBundleListeners(Concierge.java:3620)
+	at org.eclipse.concierge.BundleImpl.activate0(BundleImpl.java:586)
+	at org.eclipse.concierge.BundleImpl.activate(BundleImpl.java:552)
+	- locked <0x0000000779308270> (a org.eclipse.concierge.BundleImpl)
+	at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:506)
+	at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:444)
+	at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:183)
+	at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:83)
+	at org.eclipse.concierge.Concierge.doMain(Concierge.java:606)
+	at org.eclipse.concierge.Concierge.main(Concierge.java:525)
+```
+
+For details, see https://github.com/eclipse/smarthome-packaging-sample/issues/13#issuecomment-335803723.
+
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/31/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/31,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgxMzc4MA==,concierge,335813780,31,NA,sjsf,2592443,Simon Schultze-Florey,,NA,2017-10-11T13:42:58Z,2017-10-11T13:42:58Z,"Oh well, on a second look it's actually rather Felix SCR which gets lured into the deadlock. Sorry for the noise...","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgxMzc4MA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/31,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgxNDU2NA==,concierge,335814564,31,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2017-10-11T13:45:30Z,2017-10-11T13:45:30Z,Thanks for the report and the analysis. Do you think it is a Felix SCR problem or does it run fine on Felix and deadlocks on Concierge (in which case it still could be a bug on our side)?,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgxNDU2NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/31,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgxODQ1Mw==,concierge,335818453,31,NA,sjsf,2592443,Simon Schultze-Florey,,NA,2017-10-11T13:57:30Z,2017-10-11T13:57:30Z,"Honestly, I have no idea yet whether it's the concrete Felix SCR version which is prone to this error or if it is the way how Concierge is calling it. In any case, I have never seen this in neither with Equinox nor on Karaf (which is using Equinox under the hood too, if I'm not mistaken). Both are OSGi R6 and therefore are using Felix SCR 2.0.x while in Concierge I was using the R5 compatible 1.8.x. 
+
+I will let you know once I find out more. 
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgxODQ1Mw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/31,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgxODk1Ng==,concierge,335818956,31,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2017-10-11T13:58:58Z,2017-10-11T13:58:58Z,"Thanks, I appreciate it.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgxODk1Ng==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/31,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgzOTgxMQ==,concierge,335839811,31,NA,sjsf,2592443,Simon Schultze-Florey,,NA,2017-10-11T14:58:59Z,2017-10-11T14:58:59Z,One observation: with Concierge R6 (commit [f997291f](https://github.com/eclipse/concierge/commit/f997291fd0cd70730681e97e9e15dfede57c2a45)) it works nicely with either of the Felix SCR versions (1.8.4 & 2.0.12) .,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNTgzOTgxMQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/31,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNjA0NjQzNA==,concierge,336046434,31,NA,maggu2810,204670,Markus Rathgeb,maggu2810@gmail.com,NA,2017-10-12T07:36:50Z,2017-10-12T07:36:50Z,"> Karaf (which is using Equinox under the hood too, if I'm not mistaken).
+
+Karaf supports different OSGi frameworks e.g. Apache Felix and Eclipse Equinox.
+Default is Apache Felix, AFAIK openHAB changed it to Equinox.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNjA0NjQzNA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/31,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNjA3NTkxNA==,concierge,336075914,31,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2017-10-12T09:36:53Z,2017-10-12T09:36:53Z,"I try to find a test case which can reproduce that behavior using the mentioned versions of Felix SCR. Then we can more easily understand where the root problem is.
+From the initial stack trace, I see that the whole call chain was started by SCR, starting an ESH bundle with that ""strange"" way to start bundles from a bundle tracker. The started bundle is using SCR components too, so it feels more than an issue in SCR.
+But a test case should help to clarify that.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDMzNjA3NTkxNA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/32,https://api.github.com/repos/eclipse-archived/concierge/issues/32,concierge,265062957,32,Build at 2017-10-12 has failed tests,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2017-10-12T19:46:38Z,2017-10-28T17:31:57Z,"The build from latest commit https://github.com/eclipse/concierge/commit/5657c3cf3f3c45abe995b214fece00efb0379066 does fail with 3 failed tests:
+
+```
+org.eclipse.concierge.MultiMapTest > testOrder FAILED
+    java.lang.AssertionError at MultiMapTest.java:52
+org.eclipse.concierge.ConciergeMainOptionAllTest > testAllWithSortedBundles FAILED
+    org.osgi.framework.BundleException at ConciergeMainOptionAllTest.java:118
+org.eclipse.concierge.ConciergeMainOptionAllTest > testUnsortedBundles FAILED
+    org.osgi.framework.BundleException at ConciergeMainOptionAllTest.java:137
+```
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/32/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/34,https://api.github.com/repos/eclipse-archived/concierge/issues/34,concierge,267603671,34,A test fails in R6 build: test case is wrong,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2017-10-23T09:42:41Z,2017-10-28T17:31:38Z,"In r6 branch one test fails checking about optional Bundle-NativeHeader statements.
+I saw that the test case is wrong, optional (""*"") has to be separated with a comma ("","") from the other directives.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/34/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/37,https://api.github.com/repos/eclipse-archived/concierge/issues/37,concierge,273137865,37,Running Concierge on CEE-J results on NPE,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2017-11-11T11:05:13Z,2017-11-27T08:42:00Z,"An user running Concierge on Skelmir CEE-J reports:
+
+> The org.eclipse.concierge.Concierge constructor calls System.getProperty(“java.specification.name”). With CEE-J this system property is not defined which causes a NullPointerException and failure to start.
+
+See code at https://github.com/eclipse/concierge/blob/59ba0eb4d2c7a347bb3f084ae3524b4595585346/framework/org.eclipse.concierge/src/org/eclipse/concierge/Concierge.java#L680
+
+We can use a default value for the property of """" so we assume it is NOT a J2ME VM by default, and try to get execution environment base on java.specification.version
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/37/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/38,https://api.github.com/repos/eclipse-archived/concierge/issues/38,concierge,273138082,38,org.eclipse.concierge.service.xmlparser does not run on CEE-J,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2017-11-11T11:09:16Z,2017-11-11T12:30:51Z,"An user running Concierge on Skelmir CEE-J reports:
+
+> Code within “org.eclipse.concierge.service.xmlparser-${concierge.version}*.jar” seems to reference “com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl”
+
+We assume in that xmlparser bundle that the used XML parsers are from OpenJDK.
+We might consider to name this bundle `org.eclipse.concierge.service.xmlparser.openjdk` to indicate that.
+An user of CEE-J can have its own adapter bundle which adds the CEE-J specific factory classes.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/38/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/39,https://api.github.com/repos/eclipse-archived/concierge/issues/39,concierge,273141675,39,Running Concierge on CEE-J throws a NPE in this.getClass().getClassLoader().loadCLass(),JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2017-11-11T12:19:58Z,2017-11-27T20:32:58Z,"An user running Concierge on Skelmir CEE-J reports:
+
+> In this.getClass().getClassLoader().loadClass(""org.w3c.dom.Document"") CEE-J returns null on this.getClass().getClassLoader() which results in a NPE when loading class
+
+See code at https://github.com/eclipse/concierge/blob/59ba0eb4d2c7a347bb3f084ae3524b4595585346/framework/org.eclipse.concierge/src/org/eclipse/concierge/Concierge.java#L699
+
+I checked the Java spec on that: https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html#getClassLoader--
+
+> public ClassLoader getClassLoader()
+Returns the class loader for the class. Some implementations may use null to represent the bootstrap class loader. This method will return null in such implementations if this class was loaded by the bootstrap class loader.
+
+So according to spec, this seems to be valid if the JVM returns null on getClassLoader(), in case the current class has been loaded by the bootstrap class loader.
+
+At Wolfgang: what is your proposal to do that in CEE-J ? Purpose is to get on Java 8 the compact profile where the JVM is running on.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/39/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/45,https://api.github.com/repos/eclipse-archived/concierge/issues/45,concierge,276734520,45,Native library support fails in some OSGi TCK Tests,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,CLOSED,2017-11-25T08:12:21Z,2017-11-27T20:32:06Z,"When running the OSGi TCK test suite, some tests fail with native library support","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/45/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/45,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NzMxODU0NA==,concierge,347318544,45,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2017-11-27T20:32:01Z,2017-11-27T20:32:01Z,"Will close, fixed by #46","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM0NzMxODU0NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/48,https://api.github.com/repos/eclipse-archived/concierge/issues/48,concierge,291854232,48,[Help needed] Running Eclipse Kura on Concierge -  ClassLoader.getPackage() returns null,svilenvul,7120104,Svilen,,CLOSED,2018-01-26T10:12:49Z,2018-01-30T13:13:11Z,"Hello, 
+I ran the Concierge runtime and I have great impressions from the startup time of the framework, I really appreciate your efforts on the project !
+
+I have already started most of the Eclipse Kura bundles in the runtime and everything looked good until I faced a strange issue. I saw that @JochenHiller already [made some tests running Kura](https://github.com/JochenHiller/concierge-tests), so maybe you can help me to understand the cause a little bit better.
+
+The setup that I have is:
+
+```
+# Concierge services
+-istart ${concierge.dir}/org.eclipse.concierge.service.packageadmin-${concierge.version}*.jar
+-istart ${concierge.dir}/org.eclipse.concierge.service.startlevel-${concierge.version}*.jar
+-istart ${concierge.dir}/org.eclipse.concierge.service.xmlparser-${concierge.version}*.jar
+
+# OSGi Services
+....
+# Dependencies
+...
+# Start Kura Core bundles
+-istart ${system.dir}/org.eclipse.kura.api-*.jar
+
+-install ${system.dir}/org.eclipse.kura.localization.resources-*.jar  //This is a fragment bundle
+-istart ${system.dir}/org.eclipse.kura.localization-*.jar                   //This is a host bundle
+
+....
+-istart ${system.dir}/org.eclipse.kura.wire.helper.provider-*.jar     //This is the caller who calls the host bundle 
+
+```
+
+The situation is the following - while `org.eclipse.kura.internal.wire.helper.WireHelperServiceImpl` is being registered the following exception is being logged on the console.
+
+[error-message.txt](https://github.com/eclipse/concierge/files/1667334/error-message.txt)
+
+I have attached a remote debugger and traced the cause of the `NullPointerException` that you see in the log above to a `ClassLoader.getPackage(String name)` returning null for a package in the fragment bundle.
+
+I tried several things with different start levels, but I did not get far with them.
+
+I feel a bit lost what can I do further, could you please give me some hints ? 
+
+ ","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/48/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/48,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MDc4MjE5OQ==,concierge,360782199,48,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2018-01-26T13:18:27Z,2018-01-26T13:18:27Z,"@svilenvul, thanks for reporting that issue, and your analysis about root cause.
+
+Can you share your running environment (send me a personal message)?
+I would like to see the host/fragment bundles with their export-packages. And might need to debug into the framework to understand why it will return a null on requested Java package. This scenario is a little more complex as the class asking for package is from a jar file from Bundle-Classpath, which is handled differently in framework.
+
+The time when I did get Kura running on Concierge, these kind of bundles were not yet part of distribution. So it seems to be a new issue raising up now.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MDc4MjE5OQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/48,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MDk3OTg1Ng==,concierge,360979856,48,NA,amitjoy,13380182,Amit Kumar Mondal,admin@amitinside.com,NA,2018-01-27T11:53:24Z,2018-01-27T11:53:24Z,"@JochenHiller @svilenvul These are bundles that I introduced for Kura Wires. According to the log, the problem is apparently in `com.github.rodionmoiseev.c10n` library used by locallization bundle in Kura. And localization bundle is primarily used by all the bundles in Kura Wires (but not Kura completely). hence there exists a chain of errors caused by the problem in `com.github.rodionmoiseev.c10n`. Every class that provides localization transitively depends on `com.github.rodionmoiseev.c10n` through dynamic proxy. And somehow `com.github.rodionmoiseev.c10n` cannot access the class instance properly.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MDk3OTg1Ng==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/48,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MDk3OTk2NQ==,concierge,360979965,48,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2018-01-27T11:56:01Z,2018-01-27T11:56:01Z,"@amitjoy Yes, indeed this seems to be the problem.
+As @svilenvul pointed out it might be indeed a bug in the framework in the given specific use case with fragments and use Bundle-Classpath.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MDk3OTk2NQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/48,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MTM0MDE3Mw==,concierge,361340173,48,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2018-01-29T18:29:43Z,2018-01-29T18:29:43Z,"I found the root cause of the problem doing debugging on the scenario: it is indeed a problem in BundleClassLoader in case of a fragment:
+
+The code at https://github.com/eclipse/concierge/blob/master/framework/org.eclipse.concierge/src/org/eclipse/concierge/BundleImpl.java#L3098 is missing a 'definePackage(packageOf(classname))`
+
+I fixed it for testing purposes and Concierge/Kura does startup then without any issues.
+
+I will provide a PR to fix that problem","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MTM0MDE3Mw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/48,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MTUxMDg1Mg==,concierge,361510852,48,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2018-01-30T08:22:00Z,2018-01-30T08:22:00Z,"@svilenvul You can get the latest SNAPSHOT build from https://ci.eclipse.org/concierge/job/R5.1_nightly/78/ and use it for further testing
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MTUxMDg1Mg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/48,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MTU4OTI1MA==,concierge,361589250,48,NA,svilenvul,7120104,Svilen,,NA,2018-01-30T13:13:11Z,2018-01-30T13:13:11Z,Many thanks @JochenHiller ! ,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM2MTU4OTI1MA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/50,https://api.github.com/repos/eclipse-archived/concierge/issues/50,concierge,301442589,50,NullPointerException on load bundle with lost dependent bundle(s),tmarkwardt,3845676,,,CLOSED,2018-03-01T15:16:59Z,2018-04-11T09:33:37Z,"on start a bündle with a lost dependent bündle i have a NullPointerException and not a BundleException
+
+excample:
+```
+Concierge > start 6
+java.lang.NullPointerException
+        at org.eclipse.concierge.Concierge$CapabilityRegistry.getByValue(Concierge.java:5032)
+        at org.eclipse.concierge.RFC1960Filter.filterWithIndex(RFC1960Filter.java:1147)
+        at org.eclipse.concierge.Concierge$10.findProviders(Concierge.java:2488)
+        at org.eclipse.concierge.Concierge$ResolverImpl.resolveResource(Concierge.java:3025)
+        at org.eclipse.concierge.Concierge$ResolverImpl.resolveResource(Concierge.java:3199)
+        at org.eclipse.concierge.Concierge$ResolverImpl.resolveResource(Concierge.java:3199)
+        at org.eclipse.concierge.Concierge$ResolverImpl.resolveResource(Concierge.java:3199)
+        at org.eclipse.concierge.Concierge$ResolverImpl.resolve0(Concierge.java:2836)
+...
+
+```
+the bug i have found on class Concierge.CapatibilityRegistry (Package org.eclipse.concierge) on method getByValue() (line 5032 on version 5.0.0, but also on version 5.1.0):
+`			final List<Capability> result = attributeIndex.get(value);
+`
+fixed:
+`			final List<Capability> result = attributeIndex == null ? null : attributeIndex.get(value);
+`
+with the fixed code, i have correct Exception:
+```
+Concierge > start 6
+org.osgi.framework.BundleException: Resolution failed [BundleRequirement{Import-Package org.osgi.service.event;version=""[1.2,2)""}, BundleRequirement{Import-Pack
+age org.osgi.service.cm;version=""1.2.0""}]
+        at org.eclipse.concierge.Concierge.resolve(Concierge.java:2648)
+        at org.eclipse.concierge.BundleImpl$Revision.resolve(BundleImpl.java:1881)
+        at org.eclipse.concierge.BundleImpl.activate(BundleImpl.java:532)
+....
+```
+
+pleace fixing on code :-)
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/50/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/50,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM4MDM4ODk5NQ==,concierge,380388995,50,NA,tverbele,4587925,Tim Verbelen,,NA,2018-04-11T09:30:57Z,2018-04-11T09:30:57Z,Thanks for reporting. Maybe next time create a pull request which makes a quicker merge into the source tree.,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM4MDM4ODk5NQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/52,https://api.github.com/repos/eclipse-archived/concierge/issues/52,concierge,305965811,52,BundleWiring.listResources(...) does not consider embedded JARs,sjsf,2592443,Simon Schultze-Florey,,CLOSED,2018-03-16T15:12:02Z,2018-05-23T06:47:11Z,"When asking a bundle for its contained resources via `bundle.adapt(BundleWiring.class).listResources(...)`, the content of embedded JARs is not considered. 
+
+I have to admit that so far I couldn't spot anything in the OSGi specs which explicitly states that it _should_ do so - I merely noticed that this works on equinox. I have a corresponding test case in [sjka/concierge@testListResources](https://github.com/sjka/concierge/commits/testListResources).
+
+I'd be happy if any of you experts could have a quick look and advise on this.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/52/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/52,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3Mzc0NTk4Mw==,concierge,373745983,52,NA,sjsf,2592443,Simon Schultze-Florey,,NA,2018-03-16T15:18:35Z,2018-03-16T15:18:35Z,"PS: The best I could find is this from `BundleWiring.listResources(...)`'s JavaDoc:
+
+> Returns the names of resources visible to this bundle wiring's class loader
+
+As the stuff within the JARs _is_ visible to the class loader, _my_ assumption was that it _should_ work. ","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM3Mzc0NTk4Mw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/52,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM4MjcxMzc4NA==,concierge,382713784,52,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-04-19T12:22:54Z,2018-04-19T12:22:54Z,Thanks for reporting. I will check if we can change this and Tim needs to check if it breaks any of the TCK tests if we do but if you say that Equinox exposes embedded JARs this way then I would hope that it does not. ,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM4MjcxMzc4NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/52,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM4MzExMjAwNw==,concierge,383112007,52,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2018-04-20T14:21:53Z,2018-04-20T14:21:53Z,"@sjka thanks for reporting that, and your test case.
+@rellermeyer @tverbele I will run the test case and try to fix it.
+I will also run again the TCK to sure that we do NOT break any existing tests.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM4MzExMjAwNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/52,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM4MzIzODg3NA==,concierge,383238874,52,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2018-04-20T22:30:15Z,2018-04-20T22:30:15Z,"I added a PR now to fix this issue.
+I also re-run the TCK. There is the same test case failing as before doing the change.
+
+The failing test case is related to a somehow related problem:
+`org.osgi.test.cases.framework.junit.wiring.BundleWiringTests.testListResources`
+
+I will look into that further on. But the test case from @sjka does work now.
+
+@rellermeyer Can you do a careful review of that?","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM4MzIzODg3NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/57,https://api.github.com/repos/eclipse-archived/concierge/issues/57,concierge,332008093,57,ArrayIndexOutOfBoundsException,hsynkrtl,4030280,Hüseyin Kartal,hk@hsyn.de,OPEN,2018-06-13T13:59:37Z,2018-10-19T12:35:53Z,"While making the first steps with concierge, i stepped over this issue.
+
+My bundles are in start order
+
+```
+-install ThirdPartyBndShaded.jar
+
+-istart gemini-blueprint-core.jar
+-istart gemini-blueprint-io.jar
+-istart gemini-blueprint-extender.jar
+```
+
+The  shaded jar is a lot of third party stuff shaded together with a valid osgi manifest auto generated with bnd. It includes also the springframework. Where the ""SpringProperties"" try to access an resource out of the class path. But that resource didn't exist. Which leads to the following error.
+
+```
+Jun 13, 2018 3:47:18 PM org.eclipse.gemini.blueprint.extender.internal.boot.ChainActivator <init>
+INFORMATION: Blueprint API detected; enabling Blueprint Container functionality
+Jun 13, 2018 3:47:18 PM org.eclipse.gemini.blueprint.extender.internal.activator.LoggingActivator start
+INFORMATION: Starting [org.eclipse.gemini.blueprint.extender] bundle v.[3.0.0.M01]
+Exception in thread ""main"" org.osgi.framework.BundleException: Error starting bundle [org.eclipse.gemini.blueprint.extender-3.0.0.M01]
+        at org.eclipse.concierge.BundleImpl.activate0(BundleImpl.java:600)
+        at org.eclipse.concierge.BundleImpl.activate(BundleImpl.java:552)
+        at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:506)
+        at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:444)
+        at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:183)
+        at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:83)
+        at org.eclipse.concierge.Concierge.doMain(Concierge.java:606)
+        at org.eclipse.concierge.Concierge.main(Concierge.java:525)
+Caused by: java.lang.ExceptionInInitializerError
+        at org.springframework.beans.CachedIntrospectionResults.<clinit>(CachedIntrospectionResults.java:98)
+        at org.eclipse.gemini.blueprint.extender.internal.activator.JavaBeansCacheActivator.initJavaBeansCache(JavaBeansCacheActivator.java:62)
+        at org.eclipse.gemini.blueprint.extender.internal.activator.JavaBeansCacheActivator.start(JavaBeansCacheActivator.java:44)
+        at org.eclipse.gemini.blueprint.extender.internal.boot.ChainActivator.start(ChainActivator.java:93)
+        at org.eclipse.concierge.BundleImpl.activate0(BundleImpl.java:575)
+        ... 7 more
+Caused by: java.lang.ArrayIndexOutOfBoundsException: -1
+        at org.eclipse.concierge.RFC1960Filter.stringCompare(RFC1960Filter.java:623)
+        at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findResource1(BundleImpl.java:2774)
+        at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findResource0(BundleImpl.java:2687)
+        at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findResource(BundleImpl.java:2543)
+        at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.getResource(BundleImpl.java:2519)
+        at org.springframework.core.SpringProperties.<clinit>(SpringProperties.java:61)
+        ... 12 more
+```
+
+I just added an empty matching resource to the classpath and the problem is gone away.
+
+I would love to provide a patch, but as i mentioned these are my first steps, so i can't actually. Hope someone can solve that issue.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/57/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/57,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM5NzE4NTM0Mw==,concierge,397185343,57,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2018-06-14T06:26:31Z,2018-06-14T06:26:31Z,"Hi @hsynkrtl 
+thanks for sharing the problem.
+Which version (or snapshot) did you use for testing? We fixed one issue with listResources, which might be in same area. See https://github.com/eclipse/concierge/pull/55/files
+
+Can you share your environment (JAR files, xargs file), or break it down to a smaller test case?
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM5NzE4NTM0Mw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/57,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM5NzcxODUxNg==,concierge,397718516,57,NA,hsynkrtl,4030280,Hüseyin Kartal,hk@hsyn.de,NA,2018-06-15T19:21:09Z,2018-06-15T19:21:09Z,"Hi Jochen,
+
+i found that issue in the latest download release and verified it with a local build of the master branch.
+
+I also build a Test bundle which trys to load a not existing resource with the classloaders gerResource method, but the error didn't occur in this case.
+
+I also tested the gemini and shaded bundle where the error occured with apache felix, but felix started the bundles without any error.
+
+Sorry i can't deliver more detailed information.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDM5NzcxODUxNg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/57,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM0ODI4NA==,concierge,431348284,57,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-10-19T12:35:53Z,2018-10-19T12:35:53Z,"Hi Hüseyin, 
+
+I have an idea where the problem is coming from and just committed an attempted fix. 
+Could you please test it and let me know if it works? 
+
+Thanks, 
+
+Jan. ","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM0ODI4NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/59,https://api.github.com/repos/eclipse-archived/concierge/issues/59,concierge,364871396,59,PackageAdminImpl.getBundleType throws NullPointerException,svilenvul,7120104,Svilen,,CLOSED,2018-09-28T12:38:27Z,2018-10-19T15:55:37Z,"I have confirmed that the exception is still there with the latest Concierge snapshot that I could find - 5.1.0.SNAPSHOT-20180523024817.
+
+The scenario is following:
+
+- I trigger uninstallation of OSGi Deployment Package;
+- Bundle Tracker is notified about the removed bundle and checks if the bundle is a fragment;
+- NullPointerException occurs.
+
+The `test-ext` deployment package contains a single bundle, which is not a fragment.
+
+Logs:
+
+```
+Concierge> 13:28:56.638 ERROR org.eclipse.kura.deployment.agent.impl.DeploymentAgent[:360] - Exception uninstalling package test-ext
+java.lang.NullPointerException: null
+	at org.eclipse.concierge.compat.packageadmin.PackageAdminImpl.isFragment(PackageAdminImpl.java:374)
+	at org.eclipse.concierge.compat.packageadmin.PackageAdminImpl.getBundleType(PackageAdminImpl.java:370)
+	at org.eclipse.smarthome.core.internal.i18n.ResourceBundleTracker.isFragmentBundle(ResourceBundleTracker.java:144)
+	at org.eclipse.smarthome.core.internal.i18n.ResourceBundleTracker.removedBundle(ResourceBundleTracker.java:85)
+	at org.osgi.util.tracker.BundleTracker$Tracked.customizerRemoved(BundleTracker.java:491)
+	at org.osgi.util.tracker.BundleTracker$Tracked.customizerRemoved(BundleTracker.java:414)
+	at org.osgi.util.tracker.AbstractTracked.untrack(AbstractTracked.java:341)
+	at org.osgi.util.tracker.BundleTracker$Tracked.bundleChanged(BundleTracker.java:449)
+	at org.eclipse.concierge.Concierge.notifyBundleListeners(Concierge.java:3697)
+	at org.eclipse.concierge.Concierge.notifyBundleListeners(Concierge.java:3632)
+	at org.eclipse.concierge.BundleImpl.uninstall(BundleImpl.java:780)
+	at org.apache.felix.deploymentadmin.spi.DropAllBundlesCommand.execute(DropAllBundlesCommand.java:48)
+	at org.apache.felix.deploymentadmin.spi.DeploymentSessionImpl.call(DeploymentSessionImpl.java:73)
+	at org.apache.felix.deploymentadmin.DeploymentAdminImpl.uninstallDeploymentPackage(DeploymentAdminImpl.java:352)
+	at org.apache.felix.deploymentadmin.AbstractDeploymentPackage.uninstall(AbstractDeploymentPackage.java:296)
+	at org.eclipse.kura.deployment.agent.impl.DeploymentAgent.uninstaller(DeploymentAgent.java:347)
+	at org.eclipse.kura.deployment.agent.impl.DeploymentAgent.lambda$1(DeploymentAgent.java:178)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+```
+
+If I understand correctly expected result is int or IllegalArgumentException - https://osgi.org/javadoc/r5/core/org/osgi/service/packageadmin/PackageAdmin.html#getBundleType(org.osgi.framework.Bundle)
+
+I would really appreciate your assistance with this issue, please let me know if you need additional information.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/59/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/59,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQyNTgxMTgzNw==,concierge,425811837,59,NA,svilenvul,7120104,Svilen,,NA,2018-10-01T07:21:41Z,2018-10-01T07:21:41Z,"Actually same happens when a simple uninstall is triggered.
+
+```
+Concierge> uninstall 157
+java.lang.NullPointerException
+	at org.eclipse.concierge.compat.packageadmin.PackageAdminImpl.isFragment(PackageAdminImpl.java:374)
+	at org.eclipse.concierge.compat.packageadmin.PackageAdminImpl.getBundleType(PackageAdminImpl.java:370)
+	at org.eclipse.smarthome.core.internal.i18n.ResourceBundleTracker.isFragmentBundle(ResourceBundleTracker.java:144)
+	at org.eclipse.smarthome.core.internal.i18n.ResourceBundleTracker.removedBundle(ResourceBundleTracker.java:85)
+	at org.osgi.util.tracker.BundleTracker$Tracked.customizerRemoved(BundleTracker.java:491)
+	at org.osgi.util.tracker.BundleTracker$Tracked.customizerRemoved(BundleTracker.java:414)
+	at org.osgi.util.tracker.AbstractTracked.untrack(AbstractTracked.java:341)
+	at org.osgi.util.tracker.BundleTracker$Tracked.bundleChanged(BundleTracker.java:449)
+	at org.eclipse.concierge.Concierge.notifyBundleListeners(Concierge.java:3697)
+	at org.eclipse.concierge.Concierge.notifyBundleListeners(Concierge.java:3632)
+	at org.eclipse.concierge.BundleImpl.uninstall(BundleImpl.java:780)
+	at org.eclipse.concierge.shell.Shell$DefaultCommands.handleCommand(Shell.java:403)
+	at org.eclipse.concierge.shell.Shell.handleCommand(Shell.java:157)
+	at org.eclipse.concierge.shell.Shell.run(Shell.java:119)
+
+```","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQyNTgxMTgzNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/59,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQyNTgyMjQwNg==,concierge,425822406,59,NA,svilenvul,7120104,Svilen,,NA,2018-10-01T08:07:25Z,2018-10-01T08:07:25Z,"Okay, I think I understand what happens. While the bundle is being uninstalled, current revision is set to null. After that listeners are notified about the changed state. 
+In this case of this listeners checks the bundle type (which requires the already nullified current revision):
+
+https://github.com/eclipse/concierge/blob/12ffabd79c37de8b67e1a63be66a8810cd1123f5/framework/org.eclipse.concierge/src/org/eclipse/concierge/BundleImpl.java#L775-L780
+
+https://github.com/eclipse/concierge/blob/9399f771aa6b327612e45ce277c793929c1bbc2b/bundles/org.eclipse.concierge.service.packageadmin/src/org/eclipse/concierge/compat/packageadmin/PackageAdminImpl.java#L368-L371
+
+https://github.com/eclipse/concierge/blob/9399f771aa6b327612e45ce277c793929c1bbc2b/framework/org.eclipse.concierge/src/org/eclipse/concierge/AbstractBundle.java#L238-L240
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQyNTgyMjQwNg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/59,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQyODg1MzIwOQ==,concierge,428853209,59,NA,svilenvul,7120104,Svilen,,NA,2018-10-11T07:39:10Z,2018-10-11T07:39:10Z,"@JochenHiller, can you maybe take a look?","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQyODg1MzIwOQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/59,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM1MTM4MQ==,concierge,431351381,59,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-10-19T12:47:28Z,2018-10-19T12:47:28Z,"Did not mean to close it. 
+
+Svilen, I committed a fix. Could you please let me know if this works. 
+
+I am not quite sure what the result of isFragment should be for an uninstalled bundle but at least it should not NPE anymore.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM1MTM4MQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/59,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM2MjQ4MA==,concierge,431362480,59,NA,svilenvul,7120104,Svilen,,NA,2018-10-19T13:26:31Z,2018-10-19T13:26:31Z,"@rellermeyer, thank you, I will test it asap.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM2MjQ4MA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/59,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTQwNDYxOA==,concierge,431404618,59,NA,svilenvul,7120104,Svilen,,NA,2018-10-19T15:35:24Z,2018-10-19T15:35:24Z,"Thanks! I can confirm it is solved. 
+
+Does the project have a public repository where I can download the latest snapshot version?
+In the past I have used - http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/concierge/download/snapshots/, but it is out of date now. ","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTQwNDYxOA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/59,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTQxMTA4NQ==,concierge,431411085,59,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-10-19T15:55:37Z,2018-10-19T15:55:37Z,"Great. 
+
+Good question about the snapshots. @JochenHiller, do we have an issue with the CI?","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTQxMTA4NQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/60,https://api.github.com/repos/eclipse-archived/concierge/issues/60,concierge,364874821,60,Hardcoded version in framework bundle,svilenvul,7120104,Svilen,,OPEN,2018-09-28T12:48:31Z,2018-10-19T12:12:08Z,"I am referring to:
+
+https://github.com/eclipse/concierge/blob/9399f771aa6b327612e45ce277c793929c1bbc2b/framework/org.eclipse.concierge/src/org/eclipse/concierge/Concierge.java#L149
+
+It is more interesting how this affects the displayed bundle version:
+
+![hardcoded-version](https://user-images.githubusercontent.com/7120104/46209116-937e2180-c335-11e8-9aa3-4c70263b4970.png)
+
+You can imagine how difficult was to find where this ""snapshot"" version came from, as it is not available in any repository... :-)
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/60/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/60,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQyNTgzMDIxNw==,concierge,425830217,60,NA,tverbele,4587925,Tim Verbelen,,NA,2018-10-01T08:38:05Z,2018-10-01T08:38:05Z,If I recall correctly this thing is supposed to be set by the build tool? @JochenHiller ?,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQyNTgzMDIxNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/60,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM0MjM1Mg==,concierge,431342352,60,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-10-19T12:12:08Z,2018-10-19T12:12:08Z,"This should be set by the build tool but I think currently it is not. 
+For now, I will hardcode it to 5.1.0-SNAPSHOT and look into ways to have it automatically synchronized with the version info (currently in a version.txt file). ","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMTM0MjM1Mg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/61,https://api.github.com/repos/eclipse-archived/concierge/issues/61,concierge,372857130,61,Concierge CI (snapshot) builds not running,svilenvul,7120104,Svilen,,CLOSED,2018-10-23T07:55:18Z,2018-10-24T06:39:45Z,"Latest snapshots of Eclipse Concierge are not available in http://download.eclipse.org/concierge/download/snapshots/?d.
+
+Last successful build is from 2018 05 23.
+
+Migrated from - https://github.com/eclipse/concierge/issues/59#issuecomment-431411085","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/61/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/61,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMjE0MzU5Ng==,concierge,432143596,61,NA,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,NA,2018-10-23T08:15:07Z,2018-10-23T08:15:07Z,Thanks for hint. I will take care about,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMjE0MzU5Ng==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/61,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMjM0NzUyNA==,concierge,432347524,61,NA,tverbele,4587925,Tim Verbelen,,NA,2018-10-23T17:42:34Z,2018-10-23T17:42:34Z,"Build is fixed, there are new snapshots up there!","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMjM0NzUyNA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/61,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMjUzMTcxMw==,concierge,432531713,61,NA,svilenvul,7120104,Svilen,,NA,2018-10-24T06:39:45Z,2018-10-24T06:39:45Z,Thank you all!,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzMjUzMTcxMw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/62,https://api.github.com/repos/eclipse-archived/concierge/issues/62,concierge,375941324,62,Unable to start with Java 11,htreu,1729268,Henning Treu,henning.treu@googlemail.com,OPEN,2018-10-31T12:36:03Z,2018-10-31T13:44:39Z,"Using OpenJDK 11 and the [Eclipse SmartHome Packaging Sample](https://github.com/eclipse/smarthome-packaging-sample) the concierge framework will not start up. This is the log output:
+
+```
+Using java: java
+openjdk version ""11.0.1"" 2018-10-16
+OpenJDK Runtime Environment 18.9 (build 11.0.1+13)
+OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13, mixed mode)
+JAVA_VERSION=1101
+JAVA_COMPACT_PROFILE=fulljre
+JAVA_VENDOR=Oracle
+java.lang.NumberFormatException: For input string: """"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Integer.parseInt(Integer.java:662)
+	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+	at org.eclipse.concierge.Concierge.<init>(Concierge.java:665)
+	at org.eclipse.concierge.Factory.newFramework(Factory.java:33)
+	at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:79)
+	at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:70)
+	at org.eclipse.concierge.Concierge.doMain(Concierge.java:606)
+	at org.eclipse.concierge.Concierge.main(Concierge.java:525)
+---------------------------------------------------------
+  Concierge OSGi 5.0.0 on Mac OS X 10.14 starting ... (eclipse-smarthome) startlevel=3
+---------------------------------------------------------
+---------------------------------------------------------
+  Framework started in 0.0 seconds.
+---------------------------------------------------------
+Exception in thread ""main"" org.osgi.framework.BundleException: Resolution failed [BundleRequirement {osgi.ee; filter:=(&(osgi.ee=JavaSE)(version=1.5))}]
+	at org.eclipse.concierge.Concierge.resolve(Concierge.java:2645)
+	at org.eclipse.concierge.BundleImpl$Revision.resolve(BundleImpl.java:1881)
+	at org.eclipse.concierge.BundleImpl.activate(BundleImpl.java:532)
+	at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:506)
+	at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:444)
+	at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:169)
+	at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:70)
+	at org.eclipse.concierge.Concierge.doMain(Concierge.java:606)
+	at org.eclipse.concierge.Concierge.main(Concierge.java:525)
+```","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/62/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/62,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzNDY3MTcwMQ==,concierge,434671701,62,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-10-31T12:40:56Z,2018-10-31T12:40:56Z,"Could you tell me what 
+`  System.getProperty(""java.specification.version"")`
+returns on your VM?","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzNDY3MTcwMQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/62,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzNDY4Mzc5MA==,concierge,434683790,62,NA,htreu,1729268,Henning Treu,henning.treu@googlemail.com,NA,2018-10-31T13:20:50Z,2018-10-31T13:20:50Z,It returns `11`.,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzNDY4Mzc5MA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/62,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzNDY4OTMxOQ==,concierge,434689319,62,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-10-31T13:36:15Z,2018-10-31T13:36:15Z,"Okay, thanks. 
+I pushed a change that hopefully addresses the issue. Could you please check it out?
+You can find the CI build here: https://ci.eclipse.org/concierge/job/Master_Build/296/","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzNDY4OTMxOQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/62,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzNDY5MjE2OA==,concierge,434692168,62,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2018-10-31T13:44:39Z,2018-10-31T13:44:39Z,Should be sufficient to swap out your existing concierge*.jar with framework/org.eclipse.concierge-5.1.0.SNAPSHOT-20181031093316-nodebug.jar from the build. ,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQzNDY5MjE2OA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/67,https://api.github.com/repos/eclipse-archived/concierge/issues/67,concierge,381757789,67,Concierge framework does not support extensions in JDK11,JochenHiller,165064,Jochen Hiller,jo.hiller@gmail.com,OPEN,2018-11-16T20:59:44Z,2018-11-16T20:59:44Z,"When running Eclipse SmartHome packaging sample (https://github.com/eclipse/smarthome-packaging-sample) using Concierge 5.1 with JDK11, it will complain when installing bundle ""slf4j-jdk14-1.7.22.jar with this message:
+
+```
+Concierge> Exception in thread ""main"" org.osgi.framework.BundleException: Framework does not support extensions
+	at org.eclipse.concierge.compat.service.BundleManifestTwo.processManifest(BundleManifestTwo.java:227)
+	at org.eclipse.concierge.BundleImpl$Revision.<init>(BundleImpl.java:1579)
+	at org.eclipse.concierge.BundleImpl$JarBundleRevision.<init>(BundleImpl.java:3587)
+	at org.eclipse.concierge.BundleImpl.readAndProcessInputStream(BundleImpl.java:395)
+	at org.eclipse.concierge.BundleImpl.<init>(BundleImpl.java:225)
+	at org.eclipse.concierge.Concierge.installNewBundle(Concierge.java:4078)
+	at org.eclipse.concierge.Concierge.installNewBundle(Concierge.java:4041)
+	at org.eclipse.concierge.Concierge$BundleContextImpl.installBundle(Concierge.java:4662)
+	at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:189)
+	at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:83)
+	at org.eclipse.concierge.Concierge.doMain(Concierge.java:606)
+	at org.eclipse.concierge.Concierge.main(Concierge.java:525)
+```
+
+The check if JVM supports extensions in https://github.com/eclipse/concierge/blob/master/framework/org.eclipse.concierge/src/org/eclipse/concierge/Concierge.java#L927 seems not to work in JDK11.
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/67/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/73,concierge,451994839,73,Cannot start the framework,,,,,CLOSED,2019-06-04T13:23:29Z,2019-08-23T15:49:08Z,"Hey, I probably have missed something obvious, but what am I doing wrong here?
+
+`D:\_osgi\concierge-incubation-6.0.0.SNAPSHOT.tar\concierge-incubation-6.0.0.SNAPSHOT\concierge-incubation-6.0.0.SNAPSHOT>java -jar framework/org.eclipse.concierge-6.0.0.SNAPSHOT.jar samples/default.xargs
+
+
+
+Exception in thread ""main"" org.osgi.framework.BundleException: Illegal attribute name "";java.vm.version=""25.131-b11"";org.osgi.supports.framework.fragment=""true"";user.variant="""";java.awt.printerjob=""sun.awt.windows.WPrinterJob"";sun.io.unicode.encoding=""UnicodeLittle"";org.osgi.framework.version=""1.5.0"";org.osgi.framework.storage=""storage"";awt.toolkit=""sun.awt.windows.WToolkit"";sun.stdout.encoding=""cp437"";org.osgi.framework.bundle.parent=""boot"";user.script="""";org.osgi.supports.bootclasspath.extension=""false"";user.home=""C:\Users\valkov"";java.specification.vendor=""Oracle Corporation"";java.library.path=""C:\jdk1.8.0_131c1\bin
+        at org.eclipse.concierge.Utils.parseLiterals(Utils.java:162)
+        at org.eclipse.concierge.Resources$GenericReqCap.<init>(Resources.java:74)
+        at org.eclipse.concierge.Resources$BundleCapabilityImpl.<init>(Resources.java:138)
+        at org.eclipse.concierge.Concierge.init(Concierge.java:1316)
+        at org.eclipse.concierge.Concierge.init(Concierge.java:1120)
+        at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:94)
+        at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:83)
+        at org.eclipse.concierge.Concierge.doMain(Concierge.java:617)
+        at org.eclipse.concierge.Concierge.main(Concierge.java:536)
+`
+
+It seems that something is wrong with my passing of properties.
+Thanks!","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/73/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQ5ODgyODM5Nw==,concierge,498828397,73,NA,rellermeyer,6497919,Jan S. Rellermeyer,,NA,2019-06-04T20:22:01Z,2019-06-04T20:22:01Z,Just guessing but based on the output: could it be that you have a dangling quotation mark in your xargs file? ,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQ5ODgyODM5Nw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQ5OTEwNTkxMw==,concierge,499105913,73,NA,,,,,NA,2019-06-05T14:25:40Z,2019-06-05T14:25:40Z,"Doesn't seem like it. I used the default one:
+
+`-Dorg.osgi.framework.storage.clean=onFirstInit
+-istart bundles/org.eclipse.concierge.shell-5.0.0.*.jar`
+
+It also happens if I use any of the other xargs files in the archive. I think it is something else.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQ5OTEwNTkxMw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQ5OTQzMTU5NA==,concierge,499431594,73,NA,tmarkwardt,3845676,,,NA,2019-06-06T10:00:49Z,2019-06-06T10:00:49Z,"hi,
+with r6 branch i have this error also:
+
+`P:\devel\Eclipse\Concierge3>p:\progs\java\jdk1.8.0_161.w64\bin\java -jar ""framework\org.eclipse.concierge-6.0.0.SNAPSHOT-20190606113805.jar"" samples\default.xargs
+
+Exception in thread ""main"" org.osgi.framework.BundleException: Illegal attribute name "";java.vm.version=""25.161-b12"";org.osgi.supports.framework.fragment=""true"";user.variant="""";java.awt.printerjob=""sun.awt.windows.WPrinterJob"";sun.io.unicode.encoding=""UnicodeLittle"";org.osgi.framework.version=""1.5.0"";org.osgi.framework.storage=""storage"";awt.toolkit=""sun.awt.windows.WToolkit"";sun.stdout.encoding=""cp850"";org.osgi.framework.bundle.parent=""boot"";user.script="""";org.osgi.supports.bootclasspath.extension=""false"";user.home=""C:\Users\xxxxxx"";java.specification.vendor=""Oracle Corporation"";java.library.path=""p:\progs\java\jdk1.8.0_161.w64\bin
+        at org.eclipse.concierge.Utils.parseLiterals(Utils.java:162)
+        at org.eclipse.concierge.Resources$GenericReqCap.<init>(Resources.java:74)
+        at org.eclipse.concierge.Resources$BundleCapabilityImpl.<init>(Resources.java:138)
+        at org.eclipse.concierge.Concierge.init(Concierge.java:1286)
+        at org.eclipse.concierge.Concierge.init(Concierge.java:1096)
+        at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:94)
+        at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:83)
+        at org.eclipse.concierge.Concierge.doMain(Concierge.java:617)
+        at org.eclipse.concierge.Concierge.main(Concierge.java:536)`","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQ5OTQzMTU5NA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQ5OTQ2Mjc2Mg==,concierge,499462762,73,NA,tmarkwardt,3845676,,,NA,2019-06-06T11:52:01Z,2019-06-06T11:52:01Z,"fix as PR #77 (master) and #76 (r6) requested ...
+alternate use my fork /tmarkwardt/concierge","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDQ5OTQ2Mjc2Mg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUwNjczMTEyOQ==,concierge,506731129,73,NA,tverbele,4587925,Tim Verbelen,,NA,2019-06-28T13:20:08Z,2019-06-28T13:20:08Z,Thanks!,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUwNjczMTEyOQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMjg5NzQ2OA==,concierge,522897468,73,NA,falmanna,3227740,Feras Almannaa,,NA,2019-08-20T07:47:50Z,2019-08-20T07:47:50Z,"Hi @tmarkwardt 
+Are these PRs available in the latest [SNAPSHOT](https://download.eclipse.org/concierge/download/snapshots/?d) build? 
+
+I am getting the same errors using `concierge-incubation-SNAPSHOT-latest.zip` build. ","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMjg5NzQ2OA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMjk0NTAyNw==,concierge,522945027,73,NA,tmarkwardt,3845676,,,NA,2019-08-20T10:01:11Z,2019-08-20T10:01:11Z,"Hi @falmanna 
+sorry but my changes was from june and the snaphot was from may ... please download and translate from source here ...
+Regards","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMjk0NTAyNw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMjk3NjA0OQ==,concierge,522976049,73,NA,falmanna,3227740,Feras Almannaa,,NA,2019-08-20T11:43:32Z,2019-08-20T11:43:32Z,"Thanks @tmarkwardt 
+Actually, I ran the 6.0-SNAPSHOT on a Linux system and it passed the problem, but it seems something is missing. All bundles are showing active in the CLI, but they are not responding. 
+
+Cloud the problem be caused by the fact that some of the installed bundles depend on OSGi R6?  I am assuming that the latest snapshot does support this, doesn't it? ","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMjk3NjA0OQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMzY1MDA4MQ==,concierge,523650081,73,NA,tmarkwardt,3845676,,,NA,2019-08-21T21:08:40Z,2019-08-21T21:08:40Z,i can't found a problem with https://github.com/eclipse/concierge.git to build or start. i have tested under debian stretch now. only the sample files for arguments is inconsistent - the start level bundle is 5.0.0 but the sample used 5.1.0 ,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMzY1MDA4MQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMzg0OTU1MA==,concierge,523849550,73,NA,falmanna,3227740,Feras Almannaa,,NA,2019-08-22T10:39:07Z,2019-08-22T10:39:07Z,"@tmarkwardt 
+I didn't try to build this repo myself, I used the pre-built SNAPSHOT I mentioned before. 
+
+What I am trying to accomplish is, I need to start some bundles that have depends on OSGi R6, and according to the website concierge version `5.1.0`  only support R5, so I tried to use version `6.0.0-SNAPSHOT` that should support R6 annotation according to [this](https://github.com/eclipse/concierge/pull/58) pull request.
+
+After running the snapshot, everything seemed successful, but I found that none of the bindings is responding as if they didn't register their services correctly.
+
+I think I might wait until the stable release of version `6.0.0` (which I hope will be soon) :)","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyMzg0OTU1MA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyNDM1NzU3Mg==,concierge,524357572,73,NA,tmarkwardt,3845676,,,NA,2019-08-23T15:24:44Z,2019-08-23T15:24:44Z,"@falmanna 
+which bundles?","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyNDM1NzU3Mg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/73,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyNDM2NTk1Ng==,concierge,524365956,73,NA,falmanna,3227740,Feras Almannaa,,NA,2019-08-23T15:49:08Z,2019-08-23T15:49:08Z,"@tmarkwardt 
+I trying to run some bundles from openhab 2.5 M2 release. ","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyNDM2NTk1Ng==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/78,https://api.github.com/repos/eclipse-archived/concierge/issues/78,concierge,490934459,78,"Resolution failed Exception with Import-Package org.osgi.framework.wiring;version=""[1.2,2)""",derryx,772060,Thomas,,CLOSED,2019-09-09T07:50:43Z,2019-09-09T11:19:54Z,"Hi!
+
+I am running Concierge 5.1.0 and have an Import-Package dependency in my bundle to 
+
+org.osgi.framework.wiring;version=""[1.2,2)""
+
+and get a Resolution failed Exception. Is something wrong with this version number? This is the version exported by the system bundle.
+
+CU
+Thomas","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/78/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/78,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyOTQxODYzOQ==,concierge,529418639,78,NA,tmarkwardt,3845676,,,NA,2019-09-09T11:03:05Z,2019-09-09T11:03:05Z,"Hi derryx,
+
+Concierge 5.1.0 support the version 1.1.0 on org.osgi.framework.wiring 
+
+Regards","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyOTQxODYzOQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/78,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyOTQyNDI1NQ==,concierge,529424255,78,NA,derryx,772060,Thomas,,NA,2019-09-09T11:19:54Z,2019-09-09T11:19:54Z,"Thanks tmarkwardt,
+
+after changing to [1.1,2) it works.
+
+Thanks for your fast response
+Thomas","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDUyOTQyNDI1NQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/79,https://api.github.com/repos/eclipse-archived/concierge/issues/79,concierge,491831571,79,Can't loading rest.xargs sample ...,tmarkwardt,3845676,,,CLOSED,2019-09-10T18:32:48Z,2019-11-06T07:19:14Z,"Bug on rest.xargs sample (and loading org.eclipse.concierge.service.rest.client-1.0.0.*.jar.
+
+`Exception in thread ""main"" org.osgi.framework.BundleException: Syntactic error in bundle manifest
+        at org.eclipse.concierge.compat.service.BundleManifestTwo.processManifest(BundleManifestTwo.java:116)
+        at org.eclipse.concierge.BundleImpl$Revision.<init>(BundleImpl.java:1608)
+        at org.eclipse.concierge.BundleImpl$JarBundleRevision.<init>(BundleImpl.java:3813)
+        at org.eclipse.concierge.BundleImpl.readAndProcessInputStream(BundleImpl.java:399)
+        at org.eclipse.concierge.BundleImpl.<init>(BundleImpl.java:228)
+        at org.eclipse.concierge.Concierge.installNewBundle(Concierge.java:4253)
+        at org.eclipse.concierge.Concierge.installNewBundle(Concierge.java:4216)
+        at org.eclipse.concierge.Concierge$BundleContextImpl.installBundle(Concierge.java:4842)
+        at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsInputStream(XargsFileLauncher.java:178)
+        at org.eclipse.concierge.compat.service.XargsFileLauncher.processXargsFile(XargsFileLauncher.java:83)
+        at org.eclipse.concierge.Concierge.doMain(Concierge.java:617)
+        at org.eclipse.concierge.Concierge.main(Concierge.java:536)
+Caused by: java.lang.IllegalArgumentException: invalid version ""1.0.0..SNAPSHOT-20190910193934"": invalid qualifier "".SNAPSHOT-20190910193934""
+        at org.osgi.framework.Version.validate(Version.java:205)
+        at org.osgi.framework.Version.<init>(Version.java:156)
+        at org.osgi.framework.Version.valueOf(Version.java:257)
+        at org.osgi.framework.Version.parseVersion(Version.java:228)
+        at org.eclipse.concierge.compat.service.BundleManifestTwo.processManifest(BundleManifestTwo.java:110)
+        ... 11 more`
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/79/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/82,https://api.github.com/repos/eclipse-archived/concierge/issues/82,concierge,499651808,82,Broken links on website,kaikreuzer,3244965,Kai Kreuzer,,CLOSED,2019-09-27T21:09:16Z,2019-11-04T15:34:42Z,"Hi guys,
+
+I just noticed that a couple of your links on the website result in a 404:
+- ""Downloads"" in the top menu: https://projects.eclipse.org/projects/rt.concierge/downloads
+- ""OSGi R5"" in the last paragraph: https://www.osgi.org/Release5/HomePage
+","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/82/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/82,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU0OTM5MzUzMA==,concierge,549393530,82,NA,tverbele,4587925,Tim Verbelen,,NA,2019-11-04T15:00:18Z,2019-11-04T15:00:18Z,Should be fixed,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU0OTM5MzUzMA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/82,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU0OTQwOTI1Mw==,concierge,549409253,82,NA,kaikreuzer,3244965,Kai Kreuzer,,NA,2019-11-04T15:34:42Z,2019-11-04T15:34:42Z,Indeed 👍 ,"{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU0OTQwOTI1Mw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/83,https://api.github.com/repos/eclipse-archived/concierge/issues/83,concierge,541647786,83,BundleContext.getBundle(String) not consistent with BundleContext.getBundles(),pdolezal,8732998,Petr Doležal,,OPEN,2019-12-23T08:45:45Z,2020-01-26T15:17:01Z,"When I tried Concierge with own launcher I found out that `BundleContext.getBundle(String)` does not work correctly when the framework uses an existing storage.
+
+Basically the scenario follows this pseudocode:
+```java
+Framework framework = factory.newFramework(properties); // Here the path to the storage is set
+framework.init();
+BundleContext systemBundle = framework.getBundleContext();
+Bundle bundle = systemBundle.getBundle(location);
+if (bundle == null) {
+    try (InputStream is = open(location)) {
+        bundle = systemBundle.installBundle(location, is);
+    }
+}
+```
+
+The `bundle` variable is always `null`, while it should return the installed bundle when the code is run second time with the same storage. I tried replacing `getBundle` with something like:
+```java
+Bundle bundle = Stream.of(systemBundle.getBundles())
+    .filter(b -> location.equals(b.getLocation())
+    .findAny()
+    .orElse(null);
+```
+And this always works. So the framework apparently knows which bundles were installed, it just does not update its structures for `getBundle` to work properly.
+
+The described behavior of `getBundle` in this use case results in duplicated installation of the bundle – and what is even more interesting: the newly installed bundle has the same location as the existing bundle. I believe this is wrong as well and the location should be unique. Maybe the framework implementation fails to check the location duplicity for the same reason.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/83/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/83,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU3MTUwMTUwMA==,concierge,571501500,83,NA,tmarkwardt,3845676,,,NA,2020-01-07T09:13:56Z,2020-01-07T09:13:56Z,"Hi,
+i don't reproduce this problem. When the bundle is installed, then i can found this bundle with `getBundle( String)` and with `getBundles()` and search on array ...
+
+give us a code to reproduce.
+
+Regards
+Torsten","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU3MTUwMTUwMA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/83,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU3MTgwMTA4MQ==,concierge,571801081,83,NA,pdolezal,8732998,Petr Doležal,,NA,2020-01-07T22:23:53Z,2020-01-07T22:23:53Z,"I extracted some code to reproduce the issue, or actually a part of it. There is probably yet something else in my original code that contributed to the described difference between `getBundles` and `getBundle` and I'll have to investigate it more thoroughly to isolate it.
+
+However, the code sample below shows a part of the problem, which might be the root cause for the described difference: the framework forgets which bundles were installed in the previous run and therefore allows repeated installations of the same bundle, so that the storage area grows with each run.
+
+```java
+package org.example.bug;
+
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.stream.Stream;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.Constants;
+import org.osgi.framework.launch.Framework;
+import org.osgi.framework.launch.FrameworkFactory;
+
+public final class Main {
+    public static void main(String... args) throws Exception {
+        final String location = args[0];
+        final FrameworkFactory factory = ServiceLoader.load(FrameworkFactory.class).iterator().next();
+        final Map<String, String> properties = Collections.singletonMap(Constants.FRAMEWORK_STORAGE, ""./storage"");
+        final Framework framework = factory.newFramework(properties);
+        framework.init();
+        final BundleContext systemBundle = framework.getBundleContext();
+
+        if ((systemBundle.getBundle(location) == null)) {
+            System.out.println(""Installing: "" + location);
+            try (InputStream is = Files.newInputStream(Paths.get(location))) {
+                final Bundle bundle = systemBundle.installBundle(location, is);
+                System.out.println(""Installed: "" + bundle);
+            }
+        }
+
+        Stream.of(systemBundle.getBundles()).forEach(bundle -> System.out.format(""%d: %s%n"", bundle.getBundleId(), bundle));
+        framework.stop();
+    }
+}
+```
+```xml
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<project xmlns=""http://maven.apache.org/POM/4.0.0"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>bug</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <java.compiler.source>${java.version}</java.compiler.source>
+    <java.compiler.target>${java.version}</java.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.core</artifactId>
+      <version>5.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.concierge</groupId>
+      <artifactId>org.eclipse.concierge</artifactId>
+      <version>5.1.0</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!--
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.framework</artifactId>
+      <version>6.0.3</version>
+      <scope>runtime</scope>
+    </dependency>
+    -->
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+
+        <configuration>
+          <source>${java.compiler.source}</source>
+          <target>${java.compiler.target}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+
+Execute several times `mvn exec:java -Dexec.mainClass=org.example.bug.Main -Dexec.args=some-bundle.jar` (where `some-bundle.jar` points to an actual bundle). IMHO, the more appropriate behavior shows Felix (just swap the framework implementation in the POM as hinted) which does not install the bundle again.
+
+I wonder if it is by design and the storage area should be then cleared for Concierge always to prevent growing it.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU3MTgwMTA4MQ==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/83,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU3ODUxMTcxMw==,concierge,578511713,83,NA,tmarkwardt,3845676,,,NA,2020-01-26T15:17:01Z,2020-01-26T15:17:01Z,"Ok ... i think understand the problem. you want an installed bundle to persist across the life cycle of the framework. when concierge started, concierge don't know which bundles existed on last run. And every new start from framework without clean storage added a new storage folder for the install bundle. persistent data don't store on temporary storage, better the bundle define a persistent storage location outside from the storage.
+
+to implement this functionaly please implement a own startup.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDU3ODUxMTcxMw==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/84,https://api.github.com/repos/eclipse-archived/concierge/issues/84,concierge,541661171,84,Framework.waitForStop() notifies only a single thread,pdolezal,8732998,Petr Doležal,,OPEN,2019-12-23T09:19:39Z,2019-12-23T09:19:39Z,"When multiple threads invoke `Framework.waitForStop()`, only one of them gets unblocked. I suppose that `Concierge.stop0(boolean)` should call `notifyAll()` instead of just `notify()` and it would be better to invoke it in `finally` to make sure that it would be executed always.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/84/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/86,https://api.github.com/repos/eclipse-archived/concierge/issues/86,concierge,650447653,86,Concierge does not support EXPORT_SERVICE/Export-Service?,hengyunabc,1683936,hengyunabc,hengyunabc@gmail.com,CLOSED,2020-07-03T08:50:04Z,2020-10-22T03:16:25Z,"
+https://github.com/eclipse/concierge/search?q=EXPORT_SERVICE&unscoped_q=EXPORT_SERVICE","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/86/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/86,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDcxMzg5Mjc3MA==,concierge,713892770,86,NA,tmarkwardt,3845676,,,NA,2020-10-21T21:39:25Z,2020-10-21T21:39:25Z,"Hi,
+since OSGI V4 the manifest entry ""Export-Service"" is deprecated.
+Concierge as ""simple"" OSGI implementation does not support this manifest entry.
+I think we don't implement a deprecated function.
+Regards
+Torsten  ","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDcxMzg5Mjc3MA==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-archived/concierge/issues/86,https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDcxNDE5NDU5Mg==,concierge,714194592,86,NA,hengyunabc,1683936,hengyunabc,hengyunabc@gmail.com,NA,2020-10-22T03:16:25Z,2020-10-22T03:16:25Z,"> Hi,
+> since OSGI V4 the manifest entry ""Export-Service"" is deprecated.
+> Concierge as ""simple"" OSGI implementation does not support this manifest entry.
+> I think we don't implement a deprecated function.
+> Regards
+> Torsten
+
+Thanks.","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/comments/MDEyOklzc3VlQ29tbWVudDcxNDE5NDU5Mg==/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-archived/concierge/issues/87,https://api.github.com/repos/eclipse-archived/concierge/issues/87,concierge,828983674,87,"Uncatchable exception caused by corrupt ""meta"" file",filippo-baccani,56684326,,,OPEN,2021-03-11T09:51:23Z,2021-03-11T09:51:23Z,"Goog morning. 
+I'm experiencing a peculiar failure:
+A ""meta"" file inside storage/default/[bundle id]/ has gone corrupted (zero length). 
+""Concierge"" class catchs EOFException and print the stack trace but do not take any action to perform a ""clean start"" and don't send the exception up in the class calling chain.
+So for the calling program there is no way to handle the problem.
+
+Here below the stack trace:
+
+java.io.EOFException
+        at java.base/java.io.DataInputStream.readInt(Unknown Source)
+        at org.eclipse.concierge.BundleImpl.<init>(BundleImpl.java:252)
+        at org.eclipse.concierge.Concierge.restoreProfile(Concierge.java:1517)
+        at org.eclipse.concierge.Concierge.init(Concierge.java:1330)
+        at org.myorg.ACallingClass .....
+
+Thanks","{""url"": ""https://api.github.com/repos/eclipse-archived/concierge/issues/87/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

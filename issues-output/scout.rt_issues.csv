@@ -1,0 +1,274 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-scout/scout.rt/issues/62,https://api.github.com/repos/eclipse-scout/scout.rt/issues/62,scout.rt,1044135084,62,File Drop on a table row no more working,michelgre,3640177,,,CLOSED,2021-11-03T21:34:20Z,2021-12-07T12:52:33Z,"Hello,
+
+I just upgraded my Scout application from Scout 10 to Scout 11. I use the Java environment. I use the file drop feature on Table Pages, both on rows and on empty space.
+
+When I drop the file on a row, I expect to get the target row in my application. It used to work with Scout 10.
+
+After the upgrade to Scout 11, it doesn't work anymore. I did some debugging, firstly in the Java application, then in the browser. What I see is that the 'rowId' property is empty in the uploadProperties variable in JsonTable.consumeBinaryResource.
+
+I checked what happens in Table.js, I see this:
+```
+  _createDragAndDropHandler() {
+    return dragAndDrop.handler(this, {
+      supportedScoutTypes: dragAndDrop.SCOUT_TYPES.FILE_TRANSFER,
+      onDrop: event => this.trigger('drop', event),
+      dropType: () => this.dropType,
+      dropMaximumSize: () => this.dropMaximumSize,
+      additionalDropProperties: event => {
+        let $target = $(event.currentTarget);
+        let properties = {
+          rowId: ''
+        };
+       if ($target.hasClass('table-row')) {    // <=== issue here
+          let row = $target.data('row');
+          properties.rowId = row.id;
+        }
+        return properties;
+      }
+    });
+  }
+```
+The indicated line is where it fails. The target has no 'table-row' class, because at this point it is the table itself, not the row. So the rowId property remains an empty string. Anyway, since it is not a row, the target has no 'row' property. Here is the data as seen under the debugger:
+```
+additionalDropProperties
+  <this>: {...}
+  $target: {...}
+    0: div.table.detail-table.parts-page.view
+    length: 1
+    <prototype>: {...}
+```
+
+Thank you.
+Michael
+
+","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/62/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/62,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR8464iCu,scout.rt,987898030,62,NA,cguglielmo,2082602,Claudio Guglielmo,,NA,2021-12-07T12:52:33Z,2021-12-07T12:52:33Z,Thank you for reporting the issue! It is fixed and will be available with the next build.,"{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR8464iCu/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-scout/scout.rt/issues/387,https://api.github.com/repos/eclipse-scout/scout.rt/issues/387,scout.rt,1491203780,387,Scout.setup is missing a schemaLocation mapping for the maven xmlns prefix,merks,208716,Ed Merks,,CLOSED,2022-12-12T07:38:19Z,2022-12-13T13:09:16Z,"The Oomph setup is not being properly copied in the setup archive,
+
+That's because `http://www.eclipse.org/oomph/setup/maven/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Maven.ecore` is missing here:
+```
+    xsi:schemaLocation=""http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/maven/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Maven.ecore""
+```
+
+That causes this job:
+
+https://ci.eclipse.org/oomph/job/setup-archiver/lastBuild/
+
+to always fail like this:
+
+```
+FAILED to load properly because of unrecognized XML content https://git.eclipse.org/c/scout/oomph.git/plain/Scout.setup
+```
+
+Please copy and paste the `xsi:schemaLocation` above to your Scout.setup","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/387/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/387,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QXxqT,scout.rt,1348410003,387,NA,avandorp,18458913,Arthur van Dorp,,NA,2022-12-13T12:14:41Z,2022-12-13T12:14:41Z,Thanks. I've updated Scout.setup. But I didn't see https://ci.eclipse.org/oomph/job/setup-archiver/ pick it up (waited for two jobs) and https://download.eclipse.org/justj/?file=oomph/www/setups/https/git.eclipse.org/c/scout/oomph.git/plain still shows the version from November. Meanwhile https://git.eclipse.org/c/scout/oomph.git/plain/Scout.setup gives the new version. I didn't see the error message you quoted in the setup-archiver-logs either. It seems I'm still missing something.,"{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QXxqT/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/387,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QYBS0,scout.rt,1348474036,387,NA,merks,208716,Ed Merks,,NA,2022-12-13T12:41:57Z,2022-12-13T12:41:57Z,"The error went away.   I diffed the two files and the only difference appears to be serialization differences.  The resource isn't directly a copy but rather is loaded and saved.
+```
+merks@CORE MINGW64 /d/stuff
+$diff Scout*
+14c14
+<     xsi:schemaLocation=""http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomphrg.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/maven/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Maven.ecore http://www.eclipse.org/oomph/predicates/1.0 tp://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore hp://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore""
+---
+>     xsi:schemaLocation=""http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomporg.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/sup/maven/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Maven.ecore""
+33a34
+>       content=""&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;section name=&quot;Workbench&quot;>&#xD;&#xA;&#x9;&lt;section name=&quot;org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart&ot;>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;true&quot; key=&quot;group_libraries&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;false&quot; key=&quot;linkWithEditor&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;2&quot; ke&quot;layout&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;2&quot; key=&quot;rootMode&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&p;#x0D;&amp;#x0A;&amp;lt;packageExplorer configured=&amp;quot;true&amp;quot; group_libraries=&amp;quot;1&amp;quot; layout=&amp;quot;2&amp;quot; linkWithEditor=&amp;quot;0&amp;quot; rootMode=&amp;quot;2&amp;quot; sortWorkingSe=&amp;quot;false&amp;quot; workingSetName=&amp;quot;&amp;quot;&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;workingSet editPageId=&amp;quot;org.eclipse.jdt.internal.ui.OthersWorngSet&amp;quot; factoryID=&amp;quot;org.eclipse.ui.internal.WorkingSetFactory&amp;quot; id=&amp;quot;1382792884467_1&amp;quot; label=&amp;quot;Other Projects&amp;quot; name=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0Damp;#x0A;&amp;lt;/localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;activeWorkingSet workingSetName=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;allWorkingSets workingSetName=&amp;quot;Other ojects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;/packageExplorer&amp;gt;&quot; key=&quot;memento&quot;/>&#xD;&#xA;&#x9;&lt;/section>&#xD;&#xA;&lt;/section>&#xD;&#xA;""
+37,49d37
+<     <content>
+<       &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>
+<       &lt;section name=&quot;Workbench&quot;>
+<               &lt;section name=&quot;org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart&quot;>
+<                       &lt;item value=&quot;true&quot; key=&quot;group_libraries&quot;/>
+<                       &lt;item value=&quot;false&quot; key=&quot;linkWithEditor&quot;/>
+<                       &lt;item value=&quot;2&quot; key=&quot;layout&quot;/>
+<                       &lt;item value=&quot;2&quot; key=&quot;rootMode&quot;/>
+<                       &lt;item value=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;packageExplorer configured=&amp;quot;true&amp;quot; group_librars=&amp;quot;1&amp;quot; layout=&amp;quot;2&amp;quot; linkWithEditor=&amp;quot;0&amp;quot; rootMode=&amp;quot;2&amp;quot; sortWorkingSets=&amp;quot;false&amp;quot; workingSetName=&amp;quot;&amp;quot;&amp;gt;&amp;#x0D;&amp;#x0Aamp;lt;localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;workingSet editPageId=&amp;quot;org.eclipse.jdt.internal.ui.OthersWorkingSet&amp;quot; factoryID=&amp;quot;org.eclipse.ui.internal.WorkingSetFactory&amp;quot; i&amp;quot;1382792884467_1&amp;quot; label=&amp;quot;Other Projects&amp;quot; name=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;/localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;activeWorkingt workingSetName=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;allWorkingSets workingSetName=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;/packageExplorer&amp;gt;&quot; key=&ot;memento&quot;/>
+<               &lt;/section>
+<       &lt;/section>
+<
+<     </content>
+234a223
+>     <!-- For easier retests keep the latest *two* builds -->
+
+```
+
+Are you sure it's not correct in this file?
+
+[www.eclipse.org/setups/setups.zip](https://www.eclipse.org/setups/setups.zip)","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QYBS0/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/387,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QYFNI,scout.rt,1348490056,387,NA,avandorp,18458913,Arthur van Dorp,,NA,2022-12-13T12:52:22Z,2022-12-13T12:52:22Z,"Yes, interestingly https://download.eclipse.org/justj/?file=oomph/www/setups/https/git.eclipse.org/c/scout/oomph.git/plain has `http://www.eclipse.org/oomph/setup/maven/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Maven.ecore` included, even though its change date is 2022-11-29. Possibly the loading and saving always added that schemaLocation part.","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QYFNI/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/387,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QYI7K,scout.rt,1348505290,387,NA,merks,208716,Ed Merks,,NA,2022-12-13T13:05:14Z,2022-12-13T13:05:14Z,"What's strange is that I see no build the promotes changes. But then I don't see anything semantically different between these two so perhaps it's not so strange:
+
+- https://download.eclipse.org/oomph/www/setups/https/git.eclipse.org/c/scout/oomph.git/plain/Scout.setup
+- https://git.eclipse.org/c/scout/oomph.git/plain/Scout.setup
+
+As far as I can tell, everything is good...","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QYI7K/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/387,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QYKNc,scout.rt,1348510556,387,NA,avandorp,18458913,Arthur van Dorp,,NA,2022-12-13T13:09:15Z,2022-12-13T13:09:15Z,That's what puzzled me. https://git.eclipse.org/r/plugins/gitiles/scout/oomph/+log/refs/heads/master shows no other changes. Closing as things seem good (again).,"{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR85QYKNc/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-scout/scout.rt/issues/589,https://api.github.com/repos/eclipse-scout/scout.rt/issues/589,scout.rt,1732173454,589,Security Best Practices,,,,,CLOSED,2023-05-30T12:37:17Z,2023-06-01T06:31:40Z,"Hi,
+
+As a member of the Security Team from the Eclipse Foundation, we used a tools [Scorecard](https://github.com/ossf/scorecard) and [StepSecurity](https://www.stepsecurity.io/) to analyze this repo  in order to push a pull request that cover some or all the following best practices below:
+* Apply least privilege principle to [GITHUB_TOKEN](https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/)
+* Add or fine tune the use of [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates)
+* Pin actions to a [full length commit SHA](https://michaelheap.com/ensure-github-actions-pinned-sha/)
+
+As a result, You will see a PR coming from [StepSecurity](https://www.stepsecurity.io/) to help to implement those fixes above which will cover a list of points below identified detected:
+* Add or fine tune the use of [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates)
+
+
+Please don’t hesitate and reach out if there is something unclear above.
+
+
+
+
+Kind Regards,
+Francisco Perez","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/589/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1176,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1176,scout.rt,2519214523,1176,RunContext.CURRENT.get().getTransaction() and ITransaction.CURRENT.get() mismatch,imotsch,11076921,Ivan Motsch,ivan.motsch@bsi-software.com,OPEN,2024-09-11T09:46:11Z,2024-09-11T14:09:32Z,"When nesting multiple RunContext chains the return value of calling
+-   RunContext.CURRENT.get().getTransaction()
+-   ITransaction.CURRENT.get()
+is not consistent.
+
+Also the copy algorithm regarding the RunContextm_transaction member is - by design and on purpose - different in
+- RunContext.CURRENT.get().copy uses m_transaction=other.m_transcation
+- RunContexts.coppyCurrent() uses m_transaction=ITransaction.CURRENT.get()
+
+### Discrepancy
+1. Whenever RunContext chains are nested one should always use RunContexts.coppyCurrent() in order to pass the current ITransaction to the child run context.
+
+​This major difference in functionality is not reflected in the implementation code and not obvious in the javadoc.
+
+2. In particular when using the transaction scope REQUIRES_NEW this difference can have major impacts.
+
+```
+**RunContexts.empty**().withScope(REQUIRES_NEW).run{
+  // RunContext.CURRENT.get().getTransaction() is null due to RunContexts.empty()
+  // ITransaction.CURRENT.get() is tx1 since a new ITranscation was created.
+
+  // nesting with copyCurrent
+  **RunContexts.copyCurrent**().withScope(REQUIRED).run{
+    // all fine, OK
+    // RunContext.CURRENT.get().getTransaction() is tx1 as set by copyCurrent()
+    // ITransaction.CURRENT.get() is tx1 since no new ITranscation was created.
+  }
+
+  // nesting with RunContext.copy
+  **RunContext.CURRENT.get().copy**().withScope(REQUIRED).run{
+    // NOK
+    // RunContext.CURRENT.get().getTransaction() is null as set by copy() that uses the parent RunContext.m_transaction that is never set.
+    // ITransaction.CURRENT.get() is a new transcation tx2 since a new ITranscation had to be created. This is not intuitive and not the expectation of the programmer.
+  }
+}
+```
+### Improvements
+1. The method RunContext.getTransaction() is only used internally by run context chains and should never be used by user code. --> Add javadoc and @Derecation marker to that method
+
+2. On the static method RunContexts.copyCurrent and method RunContext.copy() --> Add javadoc to clarifiy the difference regarding transaction and what to use for nesting run context chains.
+
+3. When using the scope REQUIRES_NEW at build time of a RunContext once the chain with thread locals is applied in TransactionProcessor#runTxRequiresNew add a statement to set the current RunContext m_transaction to the correct value by
+`RunContext.CURRENT.get().withTransaction(newTransaction)`
+","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/1176/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1176,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86LqeJ1,scout.rt,2343166581,1176,NA,imotsch,11076921,Ivan Motsch,ivan.motsch@bsi-software.com,NA,2024-09-11T09:48:03Z,2024-09-11T09:48:03Z,394954,"{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86LqeJ1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1176,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86Ls1UY,scout.rt,2343785752,1176,NA,imotsch,11076921,Ivan Motsch,ivan.motsch@bsi-software.com,NA,2024-09-11T14:09:30Z,2024-09-11T14:09:30Z,"Fixed in 2024.2
+https://github.com/eclipse-scout/scout.rt/pull/1177","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86Ls1UY/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1221,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1221,scout.rt,2585859789,1221,Not implemented Function getConfiguredLabelHorizontalAlignment,BjoernDroste365,184932415,,,CLOSED,2024-10-14T12:12:47Z,2024-12-17T09:55:13Z,"The function `getConfiguredLabelHorizontalAlignment` has no effect if it is configured with constants such as `LABEL_HORIZONTAL_ALIGNMENT_RIGHT`.
+
+This function is not implemented in the @eclipse-scout library for JS or for the user interface in general. The method should move the label from left to right in the case of a StringField, for example.
+It is important that the settings for the label positions, for example `LABEL_POSITION_TOP`, can be combined with the alignment settings.
+
+Method to configure
+```
+@Override
+protected byte getConfiguredLabelHorizontalAlignment() {
+  return LABEL_HORIZONTAL_ALIGNMENT_RIGHT;
+}
+```
+
+This is how it should look.
+From:
+![Label-Left](https://github.com/user-attachments/assets/6234188f-2187-4034-be38-809ee714365d)
+To:
+![Label-Right](https://github.com/user-attachments/assets/e4b22ab3-2132-4d99-a184-e21c09e8033f)
+","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/1221/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1221,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86P1CR6,scout.rt,2413044858,1221,NA,cguglielmo,2082602,Claudio Guglielmo,,NA,2024-10-15T06:54:13Z,2024-10-15T06:54:13Z,"Thank you for reporting it. It is true, the functionality has never been implemented yet because there was no need for it. Can you explain why you need it?
+Your expectation of how it should look is not quite correct. Setting the label alignment to `LABEL_HORIZONTAL_ALIGNMENT_RIGHT` would not move the label to the right of the field. Instead, it would right align it on the left side of the field. This is how it would look like:
+![image](https://github.com/user-attachments/assets/979a2662-6f82-4b5e-b1b6-ccc85085bdc3)
+","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86P1CR6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1221,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86P1jer,scout.rt,2413180843,1221,NA,BjoernDroste365,184932415,,,NA,2024-10-15T08:07:18Z,2024-10-15T08:07:18Z,"But if I use `LABEL_POSITION_ON_FIELD` as the label's position and also use `getConfiguredHorizontalAlignment`, then the content in the input field is shifted to the right, like this:
+
+![Label-OnField-Alignment](https://github.com/user-attachments/assets/7d216b39-e6d3-4bf1-ba4a-b0426245c8e7)
+
+Given this possibility of `getConfiguredHorizontalAlignment`, I would expect that `getConfiguredLabelHorizontalAlignment` would display the label on the other side. 
+
+With the `getConfiguredLabelPosition` method:
+
+![Label-Positions](https://github.com/user-attachments/assets/5d5a5845-d7ba-4371-bdf1-88076aff5e80)
+
+, I would also expect that, `LABEL_POSITION_RIGHT` corresponds to the ""Label Right"" position you mentioned, or that the label position moves the label to the right side. In addition, I would like to note that `LABEL_POSITION_BOTTOM` apparently makes no difference to ""Right"" and I would have assumed that ""Bottom"" would be under the input field.
+
+I specifically wanted to use these setting I explained and showed, for `UiDeviceType.MOBILE`. Since the screen is taller than it is wide, I wanted to use the `LABEL_POSITION_TOP` setting and the alignment mentioned to move the label to the right side, so that two fields are next to each other and the labels are each above the input field at the edge, and not one label at the edge and the second somewhere in the middle. Since the fields have a configurable label, I had thought that it could be moved to the other side. Also because the additional insertion of two LabelFields to achieve my solution is, in my opinion, not as nice as my original idea.","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86P1jer/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1221,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86QYTjI,scout.rt,2422290632,1221,NA,cguglielmo,2082602,Claudio Guglielmo,,NA,2024-10-18T11:51:07Z,2024-10-18T11:51:07Z,"LABEL_POSITION_RIGHT was originally supposed to move the label to the right side of the field. But, as you noticed, has never been implemented either, same as LABEL_POSITION_BOTTOM.
+
+If LABEL_HORIZONTAL_ALIGNMENT_RIGHT was implemented and used in combination with LABEL_POSITION_TOP, it should display the label on top of the field aligned to the right border like so:
+
+![image](https://github.com/user-attachments/assets/affad000-3937-4f89-a7ce-74be96be161b)
+
+You can easily achieve this result by using a CSS class and setting the CSS property `text-align: right` together with `padding-right: 0`.
+
+Please note that the label is automatically moved to top for small screens and mobile mode. So, in case you plan to right align every label using CSS, the label will be moved to top AND aligned right, which I would not expect in these cases. If you only need it for your explained usecase for specific fields, you should be fine.
+
+![image](https://github.com/user-attachments/assets/bbfbfff7-7c44-439d-bc58-84a86ecfdfcc)","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86QYTjI/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1221,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86W5HMm,scout.rt,2531554086,1221,NA,BjoernDroste365,184932415,,,NA,2024-12-10T12:51:46Z,2024-12-10T12:51:46Z,"@cguglielmo 
+Is there a way to use CSS classes to put the label on the ""correct right side"" (to the right of the status) or under the field (bottom)? I tried to configure it, but nothing works properly.
+
+This is what I expect for my configuration:
+Labeling on the right (as in my first expectation)
+![Label-Right](https://github.com/user-attachments/assets/bfc9431c-76fc-44d6-9d12-2a5881bf3b92)
+align the label bottom (similiar to “top”)
+![Label-Bottom](https://github.com/user-attachments/assets/6cf10866-6a17-44c6-bc56-b580e342c3f0)
+
+If I know these configurations, I can take care of everything and can close this issue.","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86W5HMm/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1221,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86X30VR,scout.rt,2547991889,1221,NA,BjoernDroste365,184932415,,,NA,2024-12-17T09:55:13Z,2024-12-17T09:55:13Z,"After several days, I have now found the solution. I had to create a layout for a CustomStringField.ts class and overwrite the layout method of FormField. There I had to configure the positions for “Bottom” and “Right” and introduce a variable for LabelHorizontalAlignment.
+
+If I had known where to insert the configuration, it wouldn't have been a problem to handle it. Now I understand even less why it wasn't introduced directly, but that's no longer my problem.","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86X30VR/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1298,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1298,scout.rt,2729696415,1298,CustomButton _render() not executed,BjoernDroste365,184932415,,,CLOSED,2024-12-10T10:28:14Z,2024-12-18T12:26:41Z,"Hello,
+
+I have a problem with a CustomButton.ts that I wanted to extend. The problem is that the _render() method in my CustomButton is not executed and I don't know why.
+
+I have already created a CustomStringField.ts that works fine, but not the CustomButton.ts. In the inherited Java class (AbstractJsonObjectFactory) for checking the instances of the CustomUIs, the correct instance is recognized. The constructors of CustomButton, its adapter and the edited DoubleClickSupport (CustomClickSupport) are executed.
+The init() method in CustomButton is also executed.
+
+The minimum classes for a connection should be:
+1. Abstract-Java-Class
+2. Interface-Java-Class
+3. Json-Java-Class (in ui.html)
+4. inherited AbstractJsonObjectFactory-Class
+5. Typescript-Class
+6. Typescript-Class as Adapter
+7. Less-class for CustomButton.ts - `this.addContainer(this.$parent, 'custom-button-field', new ButtonLayout(this));`
+and the Typescript-Class to override the DoucleClickSupport.
+
+Since my CustomStringField works, I thought that a CustomButton should be created in the same way, but it doesn't look like it.
+
+Is the _render() in Button really used? Then I should be able to overwrite it like this `protected override _render(){...}`, right?
+
+I wanted to add more events to my custom button, for example, to track long presses/holds of my button or other events in general.
+","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/1298/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1298,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86YEB1M,scout.rt,2551192908,1298,NA,BjoernDroste365,184932415,,,NA,2024-12-18T12:26:41Z,2024-12-18T12:26:41Z,"I have found the Problem, on myself.
+
+I have to set the ""process button"" to false. I don't no why, this have to be set, but it works.","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86YEB1M/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1359,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1359,scout.rt,2821797883,1359,"Forum shutdown, Feedback on Community Discussion for Eclipse Scout",nisrael,66925,Nils Israel,nils@sxda.io,CLOSED,2025-01-30T20:53:21Z,2025-02-04T16:05:50Z,"Hi,
+
+This isn’t a code issue, but I couldn’t find another way to share this feedback.
+
+I have been following the forum regularly for the last 10+ years, posting questions and occasionally participating in discussions. It was a great place for the community. I understand that it was the Eclipse Foundation, not the Scout team, that decided to close the forum.
+
+As suggested in the forum’s final post, I went to Stack Overflow with the `eclipse-scout` tag to ask about enabling the search function in the columns table of the table organizer form. Since it was my first question on Stack Overflow, I had to post it in the ""Staging Ground"" for review. A few hours later, my post was edited and marked as off-topic by someone who had no prior activity with the eclipse-scout tag. They didn’t provide any feedback on why it was off-topic and didn’t respond when I asked for clarification. After a day without progress, I had to delete my post.
+
+After reading more about Stack Overflow guidelines, I understand why my question was off-topic—it didn’t describe a specific issue or include code. Instead, I was asking for recommendations based on a use case. But that means Stack Overflow isn’t the right place for such discussions. And unfortunately, there’s no alternative.
+
+Would you consider opening **GitHub Discussions** for Eclipse Scout, as mentioned in the final forum’s post ? This would provide a place for broader discussions beyond strict technical Q&A. I realize the forum’s community wasn’t huge, but having no dedicated space to discuss Scout in general is a real loss.
+
+Thank you for your time.
+Nils
+
+","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/1359/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-scout/scout.rt/issues/1359,https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86cnJki,scout.rt,2627508514,1359,NA,rilent,3586272,Nico P,,NA,2025-01-31T14:38:36Z,2025-01-31T14:38:36Z,"Hello, 
+Also an Eclipse Scout user here. Nisrael is 100% right, Stack Overflow is not the best place for open discussions about the framework. GitHub Discussions would be a good alternative! Thanks.","{""url"": ""https://api.github.com/repos/eclipse-scout/scout.rt/issues/comments/IC_kwDOF6hIR86cnJki/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

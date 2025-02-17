@@ -1,0 +1,522 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/1,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/1,gmf-runtime,1111492947,1,Remove usage of deprecated Observable classes,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-01-22T11:49:50Z,2022-05-07T12:37:39Z,"Starting in 2019, the Eclipse Platform has marked several databinding classes as deprecated for removal. See [#546820](https://eclip.se/546820) and [the migration guide](https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Fporting%2Fremovals.html&cp%3D2_3_0).
+
+This includes:
+
+* `org.eclipse.jface.databinding.viewers.ViewersObservables`
+* `org.eclipse.jface.databinding.swt.SWTObservables`
+* `org.eclipse.core.databinding.beans.BeansObservables`
+* `org.eclipse.core.databinding.beans.PojoObservables`
+* `org.eclipse.ui.databinding.WorkbenchObservables`
+
+They will be completely removed in 2022-09.
+
+GMF Runtime uses some of these, so must be adapted.
+
+From a quick read of the comments on bug #546820, it seems that the replacements have only been complete starting from around 2020-06 (not sure yet). Depending on how GMF Runtime uses these classes, if we want to be compatible with 2022-09 where these will no longer be available, it might mean we need to drop support for platforms older than ~2020-06 (so that we can use the alternatives).
+
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/1,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5CarPb,gmf-runtime,1114289115,1,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-05-01T17:13:35Z,2022-05-01T17:13:35Z,"As part of https://github.com/eclipse/gmf-runtime/issues/6, support for platforms older than 2020-09 have been removed.
+It seems that platforms supported in the upcoming [version 1.15.0](https://github.com/eclipse/gmf-runtime/milestone/3) now include complete replacements for the deprecated APIs, so if this is confirmed (and if time permits) this could be included in 1.15.0.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5CarPb/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/3,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/3,gmf-runtime,1117185788,3,Move to Xerces 2.12.2,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-01-28T09:32:14Z,2022-01-31T12:37:19Z,"GMF Runtime [depends on Apache Xerces](https://github.com/eclipse/gmf-runtime/blob/2cf3f4ba2aec38f568f2aad848a4543b959734c0/org.eclipse.gmf.runtime.draw2d.ui.render.awt/META-INF/MANIFEST.MF#L36) but currently accepts version 2.12.1.
+
+This version is vulnerable to [CVE-2022-23437](https://nvd.nist.gov/vuln/detail/CVE-2022-23437), which is fixed in Xerces 2.12.2. Once Xerces 2.12.2 is [available in Orbit](https://git.eclipse.org/r/c/orbit/orbit-recipes/+/190077), we should adopt it.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/3,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc49CZjq,gmf-runtime,1024039146,3,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-01-28T09:32:50Z,2022-01-28T09:32:50Z,See also [this thread](https://www.eclipse.org/lists/cross-project-issues-dev/msg18920.html) on _cross-project-issues-dev_.,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc49CZjq/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/3,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc49IuO8,gmf-runtime,1025696700,3,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-01-31T12:37:19Z,2022-01-31T12:37:19Z,Fixed by https://github.com/eclipse/gmf-runtime/commit/029db937fdd4ac12361f3d046e824b115f905e98,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc49IuO8/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/4,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/4,gmf-runtime,1179629378,4,Not all dependent Batik bundles included ,jonahgraham,679236,Jonah Graham,jonah@kichwacoders.com,CLOSED,2022-03-24T14:51:46Z,2022-04-02T09:09:30Z,"Hello folks,
+
+After the recent update to Batik 1.14 the gmf runtime p2 repository is no longer complete. I believe the batik parts of the p2 repo come from:
+
+https://github.com/eclipse/gmf-runtime/blob/e515ae3ebf4dee515105aa6ff29410af6920049e/org.eclipse.gmf.runtime.thirdparty-feature/feature.xml#L48
+
+but in 1.14 there are additional bundles:
+
+```
+JavaPackage(org.apache.batik.script.rhino [1.14.0,2.0.0)) is required by:
+  ValidationSet(main)
+    Contribution(GMF Runtime 1.14.1 for SimRel 2022-03)
+      MappedRepository(https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202202190902)
+        Feature(org.eclipse.gmf.feature.group [1.14.1.202202190902,1.14.1.202202190902])
+          InstallableUnit(org.eclipse.gmf.runtime.draw2d.ui.render.awt 1.10.0.202202190902)
+            InstallableUnit(org.apache.batik.transcoder 1.14.0.v20210324-0332)
+              InstallableUnit(org.apache.batik.bridge 1.14.0.v20210324-0332)
+```
+
+Are you able to provide an update for 2022-06 M1 to SimRel? 
+
+This issue came up when trying to complete this work: https://www.eclipse.org/lists/cross-project-issues-dev/msg18974.html","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/4/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/4,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5AhX-j,gmf-runtime,1082490787,4,NA,jonahgraham,679236,Jonah Graham,jonah@kichwacoders.com,NA,2022-03-30T00:20:48Z,2022-03-30T00:20:48Z,"@pcdavid - I added a workaround in SimRel so that I can proceed. See [this change to SimRel](https://git.eclipse.org/r/c/simrel/org.eclipse.simrel.build/+/189612/5/gmp-gmf-runtime.aggrcon). Summary is that [I made](https://git.eclipse.org/r/c/orbit/orbit-recipes/+/192337/2/releng/repository-simrel/gmf-runtime/pom.xml) a special [p2 site](https://download.eclipse.org/tools/orbit/downloads/drops-simrel/gmf-runtime/) that has only the missing dependencies of gmf-runtime and added that to the gmf-runtime contribution of simrel.
+
+When this issue is resolved (i.e. you have a new version ready to publish) you can take the workaround out of your aggrcon file.
+
+Please let me know if you have any questions.","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5AhX-j/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/6,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/6,gmf-runtime,1194724694,6,Move BREEs to JavaSE-11,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-04-06T14:49:47Z,2022-05-01T14:38:52Z,"GEF Classic (which ""replaces"" GEF Legacy), is moving to Java 11 as a minimum version, and the platform itself has required Java 11 since 2020-09 (Eclipse 4.17).
+To reduce the maintenance burden, GMF Runtime will move to Java 11 and drop support for (at least) all Eclipse versions older than 2020-09.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/6,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5Cai4T,gmf-runtime,1114254867,6,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-05-01T14:38:51Z,2022-05-01T14:38:51Z,Fixed by https://github.com/eclipse/gmf-runtime/commit/8d56524c60f64597d7feea3d87bc62563693338c.,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5Cai4T/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/7,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/7,gmf-runtime,1194730992,7,Adopt GEF Classic once it has made a stable release,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-04-06T14:54:33Z,2022-05-07T12:38:23Z,"GMF Runtime has been using the unmaintained so called ""GEF Legacy"" component:
+
+```
+location GEF-Legacy ""https://download.eclipse.org/tools/gef/updates/legacy/releases"" {
+	org.eclipse.gef.sdk.feature.group 3.11.0.201606061308
+}
+```
+
+GEF maintenance has restarted under the name ""GEF Classic"" (see https://github.com/eclipse/gef-classic).
+We must move to GEF Classic once it has made an official release, and in particular once it has contributed a version to the SimRel.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/7,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5Ccfzh,gmf-runtime,1114766561,7,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-05-02T11:59:18Z,2022-05-02T11:59:18Z,"Waiting for the GEF Classic release, planned on 2022-05-11. See https://github.com/eclipse/gef-classic/issues/40#issuecomment-1114655314.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5Ccfzh/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/7,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5CxO_k,gmf-runtime,1120202724,7,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-05-07T12:38:23Z,2022-05-07T12:38:23Z,"Fixed by https://github.com/eclipse/gmf-runtime/commit/e3f4a7498a30429f9ff156f7e1ccc767b419ff21, which consumes https://download.eclipse.org/tools/gef/classic/releases/3.13.0","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5CxO_k/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/8,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/8,gmf-runtime,1194740355,8,"Add a ""canary"" target platform to track the latest builds of all the dependencies",pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-04-06T15:01:19Z,2022-05-01T12:18:35Z,"Now that GEF maintenance has restarted (see https://github.com/eclipse/gef-classic), it would be nice to have a target platform (and a regular build) which tracks the latest integration builds of all our depedencies.
+This will provide an early warning if/when some upstream components makes an incompatible change, hopefully in time to react (either by adapting GMF or by warning upstream of possibly unforeseen impacts of their changes).
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/8/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/8,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5CaarC,gmf-runtime,1114221250,8,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-05-01T12:18:35Z,2022-05-01T12:18:35Z,"Fixed by https://github.com/eclipse/gmf-runtime/commit/fd7258397d3f524fbc05cc1fdeec8872fa66f347.
+
+The new target platform is tested (weekly or on demand) with https://ci.eclipse.org/gmf-runtime/job/gmf-runtime-canary/","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5CaarC/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/9,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/9,gmf-runtime,1222221508,9,Reorganize source directories,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-05-01T17:10:15Z,2022-05-09T07:17:26Z,"This is really just a cosmetic issue, but now that the sources are on GitHub, the fact that all the features and plug-ins are top-level directories completely hides the README from the main repo page.
+
+They could be reorganized into:
+* `bundles` for the plug-ins / OSGi bundles;
+* `features` for the features;
+* `releng` for the top-level POM, the target platform definitions and the repository definition.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/9/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/10,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/10,gmf-runtime,1223992940,10,Try to restore support for exporting as PDF,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-05-03T11:52:33Z,2023-11-23T08:25:02Z,"When moving to Batik 1.14 (in GMF Runtime 1.14), support for exporting diagrams as PDF has been removed as it depends on Apache FOP, and that was not available in a compatible version in Orbit.
+See `org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.SVGImageConverter.exportToPDF(SVGImage, OutputStream)`.
+
+Recent versions of Tycho support getting dependencies directly from Maven Central without needing to go through Orbit, and the Eclipse Foundation's IP guidelines allow that. Maybe it's possible to restore support for PDF export by getting a compatible FOP from there.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/10/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/10,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5ouvZF,gmf-runtime,1757083205,10,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-10-11T08:10:20Z,2023-10-11T08:10:20Z,"For 1.16.2 which will move to Batik 1.17, see if we can restore this.","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5ouvZF/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/11,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/11,gmf-runtime,1224325861,11,Apply the standard Eclipse formatter and source cleanup profile,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-05-03T16:29:27Z,2022-05-03T16:29:27Z,"The source code is formatted using old standards and uses narrow lines, which makes it less readable.
+
+It also causes hundreds of warnings because of older practices/conventions (missing `@Override`, some unnecessary casts, etc.).
+
+* Apply the built-in Eclipse formatter to get a more readable and consistent formatting.
+* Apply safe automatic ""Source Clean-up"" to reduce the number of warnings (and make the potentially important ones more visible).
+* Maybe configure common project-specific formatter/clean-up/save actions to enforce this in the future.
+
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/11/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/13,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/13,gmf-runtime,1235141379,13,Remove usage of deprecated GEF APIs,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-05-13T11:51:44Z,2022-05-13T12:44:18Z,"Now that GEF's development has restarted, they might finally remove long-deprecated APIs.
+GMF should stop depending on them.
+
+Even if GEF does not actually remove them, it would be better not to use those APIs, even if only to reduce the number of warnings in the code. There are currently so many that it's difficult to know if some actual issues are lurking there.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/13/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/14,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/14,gmf-runtime,1235153804,14,Remove usage of deprecated platform APIs,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-05-13T12:03:45Z,2022-08-21T14:56:27Z,"GMF Runtime uses several APIs that have long been deprecated in the Eclipse platform.
+See [this page](https://help.eclipse.org/latest/topic/org.eclipse.platform.doc.isv/porting/removals.html) for the platform's API removal plans.
+
+As of this writing, it seems like the only APIs used by GMF which have an actual removal date are the `Observable` classes which were treated by https://github.com/eclipse/gmf-runtime/issues/1, but if time permits it would be better to anticipate the removal of the others.
+
+This includes (at least):
+* `org.eclipse.core.runtime.preferences.InstanceScope.InstanceScope()`
+* `org.eclipse.emf.ecore.xmi.impl.SAXWrapper` (technically part of EMF and not the platform itself)
+* `org.eclipse.core.resources.IFileModificationValidator`
+* `org.eclipse.ui.contentassist.ContentAssistHandler`
+* `org.eclipse.jface.contentassist.SubjectControlContentAssistant`
+* `org.eclipse.ui.IKeyBindingService`
+* `org.eclipse.ui.views.navigator.NavigatorDragAdapter`
+* `org.eclipse.core.runtime.SubProgressMonitor`
+* `org.eclipse.jface.viewers.ViewerSorter`
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/14/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/14,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5Iz4zP,gmf-runtime,1221561551,14,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-21T14:56:27Z,2022-08-21T14:56:27Z,"More up to date list of API deprecations: https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Fdeprecated-list.html&anchor=forRemoval
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5Iz4zP/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/15,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/15,gmf-runtime,1246560846,15,Remove usage of Object.finalize() in AbstractRenderedImage,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-05-24T13:30:04Z,2022-05-26T13:08:02Z,"[AbstractRenderedImage](https://github.com/eclipse/gmf-runtime/blob/master/bundles/org.eclipse.gmf.runtime.draw2d.ui.render/src/org/eclipse/gmf/runtime/draw2d/ui/render/internal/AbstractRenderedImage.java#L70) defines a finalizer, but those are [deprecated for removal](https://openjdk.java.net/jeps/421). We should investigate and replace it with a more robust mechanism (cleaners? phantom references?).
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/15/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/15,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5D3QK5,gmf-runtime,1138557625,15,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-05-26T13:08:02Z,2022-05-26T13:08:02Z,See also this article: [Replacing Finalizers with Cleaners](https://inside.java/2022/05/25/clean-cleaner/).,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5D3QK5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/16,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/16,gmf-runtime,1274631120,16,Move to GEF Classic 3.14 (with the old feature id),vogella,139910,Lars Vogel,Lars.Vogel@vogella.com,CLOSED,2022-06-17T06:36:09Z,2022-06-18T09:16:13Z,"https://github.com/eclipse/gef-classic/pull/71 restored the old features ID of GEF as it was concluded that this is too risky https://github.com/eclipse/gef-classic/issues/70
+
+Sorry @pcdavid, I wanted to provide a PR for the revert but see that your are using tpd for target definitions which I'm not familiar with. What is the advantage of tpd over the usage of target files? These days target files allow you to use Maven dependencies directly and can also include other target files.","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/16/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/16,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5FGxv6,gmf-runtime,1159404538,16,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-06-18T09:16:12Z,2022-06-18T09:16:12Z,Fixed by https://github.com/eclipse/gmf-runtime/commit/ff3d7ce1f08da28b09f83755a7c3de5104d29252,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5FGxv6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/17,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/17,gmf-runtime,1336363832,17,Remove version constraints for com.ibm.icu package imports,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-08-11T18:57:09Z,2022-08-12T06:45:24Z,"See https://github.com/eclipse-platform/eclipse.platform.releng/issues/69 for context.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/17/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/18,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/18,gmf-runtime,1338287607,18,Add support for Eclipse-SourceReference in MANIFEST.MF,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-08-14T16:06:27Z,2022-08-15T20:01:36Z,"Configure Tycho to generate `Eclipse-SourceReference` headers pointing to the exact commit of a particular build:
+
+```xml
+<plugin>
+    <groupId>org.eclipse.tycho</groupId>
+    <artifactId>tycho-packaging-plugin</artifactId>
+    <version>${tycho-version}</version>
+    <configuration>
+        <sourceReferences>
+            <generate>true</generate>
+        </sourceReferences>
+    </configuration>
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.tycho.extras</groupId>
+            <artifactId>tycho-sourceref-jgit</artifactId>
+            <version>${tycho-version}</version>
+        </dependency>
+    </dependencies>
+</plugin>
+```
+
+
+
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/18/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/18,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5IdpOG,gmf-runtime,1215730566,18,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-15T20:01:36Z,2022-08-15T20:01:36Z,Fixed by c7420ce.,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5IdpOG/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/19,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/19,gmf-runtime,1338757767,19,Clean/archive/migrate the GMF-related content on the Eclipse Wiki,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-08-15T09:33:08Z,2022-08-15T09:33:08Z,"The Eclipse wiki will be disappear at some point, but there are quite a lot of GMF-related pages there:
+
+- https://wiki.eclipse.org/Graphical_Modeling_Framework
+- https://wiki.eclipse.org/Category:GMF
+
+Most of these are very old, probably at least in part obsolete.
+Some triage will be needed to see which content is useful enough to be migrated here (in the GitHub Wiki), archived somewhere ""just in case"", or simply removed.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/19/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/20,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/20,gmf-runtime,1339202997,20,Remove the dependency on the deprecated ICU4J/com.ibm.icu,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-08-15T16:26:53Z,2022-08-15T16:35:25Z,"One step further from #17: completely remove the dependency.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/20/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/20,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5IcFNM,gmf-runtime,1215320908,20,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-15T16:35:24Z,2022-08-15T16:35:24Z,"Fixed by af365c57c3dc5a53136b3b8a5e822f6260aacb50.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5IcFNM/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/21,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/21,gmf-runtime,1350593625,21,Revert to Tycho 2.7.2 for 2022-09,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-08-25T09:17:20Z,2022-08-26T16:14:56Z,"Version 1.15.1 moved to Tycho 2.7.4, which changed its behavior (see https://github.com/eclipse-tycho/tycho/issues/1281). The 1.15.1 repository has quite a lot of unexpected stuff which was not included before.
+Compare [1.15.0](https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202206180919/) to [1.15.1](https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202208152011/).
+
+I'll rebuild using a previous version of Tycho and release 1.15.2 before 2022-09 to reduce the impacts on the SimRel.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/21/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/21,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5JPDw5,gmf-runtime,1228684345,21,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-26T16:14:24Z,2022-08-26T16:14:24Z,Fixed by https://github.com/eclipse/gmf-runtime/commit/5831fab08443d266239e4d423b8714d9c22f5713.,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5JPDw5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/22,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/22,gmf-runtime,1417438529,22,Batik dependencies should be declared with Import-Package instead of Required-Bundle,amergey,956840,Arnaud Mergey,,OPEN,2022-10-20T23:03:22Z,2022-10-20T23:03:22Z,"Currently Batik dependencies are declared with Required-Bundle
+It would be better to use Import-Package instead as batik will be osgified (see https://github.com/apache/xmlgraphics-batik/pull/30)
+
+Currently Required-Bundle force to use Orbit Bundle and prevent using servicemix or regular batik when osgified
+
+The reason to take regular batik instead of orbit is cleaner for build based on maven. More and more part of eclipse are deployed in maven central, and it is better to take things from maven than p2 (in order to be able to use Dependency Analysis Platform)
+
+More than that osgi world recommends Import-Package over Required-Bundle","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/22/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/23,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/23,gmf-runtime,1428696829,23,Switch to Batik 1.16,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-10-30T09:33:32Z,2023-04-29T14:05:17Z,"Orbit has moved to 1.15 and then 1.16.
+
+[Both versions](https://xmlgraphics.apache.org/batik/#News) fix security issues:
+```
+25 Oct 2022: Version 1.16 Released
+
+This is mainly a bug fix release, including 2 security fixes
+22 Sept 2022: Version 1.15 Released
+
+This is mainly a bug fix release, including 3 security fixes
+```
+
+From the Batik `CHANGES` file:
+
+```
+1.16
+----
+
+Java 8 or later is minimum runtime required
+
+BATIK-1338: Block loading jar inside svg
+BATIK-1345: Restrict what java classes can be run thru rhino
+
+1.14 -> 1.15
+------------
+
+BATIK-1260: Java 11 module error
+BATIK-1321: Remove Xerces
+BATIK-1299: Batik-all jar has all classes so should not pull other jars also
+BATIK-1329: Remove xalan
+BATIK-1331: Jar url should be blocked by DefaultExternalResourceSecurity
+BATIK-1333: Block external resource before calling fop
+BATIK-1335: Jar url should be blocked by DefaultScriptSecurity
+```
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/23/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/23,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5bH5QP,gmf-runtime,1528796175,23,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-04-29T14:05:17Z,2023-04-29T14:05:17Z,This was fixed in version 1.15.3.,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5bH5QP/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/24,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/24,gmf-runtime,1647479754,24,"[PropertiesView][Diagram] ClassCastException in ""Rulers & Grid"" Property Section",GlennPlou,33932970,Glenn Plouhinec,,CLOSED,2023-03-30T12:01:58Z,2023-04-29T14:16:37Z,"I encounter a ClassCastException in a diagram because my diagram is a `org.eclipse.ui.IWorkbenchPart` an not a `org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart`. The following code is the main cause in `org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection.initWorkspacePropertyListener()`:
+```java
+	private void initWorkspacePropertyListener() {
+		IDiagramWorkbenchPart editor = (IDiagramWorkbenchPart) getPart();
+		if (editor == null) return;
+		DiagramGraphicalViewer viewer = (DiagramGraphicalViewer) editor.getDiagramGraphicalViewer();
+		workspaceViewerProperties = viewer.getWorkspaceViewerPreferenceStore();
+		workspaceViewerProperties.addPropertyChangeListener(propertyListener);
+	}
+```
+We should check the type of  `getPart()`. Here is a hot fix that can be proposed in the next PR (PR #25):
+```java
+	private void initWorkspacePropertyListener() {
+		IWorkbenchPart activePart = getPart();
+		IDiagramWorkbenchPart editor = null;
+		if (activePart instanceof IDiagramWorkbenchPart) {
+			editor = (IDiagramWorkbenchPart) activePart;
+		} else {
+			editor = activePart.getAdapter(IDiagramWorkbenchPart.class);
+		}
+		if (editor == null)
+			return;
+		DiagramGraphicalViewer viewer = (DiagramGraphicalViewer) editor.getDiagramGraphicalViewer();
+		workspaceViewerProperties = viewer.getWorkspaceViewerPreferenceStore();
+		workspaceViewerProperties.addPropertyChangeListener(propertyListener);
+	}
+```","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/24/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/26,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/26,gmf-runtime,1649501582,26,[Diagram][EditPolicy] The PopupBar is not available in a Papyrus-Sirius context,VincentLorenzo,19954459,,,CLOSED,2023-03-31T14:49:57Z,2023-04-29T14:03:50Z,"Papyrus-Sirius encapsulates Sirius GMF Diagram inside a multi page editor. In a such context, the method org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy.isDiagramPartActive() is not able to find the expected  IDiagramWorkbenchPart to activate the popup bar. 
+
+This issue will allow to close the Papyrus-Sirius bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=581705. 
+
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/26/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/26,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5bH5Lh,gmf-runtime,1528795873,26,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-04-29T14:03:50Z,2023-04-29T14:03:50Z,Fixed by https://github.com/eclipse/gmf-runtime/commit/48a3a05772cb09258b795a85f21de5214339ee06,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5bH5Lh/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/27,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/27,gmf-runtime,1649844423,27,Upgrade to Java 17,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-03-31T18:40:07Z,2023-04-29T13:52:36Z,See https://github.com/eclipse/gef-classic/issues/146,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/27/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/27,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5adedt,gmf-runtime,1517676397,27,NA,azoitl,5267986,,,NA,2023-04-21T11:20:51Z,2023-04-21T11:20:51Z,"To keep you updated, GEF classic just merged the PR for migrating to Java 17. So from the 3.16.0M2 (scheduled for May 3rd) GEF classic requires Java 17.
+
+Please also note that SWT will also move to Java 17 with 2023-06: https://github.com/eclipse-platform/eclipse.platform.swt/discussions/623","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5adedt/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/27,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5adeim,gmf-runtime,1517676710,27,NA,azoitl,5267986,,,NA,2023-04-21T11:21:10Z,2023-04-21T11:21:10Z,Please let me know if I can help with the upgrade.,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5adeim/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/27,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5aeFZJ,gmf-runtime,1517835849,27,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-04-21T13:28:24Z,2023-04-21T13:28:24Z,"Thanks for the info. I'm busy with other stuff at the moment, but I'll try and look at this as soon as I can.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5aeFZJ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/29,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/29,gmf-runtime,1689577435,29,Ensure compatibility with Eclipse 2023-06,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-04-29T14:23:40Z,2023-08-04T13:32:49Z,"The Eclipse platform has moved to Java 17 and recently removed quite a lot of APIs which were deprecated.
+GEF Classic has also been modernizing its APIs (and moving to Java 17).
+
+This is about making sure GMF Runtime 1.16.0 which will be part of 2023-06 is compatible with all those changes in dependencies.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/29/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/33,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/33,gmf-runtime,1788993054,33,Edge label is not displayed at the same location when changing the diagram zoom level,lfasani,12660743,,,CLOSED,2023-07-05T07:53:27Z,2023-08-04T09:58:13Z,"Consider, in a diagram, two node linked by an rectilinear edge with more that one segment.
+Issue: When changing the diagram zoom level, the edge labels location may change a lot relatively to the edge
+Expected: The edge labels should remains at the same relative position to the edge
+
+The issue is reproduce in Capella and I have no other reproduction test case for now","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/33/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/33,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5gohj2,gmf-runtime,1621235958,33,NA,lfasani,12660743,,,NA,2023-07-05T07:58:26Z,2023-07-05T07:58:26Z,"### Analysis
+
+The vector used to display the edge label is expressed in an orthonormal frame that depends of the orientation of the segment that contains the anchor point. So if the anchor point is at the limit of two segments, when changing the zoom, the segment computation must not vary of one pixel otherwise the edge label is not displayed at the same location.
+
+Depending on the zoom, the bendpoints may slightly differ. While zooming, the precise point may pass from 50,999 to 51,001 and that imply that the PointList will contain 50 or 51.
+
+### Solution
+
+The fix changes how the bendpoints are computed. It leverages precise points to get a round value instead of casting into integer (which takes the nearest lower integer)
+
+The fix is related to Router classes but we could imagine to do the changes inside PointList class in methods setPoint(Point pt, int index) and addPoint(Point p).","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5gohj2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/36,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/36,gmf-runtime,1924463609,36,ActionMenuManager is disposed when menu is disposed,scosta-obeo,128719897,,,CLOSED,2023-10-03T16:03:59Z,2023-11-30T12:34:30Z,"There's a problem when the menu of ActionMenuManager is disposed the ActionMenuManager itself is also disposed. Which means that when menu is disposed (e.g. when the item is marked not visible), the ActionMenuManager is also disposed, but we use it afterwards.","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/36/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/36,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5tS_Di,gmf-runtime,1833693410,36,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-11-30T12:34:30Z,2023-11-30T12:34:30Z,Fixed by e9f150f5ba51b976c4e88474099a48039caa759d,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5tS_Di/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/38,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/38,gmf-runtime,1937110300,38,Release version 1.16.2,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-10-11T08:04:22Z,2023-11-23T08:40:43Z,"## Milestones
+
+- [x] Bump version
+  - [x] Modified bundles => bump to x.y.(z+1)
+  - [x] All features => 1.16.2
+- [x] Promote the build as a `milestone` and tag it
+
+
+## Actual release
+
+- [x] Promote the build in `releases`: https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202311130907/
+- [x] Tag the commit as `v1.16.2` and `R1_16_2`
+- [x] Contribute the new version to the SimRel: https://github.com/eclipse-simrel/simrel.build/commit/615ff78d4bdff9ddcf41cd420043e495007105f0","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/38/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/39,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/39,gmf-runtime,1937119670,39,Move to Batik 1.17,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-10-11T08:09:26Z,2023-11-23T08:25:50Z,"Recent versions of Orbit now pull Apache Batik 1.17 (the latest) directly from Maven Central: https://github.com/eclipse-orbit/orbit-simrel/blob/main/maven-bnd/tp/MavenBND.target#L1025
+
+Move from 1.16 to 1.17 from a recent Orbit repo, which should remove any remaining (indirect) dependency on Xalan (see https://github.com/eclipse-orbit/orbit-simrel/issues/14).
+
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/39/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/39,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5ow1QG,gmf-runtime,1757631494,39,NA,merks,208716,Ed Merks,,NA,2023-10-11T12:54:28Z,2023-10-11T12:54:28Z,"The pre-m2 Orbit milestone is available:
+
+https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/milestone/latest
+https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/2023-12
+
+Note that **all** of batik's dependencies are package requirements and the non-batik ones are satisfied by the bundles org.apache.xmlgraphics and org.eclipse.orbit.xml-apis-ext
+
+![image](https://github.com/eclipse/gmf-runtime/assets/208716/708a68df-e330-4da5-8def-996af96a3592)
+
+![image](https://github.com/eclipse/gmf-runtime/assets/208716/36c8f35f-1155-4b5a-9bad-3fbf76bf3f83)
+
+The later is new...
+
+If you don't find a requirement you think you need in https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation it's probably one you should not be using and for which there is a replacement...","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5ow1QG/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/39,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5ow4uI,gmf-runtime,1757645704,39,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-10-11T12:59:27Z,2023-10-11T12:59:27Z,"Thanks for the info. I don't think I'll have time to work on this until after EclipseCon though.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5ow4uI/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/39,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5ow5sO,gmf-runtime,1757649678,39,NA,merks,208716,Ed Merks,,NA,2023-10-11T13:00:51Z,2023-10-11T13:00:51Z,EclipseCon is the highest priority for me too!  😁,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5ow5sO/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/39,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5st5NU,gmf-runtime,1823970132,39,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-11-23T08:25:50Z,2023-11-23T08:25:50Z,Fixed by https://github.com/eclipse/gmf-runtime/commit/3f577d37e27be1615271ea3403203c0b5d579468 and available in 1.16.2rc1 (which will become the final).,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5st5NU/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/40,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/40,gmf-runtime,1974677397,40,Ignore action for retargetable action in toolbar,scosta-obeo,128719897,,,CLOSED,2023-11-02T17:01:51Z,2023-11-30T12:37:18Z,"In toolbar, for action with drop-down menu (ActionMenuManager) when retarget last action option is enabled, I propose to add feature to ignore certain actions which should not set as default action of the menu (for various reasons).","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/40/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/42,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/42,gmf-runtime,1987323498,42,Drop support for Eclipse versions prior to 2022-09,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-11-10T10:11:08Z,2023-11-10T10:21:48Z,"Trying to support a wide range of Eclipse versions, old and new, takes more time than I have (with multiple versions of Java, Tycho, and Eclipse itself to handle).
+
+Drop support for versions older than 2022-09, which is the Eclipse platform version which started to require Java 17: https://wiki.eclipse.org/Eclipse/Installation#Eclipse_4.25_.282022-09.29
+
+That's one less parameter to worry about.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/42/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/42,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5rnSIw,gmf-runtime,1805460016,42,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-11-10T10:21:48Z,2023-11-10T10:21:48Z,Fixed by d2cc37be927d2eae74ec56b7dce28f973dfba50b,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5rnSIw/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/43,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/43,gmf-runtime,1988065340,43,Remove the use of Ant builders,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2023-11-10T17:37:10Z,2023-11-10T17:37:18Z,"The various example projects have Ant-based builders setup in their `.project`:
+
+```
+bundles/org.eclipse.gmf.examples.runtime.diagram.geoshapes/.project
+22:			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+
+bundles/org.eclipse.gmf.examples.runtime.diagram.logic/.project
+22:			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+
+bundles/org.eclipse.gmf.examples.runtime.diagram.logic.model.edit/.project
+24:			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+
+bundles/org.eclipse.gmf.examples.runtime.diagram.logic.model/.project
+24:			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+
+bundles/org.eclipse.gmf.examples.runtime.common.service/.project
+24:			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+
+bundles/org.eclipse.gmf.examples.runtime.emf.clipboard/.project
+24:			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+
+bundles/org.eclipse.gmf.examples.runtime.diagram.layout/.project
+22:			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+
+bundles/org.eclipse.gmf.examples.runtime.diagram.logic.model.editor/.project
+24:			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+
+bundles/org.eclipse.gmf.examples.runtime.diagram.decorator/.project
+22:			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+```
+
+This triggers Ant-based builds in the IDE just to produce zip files which are only useful in an actual build.
+
+Also, Ant is old tech that I have not used personally for a long time, and has all kinds of issues in a modern environment, e.g.:
+* https://bugs.eclipse.org/bugs/show_bug.cgi?id=575210
+* https://www.eclipse.org/lists/cross-project-issues-dev/msg19778.html
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/43/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/44,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/44,gmf-runtime,2007696962,44,Move GMF Runtime into its own GitHub org,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-11-23T08:29:31Z,2023-12-18T14:21:45Z,"Similar to what was done for EMF Services: https://gitlab.eclipse.org/eclipsefdn/helpdesk/-/issues/3971
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/44/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/44,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5u5vlr,gmf-runtime,1860630891,44,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-12-18T14:21:44Z,2023-12-18T14:21:44Z,"Done: https://github.com/eclipse-gmf-runtime
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5u5vlr/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/46,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/46,gmf-runtime,2041648379,46,Widget is disposed exception when closing automatically opened diagram in Capella,Kellindil,661592,Laurent Goubet,laurent.goubet@obeo.fr,OPEN,2023-12-14T12:57:37Z,2024-10-23T07:20:31Z,"* Download Capella 6.1 (or 7.0)
+* Start on new workspace
+* Create a new project
+* Create a new diagram (e.g. PAB)
+* Ensure properties view is shown
+* Close Capella with this diagram open, do not save when prompted
+* Restart Capella
+
+The diagram is automatically opened with a message saying ""This diagram was not saved. You can close the editor"".
+
+* Close the editor
+
+One of the following exceptions is thrown:
+
+```
+org.eclipse.swt.SWTException: Widget is disposed
+    at org.eclipse.swt.SWT.error(SWT.java:4893)
+    at org.eclipse.swt.SWT.error(SWT.java:4808)
+    at org.eclipse.swt.SWT.error(SWT.java:4779)
+    at org.eclipse.swt.widgets.Widget.error(Widget.java:438)
+    at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:357)
+    at org.eclipse.swt.widgets.Button.getImage(Button.java:590)
+    at org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection.dispose(RulerGridPropertySection.java:687)
+    at org.eclipse.ui.views.properties.tabbed.TabContents$2.run(TabContents.java:130)
+    at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+    at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+    at org.eclipse.ui.views.properties.tabbed.TabContents.dispose(TabContents.java:133)
+    at org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage.disposeTabs(TabbedPropertySheetPage.java:623)
+    at org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage.disposeContributor(TabbedPropertySheetPage.java:468)
+    at org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage.dispose(TabbedPropertySheetPage.java:491)
+    at org.eclipse.gmf.runtime.diagram.ui.properties.views.PropertiesBrowserPage.dispose(PropertiesBrowserPage.java:164)
+```
+
+or
+
+```
+org.eclipse.swt.SWTException: Widget is disposed
+    at org.eclipse.swt.SWT.error(SWT.java:4893)
+    at org.eclipse.swt.SWT.error(SWT.java:4808)
+    at org.eclipse.swt.SWT.error(SWT.java:4779)
+    at org.eclipse.swt.widgets.Widget.error(Widget.java:438)
+    at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:357)
+    at org.eclipse.swt.widgets.Button.getImage(Button.java:590)
+    at org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection.dispose(RulerGridPropertySection.java:687)
+    at org.eclipse.eef.properties.ui.legacy.internal.legacy2eef.EEFLegacySection.dispose(EEFLegacySection.java:71)
+    at org.eclipse.eef.properties.ui.api.EEFTabContents$6.run(EEFTabContents.java:207)
+```","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/46/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/46,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5unfMh,gmf-runtime,1855845153,46,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-12-14T13:23:01Z,2023-12-14T13:23:01Z,"> Download Capella 6.1 (or 7.0)
+
+For reference, Capella 6.1 uses GMF Runtime 1.15.3.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5unfMh/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/46,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5unsRI,gmf-runtime,1855898696,46,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-12-14T13:56:10Z,2023-12-14T13:56:10Z,"It seems to be caused by c453d151956af7b16383e97d5dd7ebd6bd69c16d.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5unsRI/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/46,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5uoAkN,gmf-runtime,1855981837,46,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-12-14T14:45:15Z,2023-12-14T14:45:15Z,"Testing `if (lineColorButton != null)` is not enough, we probably need to add `if (lineColorButton != null && !lineColorButton.isDisposed()) {`.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5uoAkN/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/46,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5u59g-,gmf-runtime,1860687934,46,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-12-18T14:44:54Z,2023-12-18T14:44:54Z,"I see other similar exception on related (but different) scenarios:
+```
+java.lang.Error: SWT Resource was not properly disposed
+	at org.eclipse.swt.graphics.Resource.initNonDisposeTracking(Resource.java:172)
+	at org.eclipse.swt.graphics.Resource.<init>(Resource.java:120)
+	at org.eclipse.swt.graphics.Image.<init>(Image.java:655)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:341)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:290)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:268)
+	at org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection.refresh(ColorsAndFontsPropertySection.java:577)
+	at org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColoursAndFontsAndLineStylesPropertySection.refresh(ColoursAndFontsAndLineStylesPropertySection.java:312)
+	at org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection.refresh(ShapeColorsAndFontsPropertySection.java:96)
+```
+
+```
+java.lang.Error: SWT Resource was not properly disposed
+	at org.eclipse.swt.graphics.Resource.initNonDisposeTracking(Resource.java:172)
+	at org.eclipse.swt.graphics.Resource.<init>(Resource.java:120)
+	at org.eclipse.swt.graphics.Image.<init>(Image.java:655)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:341)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:290)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:268)
+	at org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection.refresh(ShapeColorsAndFontsPropertySection.java:100)
+	at org.eclipse.ui.views.properties.tabbed.TabContents$6.run(TabContents.java:220)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.ui.views.properties.tabbed.TabContents.refresh(TabContents.java:223)
+	at org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage.handlePartActivated(TabbedPropertySheetPage.java:349)
+	at org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage$1.partActivated(TabbedPropertySheetPage.java:121)
+```
+
+```
+java.lang.Error: SWT Resource was not properly disposed
+	at org.eclipse.swt.graphics.Resource.initNonDisposeTracking(Resource.java:172)
+	at org.eclipse.swt.graphics.Resource.<init>(Resource.java:120)
+	at org.eclipse.swt.graphics.Image.<init>(Image.java:655)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:341)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:290)
+	at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:268)
+	at org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection.refresh(ColorsAndFontsPropertySection.java:571)
+	at org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColoursAndFontsAndLineStylesPropertySection.refresh(ColoursAndFontsAndLineStylesPropertySection.java:312)
+	at org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection.refresh(ShapeColorsAndFontsPropertySection.java:96)
+	at org.eclipse.ui.views.properties.tabbed.TabContents$6.run(TabContents.java:220)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.ui.views.properties.tabbed.TabContents.refresh(TabContents.java:223)
+	at org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage.handlePartActivated(TabbedPropertySheetPage.java:349)
+	at org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage$1.partActivated(TabbedPropertySheetPage.java:121)
+```","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5u59g-/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/47,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/47,gmf-runtime,2046213572,47,Use the updated Batik 1.17 packaging from Orbit,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-12-18T09:52:44Z,2023-12-18T14:21:20Z,"See https://github.com/orgs/eclipse-orbit/discussions/31 for context.
+GMF Runtime 1.16.3 should use the version of Batik 1.17 with updated OSGi metadata.
+It's the version with qualifier `v20231215-1130`.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/47/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/47,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5u5vWB,gmf-runtime,1860629889,47,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-12-18T14:21:18Z,2023-12-18T14:21:18Z,"Fixed by 518865dfdc050ae12adf19b8836fa30328355d16.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc5u5vWB/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/51,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/51,gmf-runtime,2159316163,51,Apply the same fix as in GEF Classic for GMF-specific cursors,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2024-02-28T16:09:19Z,2024-04-30T07:00:16Z,"Under Linux the mouse cursor become a black square when hovering on an edge:
+
+![image](https://github.com/eclipse-gmf-runtime/gmf-runtime/assets/10608/cf6215da-f2b5-4c1f-818d-38e48aa5c633)
+
+A fix for this kind of issue has been implemented [in GEF Classic](https://github.com/eclipse/gef-classic/issues/208) for the shared cursors defined there, but GMF Runtime also defines some custom ones, at least in `org.eclipse.gmf.runtime.gef.ui.internal.l10n.Cursors` (files in /`org.eclipse.gmf.runtime.gef.ui/icons`) which should get the same treatment.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/51/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/53,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/53,gmf-runtime,2213462099,53,ConnectionEditPart never release notational listeners,pdeville2,72250011,Pauline DEVILLE,,CLOSED,2024-03-28T15:02:00Z,2024-04-04T08:44:58Z,"It seems that org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart never call the removeNotationalListeners() method. It is a part of a memory leak.
+
+A pull request is coming soon for this.","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/53/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/53,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc54zu9o,gmf-runtime,2026827624,53,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-03-29T07:54:47Z,2024-03-29T07:54:47Z,"I did not plan a specific date for the next version (1.16.4). Can it wait for 2024-06?
+You mention this is ""a part of a memory leak"", do you think you may have more patches coming?","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc54zu9o/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/53,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc55FPbL,gmf-runtime,2031417035,53,NA,pdeville2,72250011,Pauline DEVILLE,,NA,2024-04-02T08:43:48Z,2024-04-02T08:43:48Z,"Hello, 
+
+It seems there is an interim build [1] so we will use it, it should be enough for our use until 2024-06.
+
+I may have other patch but for now I don't.
+
+Best regards,
+Pauline","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc55FPbL/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/53,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc55IrXz,gmf-runtime,2032317939,53,NA,pdeville2,72250011,Pauline DEVILLE,,NA,2024-04-02T15:10:18Z,2024-04-02T15:10:18Z,"I didn't read it correctly, I thought I saw an interim build in April but it was on 16th March.
+
+Would it be possible to have at least one interim build before June?
+
+Best regards,
+Pauline","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc55IrXz/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/53,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc55KkfS,gmf-runtime,2032814034,53,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-04-02T18:50:13Z,2024-04-02T18:50:13Z,https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/interim/I202404010813/ normally includes this PR.,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc55KkfS/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/53,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc55Y31r,gmf-runtime,2036563307,53,NA,pdeville2,72250011,Pauline DEVILLE,,NA,2024-04-04T08:44:57Z,2024-04-04T08:44:57Z,Thanks,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc55Y31r/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/58,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/58,gmf-runtime,2238048554,58,ConnectionEditPart never release semantic listeners,pdeville2,72250011,Pauline DEVILLE,,CLOSED,2024-04-11T15:46:15Z,2024-10-23T07:20:16Z,"It seems that org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart never call the removeSemanticListeners() method. It is a part of a memory leak.
+
+A pull request is coming soon for this.","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/58/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/58,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc6Q6APB,gmf-runtime,2431124417,58,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-10-23T07:20:16Z,2024-10-23T07:20:16Z,"Fixed by #66.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc6Q6APB/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/60,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/60,gmf-runtime,2239275646,60,Remove unnecessary dependencies to IGraphicalEditPart from DragEditPartsTrackerEx,ddscharfe,34916836,Dominic Scharfe,,CLOSED,2024-04-12T07:20:29Z,2024-04-25T09:04:39Z,"The class `DragEditPartsTrackerEx` contains casts  from `EditPart` to `IGraphicalEditPart`. This makes it hard to use those classes in editors which use only `GraphicalEditPart` as edit parts.
+
+I will create a PR for this.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/60/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/62,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/62,gmf-runtime,2263920232,62,Use GEF version 3.20,lredor,1825882,Laurent Redor,,OPEN,2024-04-25T15:37:25Z,2024-04-25T15:37:25Z,"This allows to benefit of https://github.com/eclipse/gef-classic/issues/426 and the new corresponding APIs. These new APIs, will be used afterward in Sirius to clean code done for https://github.com/eclipse-sirius/sirius-desktop/issues/359. Currently, the code corresponding to these new APIs has been duplicated no Sirius side (for example in [PR 360](https://github.com/eclipse-sirius/sirius-desktop/pull/360/files#diff-fc211eb420e6b46de9f12dbd6b8671711ff39c7530b96c870407b4cb6684e06eR354)).
+
+Version GEF 3.20 will be probably released for Eclipse 2024.06.","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/62/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/63,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/63,gmf-runtime,2263983839,63,Use precise coordinates in org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx.snapPoint(ChangeBoundsRequest),lredor,1825882,Laurent Redor,,CLOSED,2024-04-25T16:09:40Z,2024-04-30T06:56:38Z,"In Sirius [#359](https://github.com/eclipse-sirius/sirius-desktop/issues/359), a bug has been discovered in GMF. In the method [org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx.snapPoint(ChangeBoundsRequest)](https://github.com/eclipse-gmf-runtime/gmf-runtime/blob/master/bundles/org.eclipse.gmf.runtime.diagram.ui/src/org/eclipse/gmf/runtime/diagram/ui/tools/DragEditPartsTrackerEx.java#L266) the x and y coordinates are used. But if the moveDelta is a `PrecisionPoint`, `preciseX()` and `preciseY()` should be used instead. Indeed, according to the zoom level, preciseX or preciseY can be something like 0.5 and must no be considered as 0.","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/63/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/77,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/77,gmf-runtime,2607554769,77,Move to Apache Batik 1.18,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2024-10-23T07:22:36Z,2025-01-22T08:56:34Z,"Actually already done via afbd73f3259c06aa6ab4842849bbb48ece289d8b and 6115c93db5638728edcb6b473ef0b38046c781d5.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/77/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/77,https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc6Q6B8B,gmf-runtime,2431131393,77,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-10-23T07:23:43Z,2024-10-23T07:23:43Z,"Note that there has been some activity on Batik since the 1.18 release, so it's possible a new version is released before 2024-12; in that case GMF Runtime will move to it once it's in Orbit.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-runtime/issues/comments/IC_kwDOGGilMc6Q6B8B/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
