@@ -1,0 +1,50 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/1,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/1,gmf-notation,1338188753,1,Move to JavaSE-17,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-08-14T09:49:20Z,2023-12-08T10:31:47Z,"The oldest supported target platform (2020-09) [requires Java 11](https://www.eclipse.org/projects/project-plan.php?planurl=http://www.eclipse.org/eclipse/development/plans/eclipse_project_plan_4_17.xml) so there is not much point to declare a BREE of JavaSE-8.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/1,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/comments/IC_kwDOGGikZs5o2HHS,gmf-notation,1759015378,1,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-10-12T06:48:37Z,2023-10-12T06:48:37Z,Updated to switch to Java 17 directly.,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/comments/IC_kwDOGGikZs5o2HHS/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/1,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/comments/IC_kwDOGGikZs5uFeun,gmf-notation,1846930343,1,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2023-12-08T10:31:46Z,2023-12-08T10:31:46Z,"This would be the opportunity to regenerate the code using more ""modern"" settings.
+* Target Java 17.
+* Use (relevant) EMF features which did not exist in.. EMF 2.2 (the _Runtime Version_ mentioned in the genmodel).
+
+Note that the GMF Notation metamodel is essential API for *a lot* of downstream projects (GMF Runtime of course, but everything that uses it, including Sirius for example). Any API break should be well thought of and advertised with enough time for projects to adapt.
+
+Also, at least CDO contains [its own version](https://github.com/eclipse-cdo/cdo/tree/master/plugins/org.eclipse.emf.cdo.gmf.notation) of this metamodel, generated with different settings (in this case, to create native CDO EObjects). We should coordinate the change with them.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/comments/IC_kwDOGGikZs5uFeun/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/2,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/2,gmf-notation,1338287393,2,Add support for Eclipse-SourceReference in MANIFEST.MF,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-08-14T16:05:37Z,2022-08-16T11:48:50Z,"Configure Tycho to generate `Eclipse-SourceReference` headers pointing to the exact commit of a particular build:
+
+```xml
+<plugin>
+    <groupId>org.eclipse.tycho</groupId>
+    <artifactId>tycho-packaging-plugin</artifactId>
+    <version>${tycho-version}</version>
+    <configuration>
+        <sourceReferences>
+            <generate>true</generate>
+        </sourceReferences>
+    </configuration>
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.tycho.extras</groupId>
+            <artifactId>tycho-sourceref-jgit</artifactId>
+            <version>${tycho-version}</version>
+        </dependency>
+    </dependencies>
+</plugin>
+```
+
+
+
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/2,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/comments/IC_kwDOGGikZs5IgsBv,gmf-notation,1216528495,2,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-08-16T11:48:50Z,2022-08-16T11:48:50Z,Fixed by 122c27f.,"{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/comments/IC_kwDOGGikZs5IgsBv/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/4,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/4,gmf-notation,1939309381,4,The p2 repos should not include parts of EMF,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-10-12T06:50:28Z,2024-08-22T19:00:50Z,"https://download.eclipse.org/justj/?file=modeling/gmp/gmf-notation/updates/releases/R202211151334/features:
+
+![screenshot-2023-10-12_08-49](https://github.com/eclipse/gmf-notation/assets/10608/4f880383-8f30-4bb4-84c0-aef89854ee9a)
+
+The GMF Notation repo should only contain the features & plug-ins from this project.","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/4/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/4,https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/comments/IC_kwDOGGikZs6JajOB,gmf-notation,2305438593,4,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-08-22T19:00:50Z,2024-08-22T19:00:50Z,"I think this was fixed some time ago.
+Looking at the interim builds:
+* https://download.eclipse.org/justj/?file=modeling/gmp/gmf-notation/updates/interim/I202311041912 is the last one with addditional features and bundles directly embedded.
+* https://download.eclipse.org/justj/?file=modeling/gmp/gmf-notation/updates/interim/I202311112009 and all the ones after it are OK
+
+The date corresponds to b6b0ecea965233b4cd5e1b880ca7e52c5ccf43af which moved from an old Tycho 2.7.4 to a newer Tycho 4.0.4. The issue was probably an overzaelous Tycho who included all the dependencies in the repo by default.
+","{""url"": ""https://api.github.com/repos/eclipse-gmf-runtime/gmf-notation/issues/comments/IC_kwDOGGikZs6JajOB/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

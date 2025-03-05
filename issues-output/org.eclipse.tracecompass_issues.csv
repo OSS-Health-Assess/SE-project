@@ -1,0 +1,868 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/5,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/5,org.eclipse.tracecompass,2127460452,5,Fix markdown formatting in API_POLICY,MatthewKhouzam,419535,Matthew Khouzam,,CLOSED,2024-02-09T16:19:57Z,2024-02-09T18:24:13Z,"It doesn't render well.
+
+Picture to illustrate issue.
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/419535/f274f6ad-8cec-4cf2-9647-1ffc5d3b42f9)
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/5,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5zaSiH,org.eclipse.tracecompass,1936271495,5,NA,BDFL669,62002130,lowaCase,,NA,2024-02-09T16:58:09Z,2024-02-09T16:58:09Z,I would really love to work on this issue if I could kindly be assigned,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5zaSiH/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/5,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5zafKM,org.eclipse.tracecompass,1936323212,5,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-02-09T17:36:20Z,2024-02-09T17:36:20Z,"> I would really love to work on this issue if I could kindly be assigned
+
+@BDFL669 Thanks for offering. I have already submitted a PR.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5zafKM/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/12,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/12,org.eclipse.tracecompass,2127834773,12,remove mediawiki formatting tags from DEVELOPMENT_ENV_SETUP.md,MatthewKhouzam,419535,Matthew Khouzam,,CLOSED,2024-02-09T20:56:01Z,2024-02-16T20:00:01Z,"Some titles end in == or =, this is an artifact from the move and can be removed.  This is found in this file: 
+https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/blob/3e292d338a1cd911746c28c4fd20aacdc9cb738c/DEVELOPMENT_ENV_SETUP.md
+
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/12/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/13,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/13,org.eclipse.tracecompass,2127836351,13,Typo in API_POLICY.md,MatthewKhouzam,419535,Matthew Khouzam,,CLOSED,2024-02-09T20:57:39Z,2024-02-12T16:49:19Z,"Note and Noteworthy should be New and Noteworthy.
+
+https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/blob/master/API_POLICY.md","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/13/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/18,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/18,org.eclipse.tracecompass,2139578205,18,TimeRangeException for experiments in Event Density view,bhufmann,413424,Bernd Hufmann,,CLOSED,2024-02-16T22:32:38Z,2024-03-19T17:18:18Z,"With commit: 15d6f25 I get the following exception for the `Event Density` view when opening an experiment:
+
+```
+Exception in thread ""Line chart update"" org.eclipse.tracecompass.statesystem.core.exceptions.TimeRangeException: Time conditions 1487359244565151799 is lower than state system start time: 1487359244680159245
+	at org.eclipse.tracecompass.internal.statesystem.core.StateSystem.query2D(StateSystem.java:652)
+	at org.eclipse.tracecompass.internal.statesystem.core.StateSystem.query2D(StateSystem.java:634)
+	at org.eclipse.tracecompass.tmf.core.statistics.TmfStateStatistics.histogramQuery(TmfStateStatistics.java:129)
+	at org.eclipse.tracecompass.internal.tmf.core.histogram.HistogramDataProvider.fetchXY(HistogramDataProvider.java:128)
+	at org.eclipse.tracecompass.tmf.core.model.xy.TmfTreeXYCompositeDataProvider.getXyResponses(TmfTreeXYCompositeDataProvider.java:187)
+	at org.eclipse.tracecompass.tmf.core.model.xy.TmfTreeXYCompositeDataProvider.fetchXY(TmfTreeXYCompositeDataProvider.java:136)
+	at org.eclipse.tracecompass.tmf.ui.viewers.xychart.linechart.TmfCommonXAxisChartViewer$UpdateThread.updateData(TmfCommonXAxisChartViewer.java:384)
+	at org.eclipse.tracecompass.tmf.ui.viewers.xychart.linechart.TmfCommonXAxisChartViewer$UpdateThread.run(TmfCommonXAxisChartViewer.java:350)
+```
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/18/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/18,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us50Me7w,org.eclipse.tracecompass,1949429488,18,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-02-16T22:34:51Z,2024-02-16T22:34:51Z,@arfio could this exception be caused by the change #6?,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us50Me7w/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/18,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us50NH2w,org.eclipse.tracecompass,1949597104,18,NA,arfio,8209717,Arnaud,,NA,2024-02-17T01:57:58Z,2024-02-17T01:57:58Z,"Yes it was, I was sure I fixed this issue but cannot find where, I must have removed the fix at some point.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us50NH2w/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/18,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us53q5D1,org.eclipse.tracecompass,2007732469,18,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-03-19T17:18:17Z,2024-03-19T17:18:17Z,Fixed with above pull request.,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us53q5D1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/47,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/47,org.eclipse.tracecompass,2198375158,47,[TMF] Entering a window span of 1ns in Histogram View should be invalid,vladarama,86936229,Vlad Arama,,CLOSED,2024-03-20T19:21:02Z,2024-03-28T13:53:36Z,Original Issue: https://bugs.eclipse.org/bugs/show_bug.cgi?id=550946,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/47/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/58,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/58,org.eclipse.tracecompass,2238235655,58,Parsing of CTF traces with 0-length sequence fields may fail due to alignment handling,christophebedard,3717345,Christophe Bedard,bedard.christophe@gmail.com,CLOSED,2024-04-11T17:45:27Z,2024-04-12T17:24:30Z,"See this LTTng issue, which includes a link to a reproducer: https://bugs.lttng.org/issues/1412
+
+This happens for example with a trace collected on an aarch64 system.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/58/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/62,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/62,org.eclipse.tracecompass,2240281408,62,Missing time graph refresh,PatrickTasse,20052050,Patrick Tasse,,CLOSED,2024-04-12T14:33:03Z,2024-04-12T14:39:20Z,"In some circumstances, time graph entries are missing their fine-detailed events and they are not refreshed when they should.
+
+An example use case to reproduce this is to open two kernel traces that do not overlap in time, then select the first opened trace. Its Resources view time graph will be missing states, and only the coarse-detailed states are shown.
+
+![missing_states](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/20052050/684f7fa9-dd9b-4c3a-9055-f1b037259bfa)
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/62/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/74,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/74,org.eclipse.tracecompass,2281457452,74,"Add ""Timestamp ns"" column to the SegmentStoreTableDataProvider",bhufmann,413424,Bernd Hufmann,,CLOSED,2024-05-06T18:14:53Z,2024-07-20T00:40:26Z,"This would enable time sychronization in the theia-trace-extension/vscode-trace-extension front-ends from the table views (similar to the Events Table). 
+
+Fixes https://github.com/eclipse-cdt-cloud/theia-trace-extension/issues/1074 ","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/74/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/74,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us58-v-O,org.eclipse.tracecompass,2096824206,74,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-05-06T20:11:49Z,2024-05-06T20:11:49Z,"This will work, however, having all virtual table data provider implement such a column is not ideal. Maybe there should be a central entity in the FE that handles selection and uses the events table data provider to sync events, because the events table data provider has all the columns that an be used for finding elements in other views and inside the UI. If not  found each UI could query the back-end to find the row to select (new query API needed, either parameter or endpoint)","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us58-v-O/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/76,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/76,org.eclipse.tracecompass,2281549861,76,Symbol resolution in new callstack does not resolve in windows machines,MatthewKhouzam,419535,Matthew Khouzam,,OPEN,2024-05-06T19:06:53Z,2024-05-06T19:06:53Z,"issue is : CPPFilt cannot instantiate, so symbol resolution fails. 
+
+Here is the location of the exception.
+org.eclipse.tracecompass.internal.tmf.core.callstack.FunctionNameMapper.mapFromNmTextFile(FunctionNameMapper.java:116)","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/76/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/77,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/77,org.eclipse.tracecompass,2281766787,77,TIDs do not resolve for lttng ust events in traces with kernel traces.,MatthewKhouzam,419535,Matthew Khouzam,,OPEN,2024-05-06T21:03:22Z,2024-05-07T13:16:41Z,"When a kernel and userspace trace are in an experiement, the userspace trace should have the TID resolved to the kernel's one as the information is present.
+
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/419535/8c711bff-2440-41d0-bd4d-45090e267ea5)
+
+
+This is causing the new callstack to not resolve tids and not work as well as the incubator callstack. The missing analyes are in the incubator analysis core section:
+
+    @Override
+    protected void startActions() {
+        TmfTraceUtils.registerEventAspect(AnalysisTidAspect.getInstance());
+        TmfTraceUtils.registerEventAspect(AnalysisProcessNameAspect.getInstance());
+        TmfTraceUtils.registerEventAspect(AnalysisThreadNameAspect.getInstance());
+        TmfTraceUtils.registerEventAspect(AnalysisPidAspect.getInstance());
+    }
+
+
+Here is a trace to test the results.
+
+ 
+[xz-52.zip](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/files/15226529/xz-52.zip)
+
+Blocks #76 
+
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/77/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/77,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us59Es-s,org.eclipse.tracecompass,2098384812,77,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-05-07T13:16:40Z,2024-05-07T13:16:40Z,"It looks like replacing all `trace.getEventAspects()` with `TmfTraceUtils.getEventAspects(trace,...)` fixes it.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us59Es-s/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/80,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/80,org.eclipse.tracecompass,2293336207,80,Let users specify/go to exact window time range,christophebedard,3717345,Christophe Bedard,bedard.christophe@gmail.com,OPEN,2024-05-13T16:51:17Z,2024-05-13T16:51:17Z,"Migrating issue from: https://bugs.eclipse.org/bugs/show_bug.cgi?id=582531
+
+-----
+
+**Original description:**
+
+This is a feature request to be able to set the start & end timestamps of the window time range OR a start timestamp and window span value. This would be useful when we want to jump to a specific section of the trace, for example when we know through other means (e.g., logs, babeltrace output timestamps) that we want to visualize a specific section. This would also be useful when we want to reliably/consistently set the window time range, e.g., for taking screenshots, etc.
+
+The histogram view allows setting selection start & end timestamps and a window span value [1], but it's not quite the same given that it is the selection range and not the window range. Furthermore, this feature request isn't really about the histogram view specifically. It applies to any view with a typical time axis.
+
+This feature could be implemented as a simple dialog with text boxes for start & end timestamp OR start timestamp and window span that is opened by:
+
+1. A keyboard shortcut
+2. Double-clicking on the timestamps shown in the lower left corner
+3. Right-clicking on a view's time axis values and clicking on something like ""Set window time range""
+4. Or some other mechanism
+
+I could probably contribute this feature, but I just need us to agree on the exact mechanism and whether this feature would be welcome.
+
+
+[1] https://archive.eclipse.org/tracecompass/doc/stable/org.eclipse.tracecompass.doc.user/Trace-Compass-Main-Features.html#Histogram_View
+
+----
+
+**Comment from Bernd Hufmann:**
+
+Hi Christophe
+
+this is a interesting feature suggestion. I agree it would be good to have a way to input a specific time range to navigate to. The histogram view has way to specify the selection range. But, to be honest, it should not have been separate from the Histogram view and it only allows to set the selection range.
+
+The Time Graph views, like the Resources view allow to zoom to a window range that is currently selected by pressing the Z keyboard button. This is good, but it require such a view to be open.
+
+Having an separate window for specifying the window range would be good. Not sure what is the best UX. For sure such a feature needs to be easily discoverable by the user. A dialog or a so called ""Fast View"" of Eclipse could be a way. 
+
+You could decide to allow to specify the selection window and have a button and Keyboard short (e.g. Z) cut to zoom to that selection. 
+
+If you could come up with a proposal implementation would be highly appreciated, because currently we don't have the bandwidth to work on it. Maybe let it try by your users to give feedback and then we can review it and give our feedback.
+
+Thanks a lot for your initiative.
+
+Bernd
+
+----
+
+**Comment from Ivan Grinenko:**
+
+Hi,
+
+This is a very nice to have feature. As for me I see it implemented as something global (a key combination, or a button on a toolbar of a supported view). By 'global' I mean it should apply the selected time range to all the views having the 'Align Views' option eneabled.
+
+Thanks!","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/80/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/81,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/81,org.eclipse.tracecompass,2295464597,81,Time Graph filter doesn't support list of values in matches statements,bhufmann,413424,Bernd Hufmann,,CLOSED,2024-05-14T13:26:17Z,2024-08-20T15:08:14Z,"The time graph filter doesn't support list of values in matches statements. For example, using the Resources view with a LTTng kernel trace, the filter string `CPU matches [0,1]` doesn't match anything and by default everything is shown and non-matching CPU rows are not dimmed. On the contrary, value ranges, like `CPU matches [0-1]` will highlight matching CPU rows and dim the rest. 
+
+
+![rcv-cpu-filtering-bug](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/413424/172c22b2-5b53-45cf-a03d-eff57084bd6f)
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/81/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/81,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6JBE0Q,org.eclipse.tracecompass,2298760464,81,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-08-20T12:39:21Z,2024-08-20T12:39:21Z,"The bug is that `,` is not considered as a valid character for a text sequence. For that reason the ANTLR parser is not able to parse the input string and hence it's not passed on as regular expression pattern to be used for matching. So, the solution is to add `,` in the ANTLR grammar.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6JBE0Q/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/82,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/82,org.eclipse.tracecompass,2295478638,82,Time Graph filter doesn't support regex groups matches statements,bhufmann,413424,Bernd Hufmann,,CLOSED,2024-05-14T13:32:21Z,2024-08-20T12:34:41Z,"The time graph filter doesn't support regex groups in matches statements. For example, using the Resources view with a LTTng kernel trace, the filter string `CPU matches (0|1)` doesn't match anything and by default everything is shown and non-matching CPU rows are not dimmed. On the contrary, the following filter `CPU matches [0]|[1]` will highlight matching CPU rows and dim the rest.
+
+![rcv-cpu-filtering-bug2](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/413424/29334467-3415-454c-8b0e-b60d114393cd)
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/82/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/82,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6I7p18,org.eclipse.tracecompass,2297339260,82,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-08-19T19:57:50Z,2024-08-19T19:57:50Z,"Regex grouping is not required for searching and filtering. The example used in description can be achieved with the brackets. Groupings can also be achieved in root expression, for example `(CPU matches 0) || (CPU matches 1)`. 
+
+For those reasons, I'm closing the ticket.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6I7p18/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/83,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/83,org.eclipse.tracecompass,2300707458,83,Incubator is broken on Windows?,daldr-ntml,7724321,,,CLOSED,2024-05-16T15:22:43Z,2024-05-23T20:53:24Z,"Running TraceCompass 9.3.0 on Windows 11.
+
+**Help > Check for Updates** gives:
+
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/7724321/1f930613-4b78-45cf-a7d3-1967d8843e2f)
+
+Maybe a proxy issue?","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/83/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/83,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-HM0W,org.eclipse.tracecompass,2115816726,83,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-05-16T17:24:26Z,2024-05-16T17:24:26Z,"Try going to window->Network?
+![Screenshot from 2024-05-16 13-22-49](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/419535/eeaa8401-0c12-4ea6-ac12-7335e8c6e241)
+
+
+Let's get the easy things out of the way first?","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-HM0W/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/83,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-L9YE,org.eclipse.tracecompass,2117064196,83,NA,daldr-ntml,7724321,,,NA,2024-05-17T08:49:44Z,2024-05-17T08:49:44Z,"Thanks for your help. **Help > Install New Software...** is now working, without a proxy setting.
+
+I did have to specify site:
+
+**https://download.eclipse.org/tracecompass.incubator/master/repository/**
+
+as you suggested.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-L9YE/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/83,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-pbR4,org.eclipse.tracecompass,2124788856,83,NA,daldr-ntml,7724321,,,NA,2024-05-22T13:22:41Z,2024-05-22T13:22:41Z,"Hi Matthew
+
+I am still having trouble viewing UST events in Trace Compass using an experiment.
+
+I just wondered, might you have time for a short Teams call sometime to have a look at what I am doing wrong please?
+
+Best regards
+David
+
+From: Matthew Khouzam ***@***.***>
+Sent: Thursday, May 16, 2024 6:25 PM
+To: eclipse-tracecompass/org.eclipse.tracecompass ***@***.***>
+Cc: David Aldrich ***@***.***>; Author ***@***.***>
+Subject: Re: [eclipse-tracecompass/org.eclipse.tracecompass] Incubator is broken on Windows? (Issue #83)
+
+Try going to window->Network? Screenshot. from. 2024-05-16. 13-22-49. png (view on web) [github. com] Let's get the easy things out of the way first? — Reply to this email directly, view it on GitHub [github. com], or unsubscribe [github. com]. You
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender
+This message came from outside your organization.
+    Report Suspicious  <https://us-phishalarm-ewt.proofpoint.com/EWT/v1/BQNorrFsuw!1btEpthzlPuhpvWlAKELxMI4m9LuB4eXB-s3Xzs2IR12nJ9crLzwceAP6MKBGFbh4JcmDW_10DtzzqBrQpzGv-_O-7PeevzF0IBLrOieXmAg-FAT44a6vsRNHAnkgZhiBahbG-T2Ow0u7kM$>   ‌
+ZjQcmQRYFpfptBannerEnd
+
+Try going to window->Network?
+Screenshot.from.2024-05-16.13-22-49.png (view on web) [github.com]<https://urldefense.com/v3/__https:/github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/419535/eeaa8401-0c12-4ea6-ac12-7335e8c6e241__;!!BQNorrFsuw!kNGv9iRlFbp9kqOT0cRAymaIzlkTp4gJzVjmia1dK_9EI16oeF6kp3eA3iNRUWnj6iNgKggEPua7bJFG2zIArOopm_EA$>
+
+Let's get the easy things out of the way first?
+
+—
+Reply to this email directly, view it on GitHub [github.com]<https://urldefense.com/v3/__https:/github.com/eclipse-tracecompass/org.eclipse.tracecompass/issues/83*issuecomment-2115816726__;Iw!!BQNorrFsuw!kNGv9iRlFbp9kqOT0cRAymaIzlkTp4gJzVjmia1dK_9EI16oeF6kp3eA3iNRUWnj6iNgKggEPua7bJFG2zIArG7Ho4N6$>, or unsubscribe [github.com]<https://urldefense.com/v3/__https:/github.com/notifications/unsubscribe-auth/AB252IOQAVIEHFIGNXNUCTLZCTTV7AVCNFSM6AAAAABH2ONX6WVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDCMJVHAYTMNZSGY__;!!BQNorrFsuw!kNGv9iRlFbp9kqOT0cRAymaIzlkTp4gJzVjmia1dK_9EI16oeF6kp3eA3iNRUWnj6iNgKggEPua7bJFG2zIArG84H-jG$>.
+You are receiving this because you authored the thread.Message ID: ***@***.******@***.***>>
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-pbR4/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/83,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-1rXm,org.eclipse.tracecompass,2128000486,83,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-05-23T20:53:23Z,2024-05-23T20:53:23Z,"David, I would love to. Please send me contact info directly to my email address, and we can move forward from there.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-1rXm/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/87,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/87,org.eclipse.tracecompass,2311098688,87,Remove deprecated classes/APIs for Trace Compass 10.0,PatrickTasse,20052050,Patrick Tasse,,OPEN,2024-05-22T17:22:59Z,2024-05-22T17:22:59Z,"This issue is to track the removal of deprecated classes/APIs in Trace Compass for the major 10.0 release. APIs can be removed that were deprecated before the 9.0 release for 2023-06.
+
+Any API removal needs to reference this issue in the PR commit. 
+
+If there are any issues with any removal of a specific API, please document it in this issue so that appropriate actions can be taken by Trace Compass project (e.g. bring the API back).","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/87/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/89,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/89,org.eclipse.tracecompass,2313130477,89,No scroll arrows when Trace Compass runs in WSL,daldr-ntml,7724321,,,OPEN,2024-05-23T14:50:39Z,2024-05-24T15:20:09Z,"Trace Compass 9.3.0 runs well in WSL 2 running Ubuntu 22.04, on Windows 11.
+
+However, in the LTTng resources view, no arrows appear on the horizontal scroll bar when the mouse is hovered over the scroll bar.
+
+<img width=""349"" alt=""image"" src=""https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/7724321/192b7282-520f-41e5-9c19-f35898bef766"">
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/89/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/89,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-1p2u,org.eclipse.tracecompass,2127994286,89,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-05-23T20:49:00Z,2024-05-23T20:49:00Z,"Hi David, I am assuming you are using wsl to get symbol resolution working? I think native it would work fine.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-1p2u/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/89,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-58BU,org.eclipse.tracecompass,2129117268,89,NA,daldr-ntml,7724321,,,NA,2024-05-24T09:54:53Z,2024-05-24T09:54:53Z,"Hi Matthew, as I think you guessed, I am using wsl because Trace Compass on Windows does not seem to be working for me. Also, I thought you would like the feedback on WSL. But maybe the scrollbar issue is just a platform issue and outside the scope of your work.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-58BU/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/89,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-78t2,org.eclipse.tracecompass,2129644406,89,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-05-24T14:17:53Z,2024-05-24T14:17:53Z,"For navigation, a stop-gap method would be to use `W` `A` `S` `D` navigation. 
+
+https://www.youtube.com/watch?v=lE6c2Vew_B4
+
+We will try to load trace compass in WSL to reproduce the issue, but I cannot give a timeline on that one as it's very specific.
+
+Thanks!","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-78t2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/89,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-8jOz,org.eclipse.tracecompass,2129802163,89,NA,daldr-ntml,7724321,,,NA,2024-05-24T15:20:08Z,2024-05-24T15:20:08Z,"Thanks for the video, that's helpful.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-8jOz/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,org.eclipse.tracecompass,2313180420,90,"UST events don't appear in events table, in Experiment, when Trace Compass running on Windows",daldr-ntml,7724321,,,CLOSED,2024-05-23T15:11:19Z,2024-05-24T20:21:06Z,"I followed video [(17) Viewing an LTTng and UST trace simultaneously in Eclipse Trace Compass - YouTube](https://www.youtube.com/watch?v=xx1IpKXuMGA).
+
+With Trace Compass running in WSL I could view UST and kernel events in both the LTTng resources view and the Events table, as demo'd in the video.
+
+However, with Trace Compass 9.3.0 running in Windows 11, I observed:
+- UST and kernel events both appeared in the LTTng resources view
+- Only kernel events appeared in the Events table.
+
+This appears to be a bug?","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-1sDD,org.eclipse.tracecompass,2128003267,90,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-05-23T20:55:26Z,2024-05-23T20:55:26Z,"If this is true, it is a bug. I will ask our devs on windows to look into it!","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-1sDD/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-7TgP,org.eclipse.tracecompass,2129475599,90,NA,vladarama,86936229,Vlad Arama,,NA,2024-05-24T12:59:38Z,2024-05-24T12:59:38Z,"I tried replicating the bug using Trace Compass 9.3.0 running on Windows 11 using some test traces and everything seems to be working as expected. Both kernel and ust traces appear in the events table and in the resources view.
+
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/86936229/7f56f831-546e-46c8-86ef-e4383fc6d330)
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-7TgP/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-79Rp,org.eclipse.tracecompass,2129646697,90,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-05-24T14:19:13Z,2024-05-24T14:19:13Z,"Hi David, now that we know the UST works in the events table, could you confirm that searching on the trace for UST returns empty in the events table?","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-79Rp/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-8Q7P,org.eclipse.tracecompass,2129727183,90,NA,daldr-ntml,7724321,,,NA,2024-05-24T14:50:04Z,2024-05-24T14:50:04Z,"Hi Matthew, the behavior in my environment is different. Maybe I am doing something wrong.
+
+In WSL:
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/7724321/dcbb8980-8111-4f5e-b564-2cddb7f03031)
+
+In Windows:
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/7724321/6b521310-1c81-43e5-859e-67d961316a01)
+
+Also in Windows I see lots of exceptions:
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/7724321/f6a619f6-f9da-4b1d-8442-69fa2502db52)
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-8Q7P/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-8Sf2,org.eclipse.tracecompass,2129733622,90,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-05-24T14:53:25Z,2024-05-24T14:53:25Z,Very interesting. Can you doubleclick on the loop exception and share the stack?,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-8Sf2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-8aTV,org.eclipse.tracecompass,2129765589,90,NA,daldr-ntml,7724321,,,NA,2024-05-24T15:04:16Z,2024-05-24T15:04:16Z,"java.lang.NoSuchMethodError: 'org.eclipse.tracecompass.analysis.profiling.core.model.IHostModel org.eclipse.tracecompass.internal.analysis.profiling.core.model.ModelManager.getModelFor(java.lang.String)'
+	at org.eclipse.tracecompass.incubator.analysis.core.aspects.AnalysisTidAspect.resolve(AnalysisTidAspect.java:55)
+	at org.eclipse.tracecompass.analysis.os.linux.core.event.aspect.LinuxTidAspect.resolve(LinuxTidAspect.java:1)
+	at org.eclipse.tracecompass.tmf.core.trace.TmfTraceUtils.resolveIntEventAspectOfClassForEvent(TmfTraceUtils.java:273)
+	at org.eclipse.tracecompass.internal.analysis.os.linux.core.kernel.KernelPidAspect.resolve(KernelPidAspect.java:59)
+	at org.eclipse.tracecompass.internal.analysis.os.linux.core.kernel.KernelPidAspect.resolve(KernelPidAspect.java:48)
+	at org.eclipse.tracecompass.analysis.os.linux.core.event.aspect.LinuxPidAspect.resolve(LinuxPidAspect.java:1)
+	at org.eclipse.tracecompass.tmf.ui.viewers.events.columns.TmfEventTableColumn.getItemString(TmfEventTableColumn.java:111)
+	at org.eclipse.tracecompass.tmf.ui.viewers.events.TmfEventsTable.getItemStrings(TmfEventsTable.java:2752)
+	at org.eclipse.tracecompass.tmf.ui.viewers.events.TmfEventsTable.setItemData(TmfEventsTable.java:1541)
+	at org.eclipse.tracecompass.tmf.ui.viewers.events.TmfEventsTable$SetDataListener.handleEvent(TmfEventsTable.java:435)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4274)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1090)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1075)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:778)
+	at org.eclipse.tracecompass.tmf.ui.widgets.virtualtable.TmfVirtualTable.setDataItem(TmfVirtualTable.java:571)
+	at org.eclipse.tracecompass.tmf.ui.widgets.virtualtable.TmfVirtualTable.refreshTable(TmfVirtualTable.java:1056)
+	at org.eclipse.tracecompass.tmf.ui.widgets.virtualtable.TmfVirtualTable.refresh(TmfVirtualTable.java:1009)
+	at org.eclipse.tracecompass.tmf.ui.viewers.events.TmfEventsTable$FilterThread.lambda$0(TmfEventsTable.java:2272)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4047)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3663)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.tracecompass.internal.tracing.rcp.ui.Application.start(Application.java:95)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-8aTV/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-9JwJ,org.eclipse.tracecompass,2129959945,90,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-05-24T16:34:14Z,2024-05-24T16:34:14Z,"I think if you use the Trace Compass RCP release 9.3.0 and install incubator features from https://download.eclipse.org/tracecompass.incubator/master/repository/, then this is error happens, because the update site is not compatible with the 9.3.0 release. Some features were moved from incubator to Trace Compass mainline (incubator callstack) and the 9.3.0 release doesn't have the migrated code. I can reproduce that behaviour on my laptop and it's also happening on Linux and not just Windows.
+
+You will have to use install the incubator features using the `Add-ons` menu or using update site https://download.eclipse.org/tracecompass.incubator/stable-9.3/repository/. 
+
+Unfortunately, that update site is currently broken. I'm working on a fix for that with PR: https://github.com/eclipse-tracecompass-incubator/org.eclipse.tracecompass.incubator/pull/29. Once it's merged I can re-build the stable-9.3 updates side.
+
+After that I suggest that you install the incubator features from the `Add-on` menu or from that update-site. (BTW, the `Add-on` uses that update site). You might want to start from a freshly extracted Trace Compass 9.3. RCP zip file.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-9JwJ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-9UO7,org.eclipse.tracecompass,2130002875,90,NA,daldr-ntml,7724321,,,NA,2024-05-24T17:01:35Z,2024-05-24T17:01:35Z,Thank you. I did a clean install and UST events are now working as expected. I had indeed used the incompatible updates site.,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5-9UO7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/90,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5--c1j,org.eclipse.tracecompass,2130300259,90,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-05-24T20:21:06Z,2024-05-24T20:21:06Z,"I will close this now then. Thanks for bringing this up, now the search engines will know!","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us5--c1j/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/98,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/98,org.eclipse.tracecompass,2332349441,98,Reset perspective adds 'Run' and 'Search',MatthewKhouzam,419535,Matthew Khouzam,,OPEN,2024-06-04T01:40:39Z,2024-06-05T13:05:53Z,"Here is a screenshot post selecting in the RCP Window -> Reset Perspective.
+
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/419535/e24087db-da69-44c1-87d0-52513af8de2a)
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/98/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/98,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6AI9DA,org.eclipse.tracecompass,2149830848,98,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-06-05T13:05:32Z,2024-06-05T13:05:32Z,This is a known issue with the Trace Compass RCP and in general with RCPs. As far as I remember we don't have control over the menu after applying reset workspace. The good news is that they are not permanently added. Restarting the RCP will remove them again.,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6AI9DA/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101,org.eclipse.tracecompass,2340904444,101,MAC OSX Incubator version is not working,ammarwa,3832908,Ammar ELWazir,ammar.elwazir@amd.com,OPEN,2024-06-07T17:43:09Z,2024-06-26T14:19:29Z,"If I try to download the incubator version and try to run it on M1 MAC OSX, I will get the following screen:
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/3832908/aa57b2c4-0d39-4897-96ef-3762bacb9e01)
+
+With the normal version, I had to edit the Info.list to check the right Java path on my machine.
+
+Let me know if you need more information.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Aek09,org.eclipse.tracecompass,2155498813,101,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-06-07T20:25:48Z,2024-06-07T20:25:48Z,"The build of incubator RCP doesn't do mac signing and notarization. If you'd like to use the MAC RCP use the Trace Compass mainline RCP build and install the incubator features using the `Tools -> Add-ons` menu.
+
+The mainline RCP (ending with .dmg) can downloaded from here: https://download.eclipse.org/tracecompass/releases/9.3.0/rcp/
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Aek09/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6AzmP1,org.eclipse.tracecompass,2161009653,101,NA,ammarwa,3832908,Ammar ELWazir,ammar.elwazir@amd.com,NA,2024-06-11T15:09:56Z,2024-06-11T15:09:56Z,How can I add ROCm plugin?,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6AzmP1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Azo3O,org.eclipse.tracecompass,2161020366,101,NA,ammarwa,3832908,Ammar ELWazir,ammar.elwazir@amd.com,NA,2024-06-11T15:14:35Z,2024-06-11T15:14:35Z,"with the version you suggested, I still need to edit the contents because of the following error:
+![image](https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/assets/3832908/8c3e362d-6a1b-4ae1-a706-b5556420224a)
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Azo3O/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Az-2r,org.eclipse.tracecompass,2161110443,101,NA,arfio,8209717,Arnaud,,NA,2024-06-11T15:56:47Z,2024-06-11T15:56:47Z,"Would it be easy to add mac signing and notarization for the incubator release as well ?
+To add plug-ins in the mainline RCP: https://archive.eclipse.org/tracecompass/doc/stable/org.eclipse.tracecompass.rcp.doc.user/Trace-Compass-Incubator.html
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Az-2r/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6A0OQy,org.eclipse.tracecompass,2161173554,101,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-06-11T16:30:03Z,2024-06-11T16:30:03Z,"It's not that hard because you can follow what was done in Trace Compass mainline. However, some changes need to be done in the pom files and CI setup. 
+
+From what I can remember, you will have to add a mac signing and a notarization profile in the RCP product pom.xml. Then add flags to the incubator Jenkinsfile to be enable mac signing. In Trace Compass we have a separate jenkins job that does the notarization (https://ci.eclipse.org/tracecompass/job/notarize-tracecompass-dmgs/) which is triggered after a successful build (e.g. nightly.). It calls a script (notarize-mac.sh) for that. ","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6A0OQy/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6A0XRX,org.eclipse.tracecompass,2161210455,101,NA,arfio,8209717,Arnaud,,NA,2024-06-11T16:50:46Z,2024-06-11T16:50:46Z,"I will look into it, thank you very much for the explanation ! ","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6A0XRX/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/101,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6CpMZA,org.eclipse.tracecompass,2191836736,101,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-06-26T14:19:27Z,2024-06-26T14:19:27Z,"Hey, as a quick stopgap fix... would this help? 
+
+`xattr -d com.apple.quarantine /PATH/TO/APPLICATION`","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6CpMZA/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/110,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/110,org.eclipse.tracecompass,2357684768,110,Changing trace type after opening an experiment does not update the experiment,arfio,8209717,Arnaud,,CLOSED,2024-06-17T15:51:47Z,2024-06-27T13:21:50Z,"To reproduce the issue:
+- Open a trace with type 1
+- Create an experiment with this trace
+- Change the trace type of the trace to type 2 in the ""traces"" folder and not in the experiment
+
+The trace in the experiment will display the icon of the type 2 but the trace will still be parsed in the experiment as a type 1.
+The issue does not appear when changing the trace directly in the experiment.
+
+The trace in the experiment should keep the icon the type 1.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/110/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/110,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6B-to7,org.eclipse.tracecompass,2180700731,110,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-06-20T13:30:59Z,2024-06-20T13:30:59Z,"I'm not able to reproduce this error. Changing the trace type of a trace from the traces folder or under the experiment will propagate the change to the trace under the traces folder and all experiments where this trace is part of. It just not changes the icon of the trace (in traces folder and under each experiment) but also changes the persistent property on the trace, that is used when creating the trace instance.
+
+I tested that with a LTTng UST trace.
+
+- Open a trace with type1 (LTTng UST trace type)
+- Create an experiment with this trace
+- Change the trace type of the trace to type 2 (Generic CTF)  in the ""traces"" folder and not in the experiment
+
+The icon changes everywhere and only views applicable to Generic CTF traces are shown under the Views folder.
+
+> The Trace in the experiment should keep the icon the type 1
+
+No, the trace in the experiment and trace under the traces folder are the same trace. Changes to the settings (trace type) need to be propagated. If you want to have a different trace type used in the experiment, then you have to copy the trace first and then add the copied trace to the experiment","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6B-to7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/110,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6C0C1n,org.eclipse.tracecompass,2194681191,110,NA,arfio,8209717,Arnaud,,NA,2024-06-27T13:21:50Z,2024-06-27T13:21:50Z,I cannot reproduce this issue anymore.,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6C0C1n/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/116,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/116,org.eclipse.tracecompass,2375469541,116,EASE Scripting feature fails at initialization,PatrickTasse,20052050,Patrick Tasse,,CLOSED,2024-06-26T14:07:38Z,2024-06-27T14:33:55Z,"The incubator EASE Scripting feature throws an exception at initialization (e.g. switching to Scripting perspective).
+
+EASE (org.eclipse.ease) has a dependency on org.mozilla.javascript plug-in. Trace Compass is using the latest version of this feature which has been renamed to org.mozilla.rhino, for use with the XML Analysis feature.
+
+When both plug-ins are installed it creates a conflict that causes initialization failure of the RhinoScriptEngine.
+
+Trace Compass needs to downgrade to use the older org.mozilla.javascript plug-in to ensure compatibility with the incubator EASE Scripting feature. This older version can be found in previous Orbit release repositories.
+
+To use the latest version of org.mozilla.rhino plug-in, it will require an update from the EASE project first.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/116/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/121,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/121,org.eclipse.tracecompass,2380670142,121,Inconsistent field names for time graph views,awendelin-work,174122858,,,OPEN,2024-06-28T15:21:50Z,2024-06-28T15:21:50Z,"When [filtering][flt] in time graph views (""/"" in the Eclipse
+version), the user needs to construct a filter using filter
+expressions. The filter expressions in general tests values of fields.
+
+The field names are opaque from a user's perspective, and the names
+are not created consistently which makes it harder to guess what
+fields are available to filter on.
+
+Some fields use lowercase [(""label"", ""entry"")][coremetadata], some use
+full upper-case (""CPU"", ""TID""), and some uppercase the first letter
+[(""Start Time"", ""End Time"", ""Duration"")][tmfstrings].
+
+The field names are controlled by each time graph dataprovider and are
+sometimes dynamically created which does make it harder to enforce
+consistency.
+
+Making the fields provided by [default][timegraphstate] consistently
+named would be an improvement to set a standard for other fields
+(albeit voluntarily). So the basic TimeGraphState could by default
+provide fields like:
+- ""Label""
+- ""Start Time""
+- ""End Time""
+- ""Duration""
+
+Rather than:
+- ""label""
+- ""Start Time""
+- ""End Time""
+- ""Duration""
+
+(Or whichever case you prefer)
+
+[flt]: https://archive.eclipse.org/tracecompass/doc/stable/org.eclipse.tracecompass.doc.user/Trace-Compass-Main-Features.html#Filtering_Time_Events_in_Time_Graph_Views
+[coremetadata]: https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/blob/master/tmf/org.eclipse.tracecompass.tmf.core/src/org/eclipse/tracecompass/tmf/core/model/CoreMetadataStrings.java
+[tmfstrings]: https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/blob/master/tmf/org.eclipse.tracecompass.tmf.core/src/org/eclipse/tracecompass/internal/tmf/core/messages.properties
+[timegraphstate]: https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/blob/620dd63143c671679c69d8d63a20f354cb03dd25/tmf/org.eclipse.tracecompass.tmf.core/src/org/eclipse/tracecompass/tmf/core/model/timegraph/TimeGraphState.java#L129
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/121/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/124,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/124,org.eclipse.tracecompass,2408393006,124,Cannot import a ftrace file(raw ascii nor trace-cmd),gyulkkajo,4661858,Changhee Han,gyulkkajo@gmail.com,CLOSED,2024-07-15T10:28:32Z,2024-07-16T01:23:26Z,"Hi,
+
+I tried to open a ftrace log but trace-compass cannot open it without any error. I tried to set a type manually then it show below error.
+
+<img width=""721"" alt=""image"" src=""https://github.com/user-attachments/assets/49cf8886-9a2c-4d54-923e-5ead5f5cbfe3"">
+
+I've tried several version of tracecompass and other platform (linux and mac) but none of these works.
+
+Could you check this?
+
+Thanks","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/124/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/124,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Ez1Tw,org.eclipse.tracecompass,2228180208,124,NA,gyulkkajo,4661858,Changhee Han,gyulkkajo@gmail.com,NA,2024-07-15T10:29:44Z,2024-07-15T10:29:44Z,"I'd like to add one that the ""trace.dat"" file is valid and can be opened on kernelshark.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Ez1Tw/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/124,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6E1Dlm,org.eclipse.tracecompass,2228500838,124,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-07-15T13:25:02Z,2024-07-15T13:25:02Z,"Do you have the ftrace trace-type installed? If not, use menu `Tools -> Add-ons...`. A new dialog will open. Search for `ftrace`. Then select checkbox `Trace Compass ftrace (Incubation)` and click on finish `Finish`. Click on `Next` on new dialogs and accept the license agreement and finally click `Finish` again. Restart Trace Compass when asked. This will add the ftrace parser. Now you will be able to select the trace type of an existing trace file in the workspace by using right-mouse click on trace `Select Trace Type` -> `Ftrace Format` -> `Binary Ftrace`. If the file is a converted to textual ftrace then use `Raw Textual Ftrace` instead. 
+
+If you open a new trace or import a new trace to the workspace, the trace type should be detected automatically.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6E1Dlm/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/124,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6E5_wz,org.eclipse.tracecompass,2229795891,124,NA,gyulkkajo,4661858,Changhee Han,gyulkkajo@gmail.com,NA,2024-07-16T01:23:25Z,2024-07-16T01:23:25Z,"Appreciated @bhufmann. Previously I remember that I saw the traces without installing any plugins but looks like it changed.
+Thanks!","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6E5_wz/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/127,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/127,org.eclipse.tracecompass,2426055621,127,Unifying Plot (XY) data providers design.,MatthewKhouzam,419535,Matthew Khouzam,,OPEN,2024-07-23T20:19:36Z,2024-07-25T14:43:33Z,"Right now we have several XY data providers: 
+
+![image](https://github.com/user-attachments/assets/36196dae-c8f4-4948-b2b4-ed3f89fbf904)
+
+It would be interesting to investigate the data providers and see if there's a way to have a unified code path. In doing so, it could lead to a universal customized xy tree data provider. This in turn would allow for that dataprovider to be properly customizable.
+
+Warning: this could be API breaking, I think we need to discuss it from an Architecture level. 
+
+One thing to ask here: what would the ideal XY plot have as parameters to customize? I would love insights from more UXy people as this pertains to DX (Developer experience). @ebugden. ","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/127/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/127,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GArQu,org.eclipse.tracecompass,2248324142,127,NA,ebugden,28311615,,,NA,2024-07-24T15:36:36Z,2024-07-24T15:36:36Z,"@MatthewKhouzam Before weighing in, I'd need a better understanding of the underlying user problem that this solution proposes to address. Is the problem that XY charts cannot be ""customized"" at the moment? Could you clarify what ""customization"" refers to?","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GArQu/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/127,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GCU7v,org.eclipse.tracecompass,2248756975,127,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-07-24T19:32:52Z,2024-07-24T19:32:52Z,"The XY chart can be customized by code. We noticed students getting paralyzed unable to pick which data provider to extend.
+
+Customization ideas:
+* title
+* axes (units, formating)
+* is the data cumulative or absolute
+* series palette
+* I need more ideas","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GCU7v/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/127,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GJBvv,org.eclipse.tracecompass,2250513391,127,NA,ebugden,28311615,,,NA,2024-07-25T14:43:32Z,2024-07-25T14:43:32Z,I'm still fuzzy on what's going on. Is the underlying problem is that Trace Compass contributors and extenders who want to add a new XY view are unsure about which data provider to extend? And the proposed solution is to refactor to have one general XY data provider whose code can be more easily adapted to different graphical encodings e.g. different axis units/titles?,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GJBvv/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,org.eclipse.tracecompass,2435791339,128,"LTTng trace types, what can we support out of the box?",MatthewKhouzam,419535,Matthew Khouzam,,OPEN,2024-07-29T15:56:26Z,2024-07-30T19:38:17Z,"LTTng Kernel traces are great! we can have a lot of information and can make many views.
+
+LTTng UST has a few wrappers that help. We can have memory usage and callstacks.
+
+Are there any default fields in the java agent, java.util.logging, log4j, python or LTTng logger that can can be visualized out of the box?
+
+
+Here is an example of what we can get with log4j for instance: 
+* vpid
+* procname
+* ip
+* vtid
+* msg (another event inside)
+* logger_name
+* method_name
+* filename
+* line_number
+* timestamp (second)
+* thread_name
+* loglevel
+
+ vpid = 328, procname = ""spark-listener-"", ip = 0x7B48B92AE8D2, vtid = 466 }, { msg = ""eventType=JobEnd; jobId=0; jobResult=JobSucceeded; endTime=1714058265331"", logger_name = ""org.apache.spark.examples.MyCustomSparkListener"", class_name = ""org.apache.spark.examples.MyCustomSparkListener"", method_name = ""logData"", filename = ""MyCustomSparkListener.java"", line_number = 280, timestamp = 1714058265331, int_loglevel = 20000, thread_name = ""spark-listener-group-shared"" 
+
+
+What views can be made with this partial info?","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GgERE,org.eclipse.tracecompass,2256553028,128,NA,ebugden,28311615,,,NA,2024-07-29T17:45:46Z,2024-07-29T17:45:46Z,"> Are there any default fields in the java agent, java.util.logging, log4j, python or LTTng logger that can can be visualized out of the box?
+
+> What views can be made with this partial info?
+
+I think it would be better to ask ""what is useful?"" rather than asking ""what is possible?"".
+
+More specifically, to identify which views would be helpful, my reflex would be to start with identifying whether there are problems real Trace Compass users troubleshoot/analyze that would be facilitated by having some of this additional data. If needed, I could assist in reaching out to folks if you have contacts.
+
+It seems risky to start with the data and directly think about ways to visualize it without grounding them in real use cases. The main risk being that the views are not used in practice and that the development work does not have an impact.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GgERE/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Gmjaa,org.eclipse.tracecompass,2258253466,128,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-07-30T12:39:33Z,2024-07-30T12:39:33Z,"Ok, I agree with the sentiment. Now I would ask, what was the logic of adding the fields in the trace points. I see the trace points are there and I assume there's logic in having them there.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Gmjaa/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GnJvt,org.eclipse.tracecompass,2258410477,128,NA,ebugden,28311615,,,NA,2024-07-30T13:53:37Z,2024-07-30T13:53:37Z,"> what was the logic of adding the fields in the trace points. I see the trace points are there and I assume there's logic in having them there.
+
+That's a good point! I don't know who did the instrumentation off the top of my head, but I'll briefly ask around to see if there was a real user-based rationale. 
+
+We're working on making those explicit user connections on the instrumentation side as well.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GnJvt/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GnWQk,org.eclipse.tracecompass,2258461732,128,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-07-30T14:14:13Z,2024-07-30T14:14:13Z,"Perfect. So my reasoning was the tracepoints/fields are there for a reason, why not finish the loop.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GnWQk/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Gns2W,org.eclipse.tracecompass,2258554262,128,NA,ebugden,28311615,,,NA,2024-07-30T14:54:46Z,2024-07-30T14:54:46Z,"> why not finish the loop
+
+I would argue that without additional user context, any views added risk not actually closing the loop i.e. not being helpful/used.
+
+I did confirm that the instrumentation was created in response to a user request (a while ago). That being said, we don't have knowledge of which fields are used in analyses, what information they extract, and how. There are so many possibilities for what information to visualize and how and I feel the risk is high that we choose wrong.
+
+I think it's worth connecting with users to answer questions like the following:
+* How do you use the available log4j information to solve problems? Is it correlated with other data sources? What symptoms do you look for?
+* Confirm whether having this information available via a graphical tool would facilitate their work. For example, if they already have a customized automated analysis, a graphical representation may not necessarily integrate into their existing workflow.
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Gns2W/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GpoGC,org.eclipse.tracecompass,2259059074,128,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-07-30T19:29:03Z,2024-07-30T19:29:03Z,"Right now, we are looking into bringing in a spark trace type based on @rezix93's great work. This would extend UST and be the first FOSS example of a log4j view. We wondered if there's any other needs at the moment. Reza's work is more aimed at solving general purpose cloud utilization, not just Apache Spark issues.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GpoGC/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GprKo,org.eclipse.tracecompass,2259071656,128,NA,ebugden,28311615,,,NA,2024-07-30T19:36:37Z,2024-07-30T19:36:37Z,"> we are looking into bringing in a spark trace type
+
+Ok.
+
+> We wondered if there's any other needs at the moment.
+
+We're not aware of any particular needs/gaps. (I'm sure they exist, but we're not in close communication with folks who use these data sources at the moment.)","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GprKo/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/128,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GprxD,org.eclipse.tracecompass,2259074115,128,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-07-30T19:38:17Z,2024-07-30T19:38:17Z,I am leaving this issue open in case any needs arise. This was the first time we opened a log4j ust trace and the extra fields were a surprise.,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6GprxD/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/156,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/156,org.eclipse.tracecompass,2542993628,156,HistoryTreeBackendIterator skips nodes during construction,PatrickTasse,20052050,Patrick Tasse,,CLOSED,2024-09-23T15:23:13Z,2024-09-30T16:12:39Z,"In HistoryTreeBackendIterator, the time range condition for queuing children nodes is reduced according to the current node time range.
+
+During construction, it can happen that the root node has a time range that is only the start timestamp. In that case the iterator will only consider child nodes that intersect with the start time and all other child nodes will be discarded. The iterator can then miss many intersecting intervals.
+
+The root node time range can be increased if intervals are added to it (this does not always happen) or at the end of construction when the node is closed.
+
+A solution seems to be to avoid reducing the time range condition when the current node is the root node.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/156/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/158,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/158,org.eclipse.tracecompass,2543657247,158,ThreadedHistoryTreeBackend missing intervals in query2D,PatrickTasse,20052050,Patrick Tasse,,CLOSED,2024-09-23T21:03:29Z,2024-09-30T16:13:01Z,"In https://git.eclipse.org/r/134665 a 'reverse' parameter was added to the signature of the IStateHistoryBackend.query2D() interface.
+
+The state system was changed to call this new method. But ThreadedHistoryTreeBackend was not updated to implement this method, and therefore the implementation in base class HistoryTreeBackend is used. The base class is not aware of and misses intervals that are currently held in the interval queue (BufferedBlockingQueue) waiting to be written to file.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/158/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,org.eclipse.tracecompass,2719034936,192,Remote connection to target without JUL daemon does not handle error message gracefully (lttng 2.13),RyanFindley,5124653,,,CLOSED,2024-12-05T00:09:16Z,2024-12-16T18:44:36Z,"Recently, we updated our embedded target and apparently liblttng-ust is no longer being built with --enable-java-agent-jul.
+
+When connecting to this target over ssh from TraceCompass, the following error occurs:
+
+```
+Error retrieving node configuration
+    Command failed! Command: lttng --mi xml list -j
+```
+
+Actual output of this command when run on the target:
+```
+[15:56 ~]# lttng --mi xml list -j
+Error: Unable to list jul events: Session daemon agent tracing is disabled
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<command xmlns=""https://lttng.org/xml/ns/lttng-mi"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""https://lttng.org/xml/ns/lttng-mi https://lttng.org/xml/schemas/lttng-mi/4/lttng-mi-4.1.xsd"" schemaVersion=""4.1""><name>list</name><output/></command>
+```
+
+I suspect that the parser is choking on the bare error message emitted before the XML response content.
+
+This can probably be solved by adding the --quiet arg to the request, to suppress the bare error output if the parser is not prepared to handle it:
+```
+[15:57 ~]# lttng --quiet --mi xml list -j        
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<command xmlns=""https://lttng.org/xml/ns/lttng-mi"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""https://lttng.org/xml/ns/lttng-mi https://lttng.org/xml/schemas/lttng-mi/4/lttng-mi-4.1.xsd"" schemaVersion=""4.1""><name>list</name><output/></command>
+```
+or by redirecting stderr to /dev/null:
+```
+[16:05 ~]# lttng --mi xml list -j 2>/dev/null
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<command xmlns=""https://lttng.org/xml/ns/lttng-mi"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""https://lttng.org/xml/ns/lttng-mi https://lttng.org/xml/schemas/lttng-mi/4/lttng-mi-4.1.xsd"" schemaVersion=""4.1""><name>list</name><output/></command>
+```
+
+To workaround in the short term: Is it possible to disable TraceCompass from querying for JUL domain session list? (via a properties or prefs file, command line arg, etc)  Search didn't turn up any clues...
+
+TraceCompass version: 10.2.0
+lttng version on target: 
+```
+[15:44 ~]# lttng --version
+lttng (LTTng Trace Control) 2.13.9 - Nordicité
+```
+
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6WRPFw,org.eclipse.tracecompass,2521100656,192,NA,RyanFindley,5124653,,,NA,2024-12-05T18:16:42Z,2024-12-05T18:16:42Z,"For reference, the previous version of our target produced this output from the same command:
+
+```
+[17:45 ~]# lttng --version
+lttng (LTTng Trace Control) 2.12.11 - (Ta) Meilleure
+[17:46 ~]# lttng --mi xml list -j
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<command xmlns=""https://lttng.org/xml/ns/lttng-mi"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""https://lttng.org/xml/ns/lttng-mi https://lttng.org/xml/schemas/lttng-mi/4/lttng-mi-4.0.xsd"" schemaVersion=""4.0"">
+<name>list</name>
+<output><domains><domain><type>JUL</type><buffer_type>PER_PID</buffer_type><pids/></domain></domains></output></command>
+```
+
+I assume it's a difference in how we built, configured, or installed lttng on the target. (we have no java runtime on the target, so no need to log JUL events)","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6WRPFw/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6WS0Ov,org.eclipse.tracecompass,2521514927,192,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-12-05T21:43:37Z,2024-12-05T21:43:37Z,"I think it fails because the command exits with a non zero value. Could you please confirm by printing the exit code (e.g. `echo $?`) and let us know?
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6WS0Ov/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6WTULs,org.eclipse.tracecompass,2521645804,192,NA,RyanFindley,5124653,,,NA,2024-12-05T22:53:12Z,2024-12-05T22:53:12Z,"Good point, it returns exit code 1 with / without the --quiet flag
+```
+
+[14:51 ~]# lttng --mi xml list -j
+Error: Unable to list jul events: Session daemon agent tracing is disabled
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<command xmlns=""https://lttng.org/xml/ns/lttng-mi"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""https://lttng.org/xml/ns/lttng-mi https://lttng.org/xml/schemas/lttng-mi/4/lttng-mi-4.1.xsd"" schemaVersion=""4.1""><name>list</name><output/></command>
+[14:51 ~]# echo $?
+1
+[14:51 ~]# lttng --quiet --mi xml list -j
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<command xmlns=""https://lttng.org/xml/ns/lttng-mi"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""https://lttng.org/xml/ns/lttng-mi https://lttng.org/xml/schemas/lttng-mi/4/lttng-mi-4.1.xsd"" schemaVersion=""4.1""><name>list</name><output/></command>
+[14:52 ~]# echo $?
+1
+```
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6WTULs/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6WTUqf,org.eclipse.tracecompass,2521647775,192,NA,RyanFindley,5124653,,,NA,2024-12-05T22:54:46Z,2024-12-05T22:54:46Z,"So the question remains: is it possible to configure TraceCompass to not query JUL sessions, or is this an implicit requirement of the design?","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6WTUqf/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Wb6j8,org.eclipse.tracecompass,2523900156,192,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-12-06T18:19:34Z,2024-12-06T18:19:34Z,"Thanks for confirming. No, it's not a implicit requirement. I think it's just a matter of ignoring any errors when checking for such UST provider (e.g. JUL, python etc). If it is not supported it should not prevent using other logger providers: [1] is the relevant code line.  Instead of throwing an exception it could just return. Alternatively, we could ignore  some of the errors like done for the default UST provider [2].
+
+[1] https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/blob/18017043820e73814d0bcc8a68ad0228df9330cd/lttng/org.eclipse.tracecompass.lttng2.control.ui/src/org/eclipse/tracecompass/internal/lttng2/control/ui/views/service/LTTngControlServiceMI.java#L1144 
+
+[2] https://github.com/eclipse-tracecompass/org.eclipse.tracecompass/blob/18017043820e73814d0bcc8a68ad0228df9330cd/lttng/org.eclipse.tracecompass.lttng2.control.ui/src/org/eclipse/tracecompass/internal/lttng2/control/ui/views/service/LTTngControlServiceMI.java#L626
+
+I'll try to submit a PR for this.
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Wb6j8/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Wb9Yo,org.eclipse.tracecompass,2523911720,192,NA,RyanFindley,5124653,,,NA,2024-12-06T18:27:21Z,2024-12-06T18:27:21Z,"Excellent, thanks!","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Wb9Yo/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Wv43C,org.eclipse.tracecompass,2529136066,192,NA,RyanFindley,5124653,,,NA,2024-12-09T19:09:25Z,2024-12-09T19:09:25Z,"Some additional information:
+
+We rolled back to previous versions of lttng and re-built the system. No other changes were made. It seems that this is a general incompatibility with lttng v2.13 specifically - it's now returning an error whereas previously in v2.12 it did not.
+
+Turns out our system has never been built with --enable-java-agent-jul nor has it ever had any java runtime installed. The behavior of lttng in this situation is simply different between 2.12 and 2.13.
+
+System built with lttng version we were using previously (no error)
+```[19:03 ~]# lttng --version
+lttng (LTTng Trace Control) 2.12.11 - (Ta) Meilleure
+[19:03 ~]# lttng --mi xml list -j
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<command xmlns=""https://lttng.org/xml/ns/lttng-mi"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""https://lttng.org/xml/ns/lttng-mi https://lttng.org/xml/schemas/lttng-mi/4/lttng-mi-4.0.xsd"" schemaVersion=""4.0""><name>list</name><output><domains><domain><type>JUL</type><buffer_type>PER_PID</buffer_type><pids/></domain></domains></output></command>
+[19:03 ~]# echo $?
+0
+```
+
+System built with lttng 2.12 (latest version) (also no error)
+```[18:59 ~]# lttng --version
+lttng (LTTng Trace Control) 2.12.16 - (Ta) Meilleure
+[19:00 ~]# lttng --mi xml list -j
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<command xmlns=""https://lttng.org/xml/ns/lttng-mi"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""https://lttng.org/xml/ns/lttng-mi https://lttng.org/xml/schemas/lttng-mi/4/lttng-mi-4.0.xsd"" schemaVersion=""4.0""><name>list</name><output><domains><domain><type>JUL</type><buffer_type>PER_PID</buffer_type><pids/></domain></domains></output></command>
+[19:00 ~]# echo $?
+0
+```
+
+I updated the title of the issue accordingly.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Wv43C/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XVF-3,org.eclipse.tracecompass,2538889143,192,NA,bhufmann,413424,Bernd Hufmann,,NA,2024-12-12T13:16:57Z,2024-12-12T13:16:57Z,"@RyanFindley The fix is integrated in the nightly build. Please let me know if it works in your environment. Thanks.
+https://download.eclipse.org/tracecompass/master/rcp/","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XVF-3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/192,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Xxqbk,org.eclipse.tracecompass,2546378468,192,NA,RyanFindley,5124653,,,NA,2024-12-16T18:44:36Z,2024-12-16T18:44:36Z,@bhufmann Confirmed! Thanks for the quick turnaround. :),"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Xxqbk/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,org.eclipse.tracecompass,2723408668,193,Trace Compass doesn't show tracing_mark_write event although it is present in trace file,felix-khlmnn,44095720,Felix Kuhlmann,felix-kuhlmann@gmx.de,OPEN,2024-12-06T16:06:00Z,2025-01-11T06:51:46Z,"Hello everybody,
+
+I have encountered a potential bug/error while trying to analyse an ftrace generated with trace-cmd.
+The generated trace.dat contains the tracing_mark_write event and is correctly displayed by Kernelshark, as can be seen from the screenshot below:
+![grafik](https://github.com/user-attachments/assets/c43914b2-6d4f-4234-8162-9e839a206b2b)
+
+The same element in Trace Compass is displayed this way:
+![grafik](https://github.com/user-attachments/assets/669fb724-afa3-4bf4-b75d-11a3bee83475)
+
+The trace was generated by invoking the executable with the following program:
+
+```bash
+trace-cmd -e sched record --file-version 6 ./<Executable Name>
+```
+
+If you need further information for assistance, I will provide it.
+
+Best regards,
+Felix Kuhlmann","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Wu-za,org.eclipse.tracecompass,2528898266,193,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-12-09T17:50:26Z,2024-12-09T17:50:26Z,"Hi Felix, I would like to help, but I would like a trace to test. I have not seen this issue yet. Also, ftrace updates the format, maybe we are out of date. Can you share a trace like this?
+
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Wu-za/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Ww_Cs,org.eclipse.tracecompass,2529423532,193,NA,felix-khlmnn,44095720,Felix Kuhlmann,felix-kuhlmann@gmx.de,NA,2024-12-09T20:53:03Z,2024-12-09T20:53:03Z,"Hi Matthew, thank you for offering your help.
+
+What is your preferred way of receiving the trace? I figured posting it in this thread would clutter it up. Hence, I'm asking. 
+
+Thank you in advance!","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Ww_Cs/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6W3dnl,org.eclipse.tracecompass,2531121637,193,NA,felix-khlmnn,44095720,Felix Kuhlmann,felix-kuhlmann@gmx.de,NA,2024-12-10T10:20:03Z,2024-12-10T10:20:03Z,Edit: I forgot to mention that I started `trace-cmd` with the `--file-version` flag set to version 6. I have read that this is the only supported file version for Trace Compass.,"{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6W3dnl/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6W6IPG,org.eclipse.tracecompass,2531820486,193,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-12-10T14:39:32Z,2024-12-10T14:39:32Z,"Ok, in that case, you're already good.
+
+Regarding the trace format, I think putting a zip in this issue is great for persistence. Can you make a smaller trace?","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6W6IPG/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XUEUf,org.eclipse.tracecompass,2538620191,193,NA,felix-khlmnn,44095720,Felix Kuhlmann,felix-kuhlmann@gmx.de,NA,2024-12-12T11:25:47Z,2024-12-12T11:25:47Z,"I have found a partial solution for my problem. When exporting a different, shorter `trace.dat` (file version 6) using `trace-cmd report > trace.txt`, I was able to import the `trace.txt` into trace compass. Trace Compass only shows the actual text written when using this format. 
+This leads me to a different problem: The trace markers written in the test application for this issue can be read without issue. However, the trace of the actual program that I want to analyse doesn't get fully loaded in, despite both the binary and ascii file containing every event from start to finish.
+
+The `Statistics` windows of the binary trace file `trace.dat` tells me that there are 1.782.763 events listed. However, the ascii version of the exact same tracing only has 640 events listed. This trace is included in the zip, its name is `long_program.{dat,txt}`. 
+
+I have written a test program that writes 10 times to the trace marker. The source for that is also included in the zip. For this trace, there is no discrepancy in the amount of events between loading the binary or the ascii format.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XUEUf/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XUFXV,org.eclipse.tracecompass,2538624469,193,NA,felix-khlmnn,44095720,Felix Kuhlmann,felix-kuhlmann@gmx.de,NA,2024-12-12T11:27:53Z,2024-12-12T11:27:53Z,"Since Github only allows 25MB uploads, you'll have to create the ascii file of the long program yourself.
+Steps to reproduce:
+`trace-cmd report > long_program.txt`
+
+Thanks in advance!
+[tracecompass-issue-193.zip](https://github.com/user-attachments/files/18110765/tracecompass-issue-193.zip)
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XUFXV/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XWt2P,org.eclipse.tracecompass,2539314575,193,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2024-12-12T15:39:31Z,2024-12-12T15:39:31Z,"I will check it out... disclaimer, I will be on winter holidays soon. But I should respond, if not slowly. ","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XWt2P/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XXMUi,org.eclipse.tracecompass,2539439394,193,NA,felix-khlmnn,44095720,Felix Kuhlmann,felix-kuhlmann@gmx.de,NA,2024-12-12T16:30:43Z,2024-12-12T16:30:43Z,"No worries, same goes for me ^^
+Happy holidays and a successful new year!","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6XXMUi/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6ZxRRj,org.eclipse.tracecompass,2579829859,193,NA,felix-khlmnn,44095720,Felix Kuhlmann,felix-kuhlmann@gmx.de,NA,2025-01-09T10:54:02Z,2025-01-09T10:54:02Z,"Hello, returning from winter break, I have continued my research and can share some new ideas.
+
+One interesting thing I have learned is when filtering a ASCII trace file for printing events, storing the subsequent output and reading it into Trace Compass, I can read the text I have written to the trace marker without any issues.
+
+However, the problem with the limited amount of events Trace Compass can load from an ASCII trace file still is a problem I couldn't resolve.
+
+Is there anything in the ftrace parser preventing files over a certain file size to be read in completely?","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6ZxRRj/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Z0FcU,org.eclipse.tracecompass,2580567828,193,NA,felix-khlmnn,44095720,Felix Kuhlmann,felix-kuhlmann@gmx.de,NA,2025-01-09T15:29:16Z,2025-01-09T15:29:16Z,"Okay, it seems as if I have finally found the bug, and it seems to be with the parsing.
+When parsing a file, I can see that I could only ever see the first 233 events (not related to the uploaded file). By looking at the 234th event with a text editor, I could see that the process's name was `(udev-worker)`. This was the first event that wasn't displayed by Trace Compass, just like all the events that followed. I suspected that the parentheses were a problem for the parser, so I just replaced all occurrences of `(udev-worker)` with `udev-worker`. And now all the aforementioned problems are gone, and all events are listed.
+
+I'm sure the actual fix isn't all too big as everything that needs to be adjusted will most likely just be a RegEx. I would like to do the fix myself, but I don't know where to find the actual parser code. If anybody could point me in the correct direction, I'd appreciate that :)","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6Z0FcU/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6aBvRq,org.eclipse.tracecompass,2584147050,193,NA,MatthewKhouzam,419535,Matthew Khouzam,,NA,2025-01-10T20:55:59Z,2025-01-10T20:55:59Z,"Hi, I am looking into the traces.. I am sorry for the long delay. The issue is in `long_program.dat` right? I tried opening it both in text and binary... Binary works perfectly, it's just the text that's got the issue. I will patch the regex shortly. I want to confirm, is this the problem, at line 640? 
+
+
+After some programmatic checks, I see that the binary parsing is missing ONE event in 1782764... I will investigate further, I think there are two bugs now.
+
+Parsing the txt file fails at event 640.
+
+Parsing the binary is missing one event.
+
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6aBvRq/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/193,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6aFdlF,org.eclipse.tracecompass,2585123141,193,NA,felix-khlmnn,44095720,Felix Kuhlmann,felix-kuhlmann@gmx.de,NA,2025-01-11T06:51:18Z,2025-01-11T06:51:18Z,"No worries, Matthew, thank you for your help 🙂
+
+Yes, the number of events when loading the ASCII version of the `long_program` trace is only 640. After analysing the raw text file, I can confirm that this is the same symptom as described above, where the parentheses caused the problem. At the corresponding line, there is the first `(udev-worker)` occurrence.","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6aFdlF/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/201,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/201,org.eclipse.tracecompass,2773318426,201,wasd shortcuts missing from flamegraph,arfio,8209717,Arnaud,,OPEN,2025-01-07T16:54:51Z,2025-01-07T16:54:51Z,"### Bug Description:
+The WASD shortcuts are not working in the flamegraph view.
+<!-- Please provide clear steps to reproduce the bug. -->
+### Steps to Reproduce:
+
+1.Open a trace that provides a call stack analysis
+2. Open the flamegraph
+3. Try to use wasd to move in the view
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/201/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/209,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/209,org.eclipse.tracecompass,2816652814,209,IsScripting DataDrivenValueConstant: null,lancelotnd,32873563,Lancelot Normand,lance.git@sus.fish,OPEN,2025-01-28T20:27:55Z,2025-01-28T20:52:31Z,"<!-- Please provide a detailed description of the bug. -->
+<!-- Note: This template is not meant for security vulnerabilities disclosure -->
+<!-- Any such issue, created in this repo, will be deleted on sight -->
+<!-- Instead please report vulnerabilities to the Eclipse Foundation's security team -->
+<!-- For more details, please read SECURITY.md in the repository root -->
+### Bug Description:
+
+When writing ease scripts, with a createXYProvider(map,analysis) where the map has the value `'*'` for `ENTRY_PATH` we repeatedly get this error in the eclipse console:
+
+```
+!ENTRY org.eclipse.tracecompass.tmf.analysis.xml.core 2 0 2025-01-28 14:39:44.803
+!MESSAGE The attribute quark is invalid: [DataDrivenValueConstant: null]
+```
+
+<!-- Please provide clear steps to reproduce the bug. -->
+### Steps to Reproduce:
+
+1. make sure to have pulled PRs #133  #196 to be able to read TraceEventTrace from Pytorch Profiler 
+2. Download this [JSON trace](https://drive.google.com/file/d/1qT15HMjKWnuNOSftSADnDC41vQxStfK9/view?usp=sharing) from my Google Drive 
+3. Download [this EASE script](https://gist.github.com/lancelotnd/a150631f692f150cfd4607c25acaf439) 
+4. Load them In TC and run the script on the CallStack Flame Chart of the PyTorch Trace
+
+<!-- Please provide any additional information available. -->
+<!-- Additional information can be in the form of logs, screenshots, screencasts. -->
+
+### Additional Information
+
+- Operating System: Ubuntu 22.04
+- Trace Compass Version: Mainline 
+cc: @arfio ","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/209/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/211,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/211,org.eclipse.tracecompass,2819693214,211,Bookmarks should not obstruct the trace,lancelotnd,32873563,Lancelot Normand,lance.git@sus.fish,OPEN,2025-01-30T01:27:03Z,2025-01-30T15:35:35Z,"
+### Feature Description:
+I really like bookmarks and use them frequently, however they tend to get in the way of the trace making it difficult to read, especially if we overlay bookmarks of odd colors. Perhaps it would be better to have it in the background.
+
+
+![Image](https://github.com/user-attachments/assets/d412e202-e3c7-4710-a15d-8a39827e74fc)","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/211/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/211,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6cc7t9,org.eclipse.tracecompass,2624830333,211,NA,bhufmann,413424,Bernd Hufmann,,NA,2025-01-30T15:34:51Z,2025-01-30T15:34:51Z,"Thanks for the suggestion. You can also lower the alpha when creating the bookmark to make it more transparent. This will make it less distracting. 
+
+![Image](https://github.com/user-attachments/assets/95717a17-ce55-443d-9c3f-055d9b283635)
+
+You could also disable them when not needed using the view menu `Show Markers -> Bookmarks` (uncheck it).","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6cc7t9/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/215,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/215,org.eclipse.tracecompass,2833678054,215,CallStack symbols are available only when the trace is read in full,arfio,8209717,Arnaud,,OPEN,2025-02-05T18:32:49Z,2025-02-05T19:34:49Z,"### Bug Description:
+
+The symbols for the LTTng-UST cyg profile analysis can appear only when the UstDebugInfoAnalysis is completed. For large traces, it is necessary to wait quite a while before being able to visualize the stack trace.
+
+Also, it is necessary to close and reopen the trace for the symbols to show.
+
+### Steps to Reproduce:
+
+1. Take a large cyg profile trace (>10 million events)
+2. Open the trace
+3. Symbols do not show
+
+### Additional Information
+
+This is because the UstDebugInfoAnalysisModule.getMatchingFile does a full query to get the debug binary information. However, the information has not yet been written into the backend as the interval is closed only at the end of the trace.
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/215/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/216,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/216,org.eclipse.tracecompass,2833685682,216,Callstack should show reason when symbols cannot be provided,arfio,8209717,Arnaud,,OPEN,2025-02-05T18:36:53Z,2025-02-05T18:36:53Z,"### Bug Description:
+
+The symbols for the LTTng-UST cyg profile analysis sometimes cannot be provided as some information is missing (vpid, vtid missing), binary not found, etc...
+Trace Compass should show somewhere why it is the case and should point to the documentation on how to resolve that issue.
+
+### Additional Information
+
+The issue most often is the UstDebugInfoBinaryAspect cannot provide the BinaryCallsite for different reasons. The reason is not escalated and null is returned.
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/216/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/217,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/217,org.eclipse.tracecompass,2833747372,217,CallGraph analysis does not save its result on disk,arfio,8209717,Arnaud,,OPEN,2025-02-05T19:05:56Z,2025-02-05T19:05:56Z,"### Bug Description:
+
+Currently a cache is maintained in the FlameGraphDataProvider, saving the result of the callgraph analysis in an in memory state system.  This should be saved by the CallGraphAnalysis because this result could be saved on disk and avoid recomputing the callgraph when reopening the trace.
+
+### Steps to Reproduce:
+
+1. Running any analysis providing a call graph
+2. Closing the trace
+3. Reopening and opening the flamegraph makes it compute the callgraph again.
+
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/217/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/218,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/218,org.eclipse.tracecompass,2836569172,218,Performance impact of mxbeans on logging,MatthewKhouzam,419535,Matthew Khouzam,,OPEN,2025-02-06T20:53:34Z,2025-02-06T22:28:46Z,"Hi all,
+
+I was looking at the performance impact of mxbeans in trace compass logging.
+
+
+I ran the following code to test, once with mxbeans enabled, once without.
+
+```java
+ /**
+ * Test Marker
+ */
+@Test
+public void testPerformance() {
+    Logger logger = fLogger;
+
+    assertNotNull(logger);
+    try (ScopeLog sl = new ScopeLog(logger, Level.WARNING, ""Outer"")) {
+        for (int i = 0; i < 100000; i++) {
+            new Object();
+        }
+    }
+    fStreamHandler.flush();
+    Logger nullLogger = Logger.getAnonymousLogger();
+    for (Handler hander : nullLogger.getHandlers()) {
+        nullLogger.removeHandler(hander);
+    }
+    try (ScopeLog sl = new ScopeLog(logger, Level.WARNING, ""Outer"")) {
+        for (int i = 0; i < 100000; i++) {
+            try (ScopeLog nl = new ScopeLog(nullLogger, Level.FINE, ""inner"")) {
+                        new Object();
+            }
+        }
+    }
+    try (ScopeLog sl = new ScopeLog(logger, Level.WARNING, ""Outer"")) {
+        for (int i = 0; i < 100000; i++) {
+            try (ScopeLog nl = new ScopeLog(nullLogger, Level.FINE, ""inner"")) {
+                        new Object();
+            }
+        }
+    }
+    System.out.println(fLog.getMessages().get(0));
+}
+```
+On an 11th Gen Intel(R) Core(TM) i5-1145G7 @ 2.60GHz, the following results were obtained.
+
+The test ran, the first pass took ~ 262.1 ns per iteration. The second pass took 526.7 ns/iteration. Removing mxbeans made the second pass take 334.3 ns/cycle. 
+
+| Configuration   | Total Time     | Tracing impact |
+|-----------------|----------------|----------------|
+| No tracing      | 262.1 ns/event | 0              |
+| Tracing         | 334.3 ns/event | 72.1 ns/scope  |
+| Tracing+mxbeans | 526.7 ns/event | 264.6 ns/scope |
+
+I would propose making the beans an optional item. The overhead is low but non-null. This choice can be given to the user.
+
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/218/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/219,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/219,org.eclipse.tracecompass,2838018552,219,CTF Trace - Metadata template,Riccardo-Maffei,126154411,Riccardo Maffei,,OPEN,2025-02-07T12:15:46Z,2025-02-10T14:33:49Z,"Good Afternoon,
+
+I am trying to parse a CTF trace with Trace Compass. I have saved both the metadata and trace files in a directory and imported it by using the Project Explorer. I did obtain a visualization of my data, but I can't seem to get it to populate the control flow view.
+
+Expected:
+
+![Image](https://github.com/user-attachments/assets/81d1dfb6-9beb-46d5-b2de-0c6dc7ad26fd)
+
+Actual:
+
+![Image](https://github.com/user-attachments/assets/7ae3ec70-78c1-44a6-b9b6-6767106fbaf5)
+
+Although this is probably caused by the timestamps having all the same value, i was still hoping for a depiction of the idle time.
+
+![Image](https://github.com/user-attachments/assets/d0095321-45ce-4cd8-9386-f0f634858d57)
+
+I am now trying to understand why the ""blocks"" of events are generated together and at a constant interval of .510 seconds. In the meantime, may I ask if Trace Compass has certain requirements for the CTF metadata? Is there a metadata-template to follow or should the tool be able to correctly depict the events regardless of how their fields are named / ordered?
+
+Thank you very much for your time","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/219/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/219,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6dj3WB,org.eclipse.tracecompass,2643424641,219,NA,bhufmann,413424,Bernd Hufmann,,NA,2025-02-07T16:34:44Z,2025-02-07T16:34:44Z,">I am now trying to understand why the ""blocks"" of events are generated together and at a constant interval of .510 seconds. In the meantime, may I ask if Trace Compass has certain requirements for the CTF metadata? Is there a metadata-template to follow or should the tool be able to correctly depict the events regardless of how their fields are named / ordered?
+
+The `Control Flow View` is specific to Linux Kernel traces, e.g. LTTng, FTrace or Perf (converted to CTF). It requires certain trace events and fields to be able to populate it. 
+
+If your trace content can be mapped to those Linux Kernel events and fields, then you could implement a Trace Compass plug-in extension that implements `IKernelTrace`. You will have to provide a so called `IKernelAnalysisEventLayout` to map your trace events to the required format. This is done when post processing the trace file in Trace Compass.
+
+This would need to be done in as a plug-in extension in Java and installed on top of the Trace Compass application. See Trace Compass developer guide for more details on writing a plug-in extension: https://archive.eclipse.org/tracecompass/doc/stable/org.eclipse.tracecompass.doc.dev/Developer-Guide.html
+Note: Browse the source code for `IKernelTrace` and `IKernelAnalysisEventLayout` and how it's used.
+
+Alternatively, you could create such view from scratch a plug-in extension. Trace Compass has a lot of APIs to help with that. See the developer guide above for this as well. 
+
+If don't want to write Java code, you could use the data-driven analysis and view capabilities of Trace Compass. You can define the state machine in XML and define the view mapping in XML as well. This will populate such view. Here is some documentation:
+https://archive.eclipse.org/tracecompass/doc/stable/org.eclipse.tracecompass.doc.user/Data-driven-analysis.html#Data_driven_analysis
+
+Lastly, you could use EASE scripting to create such view. Here is a tutorial on how to do that: 
+https://github.com/dorsal-lab/Tracevizlab/tree/master/labs/204-scripted-analysis-for-custom-instrumentation
+
+","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6dj3WB/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/219,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6dx1G_,org.eclipse.tracecompass,2647085503,219,NA,Riccardo-Maffei,126154411,Riccardo Maffei,,NA,2025-02-10T06:46:28Z,2025-02-10T06:46:28Z,"Understood, thank you very much for the quick response!","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6dx1G_/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/219,https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6d2AJO,org.eclipse.tracecompass,2648179278,219,NA,bhufmann,413424,Bernd Hufmann,,NA,2025-02-10T14:33:47Z,2025-02-10T14:33:47Z,"Here some other interesting approach that we just came across where a trace is converted to LTTng-like CTF content. Not sure if that would work for you as well:
+
+https://github.com/jonlamb-gh/trace-recorder-to-ctf
+ ","{""url"": ""https://api.github.com/repos/eclipse-tracecompass/org.eclipse.tracecompass/issues/comments/IC_kwDOLPg8Us6d2AJO/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"

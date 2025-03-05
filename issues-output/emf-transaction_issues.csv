@@ -1,0 +1,1821 @@
+type,issue_url,comment_url,repo_name,id,issue_num,title,user_login,user_id,user_name,user_email,issue_state,created_at,updated_at,body,reactions
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/1,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/1,emf-transaction,1236117412,1,Transactional command stack non-redoable with trigger command or wrapped operation,demonfiddler,14012347,Adrian Price,,OPEN,2022-05-14T20:43:38Z,2022-05-26T10:16:09Z,"## Description
+
+Reopening Eclipse Bugzilla# 377799
+
+There seems to be a problem whereby a transactional editing domain with a resource set listener can be non-redoable via the command stack.
+
+In my use case the listeners return EMFOperationCommands to perform what are effectively non-EMF changes. (Actually they apply EMF model element updates via commands executed on other, non-transactional editing domains, but that has no bearing on the problem.)
+
+However, execute - undo - redo fails at the redo step because:
+
+- The transactional editing domain's command stack wraps the trigger-provided Command in an EMFCommandOperation (which extends AbstractEMFOperation) prior to executing it on the operation history.
+
+- The EMFCommandOperation(AbstractEMFOperation).execute() calls EMFCommandOperation.doExecute() which executes the wrapped trigger Command; AbstractEMFOperation.execute() then obtains the TransactionChangeDescription (a CommandChangeDescription) which it stores in its private 'change' field.
+
+- EMFCommandOperation.canUndo() calls super AbstractEMFOperation.canUndo() which calls change.canApply(). Similarly, EMFCommandOperation.canRedo() calls super AbstractEMFOperation.canRedo() which calls change.canApply().
+
+- AbstractEMFOperation.doUndo() and doRedo() are both implemented by calling change.applyAndReverse(), thus toggling the change description between undo and redo modes.
+
+- HOWEVER, EMFCommandOperation.doUndo() overrides but *does not* call super AbstractEMFOperation.doUndo(). Similarly, EMFCommandOperation.doRedo() overrides but *does not* call AbstractEMFOperation.doRedo(). Thus following command execution the transaction change description is always left in its initial state that does not accurately reflect the last undo or redo performed on the owning operation. The CommandChangeDescription.isRedone field remains set to true, so canApply() always calls command.canUndo().
+
+- EMFCommandOperation.canRedo() calls super AbstractEMFOperation.canRedo() which calls change.canApply() which calls the wrapped command's canUndo() which naturally returns false, preventing the redo from being performed.
+
+I have attached a modified AbstractEMFOperationTest which illustrates the problem. The test_triggerCommands_CommandStack_nonEMF_OperationCommand test fails against both org.eclipse.emf.workspace_1.2.0 and org.eclipse.emf.workspace_1.3.0.
+
+If someone could confirm that this is a genuine bug rather than user error on my part, I would be most grateful indeed.
+
+Reproducible: Always
+
+## Steps to reproduce
+1. Import plug-in org.eclipse.emf.workspace.tests into workspace.
+2. Import the attached test case into the org.eclipse.emf.workspace.tests package.
+3. Select the test case and Run As > JUnit Plug-in Test
+4. The test_triggerCommands_CommandStack_nonEMF_OperationCommand method fails.
+
+## Environment
+
+* Version used: Build Identifier: Version: 3.7.2 Build id: M20120208-0800 and Version: 3.7.2 Build id: ???
+* Eclipse version:
+* Java version (`java -version`):
+
+## Additional details
+
+If your issue corresponds to an old ticket from the [Eclipse Bugzilla](https://bugs.eclipse.org/bugs/) that you want to re-open here on GitHub, please add a link to the original ticket where important historical context may be available. 
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=377799","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/1/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/1,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5DKbwP,emf-transaction,1126808591,1,NA,demonfiddler,14012347,Adrian Price,,NA,2022-05-14T20:45:30Z,2022-05-14T20:45:30Z,"[AbstractEMFOperationTestEx.zip](https://github.com/eclipse/emf-transaction/files/8693830/AbstractEMFOperationTestEx.zip)
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5DKbwP/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/1,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5D2Zj5,emf-transaction,1138333945,1,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-05-26T09:18:23Z,2022-05-26T09:18:23Z,"Hi,
+First, sorry for the lack of response.
+Please understand that I have very little time available to maintain EMF Transaction (and EMF Validation, and others), and my priority is to ""keep the lights on"" and making sure they stay compatible with recent versions of Java, Eclipse, Tycho, etc.
+Also, I was not involved in the actual development of the frameworks, so I'm reluctant to make non-trivial changes to the core. Lots of projects depend on EMF Transaction as it is and as it has been for years, warts and all. Even changes that look like clear bug fixes can have negative impacts on downstream projects that depended (maybe unknowingly) on the previous behavior.
+
+I can understand the frustration on your side, and I will _try_ to have a look, but I can not guarantee anything. I've run the test you provided (thanks), and confirm it still fails on the current version, but I have not yet digged deeper.
+
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5D2Zj5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/1,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5D2khI,emf-transaction,1138378824,1,NA,demonfiddler,14012347,Adrian Price,,NA,2022-05-26T10:16:09Z,2022-05-26T10:16:09Z,"Hi pcdavid, thank you for the response and your continued efforts in maintaining these excellent frameworks, which have been invaluable to so many of us.
+
+As an open source contributor myself (including the EMF core), I quite understand the time constraints under which you operate, and concomitant work prioritisation. For what it's worth, I no longer hold the position I had when I first reported the bug but so far as I am aware, the affected software product (a well-known, world-class, enterprise-grade business process management system) is still actively marketed and supported, and thus affected by the bug. However, the product may never be ported to the latest Eclipse / EMF version.","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5D2khI/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/2,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/2,emf-transaction,1249985608,2,Re-integrate the documentation,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-05-26T19:59:31Z,2024-08-17T15:12:36Z,"See the following bugzillas for details:
+* [Bug 316925](https://bugs.eclipse.org/bugs/show_bug.cgi?id=316925) - Index errors with EMF Transaction documentation
+* [Bug 336760](https://bugs.eclipse.org/bugs/show_bug.cgi?id=336760) - Missing API reference for the EMF Model Transaction Developer Guide
+* [Bug 437580](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437580) - java.io.FileNotFoundException making Help topics unavailable
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/2/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/3,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/3,emf-transaction,1338758944,3,Clean/archive/migrate the EMF Transaction-related content on the Eclipse Wiki,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-08-15T09:34:14Z,2022-08-15T09:34:14Z,See https://wiki.eclipse.org/EMF/Transaction,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/4,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/4,emf-transaction,1345442461,4,Improve update sites,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-08-21T10:04:49Z,2022-08-21T10:04:49Z,"There are several issues regarding how the p2 repos are published, exposed and (not) cleaned up.
+See these bugzillas for details:
+
+* [Please provide ""latest"" composites for update sites or at least clean them up](https://bugs.eclipse.org/bugs/show_bug.cgi?id=532213).
+* [EMFt downloads needs a clean up](https://bugs.eclipse.org/bugs/show_bug.cgi?id=518894)
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/4/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/5,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/5,emf-transaction,1361137946,5,NPE will be thrown if commit will be called after dispose on a Transaction,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:37:49Z,2022-09-04T12:37:50Z,"* 🆔 Bugzilla ID: [#283496](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283496)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2009-07-15T07:54:10Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/5/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/5,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOon,emf-transaction,1236331047,5,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:37:50Z,2022-09-04T12:37:50Z,"_[Comment #0 on Wed Jul 15 2009 09:54:10 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283496#c0):_
+```
+In TransactionImpl.commit() some meaningful exception (not NPE) should be thrown if the transaction had been disposed.
+
+1) The root cause is the detachment of transaction recorder on dispose()
+2) Threading issues should be considered
+	* race conditions between dispose and commit
+	
+See the attached test case for reproduction.
+```
+
+---
+_[Comment #1 on Wed Jul 15 2009 09:56:03 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283496#c1):_
+```
+
+```
+
+---
+_[Comment #2 on Sat May 14 2022 15:51:20 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283496#c2):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOon/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/6,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/6,emf-transaction,1361137993,6,Multiples exceptions due to multithreading with TransactionalEditingDomainImpl#broadcastUnbatched(Notification),pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-09-04T12:37:58Z,2024-09-16T14:28:42Z,"* 🆔 Bugzilla ID: [#288442](https://bugs.eclipse.org/bugs/show_bug.cgi?id=288442)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2009-09-03T09:28:49Z
+* ❓ Status: ASSIGNED / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/6,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOpU,emf-transaction,1236331092,6,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:37:59Z,2022-09-04T12:37:59Z,"_[Comment #0 on Thu Sep 03 2009 11:28:49 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=288442#c0):_
+```
+We recently encountered a strange bug with EMF Transaction in one of our
+product.
+We got sometimes exceptions during resolve of resources, which were difficult
+to repoduce.
+
+From a debug session I was able to understand that there seems to be a
+threading problem with
+TransactionalEditingDomainImpl#broadcastUnbatched(Notification).
+
+I wrote a testcase, from which I was able to reproduce the various exceptions
+we got :
+
+----------------------------------------------------------------
+Thread [Thread-36] (Suspended (exception NullPointerException))    
+    NotificationFilter$2.matches(Notification) line: 63    
+    FilterManager.selectUnbatched(List, NotificationFilter) line: 143    
+    TransactionalEditingDomainImpl$2.run() line: 744    
+    TransactionalEditingDomainImpl.runExclusive(Runnable) line: 262    
+    TransactionalEditingDomainImpl.broadcastUnbatched(Notification) line: 740   
+    TransactionChangeRecorder.appendNotification(Notification) line: 293    
+    TransactionChangeRecorder.processObjectNotification(Notification) line: 266 
+    TransactionChangeRecorder.notifyChanged(Notification) line: 222    
+    EReferenceImpl(BasicNotifierImpl).eNotify(Notification) line: 247    
+    EMFTransansactionTests$9.run() line: 220
+
+--------------------------------------------------------------
+
+Thread [Thread-23] (Suspended (exception IndexOutOfBoundsException))    
+    ArrayList<E>.RangeCheck(int) line: 546    
+    ArrayList<E>.remove(int) line: 389    
+    TransactionalEditingDomainImpl.broadcastUnbatched(Notification) line: 774   
+    TransactionChangeRecorder.appendNotification(Notification) line: 293    
+    TransactionChangeRecorder.processObjectNotification(Notification) line: 266 
+    TransactionChangeRecorder.notifyChanged(Notification) line: 222    
+    EReferenceImpl(BasicNotifierImpl).eNotify(Notification) line: 247    
+    EMFTransansactionTests$9.run() line: 220
+
+---------------------------------------------------------------------
+
+Thread [Thread-11] (Suspended (exception ConcurrentModificationException))    
+    BasicEList$EListIterator<E1>(BasicEList$EIterator<E1>).checkModCount()
+line: 1378    
+    BasicEList$EListIterator<E1>(BasicEList$EIterator<E1>).doNext() line: 1326  
+    BasicEList$EListIterator<E1>(BasicEList$EIterator<E1>).next() line: 1312    
+    SubList$1.next() line: 799    
+    RandomAccessSubList<E>(AbstractCollection<E>).toArray() line: 126    
+    ArrayList<E>.addAll(Collection<? extends E>) line: 473    
+    ReadWriteValidatorImpl$NotificationTree.collectNotifications(List, byte)
+line: 416    
+    ReadWriteValidatorImpl$NotificationTree.collectNotifications(byte) line:
+380    
+   
+ReadOnlyValidatorImpl(ReadWriteValidatorImpl).getNotificationsForPostcommit(Transaction)
+line: 185    
+    TransactionalEditingDomainImpl.postcommit(InternalTransaction) line: 680    
+    TransactionalEditingDomainImpl.deactivate(InternalTransaction) line: 475    
+    TransactionImpl.close() line: 517    
+    TransactionImpl.commit() line: 358    
+    TransactionalEditingDomainImpl.runExclusive(Runnable) line: 267    
+    TransactionalEditingDomainImpl.broadcastUnbatched(Notification) line: 740   
+    TransactionChangeRecorder.appendNotification(Notification) line: 293    
+    TransactionChangeRecorder.processObjectNotification(Notification) line: 266 
+    TransactionChangeRecorder.notifyChanged(Notification) line: 222    
+    EReferenceImpl(BasicNotifierImpl).eNotify(Notification) line: 247    
+    EMFTransansactionTests$10.run() line: 234
+
+--------------------------------------------------------------
+
+Thread [Thread-47] (Suspended (exception ConcurrentModificationException))    
+    RandomAccessSubList<E>(SubList<E>).checkForComodification() line: 855
+[local variables unavailable]    
+    RandomAccessSubList<E>(SubList<E>).size() line: 728    
+    RandomAccessSubList<E>(AbstractCollection<E>).toArray() line: 123    
+    ArrayList<E>.addAll(Collection<? extends E>) line: 473    
+    ReadWriteValidatorImpl$NotificationTree.collectNotifications(List, byte)
+line: 416    
+    ReadWriteValidatorImpl$NotificationTree.collectNotifications(byte) line:
+380    
+   
+ReadOnlyValidatorImpl(ReadWriteValidatorImpl).getNotificationsForPostcommit(Transaction)
+line: 185    
+    TransactionalEditingDomainImpl.postcommit(InternalTransaction) line: 680    
+    TransactionalEditingDomainImpl.deactivate(InternalTransaction) line: 475    
+    TransactionImpl.close() line: 517    
+    TransactionImpl.commit() line: 358    
+    TransactionalEditingDomainImpl.runExclusive(Runnable) line: 267    
+    TransactionalEditingDomainImpl.broadcastUnbatched(Notification) line: 740   
+    TransactionChangeRecorder.appendNotification(Notification) line: 293    
+    TransactionChangeRecorder.processObjectNotification(Notification) line: 266 
+    TransactionChangeRecorder.notifyChanged(Notification) line: 222    
+    EReferenceImpl(BasicNotifierImpl).eNotify(Notification) line: 247    
+    EMFTransansactionTests$11.run() line: 264
+
+---------------------------------------------------------------
+
+I attached the testcase to reproduce (on my side I reproduce at least with
+org.eclipse.emf.workspace version 1.1.2v200712061832, which is currently the
+last build available for 1.1 branch).
+
+Please note that due to threads unpredictable nature, the test may succeed even
+if the bug is present.Therefore it may be necessary to launch the test several
+times before it fails.
+
+To correct the problem, I propose to add synchronized qualifier to 
+TransactionalEditingDomainImpl#broadcastUnbatched(Notification). With this
+modification I am no more able to reproduce the problem. However this could
+potentially have an impact on performance.
+```
+
+---
+_[Comment #1 on Tue Sep 08 2009 14:20:01 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=288442#c1):_
+```
+The bug is reproduible in HEAD.
+```
+
+---
+_[Comment #2 on Wed Dec 02 2009 16:26:45 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=288442#c2):_
+```
+I|ll not be able to fix this bug until January. Sorry for that.
+```
+
+---
+_[Comment #3 on Sun Feb 07 2010 21:41:52 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=288442#c3):_
+```
+Hi Boris,
+
+I'm afraid this bug will not be corrected for galileo SR2. I hope you could have time to fix it at least for Helios. I don't know if there is someone else with a good knowledge of EMF transaction which could help.
+
+Regards,
+
+Mariot
+```
+
+---
+_[Comment #4 on Sun Feb 07 2010 21:57:03 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=288442#c4):_
+```
+Christian, I took the liberty to add you as CC, if you have time to comment on this bug. I think you are not involved any more to EMF transaction, so I apologize to you for this addition if it was not appropriate.
+```
+
+---
+_[Comment #5 on Tue Feb 09 2010 15:47:19 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=288442#c5):_
+```
+(In reply to comment #4)
+> Christian, I took the liberty to add you as CC, if you have time to comment on
+> this bug. I think you are not involved any more to EMF transaction, so I
+> apologize to you for this addition if it was not appropriate.
+
+Well, I'm quite out of touch with this code, by now.
+
+The only suggestion that I would make is to take care in mixing synchronization on the editing-domain object (as you propose) with synchronization on the transaction lock (which is required for notification of listeners).  There may be potential for deadlock.  Perhaps more of the work that this broadcasting operation does could be brought into the scope of the read-only transaction that is created for the listener calls?  It may be worth a look.
+```
+
+---
+_[Comment #6 on Thu Dec 02 2021 12:45:38 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=288442#c6):_
+```
+The test case attached to the issue doesn't fail after this patch is applied.
+```
+
+---
+_[Comment #7 on Sat May 14 2022 15:51:43 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=288442#c7):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOpU/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/7,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/7,emf-transaction,1361138038,7,Resolving Proxies  using the Transactional API,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2022-09-04T12:38:07Z,2022-09-04T12:53:04Z,"* 🆔 Bugzilla ID: [#192802](https://bugs.eclipse.org/bugs/show_bug.cgi?id=192802)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2007-06-15T06:41:48Z
+* ❓ Status: REOPENED / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/7,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOpz,emf-transaction,1236331123,7,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:38:08Z,2022-09-04T12:38:08Z,"_[Comment #0 on Fri Jun 15 2007 08:41:48 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=192802#c0):_
+```
+I am manipulating two different resources with cross references. Both
+resources are included in the same ResourceSet which is being used by a
+TransactionalEditingDomain.
+
+In my model, I have container references that are persisted. So that, when you load a resource that has a root element that is the cross-resource-contained child of some other, this root element is actually contained in a proxy.
+
+Resolving the proxy actually *removes* the contained element from it, which
+looks to the transaction API like a structural modification, even though it
+isn't really because this is a proxy.
+
+The Transaction API should be able to detect and handle this case.
+```
+
+---
+_[Comment #1 on Fri Jun 15 2007 18:05:24 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=192802#c1):_
+```
+I'm having trouble reproducing this scenario with EMF 2.3.  In particular:
+
+  - the eContainer() method does not cause notification of the containment
+    change in the proxy container object at line 771 in BasicEObjectImpl
+    (the eBasicRemoveFromContainer(null) call)
+  - the proxy container doesn't have any adapters attached, including
+    the TransactionChangeRecorder that would assert that the change is
+    happening in a read/write transaction
+
+I expect that the first point is a consequence of the second.  How are you managing to get the TransactionChangeRecorder attached to the proxy container?
+
+```
+
+---
+_[Comment #2 on Wed Jun 20 2007 16:48:40 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=192802#c2):_
+```
+Resolving as works-for-me, because under normal circumstances it appears that container proxies should not be subject to the transaction protocol, just like any other cross-reference proxy.
+
+If it appears that there is a normal scenario in which the TransactionChangeRecorder will end up being attached to such a proxy, then please re-open this bug with a reproducible test case, and we can have another look.
+```
+
+---
+_[Comment #3 on Thu Oct 22 2009 18:41:23 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=192802#c3):_
+```
+I'm also in a case of cross-resource-containement, and I have the same problem than alfredo.
+
+I have a ""ComponentInstance"" in a resource A which have reference on componentClass which are in a resource B. Those componentclasses are contained in a M2MProject which is in a resource C.
+(ComponentInstance in A, componentClass in B, M2MProject in C)
+So it's a case of cross-resource-containement.
+
+
+I paste a stacktrace of the code, which show that the resolution of the container of my ComponentClass(sourceComponentClass)which raises a notification which is considered by the ReadFilter as a modification.
+
+In fact, the readFilter checks if the reference is container but in my case, the reference is containement and so the readfilter will return false and the assertwriting will raise a ""IllegalStateException : Cannot modify resource set without a write transaction""
+
+The stacktrace :
+----------------
+Thread [main] (Suspended)	
+        ==> RETURN FALSE <==
+	EReferenceImpl.isContainer() line: 186	
+	ReadFilter.matches(Notification) line: 90	
+	TransactionChangeRecorder.appendNotification(Notification) line: 301	
+	TransactionChangeRecorder.processObjectNotification(Notification) line: 284	
+	TransactionChangeRecorder.notifyChanged(Notification) line: 240	
+	M2MProjectImpl(BasicNotifierImpl).eNotify(Notification) line: 280	
+	ENotificationImpl(NotificationImpl).dispatch() line: 1033	
+	SourceComponentClassImpl(BasicEObjectImpl).eContainer() line: 776	
+	CrossReferenceAdapter.getInverseReferences(EObject, boolean) line: 891	
+	CrossReferenceAdapter(ECrossReferenceAdapter).getInverseReferences(EObject) line: 311	
+	CrossReferenceAdapter.updateImportsAndExports(Resource, EObject, boolean) line: 300	
+	CrossReferenceAdapter.selfAdapt(Notification) line: 107	
+	CrossReferenceAdapter(ECrossReferenceAdapter).notifyChanged(Notification) line: 430	
+	M2MResourceImpl(BasicNotifierImpl).eNotify(Notification) line: 280	
+	M2MResourceImpl(ResourceImpl).load(InputStream, Map<?,?>) line: 1514	
+	M2MResourceImpl(ResourceImpl).load(Map<?,?>) line: 1282	
+	AdapterFactoryEditingDomain$AdapterFactoryEditingDomainResourceSet(ResourceSetImpl).demandLoad(Resource) line: 255	
+	AdapterFactoryEditingDomain$AdapterFactoryEditingDomainResourceSet(ResourceSetImpl).demandLoadHelper(Resource) line: 270	
+	AdapterFactoryEditingDomain$AdapterFactoryEditingDomainResourceSet(ResourceSetImpl).getResource(URI, boolean) line: 397	
+	AdapterFactoryEditingDomain$AdapterFactoryEditingDomainResourceSet(ResourceSetImpl).getEObject(URI, boolean) line: 216	
+	EcoreUtil.resolve(EObject, ResourceSet) line: 202	
+	EcoreUtil.resolve(EObject, EObject) line: 262	
+	ComponentInstanceImpl(BasicEObjectImpl).eResolveProxy(InternalEObject) line: 1475	
+	ComponentInstanceImpl.getComponentClass() line: 280	
+.....
+```
+
+---
+_[Comment #4 on Fri Oct 23 2009 11:06:47 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=192802#c4):_
+```
+reopening the bug wrt comment #3
+```
+
+---
+_[Comment #5 on Fri Oct 23 2009 16:09:12 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=192802#c5):_
+```
+a fix could be to check in ReadFilter if the reference is container or containement (line 77) :
+
+
+if ((feature instanceof EReference)
+      && (((EReference) feature).isContainer()
+            || (((EReference) feature).isContainment())))
+{
+	return true;
+}
+```
+
+---
+_[Comment #6 on Sat May 14 2022 15:51:29 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=192802#c6):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOpz/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/8,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/8,emf-transaction,1361138082,8,Workspace Integration Tutorial should promote child matches,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:38:16Z,2022-09-04T12:38:18Z,"* 🆔 Bugzilla ID: [#217616](https://bugs.eclipse.org/bugs/show_bug.cgi?id=217616)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2008-02-03T18:00:36Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/8/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/8,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOqQ,emf-transaction,1236331152,8,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:38:17Z,2022-09-04T12:38:17Z,"_[Comment #0 on Sun Feb 03 2008 19:00:36 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=217616#c0):_
+```
+The Workspace Integration Tutorial historyNotification implementation replaces one undo context with another in order to promote plausible undo history.
+
+This approach seems undesirable in that it modifies the operation and fails to direct the user to available facilities that are very important to use since EditingDomainUndoContexts have the unusual behaviour that a Set<EditingDomainUndoContext> fails to provide the expected content (it creates a filtered set of distinct EditingDomain not UndoContext.
+
+A more desirable approach seems to be for the per-editor OperationHistoryListener to maintain a single unique well-labelled per-editor ObjectUndoContext for each editor, and associate all related contexts so that they respond as child matches. The child match then sorts out the confusion of diverse undocontexts for different styles of operation. The unique per-editor ObjectUndoContext then provides a clearer filter to inhibit one OperationHistoryListener responding to another editor's OperationHistoryListener.
+```
+
+---
+_[Comment #1 on Mon Feb 04 2008 15:42:38 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=217616#c1):_
+```
+I don't recognize the EditingDomainUndoContext class.  It doesn't seem to be defined in the tutorial or anywhere else in the EMF Transaction component.
+
+I like the idea, though, of an editor context matching resource contexts.  Is that what you are suggesting?  It's not clear what all of the ""diverse undocontexts"" are.  Also, I'm not sure whether ""child match"" is meant to suggest that matching would be a directional relationship.  The operation history always checks for matches in both directions.
+```
+
+---
+_[Comment #2 on Tue Feb 05 2008 08:17:47 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=217616#c2):_
+```
+In a multi-page editor I found I got an undo context from
+
+WorkspaceCommandStack,
+each TextEditor,
+each DiagramEditor
+
+mostly badly labelled and none of them collaborating.
+
+Adding my own ObjectUndoContext per-editor to mediate between them solves the problems. 
+
+If the WorkspaceCommandStack UndoContext were an ObjectUndoContext, then it could be used as the editor-wide coordinator.
+
+My listener starts as
+
+	public void historyNotification(OperationHistoryEvent event) {
+		IUndoableOperation operation = event.getOperation();
+		boolean applicableOperation = false;
+		for (IUndoContext opUndoContext : operation.getContexts())
+			if (undoContext.matches(opUndoContext))
+				applicableOperation = true;
+		if (!applicableOperation) {
+			return;
+		switch (event.getEventType()) {
+                     ....
+
+
+The loop could be a convenience method in OperationHistoryEvent .
+
+
+```
+
+---
+_[Comment #3 on Tue Feb 05 2008 13:12:56 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=217616#c3):_
+```
+(In reply to comment #2)
+-----8<-----
+> 
+> If the WorkspaceCommandStack UndoContext were an ObjectUndoContext, then it
+> could be used as the editor-wide coordinator.
+
+Why should it be an ObjectUndoContext?  I'm not sure that other parties than the ""owner"" of an ObjectUndoContext should be adding matches to an undo context.  Otherwise, this API would be specified by IUndoContext.  It seems more appropriate to me that an Editor's undo context should match the command-stack undo context (which is available from the IWorkspaceCommandStack interface) rather than the other way around.
+
+
+> My listener starts as
+> 
+>         public void historyNotification(OperationHistoryEvent event) {
+>                 IUndoableOperation operation = event.getOperation();
+>                 boolean applicableOperation = false;
+>                 for (IUndoContext opUndoContext : operation.getContexts())
+>                         if (undoContext.matches(opUndoContext))
+>                                 applicableOperation = true;
+>                 if (!applicableOperation) {
+>                         return;
+>                 switch (event.getEventType()) {
+>                      ....
+> 
+> 
+> The loop could be a convenience method in OperationHistoryEvent .
+
+This convenience loop already exists:
+
+    boolean IUndoableOperation::hasContext(IUndoContext)
+
+Just do:
+
+        public void historyNotification(OperationHistoryEvent event) {
+                IUndoableOperation operation = event.getOperation();
+                if (!operation.hasContext(undoContext)) {
+                        return;
+                switch (event.getEventType()) {
+                     ....
+
+```
+
+---
+_[Comment #4 on Tue Feb 05 2008 20:31:53 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=217616#c4):_
+```
+> > If the WorkspaceCommandStack UndoContext were an ObjectUndoContext, then it
+> > could be used as the editor-wide coordinator.
+> 
+> Why should it be an ObjectUndoContext?  I'm not sure that other parties than
+> the ""owner"" of an ObjectUndoContext should be adding matches to an undo
+> context.  Otherwise, this API would be specified by IUndoContext.  It seems
+> more appropriate to me that an Editor's undo context should match the
+> command-stack undo context (which is available from the IWorkspaceCommandStack
+> interface) rather than the other way around.
+
+That's what my current solution does.
+
+It just seems that with exactly one IWorkspaceCommandStack undoContext per-editor, it is a bit redundant creating another. Perhaps IWorkspaceCommandStack undoContext could offer an IObjectUndoContext to support its utility as the editor-wide undo context.
+```
+
+---
+_[Comment #5 on Sat May 14 2022 15:51:45 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=217616#c5):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOqQ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/9,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/9,emf-transaction,1361138132,9,Problem with programmatic use of EMF undo operations,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:38:25Z,2022-09-04T12:38:27Z,"* 🆔 Bugzilla ID: [#283563](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283563)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2009-07-15T14:51:20Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/9/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/9,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOq6,emf-transaction,1236331194,9,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:38:26Z,2022-09-04T12:38:26Z,"_[Comment #0 on Wed Jul 15 2009 16:51:20 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283563#c0):_
+```
+Build ID: 3.4.2.v200902111700
+
+Steps To Reproduce:
+1. Use the following code snippet to execute 26 undoable operations
+
+    TransactionalEditingDomain domain = UMLModeler.getEditingDomain();
+    IOperationHistory history = ((IWorkspaceCommandStack)domain.getCommandStack()).getOperationHistory();
+    IUndoContext undoContext = ((IWorkspaceCommandStack)domain.getCommandStack()).getDefaultUndoContext();
+    history.setLimit(undoContext, 3);
+
+    // Loop
+        IUndoableOperation undoableOperation = new MyUndoableOperation(); // MyUndoableOperation extends AbstractTransactionalCommand
+        undoableOperation.addContext(undoContext);
+        IStatus iStatus = history.execute(undoableOperation, monitor, null);
+    // End of loop	
+
+2. Select Edit->Undo <my AbstractTransactionalCommand label>
+   Because I have set the history limit to 3, I would expect to be able to undo 3 times but it works for 20 times before being disabled.     
+   If I set the limit to 26, the Undo can only be clicked on 20 times.
+
+More information:
+```
+
+---
+_[Comment #1 on Wed Jul 15 2009 22:09:04 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283563#c1):_
+```
+It sounds to me as if the undo context used by the UMLModeler's command stack is not the same undo context that is active in the editor.  When you use Edit->Undo, it is going to operate on the editing context of the active editor.
+
+Perhaps you could load org.eclipse.ui.examples.undo and use the UndoHistoryView to help show what is going on here.  
+```
+
+---
+_[Comment #2 on Thu Jul 16 2009 13:43:56 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283563#c2):_
+```
+Thanks for the pointer. The UndoHistoryView example proved useful in that it showed that all of my undoableoperations were tagged with the default undo context but only the first 20 were also tagged with the EditingDomainUndoContext!
+Tried applying EditingDomainUndoContext explicitly to all my undoableoperations to no avail.
+The solution was to extend my undoableoperation from AbstractEMFOperation and not from AbstractTransactionalCommand.
+```
+
+---
+_[Comment #3 on Thu Jul 16 2009 15:13:06 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283563#c3):_
+```
+Please ignore my previous comment.
+When the view for the UndoHistoryView example was open it resolved the issue as it registers an undoActionHandler for the workbench Edit->Undo toolbar action. 
+My plugin does not have a view or editor open when it is making changes to the UML model so I wont be able to supply actionHandlers.
+I still don't understand why only the first 20 of my undoableoperations are tagged with EditingDomainUndoContext!
+
+I need to investigate further. 
+```
+
+---
+_[Comment #4 on Thu Jul 16 2009 17:50:27 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283563#c4):_
+```
+I'm going to reroute this bug to EMF because it sounds like the interaction involves EMF's use of platform undo, not an inherent bug in the undo history.  
+
+```
+
+---
+_[Comment #5 on Sat May 14 2022 15:51:34 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=283563#c5):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOq6/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/10,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/10,emf-transaction,1361138171,10,A proposal for improving the WorkspaceSynchronizer,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:38:35Z,2022-09-04T12:38:36Z,"* 🆔 Bugzilla ID: [#285263](https://bugs.eclipse.org/bugs/show_bug.cgi?id=285263)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2009-07-31T11:29:34Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/10/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/10,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOre,emf-transaction,1236331230,10,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:38:36Z,2022-09-04T12:38:36Z,"_[Comment #0 on Fri Jul 31 2009 13:29:34 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=285263#c0):_
+```
+When deleting a resource from workspace, the workspace synchronizer will fire handleResourceChanged events events on all resources though they havent been changed.
+
+This is because in the workspace synchronizer in the processDelta operation in the IResourceDelta.CHANGED case does not check if the contents actually have been changed.
+
+I find this a bit myself esoteric but it seems thats the eay how resource change events work with eclipse: When a resource is deleted the ResourcePlugin puts the entire workspace into the resource delta one is required to visit in order to figure out in what the actual change consists in.
+
+To check if a resource has actualy changed on has the check
+
+if ((delta.getFlags() & IResourceDelta.CONTENT) != 0) [1]
+
+This would avoid a lot of unload and reload operations, especialy when it comes to GMF after a diagram is deleted and this events ripples through all editing domains with their attached resource sets causing the lag
+
+
+
+[1] http://www.eclipse.org/articles/Article-Resource-deltas/resource-deltas.html
+```
+
+---
+_[Comment #1 on Sat May 14 2022 15:51:44 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=285263#c1):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOre/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/11,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/11,emf-transaction,1361138209,11,Plugin re-export anomalies,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:38:43Z,2022-09-04T12:38:45Z,"* 🆔 Bugzilla ID: [#305286](https://bugs.eclipse.org/bugs/show_bug.cgi?id=305286)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2010-03-10T06:41:08Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/11/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/11,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOsD,emf-transaction,1236331267,11,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:38:45Z,2022-09-04T12:38:45Z,"_[Comment #0 on Wed Mar 10 2010 07:41:08 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=305286#c0):_
+```
+EMF appears to set a precedent that
+
+org.eclipse.core.resources
+org.eclipse.core.runtime
+
+are not re-exported.
+
+org.eclipse.emf.validation re-exports org.eclipse.core.resources
+
+org.eclipse.emf.transaction re-exports org.eclipse.core.runtime
+
+org.eclipse.emf.workspace.ui does not re-export org.eclipse.emf.workspace
+
+Probably too late for M6. Perhaps these can be rationalized after Helios.
+```
+
+---
+_[Comment #1 on Wed Mar 31 2010 23:06:43 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=305286#c1):_
+```
+Bundles are supposed to rexport their API dependencies.
+
+For example, an API in org.eclipse.emf.validation requires the use of an API in org.eclipse.core.resources.
+
+So we re-export org.eclipse.core.resources.
+
+This way you only need to import org.eclipse.emf.validation and call org.eclipse.emf.validation API without having to add N other imports.
+
+So the only issue here is that:
+
+org.eclipse.emf.workspace.ui does not re-export org.eclipse.emf.workspace
+
+Right?
+```
+
+---
+_[Comment #2 on Thu Apr 01 2010 09:20:50 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=305286#c2):_
+```
+The missing org.eclipse.emf.workspace export is certainly the most obvious anomally.
+
+The extra exports are subject to a policy that I do not understand. The indication that e4 will make org.eclipse.core.runtime/resources (I forget which) deprecated would perhaps suggest that projects should hide this dependency.
+
+The exports of e.g. org.eclipse.emf.codegen.ecore are particularly hard to understand. 2 out of 3 EMFs. No Core. No JDT. No UI.
+```
+
+---
+_[Comment #3 on Sat May 14 2022 15:51:23 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=305286#c3):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOsD/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/12,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/12,emf-transaction,1361138253,12,TransactionalAdapterFactoryContentProvider could expose domain for subclasses,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:38:52Z,2022-09-04T12:38:54Z,"* 🆔 Bugzilla ID: [#308171](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308171)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2010-04-06T09:57:06Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/12/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/12,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOsq,emf-transaction,1236331306,12,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:38:53Z,2022-09-04T12:38:53Z,"_[Comment #0 on Tue Apr 06 2010 11:57:06 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308171#c0):_
+```
+Build Identifier: 20100218-1602, plugin org.eclipse.emf.transaction.ui_1.3.1.v20090819-1457
+
+Class TransactionalAdapterFactoryContentProvider does not provide any access to field domain.
+
+Subclasses than have to keep their own copy of this object. I think that this arrangement is not necessary. TransactionalAdapterFactoryContentProvider could expose the TransactionalEditingDomain via a new protected method getEditingDomain().
+
+The same applies to TransactionalAdapterFactoryLabelProvider.
+
+Reproducible: Always
+```
+
+---
+_[Comment #1 on Tue Apr 06 2010 17:47:17 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308171#c1):_
+```
+Can you provide a quick patch for the access you require?
+```
+
+---
+_[Comment #2 on Sat May 14 2022 15:51:28 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308171#c2):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOsq/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/13,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/13,emf-transaction,1361138294,13,EMF's Lock class doesn't restore/propogate InterruptedExceptions,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:39:02Z,2022-09-04T12:39:03Z,"* 🆔 Bugzilla ID: [#308252](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308252)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2010-04-06T18:13:26Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/13/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/13,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOtZ,emf-transaction,1236331353,13,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:39:03Z,2022-09-04T12:39:03Z,"_[Comment #0 on Tue Apr 06 2010 20:13:26 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308252#c0):_
+```
+Build Identifier: 
+
+Proper handling of InterruptedExceptions is a must, but especially in classes designed to deal with Locks. 
+
+The EMF lock class swallowed interrupts in some cases. This means that interrupting a thread performing an acquire might cause upstream code to fail to receive the expected interrupt. 
+
+
+Reproducible: Always
+```
+
+---
+_[Comment #1 on Tue Apr 06 2010 20:14:03 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308252#c1):_
+```
+
+```
+
+---
+_[Comment #2 on Tue May 11 2010 16:35:27 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308252#c2):_
+```
+So via Bug 306987 you are both proposing we apply the patch for Helios? Is this something that will be of any risk?
+```
+
+---
+_[Comment #3 on Wed May 12 2010 17:47:05 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308252#c3):_
+```
+I am not aware of any bugs this may help solve. Though this may make the lock class more concurrent, what effects will it have on existing applications? The given change may make the Lock class less aggressive.
+
+For example, there is an addition of throwing an InterruptedException in the uiSafeAcquire method. What are the side effects of this when a transaction needs to begin and has already been interrupted? Existing applications may just log the exception and give up on the transaction.
+
+I think we need to test EMFT applications intensively to see what other side effects this may have. The JUnits for EMFT are also pretty comprehensive.
+```
+
+---
+_[Comment #4 on Wed May 12 2010 18:46:32 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308252#c4):_
+```
+(In reply to comment #3)
+> I am not aware of any bugs this may help solve. [snip]
+
+So not for Helios then...
+```
+
+---
+_[Comment #5 on Sat May 14 2022 15:51:52 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308252#c5):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOtZ/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/14,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/14,emf-transaction,1361138337,14,Keeping UI tread alive causes Deadlocks,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:39:11Z,2022-09-04T12:39:12Z,"* 🆔 Bugzilla ID: [#308806](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308806)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2010-04-12T09:07:53Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/14/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/14,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOuN,emf-transaction,1236331405,14,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:39:12Z,2022-09-04T12:39:12Z,"_[Comment #0 on Mon Apr 12 2010 11:07:53 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308806#c0):_
+```
+Build Identifier: M20090917-0800
+
+Hi,
+
+we are using GEF, EMF and EMF Transaction to realize a visual modeling tool. Sometimes we have deadlocks whose thread dumps leads me to the suspicion that they will be caused by the order in which the transaction framework tries to assign the active transaction to a thread an the UI thread keep alive strategy.
+
+See attached file for newsgroup discussion with Christian.
+
+Here an exemplary thread dump. Note, there is no other thread with an active transaction.
+
+Thread [main] (Suspended)
+  (WorkManager locked)
+  WorkManager.checkIn()
+  JavaModelManager.initializeAllContainers()
+  Display.readAndDispatch()
+  (need transaction -> not acquired)
+  Viewer.refresh()
+  Main.main(String[])
+
+Thread [Worker-3] (Suspended)
+  (need transaction)
+  ourResourceListener.resourceChanged()
+  NotificationManager.notify()
+  (WorkManager locked)
+  Workspace.endOperation()
+  Worker.run()
+
+Currently I have no proposal for a solution. In my opinion it is a good and necessary idea to keep the UI thread alive.
+
+Reproducible: Always
+```
+
+---
+_[Comment #1 on Mon Apr 12 2010 11:12:01 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308806#c1):_
+```
+
+```
+
+---
+_[Comment #2 on Tue May 03 2011 19:06:00 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308806#c2):_
+```
+See also bug 249951, if we didn't hold the workspace lock during the notification it looks like this deadlock would go away.
+```
+
+---
+_[Comment #3 on Sat May 14 2022 15:51:27 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=308806#c3):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOuN/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/15,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/15,emf-transaction,1361138381,15,Need public API to set TransactionalEditingDomain to org.eclipse.emf.transaction.Transaction,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:39:21Z,2022-09-04T12:39:22Z,"* 🆔 Bugzilla ID: [#326099](https://bugs.eclipse.org/bugs/show_bug.cgi?id=326099)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2010-09-23T20:26:03Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/15/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/15,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOuy,emf-transaction,1236331442,15,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:39:22Z,2022-09-04T12:39:22Z,"_[Comment #0 on Thu Sep 23 2010 22:26:03 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=326099#c0):_
+```
+Build Identifier: all 
+
+PROBLEM:
+
+For org.eclipse.emf.transaction.Transaction interface, I need a public method there named ""setEditingDomain(TransactionalEditingDomain domain)"", so I can set a new editing domain to the transaction. 
+
+Please add that method to the public interface. Thanks
+
+Reproducible: Always
+```
+
+---
+_[Comment #1 on Thu Sep 30 2010 17:20:24 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=326099#c1):_
+```
+In CompositeEMFOperation class, CompositeEMFOperation is associated with a given editing domain (Let's say ModelerEditingDomain).
+
+When executing its children commands, if the child command is a transactional command, CompositeEMFOperation asks its editing domain (ModelerEditingDomain) to create a transaction (Let's say ModelerTransaction) and uses it to execute the command. However, if the child command is not a transactional command, CompositeEMFOperation creates a NonEMFTransaction and uses it to execute the command.
+
+In the first case, CompositeEMFOperation delegates the transaction creation job to its editing domain (ModelerEditingDomain). The editing domain creates a transaction (ModelerTransaction) and associated an editing domain (ModelerEditingDomain::DELEGATE) to that transaction.
+
+In the second case, CompositeEMFOperation creates a NonEMFTransaction and associated that transaction with CompositeEMFOperation editing domain (ModelerEditingDomain). NonEMFTransaction should be executed in the same editing domain as ModelerTransaction. Both of them should be executed in ModelerEditingDomain::DELEGATE. NonEMFTransaction shouldn't be executed in ModelerEditingDomain. This causes serious issues in our application. 
+
+We have two ways to fix this, 
+1) CompositeEMFOperation shouldn’t create NonEMFTransaction. CompositeEMFOperation should delegate transaction creation job to its editing domain as well. 
+
+2) After creating NonEMFTransaction, there is an API to set proper editing domain to that NonEMFTransaction. This is probably easier fix…..
+
+I think that both of these approaches would work, but they all require API changes from open source. As such log this defect.
+```
+
+---
+_[Comment #2 on Sat May 14 2022 15:51:38 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=326099#c2):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOuy/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/16,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/16,emf-transaction,1361138419,16,Method signature appears to be incorrect in framework,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:39:30Z,2022-09-04T12:39:31Z,"* 🆔 Bugzilla ID: [#330948](https://bugs.eclipse.org/bugs/show_bug.cgi?id=330948)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2010-11-23T17:57:51Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/16/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/16,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOvV,emf-transaction,1236331477,16,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:39:31Z,2022-09-04T12:39:31Z,"_[Comment #0 on Tue Nov 23 2010 18:57:51 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=330948#c0):_
+```
+Build Identifier: 1.4.0.v20100331-1738
+
+I'm working to a class that extends TriggerListener. This listener should cancel the hole transaction when some situation occurs. Looking into documentation I saw that I should throw a RollbackException to acomplish my task, but the signature of the abstract method trigger does not allow me to throw:
+
+protected abstract Command trigger(TransactionalEditingDomain domain, Notification notification);
+
+But, notice the method transactionAboutToCommit has this exception in its signature and the only part of this method that may throw this exception is the trigger method call.
+
+My solution was overried transactionAboutToCommit method to call another method that throws RollbackException.
+
+
+
+
+Reproducible: Always
+```
+
+---
+_[Comment #1 on Sat May 14 2022 15:51:25 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=330948#c1):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOvV/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/17,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/17,emf-transaction,1361138450,17,TransactionImpl.commit() swallows exceptions and can put the domain in a bad state,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:39:39Z,2022-09-04T12:39:40Z,"* 🆔 Bugzilla ID: [#354565](https://bugs.eclipse.org/bugs/show_bug.cgi?id=354565)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2011-08-11T23:41:26Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/17/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/17,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOvp,emf-transaction,1236331497,17,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:39:39Z,2022-09-04T12:39:39Z,"_[Comment #0 on Fri Aug 12 2011 01:41:26 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=354565#c0):_
+```
+Build Identifier: 
+
+We had a situation where a problem in our model was causing BasicEObjectImpl to throw a RuntimeException while TransactionImpl.commit was doing its thing.  The method has a try-finally where most of the work is done without a catch.  It also calls things in the finally block (like close()) that assume that the system is in a good state and throw their own exceptions if they are not.
+
+The result was that during the finally after the first exception, close() was called and it threw an IllegalArgumentException because the activeTransaction was out of sync (do to the try block ending abnormally).  This causes the original exception information to be completely lost.
+
+Recommendation: Add a catch block that at least logs any RuntimeException's before the finally block runs.  This will ensure that the information doesn't get lost.
+
+Reproducible: Always
+```
+
+---
+_[Comment #1 on Sat May 14 2022 15:51:24 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=354565#c1):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOvp/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/18,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/18,emf-transaction,1361138497,18,WorkspaceSynchronizer doesn't checks that URI is not a platform resource URI,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:39:48Z,2022-09-04T12:39:49Z,"* 🆔 Bugzilla ID: [#364005](https://bugs.eclipse.org/bugs/show_bug.cgi?id=364005)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2011-11-17T08:33:47Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/18/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/18,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOwM,emf-transaction,1236331532,18,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:39:49Z,2022-09-04T12:39:49Z,"_[Comment #0 on Thu Nov 17 2011 09:33:47 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=364005#c0):_
+```
+Build Identifier: Eclipse 3.6.1
+
+
+In the context of CDO and GMF, we have many calls to WorkspaceSynchronizer.getFile(Resource) with CDOResource and custom resources (some using a custom URI with a ""memory"" scheme) but we get some exceptions in 3.6 for example :
+
+org.eclipse.core.runtime.CoreException: No file system is defined for scheme: memory
+ at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:55)
+ at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:50)
+ at org.eclipse.core.internal.filesystem.InternalFileSystemCore.getFileSystem(InternalFileSystemCore.java:65)
+ at org.eclipse.core.internal.filesystem.InternalFileSystemCore.getStore(InternalFileSystemCore.java:107)
+ at org.eclipse.core.filesystem.EFS.getStore(EFS.java:470)
+ at org.eclipse.core.internal.localstore.FileSystemResourceManager.findLinkedResourcesPaths(FileSystemResourceManager.java:142)
+ at org.eclipse.core.internal.localstore.FileSystemResourceManager.allPathsForLocationNonCanonical(FileSystemResourceManager.java:124)
+ at org.eclipse.core.internal.localstore.FileSystemResourceManager.allPathsForLocation(FileSystemResourceManager.java:62)
+ at org.eclipse.core.internal.localstore.FileSystemResourceManager.allResourcesFor(FileSystemResourceManager.java:216)
+ at org.eclipse.core.internal.resources.WorkspaceRoot.findFilesForLocationURI(WorkspaceRoot.java:113)
+ at org.eclipse.core.internal.resources.WorkspaceRoot.findFilesForLocationURI(WorkspaceRoot.java:104)
+ at org.eclipse.emf.workspace.util.WorkspaceSynchronizer.getFile(WorkspaceSynchronizer.java:357)
+ at org.eclipse.emf.workspace.util.WorkspaceSynchronizer.getFile(WorkspaceSynchronizer.java:270)
+
+Indeed at line 360 of WorkspaceSynchronizer where we have result == null we don't checks that the normalized URI is a platform resource URI. 
+
+Reproducible: Always
+```
+
+---
+_[Comment #1 on Sat May 14 2022 15:51:51 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=364005#c1):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOwM/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/19,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/19,emf-transaction,1361138541,19,Unexpected reloaded resources on resource with fragments unloading,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:39:57Z,2022-09-04T12:39:58Z,"* 🆔 Bugzilla ID: [#369260](https://bugs.eclipse.org/bugs/show_bug.cgi?id=369260)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2012-01-20T17:13:06Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/19/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/19,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOw3,emf-transaction,1236331575,19,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:39:58Z,2022-09-04T12:39:58Z,"_[Comment #0 on Fri Jan 20 2012 18:13:06 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=369260#c0):_
+```
+Build Identifier: Version: 3.6.2 Build id: M20110210-1200
+
+Hello,
+
+I'm having an unexpected behaviour on fragmented resource unloading.
+I have a resource that is fragmented in many resources. Each fragment contains references to some of the other fragments. During unloading of the resources, warnings about resource re-loading are thrown (see the stack trace). As a result, the ResourceSet still have 2 loaded resources after unloading.
+I will attach a plugin with a JUnit reproducing this issue. I'm using EMF 2.6.1.v20100914-1218.
+
+Thanks,
+Steve
+
+Reproducible: Always
+
+Steps to Reproduce:
+1.Unload the main and fragmented resources
+2.Notice that the ResourceSet still have some of these resources has loaded
+3.
+```
+
+---
+_[Comment #1 on Fri Jan 20 2012 18:13:45 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=369260#c1):_
+```
+Junit plugin to reproduce the issue
+```
+
+---
+_[Comment #2 on Fri Jan 20 2012 18:14:20 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=369260#c2):_
+```
+
+```
+
+---
+_[Comment #3 on Sat May 14 2022 15:51:43 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=369260#c3):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOw3/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/20,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/20,emf-transaction,1361138576,20,DeadLock in Lock class in conjunction with uiSafeAcquire,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:40:06Z,2022-09-04T12:40:07Z,"* 🆔 Bugzilla ID: [#375161](https://bugs.eclipse.org/bugs/show_bug.cgi?id=375161)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2012-03-23T10:11:50Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/20/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/20,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOxg,emf-transaction,1236331616,20,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:40:07Z,2022-09-04T12:40:07Z,"_[Comment #0 on Fri Mar 23 2012 11:11:50 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=375161#c0):_
+```
+Build Identifier: Version: Indigo Service Release 2 Build id: 20120216-1857
+
+We ran into a deadlock problem in conjunction with the org.eclipse.emf.transaction.util.Lock class and uiSafeAcquire in particular. I was able to create a demonstrator plugin and attached a threaddump from the same. I think this is a fundamental flaw of the Lock and should be fixed.
+
+The scenario is:
+- display thread tries to get the Lock exclusively using uiSafeAcquire, while another thread X already holds the Lock. The main thread stops and wait but processes the event loop.
+- now yet another runnable is started using asyncExec and tries to get the Lock. This runnable is processed in the eventloop inside the still active uiSafeAcquire and stops since the lock is still held by X .
+- now the very first Lock is released by Thread X.
+- now two actions happen parallel (by chance one or the other first...):
+   - (a) the AcquireJob gets the lock and then transfers it to the main thread.
+   - (b) the inner event sees that it can get the lock and gets it.
+
+Now what can happen here is: (a) gets the lock but hasn't transfered it yet. In this case (b) waits forever and the main thread is stalled. I could make the scenario even more reproducible by setting a breakpoint in  Lock, line 758 (before the transfer happens). On the other side the code will never deadlock if there is a breakpoint in Lock, line 195, because then (a) always completes before (b) actually tries to get the lock.
+
+
+I don't have a solution for that. I was glad to be able to make this reproducible.
+
+This problem we encountered first in internal development (here we solved it by not using the Lock class...) and now it seems to pop up again in the context of artop.org which uses EMF Transactions. 
+
+
+
+Reproducible: Sometimes
+
+Steps to Reproduce:
+1. Install Indigo SR2
+2. Drop the attached demonstrator plugin in the dropins folder
+3. start Indigo
+4. select menu ""Sample Command -> Sample Command"" and press ok. 
+Repeat 4 until the system deadlocks. On my PC this happens often (more than 50% of all times) but this might actually be different on a different system.
+```
+
+---
+_[Comment #1 on Fri Mar 23 2012 11:12:24 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=375161#c1):_
+```
+
+```
+
+---
+_[Comment #2 on Fri Mar 23 2012 11:13:13 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=375161#c2):_
+```
+
+```
+
+---
+_[Comment #3 on Fri Mar 23 2012 11:13:42 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=375161#c3):_
+```
+
+```
+
+---
+_[Comment #4 on Mon Aug 13 2012 17:55:24 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=375161#c4):_
+```
+Hi,
+
+I have also a deadlock with the uiSafeAcquire() method, in context of CDO. Forking emf.transaction to call ""transactionLock.acquire(!tx.isReadOnly());"" instead of ""transactionLock.uiSafeAcquire(!tx.isReadOnly());"" fix the deadlock.
+Which impacts could be to use ""transactionLock.acquire()"" instead of ""transactionLock.uiSafeAcquire()""? Could we have a mean through a option to specify the TED to use ""acquire()"" instead of ""uiSafeAcquire()"" through a option?
+```
+
+---
+_[Comment #5 on Sat May 14 2022 15:51:41 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=375161#c5):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOxg/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/21,emf-transaction,1361138620,21,ArrayStoreException: Implementation error in CompositeChangeDescription,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:40:15Z,2022-09-04T12:40:16Z,"* 🆔 Bugzilla ID: [#393451](https://bugs.eclipse.org/bugs/show_bug.cgi?id=393451)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2012-11-02T18:32:34Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/21/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/21,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOyO,emf-transaction,1236331662,21,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:40:15Z,2022-09-04T12:40:15Z,"_[Comment #0 on Fri Nov 02 2012 19:32:34 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=393451#c0):_
+```
+
+```
+
+---
+_[Comment #1 on Fri Nov 02 2012 19:34:46 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=393451#c1):_
+```
+This patch tries to access the first modification of a list of changes using the entrySet (objectChanges.entrySet().iterator().next()).
+```
+
+---
+_[Comment #2 on Fri Nov 02 2012 19:35:49 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=393451#c2):_
+```
+Fixed the collection of multiple object changes.
+```
+
+---
+_[Comment #3 on Fri Nov 02 2012 19:45:11 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=393451#c3):_
+```
+The 'CompositeChangeDescription' is supposed to collect all object changes which is essentially a map between target-objects and list of applied changes (EMap<EObject, EList<FeatureChange>>).
+The collection has been realized using the method EMap.addAll as EMap is a simple descendent of EList. This only adds the new changes to the list of current changes within the 'CompositeChangeDescription'.
+This will fail if two sets of object changes are applied referring to the same target object since this causes two entries with the same key-objects within the list.
+The map will be ""screwed"" up and generate an ArrayStoreException if the map will be traversed through iterating the entrySet.
+The patch for the project 'org.eclipse.emf.transaction.tests' allows to alter the testscase in order to reproduce this error.
+The patch for the project 'org.eclipse.emf.transaction' solves this error.
+
+Feel free to ask for additional information.
+
+P.S.: Sorry for this bad bug report but I'm definitely not a fan of Bugzilla.
+
+Best regards
+
+Daniel Kasmeroglu
+```
+
+---
+_[Comment #4 on Sat May 14 2022 15:51:36 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=393451#c4):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOyO/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/22,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/22,emf-transaction,1361138661,22,Undo throws 'no duplicates' constraint in eclipse 4.2.2,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:40:23Z,2022-09-04T12:40:24Z,"* 🆔 Bugzilla ID: [#406309](https://bugs.eclipse.org/bugs/show_bug.cgi?id=406309)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2013-04-23T11:05:12Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/22/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/22,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOyx,emf-transaction,1236331697,22,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:40:24Z,2022-09-04T12:40:24Z,"_[Comment #0 on Tue Apr 23 2013 13:05:12 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=406309#c0):_
+```
+Our product has recently moved from eclipse 3.6 to eclipse 4.2.2 and 
+emf version 2.6 to 2.8.
+
+After the migration we are facing problem in undo of few elements.
+It is violating Unique Constraint and throwing a ""no duplicate"" constraint violation.
+
+Attaching the debug trace for undo action .
+```
+
+---
+_[Comment #1 on Tue Apr 23 2013 18:09:20 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=406309#c1):_
+```
+Sarika,
+
+I will need a test case that reproduces this problem, not just a screen capture of stack trace.  That test case will need to be something that I can run locally with just EMF installed.  If it involves installing other things, the originators of those other things will need to diagnose the problem and produce an self-contain EMF test case.  So pending something more meaningful from you, I'll assign this to EMF transaction as that appears necessary to reproduce the problem, i.e., its on the stack.
+```
+
+---
+_[Comment #2 on Fri May 10 2013 12:17:09 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=406309#c2):_
+```
+Hi,
+I tried creating a scenario in Vanilla Eclipse but did not succeed. 
+
+So I tried debugging this scenario and the scenario is that we have issues when we are trying to delete an object which has an association and this association has a destroy advice to destroy source and targets. Duplicate entry comes for this association element.
+
+
+while debugging my observation is that in method below:
+
+org.eclipse.emf.ecore.change.impl.ChangeDescriptionImpl.preApply(boolean) method :
+ EList<Object> applyToList = new BasicEList<Object>((EList<?>)objectToChange.eGet(internalFeature));
+              for (ListChange listChange : featureChange.getListChanges())
+              {
+                listChange.applyAndReverse(applyToList);
+              }
+              featureChange.setValue(applyToList); 
+
+
+What happens here is that the applytoList has duplicate entries of associations after the listChange.applyAndReverse execution. But this not create a problem many times and it create problem only if the last entry is repeated in applyToList as  the execution of ECollections.setEList(result, prototype);
+in org.eclipse.emf.ecore.change.impl.FeatureChangeImpl.process(EObject, boolean, boolean) is not able to take care of duplicates if it is in the last and position will not be -1 in such a scenario and it will blindly add the last element in the elist as eList.add(index, prototypeObject); in org.eclipse.emf.common.util.ECollections.setEList(EList<T>, List<? extends T>)
+
+Our previous version of product was using emf 2.5.1 and the Change list has totally changed from then so I am not bale to find the exact diiference in step which is causing this.
+
+Let me know if I can provide some debugging key points or let me know if I should analyze a particular element or method to understand this better and come to solution.
+```
+
+---
+_[Comment #3 on Wed Oct 02 2013 19:18:34 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=406309#c3):_
+```
+Hi Ed, is the information provided by Sarika helpful for isolating the issue?
+```
+
+---
+_[Comment #4 on Thu Dec 12 2013 16:38:44 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=406309#c4):_
+```
+Adding Vikas
+```
+
+---
+_[Comment #5 on Sat May 14 2022 15:51:46 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=406309#c5):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOyx/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/23,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/23,emf-transaction,1361138716,23,Recursive attempt of WorkbenchPage activation due to runExclusive method continuing running UI event loop,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:40:32Z,2022-09-04T12:40:33Z,"* 🆔 Bugzilla ID: [#413912](https://bugs.eclipse.org/bugs/show_bug.cgi?id=413912)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2013-07-29T10:50:52Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/23/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/23,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOzU,emf-transaction,1236331732,23,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:40:33Z,2022-09-04T12:40:33Z,"_[Comment #0 on Mon Jul 29 2013 12:50:52 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=413912#c0):_
+```
+Version: Helios Service Release 2
+Build id: 20110218-0911
+
+I'm developing GMF based editor. Sometimes I run into a situation when a transaction is run from deeply inside of the WorkbenchPage.setActivePart method. When this happens, org.eclipse.emf.transaction.util.Lock.uiSafeAcquire is called which leads to processing pending UI events to not block UI thread (this is documented in TransactionalEditingDomain.runExclusive method which is usually used to run a transactional read-only operation). But in case when some of the events leads to activation of another WorkbenchPage, its setActivePart throws RuntimeException:
+
+java.lang.RuntimeException: WARNING: Prevented recursive attempt to activate part org.eclipse.ui.views.PropertySheet while still in the middle of activating part <myDiagramPartID>
+
+Most probably WorkbenchPage.setActivePart method does not expect UI loop to continue to be executed inside of it and this leads to such an exception.
+
+I attached two stack traces leading to the exception. One purely consists of Eclipse's inner methods where GraphicalEditPart executes a transaction and in the second trace my property tester executes a transaction to check model for some constraints.
+
+The issue happens rarely, usually when working with huge models, so I cannot provide some exact steps to reproduce it with common editors. Though I've tried to describe the way I understand the problem.
+```
+
+---
+_[Comment #1 on Sat May 14 2022 15:51:48 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=413912#c1):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsOzU/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/24,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/24,emf-transaction,1361138754,24,TransactionalPropertySource.resetPropertyValue(Object) has poor implementation.,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:40:41Z,2022-09-04T12:40:42Z,"* 🆔 Bugzilla ID: [#428457](https://bugs.eclipse.org/bugs/show_bug.cgi?id=428457)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2014-02-18T16:33:32Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/24/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/24,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO0D,emf-transaction,1236331779,24,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:40:42Z,2022-09-04T12:40:42Z,"_[Comment #0 on Tue Feb 18 2014 17:33:32 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=428457#c0):_
+```
+The following method in TransactionalPropertySource should be parallel to all the other methods.
+
+
+	public void resetPropertyValue(final Object id) {
+		if (propertySource2 != null) {
+			// are we in a read-only context?  if so, balk because we cannot upgrade
+			//    read transaction to write when executing a command
+			Transaction tx = ((InternalTransactionalEditingDomain) domain).getActiveTransaction();
+			if ((tx == null) || !tx.isReadOnly()) {
+				propertySource2.resetPropertyValue(id);
+			}
+		}
+	}
+
+I.e., propertySource2 is only needed in 
+
+	public boolean isPropertyResettable(Object id) {
+		return (propertySource2 == null)? false
+				: propertySource2.isPropertyResettable(id);
+	}
+
+because that's the only place where the IPropertySource2 API is needed.  In the current implementation, the propertySource might not be an IPropertySource2 instance and in that case, reset does nothing.
+```
+
+---
+_[Comment #1 on Sat May 14 2022 15:51:22 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=428457#c1):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO0D/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/25,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/25,emf-transaction,1361138792,25,Inconsistent exception handling in WorkspaceCommandStackImpl and TransactionalCommandStackImpl,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:40:50Z,2022-09-04T12:40:51Z,"* 🆔 Bugzilla ID: [#429315](https://bugs.eclipse.org/bugs/show_bug.cgi?id=429315)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2014-02-28T14:18:30Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/25/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/25,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO0-,emf-transaction,1236331838,25,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:40:51Z,2022-09-04T12:40:51Z,"_[Comment #0 on Fri Feb 28 2014 15:18:30 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=429315#c0):_
+```
+When a runtime exception is thrown within a Command's execute() method, the WorkspaceCommandStackImpl will propagate it to the caller while the TransactionalCommandStackImpl will swallow it. This makes it impossible to use a simpler command stack, e.g. for unit testing commands.
+```
+
+---
+_[Comment #1 on Sat May 14 2022 15:51:48 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=429315#c1):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO0-/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/26,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/26,emf-transaction,1361138844,26,Deadlock inside TransactionImpl,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:40:59Z,2022-09-04T12:41:00Z,"* 🆔 Bugzilla ID: [#447136](https://bugs.eclipse.org/bugs/show_bug.cgi?id=447136)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2014-10-14T15:38:10Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/26/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/26,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO1j,emf-transaction,1236331875,26,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:41:00Z,2022-09-04T12:41:00Z,"_[Comment #0 on Tue Oct 14 2014 17:38:10 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=447136#c0):_
+```
+Hi,
+
+as recommended by Christian W. Damus on EMF Forum in this Thread https://www.eclipse.org/forums/index.php?t=rview&goto=1444769, I report the issue here.
+
+Context:
+- deadlock occurs few times on my CI in several months, not able to reproduce it.
+- find attached the Thread Stacks
+```
+
+---
+_[Comment #1 on Tue Oct 14 2014 17:39:07 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=447136#c1):_
+```
+
+```
+
+---
+_[Comment #2 on Tue Oct 14 2014 17:40:10 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=447136#c2):_
+```
+Analysis from Christian W. Damus:
+It looks like the deadlock is between
+
+* the main thread, which owns the domain's monitor and is seeking a 
+transaction's monitor, and
+* Worker-0, which owns that transaction's monitor and is seeking the 
+domain's monitor
+
+This deadlock is entirely within the Transaction API. The change 
+recorder's assertWriting() method synchronizes on the domain and then 
+on the active transaction, whereas a transaction int its start() method 
+synchronizes on itself and then on its domain. One of these monitor 
+sequences is out of order, and I suspect it's the one in the 
+TransactionChangeRecorder::assertWriting() method. It should not be 
+synchronizing on the domain.
+```
+
+---
+_[Comment #3 on Sat May 14 2022 15:51:53 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=447136#c3):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO1j/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/27,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/27,emf-transaction,1361138887,27,[EMF Transaction] NPE when cancelling a CompositeEMFOperation that executes in the context of its parent's transaction,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:41:08Z,2022-09-04T12:41:09Z,"* 🆔 Bugzilla ID: [#506893](https://bugs.eclipse.org/bugs/show_bug.cgi?id=506893)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2016-11-02T12:43:41Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/27/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/27,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO2C,emf-transaction,1236331906,27,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:41:09Z,2022-09-04T12:41:09Z,"_[Comment #0 on Wed Nov 02 2016 13:43:41 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=506893#c0):_
+```
+A NullPointerException can occur when cancelling a CompositeEMFOperation
+when that operations is executed in the context of its parent's transaction.
+This is due to calls of the form ""((InternalTransaction) getTransaction()).abort(...)"" while transaction is actually null.
+```
+
+---
+_[Comment #1 on Wed Nov 02 2016 13:49:19 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=506893#c1):_
+```
+
+```
+
+---
+_[Comment #2 on Sat May 14 2022 15:51:45 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=506893#c2):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO2C/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/28,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/28,emf-transaction,1361138920,28,FilterManager can produce ConcurrentModificationException with StereotypeNotificationFilter,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:41:17Z,2022-09-04T12:41:18Z,"* 🆔 Bugzilla ID: [#538166](https://bugs.eclipse.org/bugs/show_bug.cgi?id=538166)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2018-08-22T14:34:56Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/28/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/28,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO2j,emf-transaction,1236331939,28,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:41:18Z,2022-09-04T12:41:18Z,"_[Comment #0 on Wed Aug 22 2018 16:34:56 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=538166#c0):_
+```
+The org.eclipse.emf.transaction.impl.FilterManager may produce a ConcurrentModificationException together with the StereotypeNotificationFilter if the Stereotype is contained in a profile that also has a notation model which is not fully loaded. We have a profile with a stereotype and a notation model for the diagram. When the FilterManager matches on the StereotypeNotificationFilter the filter may resolve proxies (in this case from the notation model) which causes resolve proxy notifications to be added to the transaction notifications which are currently iterated by the FilterManager:
+
+This loop in FilterManager uses the notifications list from the current transaction:
+
+for (Notification next : notifications) {
+   if (filter.matches(next)) {
+	result.add(next);
+   }
+}
+
+
+This trace shows that a new notification is added during filtering that causes the ConcurrentModificationException. 
+
+CDOAwareTransactionalEditingDomain$4(TransactionChangeRecorder).appendNotification(Notification) line: 310	
+CDOAwareTransactionalEditingDomain$4.appendNotification(Notification) line: 427	
+CDOAwareTransactionalEditingDomain$4(TransactionChangeRecorder).processObjectNotification(Notification) line: 285	
+CDOAwareTransactionalEditingDomain$4(TransactionChangeRecorder).notifyChanged(Notification) line: 241	
+CDOAwareTransactionalEditingDomain$4.notifyChanged(Notification) line: 446	
+CSSShapeImpl(BasicNotifierImpl).eNotify(Notification) line: 374	
+CSSShapeImpl(ViewImpl).getElement() line: 351	
+CSSShapeImpl(ShapeImpl).eGet(int, boolean, boolean) line: 681	
+CSSShapeImpl(BasicEObjectImpl).eGet(EStructuralFeature, boolean, boolean) line: 1011	
+CSSShapeImpl(BasicEObjectImpl).eGet(EStructuralFeature, boolean) line: 1003	
+BasicEObjectImpl$3.get(boolean) line: 1618	
+StereotypePreservingCacheAdapter(ECrossReferenceAdapter).resolveProxy(Resource, EObject, EObject, EStructuralFeature$Setting) line: 474	
+StereotypePreservingCacheAdapter(CacheAdapter).resolveProxy(Resource, EObject, EObject, EStructuralFeature$Setting) line: 535	
+StereotypePreservingCacheAdapter(ECrossReferenceAdapter).resolveAll(EObject) line: 464	
+StereotypePreservingCacheAdapter(ECrossReferenceAdapter).getNonNavigableInverseReferences(EObject, boolean) line: 370	
+StereotypePreservingCacheAdapter(ECrossReferenceAdapter).getNonNavigableInverseReferences(EObject) line: 363	
+StereotypePreservingCacheAdapter(CacheAdapter).getNonNavigableInverseReferences(EObject) line: 330	
+UML2Util.getNonNavigableInverseReferences(EObject) line: 1115	
+ElementOperations.getAppliedStereotypes(Element) line: 334	
+PropertyImpl(ElementImpl).getAppliedStereotypes() line: 246	
+ElementOperations.getAppliedStereotype(Element, String) line: 364	
+PropertyImpl(ElementImpl).getAppliedStereotype(String) line: 259	
+UMLUtil.getTaggedValue(Element, String, String) line: 12275	
+UMLUtil$1.caseProperty(Property) line: 11702	
+UMLUtil$1.caseProperty(Property) line: 1	
+UMLUtil$1(UMLSwitch<T>).doSwitch(int, EObject) line: 780	
+UMLUtil$1(Switch<T>).doSwitch(EClass, EObject) line: 53	
+UMLUtil$1(Switch<T>).doSwitch(EObject) line: 69	
+UMLUtil.getEcoreName(NamedElement) line: 11707	
+UMLUtil.basicGetNamedElement(ENamedElement, EObject) line: 11768	
+UMLUtil$OperationContext$1(UMLUtil$OperationContext).getNamedElement(ENamedElement, EObject) line: 12086	
+UMLUtil.getNamedElement(ENamedElement, EObject) line: 11721	
+StereotypeElementListener$StereotypeExtensionFinder.getUMLDefinition(ENamedElement, EObject) line: 332	
+StereotypeElementListener$StereotypeExtensionFinder.getExtensionEnd(EObject, EStructuralFeature) line: 298	
+StereotypeElementListener$StereotypeNotificationFilter.matches(Notification) line: 428	
+FilterManager.select(List<Notification>, NotificationFilter, ArrayList<Notification>) line: 89	
+
+We temporarily solved this issue by resolving the complete profile beforehand. Anyway this could always happen depending on the implementation of the specific filter.
+```
+
+---
+_[Comment #1 on Sat May 14 2022 15:53:31 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=538166#c1):_
+```
+Eclipse EMF Validation is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-validation.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-validation/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Validation will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO2j/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/29,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/29,emf-transaction,1361138959,29,WorkspaceCommandStackImpl method isSaveNeeded should not return true when all commands have been undone and a save is done,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:41:26Z,2022-09-04T12:41:27Z,"* 🆔 Bugzilla ID: [#545313](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545313)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2019-03-12T18:48:47Z
+* ❓ Status: REOPENED / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/29/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/29,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO3H,emf-transaction,1236331975,29,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:41:27Z,2022-09-04T12:41:27Z,"_[Comment #0 on Tue Mar 12 2019 19:48:47 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545313#c0):_
+```
+When the command stack is empty (i.e. no commands ever executed) or flushed, the WorkspaceCommandStackImpl#isSaveNeeded will still return true, which surely is not correct.
+
+Even worse, calling #saveIsDone first doesn't help.
+
+The problem is probably due to savedContext being null, and remaining null even after the #saveIsDone call when there is no undo operation on the stack. Naturally, this is exactly the case when no commands were executed yet.
+
+This behaviour seems intended but I do not understand why, as it looks just plain wrong to me.
+```
+
+---
+_[Comment #1 on Tue Mar 12 2019 20:23:04 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545313#c1):_
+```
+Nevermind, another component was executing commands between my breakpoints.
+```
+
+---
+_[Comment #2 on Thu Mar 14 2019 15:06:16 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545313#c2):_
+```
+It seems there might actually be a bug with this thing: after executing some commands and saving, if you undo all commands, then do #saveIsDone, the savedContext is not set to null, and #isSaveNeeded will be true, even though the save was done.
+```
+
+---
+_[Comment #3 on Thu Mar 14 2019 16:49:57 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545313#c3):_
+```
+This is part of the EMF Transaction framework.
+```
+
+---
+_[Comment #4 on Mon Mar 18 2019 18:53:37 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545313#c4):_
+```
+I wrote a fix and test case (attached) but Gerrit doesn't allow me to push it.
+```
+
+---
+_[Comment #5 on Thu Mar 21 2019 08:41:36 GMT+0100 (Central European Standard Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545313#c5):_
+```
+Hi,
+
+I'll try to have a look in april, but will not have time before that.
+
+Dimo, what command did you try and what kind of errors did Gerrit throw at you? If you've not contributed Gerrit patches before, it requires some non-obvious steps: https://wiki.eclipse.org/Gerrit has all the details on how to set things up.
+```
+
+---
+_[Comment #6 on Sat May 14 2022 15:51:24 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545313#c6):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO3H/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/30,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/30,emf-transaction,1361139001,30,WorkspaceCommandStack.isSaveNeeded() does not consider AbstractCommand.NonDirtying,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,OPEN,2022-09-04T12:41:35Z,2022-09-04T12:41:36Z,"* 🆔 Bugzilla ID: [#551164](https://bugs.eclipse.org/bugs/show_bug.cgi?id=551164)
+* 📘 Project: Modeling / EMF Services / Transaction
+* 🗓 Created: 2019-09-17T12:25:16Z
+* ❓ Status: NEW / 
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/30/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/30,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO3u,emf-transaction,1236332014,30,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2022-09-04T12:41:36Z,2022-09-04T12:41:36Z,"_[Comment #0 on Tue Sep 17 2019 14:25:16 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=551164#c0):_
+```
+According to Ed's proposal in https://www.eclipse.org/forums/index.php/m/1814570/#msg_1814570 I file this bug.
+
+
+We are using TransactionalEditingDomain with a WorkspaceCommandStack.
+org.eclipse.emf.edit.ui.action.CopyAction (or the used CopyCommand) makes the editor dirty.
+
+In the editor a CommandStackListener is registered. When an event is raised, it tells the editor to check it's dirty property. The editor then calls WorkspaceCommandStack.isSaveNeeded(). Which always returns true, even for a copy command which does not change the editor's content.
+In comparison the BasicCommandStack.isSaveNeeded() method asks the command whether it has changed the model.
+```
+
+---
+_[Comment #1 on Tue Sep 17 2019 16:45:08 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=551164#c1):_
+```
+Marcus,
+
+This isn't the most active project so if you really need a fix, you might consider contributing one or sponsoring someone.
+```
+
+---
+_[Comment #2 on Sat May 14 2022 15:51:35 GMT+0200 (Central European Summer Time)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=551164#c2):_
+```
+Eclipse EMF Transaction is moving away from this bugs.eclipse.org issue tracker to https://github.com/eclipse/emf-transaction.
+
+If this issue is relevant to you and still present in the latest release:
+
+* Create a new issue at https://github.com/eclipse/emf-transaction/issues/.
+  * Use as title in GitHub the title of this Bugzilla ticket (may include the bug number or not, at your own convenience)
+  * In the GitHub description, start with a link to this bugzilla ticket
+  * Optionally add new content to the description if it can helps towards resolution
+* Update bugzilla ticket
+  * Add to ""See also"" property (up right column) the link to the newly created GitHub issue
+  * Add a comment ""Migrated to <link-to-newly-created-GitHub-issue>""
+  * Set status as CLOSED MOVED
+
+All issues that remain open will be automatically closed next week or so. Then the Bugzilla component for EMF Transaction will be archived and made read-only.
+```
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM5JsO3u/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/31,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/31,emf-transaction,1589697345,31,Move to Java 17 as minimum version,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2023-02-17T17:09:06Z,2024-08-17T15:12:20Z,"The oldest Eclipse version still tested/supported is 2020-09, which itself requires Java 11.
+
+_Update_: move to Java **17**. EMF Validation has already made the move.","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/31/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+issue,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/33,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/33,emf-transaction,2231748794,33, Remove the explicit source features,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,CLOSED,2024-04-08T17:34:12Z,2024-08-23T16:22:27Z,With modern versions of Tycho & PDE it seems that there is no real need to define them explicitly. See https://www.eclipse.org/lists/cross-project-issues-dev/msg19553.html,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/33/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/33,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM55ylH7,emf-transaction,2043302395,33,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-04-08T17:34:32Z,2024-04-08T17:34:32Z,"See https://github.com/eclipse-emfservices/emf-validation/issues/21 for how it's been done in EMF Validation.
+","{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM55ylH7/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
+comment,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/33,https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM6JiCL_,emf-transaction,2307400447,33,NA,pcdavid,10608,Pierre-Charles David,pcdavid@gmail.com,NA,2024-08-23T16:16:06Z,2024-08-23T16:16:06Z,See https://github.com/eclipse-emfservices/emf-validation/issues/21#issuecomment-2307025727,"{""url"": ""https://api.github.com/repos/eclipse-emfservices/emf-transaction/issues/comments/IC_kwDOFNMpEM6JiCL_/reactions"", ""total_count"": 0, ""+1"": 0, ""-1"": 0, ""laugh"": 0, ""hooray"": 0, ""confused"": 0, ""heart"": 0, ""rocket"": 0, ""eyes"": 0}"
