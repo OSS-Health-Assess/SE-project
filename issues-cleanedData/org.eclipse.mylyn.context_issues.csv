@@ -1,0 +1,16 @@
+type,repo_name,issue_state,created_at,updated_at,days_elapsed,status
+issue,org.eclipse.mylyn.context,CLOSED,2022-12-05,2022-12-05,1,Retired
+comment,org.eclipse.mylyn.context,NA,2022-12-05,2022-12-05,1,Retired
+issue,org.eclipse.mylyn.context,CLOSED,2022-12-05,2022-12-06,2,Retired
+comment,org.eclipse.mylyn.context,NA,2022-12-05,2022-12-05,1,Retired
+comment,org.eclipse.mylyn.context,NA,2022-12-05,2022-12-05,1,Retired
+comment,org.eclipse.mylyn.context,NA,2022-12-05,2022-12-05,1,Retired
+comment,org.eclipse.mylyn.context,NA,2022-12-05,2022-12-05,1,Retired
+comment,org.eclipse.mylyn.context,NA,2022-12-06,2022-12-06,1,Retired
+issue,org.eclipse.mylyn.context,OPEN,2022-12-06,2022-12-06,1,Retired
+issue,org.eclipse.mylyn.context,CLOSED,2022-12-08,2022-12-09,2,Retired
+comment,org.eclipse.mylyn.context,NA,2022-12-09,2022-12-09,1,Retired
+issue,org.eclipse.mylyn.context,CLOSED,2022-12-09,2022-12-09,1,Retired
+comment,org.eclipse.mylyn.context,NA,2022-12-09,2022-12-09,1,Retired
+issue,org.eclipse.mylyn.context,CLOSED,2022-12-23,2022-12-23,1,Retired
+comment,org.eclipse.mylyn.context,NA,2022-12-23,2022-12-23,1,Retired

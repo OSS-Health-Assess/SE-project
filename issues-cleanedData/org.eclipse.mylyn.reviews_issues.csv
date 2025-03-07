@@ -1,0 +1,7 @@
+type,repo_name,issue_state,created_at,updated_at,days_elapsed,status
+issue,org.eclipse.mylyn.reviews,CLOSED,2022-12-10,2022-12-10,1,Retired
+issue,org.eclipse.mylyn.reviews,CLOSED,2022-12-10,2022-12-22,13,Retired
+comment,org.eclipse.mylyn.reviews,NA,2022-12-22,2022-12-22,1,Retired
+issue,org.eclipse.mylyn.reviews,OPEN,2022-12-20,2022-12-20,1,Retired
+issue,org.eclipse.mylyn.reviews,CLOSED,2022-12-22,2022-12-22,1,Retired
+comment,org.eclipse.mylyn.reviews,NA,2022-12-22,2022-12-22,1,Retired

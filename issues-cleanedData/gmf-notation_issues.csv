@@ -1,0 +1,8 @@
+type,repo_name,issue_state,created_at,updated_at,days_elapsed,status
+issue,gmf-notation,OPEN,2022-08-14,2023-12-08,482,Retired
+comment,gmf-notation,NA,2023-10-12,2023-10-12,1,Retired
+comment,gmf-notation,NA,2023-12-08,2023-12-08,1,Retired
+issue,gmf-notation,CLOSED,2022-08-14,2022-08-16,3,Retired
+comment,gmf-notation,NA,2022-08-16,2022-08-16,1,Retired
+issue,gmf-notation,CLOSED,2023-10-12,2024-08-22,316,Retired
+comment,gmf-notation,NA,2024-08-22,2024-08-22,1,Retired
