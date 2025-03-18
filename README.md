@@ -46,7 +46,7 @@ REPOVITAL is a machine learning-based analysis designed to assess the health of 
 ## **Key Findings**  
 - **Commits are the strongest predictor** of OSS project sustainability.  
 - **Community participation (issue resolution, contributor engagement)** is crucial for project longevity.  
-- **Advanced models like Transformers and LSTMs outperform traditional classifiers** in capturing OSS health trends.  
+- **Advanced models like Transformers outperform traditional classifiers** in capturing OSS health trends.  
 - **A combined approach using project metrics and issue data yields the most accurate results.**  
 
 ## **Future Scope**  
@@ -55,8 +55,8 @@ REPOVITAL is a machine learning-based analysis designed to assess the health of 
 - Developing a real-time monitoring system for OSS project health.  
 
 ## **Team Members**  
-- **Shreyas Shah** – Data Collection, PCA, ML Modeling  
-- **Sachin Shankar Balasubramanyam** – Data Extraction, Feature Engineering  
-- **Priyadharshini Ganeshkumar** – Literature Review, Logistic Regression Modeling  
-- **Sandhya Ghanathe** – SVM Implementation, Data Visualization  
-- **Sarika Dinesh** – LSTM Implementation, Issue Data Analysis  
+- Shreyas Shah
+- Sachin Shankar Balasubramanyam
+- Priyadharshini Ganeshkumar
+- Sandhya Ghanathe
+- Sarika Dinesh
