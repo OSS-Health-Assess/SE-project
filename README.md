@@ -1,7 +1,7 @@
 # **REPOVITAL: Tracking OSS Project Health Through Data-Driven Metrics**  
 
 ## **Overview**  
-REPOVITAL is a machine learning-based framework designed to assess the health of open-source software (OSS) projects. With OSS forming the backbone of modern technology, ensuring project sustainability is crucial. Our approach classifies OSS projects as *Graduated* (healthy) or *Retired* (declining) using advanced data-driven techniques.  
+REPOVITAL is a machine learning-based analysis designed to assess the health of open-source software (OSS) projects. With OSS forming the backbone of modern technology, ensuring project sustainability is crucial. Our approach classifies OSS projects as *Graduated* (healthy) or *Retired* (declining) using advanced data-driven techniques.  
 
 ## **Key Features**  
 - **Comprehensive Data Collection:** Analyzed 154 OSS projects from Apache and Eclipse foundations.  
